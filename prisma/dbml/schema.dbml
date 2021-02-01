@@ -16,8 +16,8 @@ Table User {
 
 Table Profile {
   id String [pk]
-  firstname String
-  lastname String
+  firstName String
+  lastName String
   bio String [not null]
   user User [not null]
   userId String [not null]

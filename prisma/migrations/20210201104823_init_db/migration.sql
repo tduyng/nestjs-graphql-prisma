@@ -17,8 +17,8 @@ CREATE TABLE "User" (
 -- CreateTable
 CREATE TABLE "Profile" (
     "id" TEXT NOT NULL,
-    "firstname" TEXT,
-    "lastname" TEXT,
+    "firstName" TEXT,
+    "lastName" TEXT,
     "bio" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,

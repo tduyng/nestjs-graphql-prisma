@@ -28,8 +28,8 @@ model User {
 
 model Profile {
   id        String   @id @default(uuid())
-  firstname String?
-  lastname  String?
+  firstName String?
+  lastName  String?
   bio       String
   user      User     @relation(fields: [userId], references: [id])
   userId    String
