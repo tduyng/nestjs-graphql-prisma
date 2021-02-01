@@ -1,17 +1,13 @@
-import { Field, ObjectType, ID } from '@nestjs/graphql';
+import { Field, ObjectType, ID, GraphQLISODateTime } from '@nestjs/graphql';
 
 @ObjectType({ isAbstract: true })
 export abstract class BaseModel {
   @Field(() => ID)
   public id: string;
 
-  @Field({
-    description: 'Identifies the date and time when the object was created',
-  })
+  @Field(() => GraphQLISODateTime)
   createdAt: Date;
 
-  @Field({
-    description: 'Identifies the date and time when the object was las updated',
-  })
+  @Field(() => GraphQLISODateTime)
   updatedAt: Date;
 }

@@ -7,6 +7,7 @@ import { PrismaModule } from '@modules/prisma/prisma.module';
 import { AppResolver } from '@app/app.resolver';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { UserModule } from '@modules/user/user.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { AppService } from './app.service';
     }),
     GraphQLModule.forRoot(graphqlOptions()),
     PrismaModule,
+    UserModule,
   ],
   providers: [AppResolver, AppService],
   controllers: [AppController],

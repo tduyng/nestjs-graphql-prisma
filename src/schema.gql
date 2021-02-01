@@ -2,7 +2,76 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Category {
+  createdAt: DateTime!
+  id: ID!
+  name: String!
+  slug: String!
+  updatedAt: DateTime!
+}
+
+input ChangePasswordInput {
+  newPassword: String!
+  oldPassword: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Mutation {
+  changePassword(data: ChangePasswordInput!): User!
+  updateUser(data: UpdateUserInput!): User!
+}
+
+type Post {
+  author: User
+  categories: [Category!]
+  content: String!
+  createdAt: DateTime!
+  id: ID!
+  published: String!
+  slug: String!
+  title: String!
+  updatedAt: DateTime!
+}
+
+type Profile {
+  bio: String
+  createdAt: DateTime!
+  firstName: String
+  id: ID!
+  lastName: String
+  updatedAt: DateTime!
+  user: User!
+}
+
 type Query {
+  getUser(where: UserWhereUniqueInput!): User!
   hello(name: String!): String!
   helloWorld: String!
+  me: User!
+}
+
+input UpdateUserInput {
+  email: String
+  username: String
+}
+
+type User {
+  createdAt: DateTime!
+  email: String!
+  id: ID!
+  posts: [Post!]
+  profile: Profile
+  role: String!
+  updatedAt: DateTime!
+  username: String
+}
+
+input UserWhereUniqueInput {
+  email: String
+  userId: String
+  username: String
 }

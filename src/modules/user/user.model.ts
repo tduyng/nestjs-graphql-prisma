@@ -22,8 +22,8 @@ export class User extends BaseModel {
   @Field(() => String, { nullable: true })
   username?: string;
 
-  @Field(() => Role, { defaultValue: Role.USER })
-  role: Role;
+  @Field(() => String, { defaultValue: Role.USER })
+  role: string;
 
   @Field(() => [Post], { nullable: true })
   posts?: Post[];
