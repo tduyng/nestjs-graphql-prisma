@@ -31,6 +31,7 @@ CREATE TABLE "Profile" (
 CREATE TABLE "Post" (
     "id" TEXT NOT NULL,
     "title" TEXT NOT NULL,
+    "slug" TEXT NOT NULL,
     "content" TEXT NOT NULL,
     "published" BOOLEAN NOT NULL DEFAULT false,
     "authorId" TEXT,
@@ -44,6 +45,7 @@ CREATE TABLE "Post" (
 CREATE TABLE "Category" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
+    "slug" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -61,6 +63,12 @@ CREATE UNIQUE INDEX "User.email_unique" ON "User"("email");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "User.username_unique" ON "User"("username");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Post.slug_unique" ON "Post"("slug");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Category.slug_unique" ON "Category"("slug");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "_CategoryToPost_AB_unique" ON "_CategoryToPost"("A", "B");
