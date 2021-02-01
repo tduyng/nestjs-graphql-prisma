@@ -6,7 +6,13 @@
   "private": false,
   "license": "MIT",
   "keywords": [
-    "NestJS", "GraphQL", "Prisma", "Boilerplate", "Starter", "Postgres", "TypeScript"
+    "NestJS",
+    "GraphQL",
+    "Prisma",
+    "Boilerplate",
+    "Starter",
+    "Postgres",
+    "TypeScript"
   ],
   "scripts": {
     "prebuild": "rimraf dist",
@@ -27,7 +33,6 @@
     "prisma:generate:watch": "npx prisma generate --watch",
     "start:db": "npm run migrate:up && npm run prisma:generate && npm run seed",
     "seed": "ts-node prisma/seed.ts",
-    "postinstall": "npm run prisma:generate",
     "docker:migrate": "docker-compose -f docker-compose.migrate.yml up -d",
     "docker:seed": "docker exec -it nest-api npm run seed",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
@@ -36,7 +41,6 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json"
-
   },
   "dependencies": {
     "@nestjs/common": "^7.5.1",
@@ -47,14 +51,21 @@
     "@nestjs/swagger": "^4.7.12",
     "@prisma/client": "^2.15.0",
     "apollo-server-express": "^2.19.2",
+    "bcrypt": "^5.0.0",
     "class-transformer": "^0.3.2",
     "class-validator": "^0.13.1",
+    "cookie": "^0.4.1",
+    "cookie-parser": "^1.4.5",
     "graphql": "^15.5.0",
     "graphql-tools": "^7.0.2",
+    "helmet": "^4.4.1",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
     "pg": "^8.5.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.6.3",
+    "slugify": "^1.4.6",
     "swagger-ui-express": "^4.1.6"
   },
   "devDependencies": {
@@ -62,9 +73,14 @@
     "@nestjs/schematics": "^7.1.3",
     "@nestjs/testing": "^7.5.1",
     "@prisma/cli": "2.15.0",
+    "@types/bcrypt": "^3.0.0",
+    "@types/cookie": "^0.4.0",
+    "@types/cookie-parser": "^1.4.2",
     "@types/express": "^4.17.8",
     "@types/jest": "^26.0.15",
     "@types/node": "^14.14.6",
+    "@types/passport-jwt": "^3.0.3",
+    "@types/passport-local": "^1.0.33",
     "@types/supertest": "^2.0.10",
     "@typescript-eslint/eslint-plugin": "^4.6.1",
     "@typescript-eslint/parser": "^4.6.1",
