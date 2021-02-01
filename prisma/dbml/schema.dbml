@@ -1,0 +1,60 @@
+//// ------------------------------------------------------
+//// THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+//// ------------------------------------------------------
+
+Table User {
+  id String [pk]
+  email String [unique, not null]
+  password String [not null]
+  username String [unique]
+  posts Post
+  role Role [not null, default: 'USER']
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  profile Profile
+}
+
+Table Profile {
+  id String [pk]
+  firstname String
+  lastname String
+  bio String [not null]
+  user User [not null]
+  userId String [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table Post {
+  id String [pk]
+  title String [not null]
+  content String [not null]
+  published Boolean [not null, default: false]
+  author User
+  authorId String
+  categories Category
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table Category {
+  id String [pk]
+  name String [not null]
+  posts Post
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table CategoryToPost {
+  categoriesId String [ref: > Category.id]
+  postsId String [ref: > Post.id]
+}
+
+Enum Role {
+  ADMIN
+  USER
+}
+
+Ref: Profile.userId > User.id
+
+Ref: Post.authorId > User.id
