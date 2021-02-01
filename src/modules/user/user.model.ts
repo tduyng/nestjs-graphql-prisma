@@ -28,8 +28,8 @@ export class User extends BaseModel {
   @Field(() => [Post], { nullable: true })
   posts?: Post[];
 
-  @Field(() => Profile, { nullable: false })
-  profile: Profile;
+  @Field(() => Profile, { nullable: true })
+  profile?: Profile;
 
   @HideField()
   password: string;

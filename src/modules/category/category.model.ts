@@ -7,6 +7,6 @@ export class Category extends BaseModel {
   @Field(() => String, { nullable: false })
   name: string;
 
-  @Field(() => [Post], { nullable: true })
-  posts: [Post];
+  @Field(() => String, { nullable: false })
+  slug: string;
 }
