@@ -8,7 +8,11 @@ import helmet from 'helmet';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   // Validation
-  app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalPipes(
+    new ValidationPipe({
+      skipMissingProperties: true,
+    }),
+  );
   app.enableCors();
   app.use(cookieParser());
   app.use(
