@@ -1,6 +1,5 @@
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
-
 import { graphqlOptions } from '../common/configs/graphql-options';
 import { ConfigModule } from '@nestjs/config';
 import { PrismaModule } from '@modules/prisma/prisma.module';
@@ -9,6 +8,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from '@modules/user/user.module';
 import { CategoryModule } from '@modules/category/category.module';
+import { ProfileModule } from '@modules/profile/profile.module';
 
 @Module({
   imports: [
@@ -20,6 +20,7 @@ import { CategoryModule } from '@modules/category/category.module';
     PrismaModule,
     UserModule,
     CategoryModule,
+    ProfileModule,
   ],
   providers: [AppResolver, AppService],
   controllers: [AppController],

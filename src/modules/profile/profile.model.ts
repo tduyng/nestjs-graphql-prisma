@@ -13,6 +13,6 @@ export class Profile extends BaseModel {
   @Field(() => String, { nullable: true })
   bio?: string;
 
-  @Field(() => User, { nullable: false })
-  user: User;
+  @Field(() => User, { nullable: true })
+  user?: User;
 }

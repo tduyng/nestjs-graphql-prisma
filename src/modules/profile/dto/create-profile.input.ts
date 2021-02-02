@@ -1,10 +1,13 @@
 import { Field, InputType } from '@nestjs/graphql';
 
 @InputType()
-export class CategoryWhereUniqueInput {
+export class CreateProfileInput {
   @Field(() => String, { nullable: true })
-  id?: string;
+  firstName?: string;
 
   @Field(() => String, { nullable: true })
-  slug?: string;
+  lastName?: string;
+
+  @Field(() => String, { nullable: true })
+  bio?: string;
 }
