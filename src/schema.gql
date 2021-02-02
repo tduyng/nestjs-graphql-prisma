@@ -6,13 +6,23 @@ type Category {
   createdAt: DateTime!
   id: ID!
   name: String!
+  posts: [Post!]
   slug: String!
   updatedAt: DateTime!
+}
+
+input CategoryWhereUniqueInput {
+  id: String!
+  slug: String
 }
 
 input ChangePasswordInput {
   newPassword: String!
   oldPassword: String!
+}
+
+input CreateCategoryInput {
+  name: String!
 }
 
 """
@@ -22,6 +32,9 @@ scalar DateTime
 
 type Mutation {
   changePassword(data: ChangePasswordInput!): User!
+  createCategory(data: CreateCategoryInput!): Category!
+  deleteCategory(where: CategoryWhereUniqueInput!): Category!
+  updateCategory(data: UpdateCategoryInput!, where: CategoryWhereUniqueInput!): Category!
   updateUser(data: UpdateUserInput!): User!
 }
 
@@ -48,10 +61,16 @@ type Profile {
 }
 
 type Query {
-  getUser(where: UserWhereUniqueInput!): User!
+  categories: [Category!]!
+  category(where: CategoryWhereUniqueInput!): Category!
   hello(name: String!): String!
   helloWorld: String!
   me: User!
+  user(where: UserWhereUniqueInput!): User!
+}
+
+input UpdateCategoryInput {
+  name: String!
 }
 
 input UpdateUserInput {
@@ -72,6 +91,6 @@ type User {
 
 input UserWhereUniqueInput {
   email: String
-  userId: String
+  id: String
   username: String
 }

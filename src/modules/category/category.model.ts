@@ -9,4 +9,7 @@ export class Category extends BaseModel {
 
   @Field(() => String, { nullable: false })
   slug: string;
+
+  @Field(() => [Post], { nullable: true })
+  posts?: Post[];
 }

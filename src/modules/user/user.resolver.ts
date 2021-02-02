@@ -28,7 +28,7 @@ export class UserResolver {
 
   /* Query for single user*/
   @Query(() => User)
-  public async getUser(@Args('where') where: UserWhereUniqueInput) {
+  public async user(@Args('where') where: UserWhereUniqueInput) {
     return await this.userService.getUserByUniqueInput(where);
   }
 
