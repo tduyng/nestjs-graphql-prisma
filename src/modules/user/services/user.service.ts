@@ -1,5 +1,10 @@
 import { PrismaService } from '@modules/prisma/prisma.service';
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  HttpException,
+  HttpStatus,
+  Injectable,
+} from '@nestjs/common';
 import { ChangePasswordInput } from '../dto/change-password.input';
 import { PasswordService } from './password.service';
 import { UserWhereUniqueInput, UpdateUserInput } from '../dto';
@@ -13,38 +18,6 @@ export class UserService {
     private prisma: PrismaService,
     private passwordService: PasswordService,
   ) {}
-
-  public async updateUser(userId: string, newUserData: UpdateUserInput) {
-    return await this.prisma.user.update({
-      data: newUserData,
-      where: {
-        id: userId,
-      },
-    });
-  }
-
-  public async changePassword(
-    userId: string,
-    userPassword: string,
-    changePasswordInput: ChangePasswordInput,
-  ) {
-    const { newPassword, oldPassword } = changePasswordInput;
-    const passwordValid = await this.passwordService.validatePassword(
-      oldPassword,
-      userPassword,
-    );
-
-    if (!passwordValid) {
-      throw new BadRequestException('Invalid password');
-    }
-    const hashedPassword = await this.passwordService.hashPassword(newPassword);
-    return await this.prisma.user.update({
-      where: { id: userId },
-      data: {
-        password: hashedPassword,
-      },
-    });
-  }
 
   public async getPostsOfUser(userId: string): Promise<Post[]> {
     const user: User = await this.prisma.user.findUnique({
@@ -77,5 +50,50 @@ export class UserService {
       `SELECT * FROM "User" ORDER BY random() LIMIT 1`,
     );
     return result;
+  }
+
+  public async updateUser(userId: string, newUserData: UpdateUserInput) {
+    try {
+      return await this.prisma.user.update({
+        data: newUserData,
+        where: {
+          id: userId,
+        },
+      });
+    } catch (error) {
+      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  public async changePassword(
+    userId: string,
+    userPassword: string,
+    changePasswordInput: ChangePasswordInput,
+  ) {
+    try {
+      const { newPassword, oldPassword } = changePasswordInput;
+      const passwordValid = await this.passwordService.validatePassword(
+        oldPassword,
+        userPassword,
+      );
+
+      if (!passwordValid) {
+        throw new BadRequestException('Invalid password');
+      }
+      const hashedPassword = await this.passwordService.hashPassword(
+        newPassword,
+      );
+      return await this.prisma.user.update({
+        where: { id: userId },
+        data: {
+          password: hashedPassword,
+        },
+      });
+    } catch (error) {
+      if (error.status) {
+        throw error;
+      }
+      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
   }
 }
