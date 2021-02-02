@@ -1,0 +1,14 @@
+FROM node:lts:alpine
+
+RUN openssl version -v
+RUN uname -a
+RUN echo ${DATABASE_URL}
+
+WORKDIR /urs/src/app
+
+RUN yarn global add -g @prisma/cli --unsafe-perm
+
+# Copy schema and migration folder
+ADD ./ ./prisma/
+
+CMD ["yarn", "prisma", "migrate", "dev","--preview-feature"]

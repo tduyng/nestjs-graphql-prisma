@@ -1,0 +1,95 @@
+version: '3.8'
+services:
+  nest-api:
+    container_name: nest-graphql-api
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      - postgres
+    networks:
+      - nest-graphql-network
+
+  prisma:
+    image: prismagraphql/prisma:latest
+    ports:
+      - '4466:4466'
+    depends_on:
+      - postgres
+    env_file:
+      - ".env"
+    environment:
+      PRISMA_CONFIG: |
+        port: 4466
+        databases:
+          default:
+            connector: ${DB_CONNECTOR}
+            host: ${DB_HOST}
+            port: ${DB_PORT}
+            user: ${DB_USER}
+            password: ${DB_PASSWORD}
+    networks:
+      - nest-graphql-network
+    logging:
+      driver: none
+
+
+  postgres:
+    image: postgres:latest
+    restart: always
+    env_file:
+      - ".env"
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_DATABASE}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - nest-graphql-network
+    logging:
+      driver: none
+
+  pgadmin:
+    links:
+    - postgres:postgres
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    restart: unless-stopped
+    ports:
+      - '8080:80'
+    volumes:
+      - /data/pgadmin:/root/.pgadmin
+    env_file:
+      - .env
+    networks:
+      - nest-graphql-network
+    logging:
+      driver: none
+
+  nest-nginx:
+    container_name: nest-nginx
+    restart: always
+    build:
+      context: docker/nginx
+      dockerfile: Dockerfile.nginx
+    depends_on:
+      - nest-api
+    ports:
+      - 80:80
+    env_file:
+      - .env.nginx
+    networks:
+      - nest-graphql-network
+
+
+volumes:
+  postgres_data:
+    driver: local
+networks:
+  nest-graphql-network:
+    driver: bridge
+    name: nest-graphql-network
