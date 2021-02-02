@@ -15,6 +15,23 @@ export class CategoryService {
     return await this.prisma.category.findMany({});
   }
 
+  public async getPostsOfCategory(categoryId: string): Promise<Post[]> {
+    const category: Category = await this.prisma.category.findUnique({
+      where: { id: categoryId },
+      include: {
+        posts: true,
+      },
+    });
+    return category.posts;
+  }
+
+  public async getCategoryByUniqueInput(where: CategoryWhereUniqueInput) {
+    return await this.prisma.category.findUnique({
+      where,
+      rejectOnNotFound: true,
+    });
+  }
+
   public async createCategory(categoryInput: CreateCategoryInput) {
     const { name } = categoryInput;
     const slug = slugify(name, { lower: true });
@@ -31,23 +48,6 @@ export class CategoryService {
         name,
         slug,
       },
-    });
-  }
-
-  public async getPostsOfCategory(categoryId: string): Promise<Post[]> {
-    const category: Category = await this.prisma.category.findUnique({
-      where: { id: categoryId },
-      include: {
-        posts: true,
-      },
-    });
-    return category.posts;
-  }
-
-  public async getCategoryByUniqueInput(where: CategoryWhereUniqueInput) {
-    return await this.prisma.category.findUnique({
-      where,
-      rejectOnNotFound: true,
     });
   }
 
