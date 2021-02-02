@@ -61,4 +61,11 @@ export class UserService {
       rejectOnNotFound: true,
     });
   }
+
+  public async getUserRandom() {
+    const [result] = await this.prisma.$queryRaw<User[]>(
+      `SELECT * FROM "User" ORDER BY random() LIMIT 1`,
+    );
+    return result;
+  }
 }

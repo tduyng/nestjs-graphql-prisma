@@ -4,7 +4,7 @@ import { IsEmail, IsOptional, Matches } from 'class-validator';
 @InputType()
 export class UserWhereUniqueInput {
   @Field(() => String, { nullable: true })
-  userId?: string;
+  id?: string;
 
   @Field(() => String, { nullable: true })
   @IsEmail()
