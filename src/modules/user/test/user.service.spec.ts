@@ -16,6 +16,11 @@ const oneUser = {
   email: 'some email',
   username: 'some-username',
   password: 'some password',
+  profile: {
+    id: 'some profileId',
+    firstName: 'some first name',
+    lastName: 'some last name',
+  },
   posts: [
     {
       id: 'some postId1',
@@ -98,6 +103,14 @@ describe('UserService', () => {
       prismaService.user.findUnique.mockReturnValue(oneUser);
       const result = await userService.getPostsOfUser(oneUser.id);
       expect(result).toEqual(oneUser.posts);
+    });
+  });
+
+  describe('getProfileOfUser', () => {
+    it('Should return an profile', async () => {
+      prismaService.user.findUnique.mockReturnValue(oneUser);
+      const result = await userService.getProfileOfUser(oneUser.id);
+      expect(result).toEqual(oneUser.profile);
     });
   });
 

@@ -37,6 +37,11 @@ export class UserResolver {
     return await this.userService.getPostsOfUser(author.id);
   }
 
+  @ResolveField(() => [Post])
+  public async profile(@Parent() author: User) {
+    return await this.userService.getProfileOfUser(author.id);
+  }
+
   /* Mutations */
 
   @Mutation(() => User)

@@ -5,6 +5,7 @@ import { PasswordService } from './password.service';
 import { UserWhereUniqueInput, UpdateUserInput } from '../dto';
 import { User } from '../user.model';
 import { Post } from '@modules/post/post.model';
+import { Profile } from '@modules/profile/profile.model';
 
 @Injectable()
 export class UserService {
@@ -53,6 +54,15 @@ export class UserService {
       },
     });
     return user.posts;
+  }
+  public async getProfileOfUser(userId: string): Promise<Profile> {
+    const user: User = await this.prisma.user.findUnique({
+      where: { id: userId },
+      include: {
+        profile: true,
+      },
+    });
+    return user.profile;
   }
 
   public async getUserByUniqueInput(where: UserWhereUniqueInput) {
