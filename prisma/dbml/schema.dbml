@@ -57,6 +57,6 @@ Enum Role {
   USER
 }
 
-Ref: Profile.userId > User.id
+Ref: Profile.userId - User.id
 
 Ref: Post.authorId > User.id
