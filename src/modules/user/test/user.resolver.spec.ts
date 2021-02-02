@@ -69,10 +69,10 @@ describe('UserResolver', () => {
     });
   });
 
-  describe('getUser', () => {
+  describe('user', () => {
     it('Should return user', async () => {
       userService.getUserByUniqueInput.mockReturnValue(oneUser);
-      const result = await userResolver.getUser(userWhereUniqueInput);
+      const result = await userResolver.user(userWhereUniqueInput);
       expect(result).toEqual(oneUser);
     });
   });
