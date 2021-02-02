@@ -5,7 +5,7 @@ import { AppService } from './app.service';
 export class AppController {
   constructor(private appService: AppService) {}
   @Get()
-  public async getHello() {
+  public getHello() {
     return this.appService.getHello();
   }
 }
