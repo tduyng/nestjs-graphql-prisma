@@ -14,6 +14,7 @@ import { UpdateProfileInput } from './dto/update-profile.input';
 import { CurrentUser } from '@modules/user/user.decorator';
 import { User } from '@modules/user/user.model';
 import { UserWhereUniqueInput } from '@modules/user/dto';
+import { Prisma } from '@prisma/client';
 
 @Resolver(() => Profile)
 export class ProfileResolver {
@@ -31,7 +32,10 @@ export class ProfileResolver {
 
   @ResolveField(() => User)
   public async user(@Parent() profile: Profile) {
-    return await this.profileService.getUserOfProfile(profile.id);
+    const where: Prisma.ProfileWhereUniqueInput = {
+      id: profile.id,
+    };
+    return await this.profileService.getUserOfProfile(where);
   }
 
   /* Mutations */
