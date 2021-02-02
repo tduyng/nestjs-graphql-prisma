@@ -12,7 +12,7 @@ type Category {
 }
 
 input CategoryWhereUniqueInput {
-  id: String!
+  id: String
   slug: String
 }
 
@@ -25,6 +25,12 @@ input CreateCategoryInput {
   name: String!
 }
 
+input CreateProfileInput {
+  bio: String
+  firstName: String
+  lastName: String
+}
+
 """
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
@@ -33,8 +39,11 @@ scalar DateTime
 type Mutation {
   changePassword(data: ChangePasswordInput!): User!
   createCategory(data: CreateCategoryInput!): Category!
+  createProfile(data: CreateProfileInput!): Profile!
   deleteCategory(where: CategoryWhereUniqueInput!): Category!
+  deleteProfile(where: ProfileWhereUniqueInput!): Profile!
   updateCategory(data: UpdateCategoryInput!, where: CategoryWhereUniqueInput!): Category!
+  updateProfile(data: UpdateProfileInput!, where: ProfileWhereUniqueInput!): Profile!
   updateUser(data: UpdateUserInput!): User!
 }
 
@@ -57,7 +66,11 @@ type Profile {
   id: ID!
   lastName: String
   updatedAt: DateTime!
-  user: User!
+  user: User
+}
+
+input ProfileWhereUniqueInput {
+  id: String
 }
 
 type Query {
@@ -66,11 +79,19 @@ type Query {
   hello(name: String!): String!
   helloWorld: String!
   me: User!
+  profile(where: ProfileWhereUniqueInput!): Profile!
+  profileByUser(where: UserWhereUniqueInput!): Profile!
   user(where: UserWhereUniqueInput!): User!
 }
 
 input UpdateCategoryInput {
   name: String!
+}
+
+input UpdateProfileInput {
+  bio: String
+  firstName: String
+  lastName: String
 }
 
 input UpdateUserInput {
