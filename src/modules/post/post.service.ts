@@ -7,8 +7,10 @@ import { CreatePostInput, UpdatePostInput } from './dto';
 import slugify from 'slugify';
 import { randomBytes } from 'crypto';
 import { CategoryService } from '@modules/category/category.service';
-import { PostWhereUniqueInput } from '@common/@generated/post';
-import { PostFindManyArgs } from './args/post-find-many.args';
+import {
+  FindManyPostArgs,
+  PostWhereUniqueInput,
+} from '@common/@generated/post';
 
 @Injectable()
 export class PostService {
@@ -17,7 +19,7 @@ export class PostService {
     private categoryService: CategoryService,
   ) {}
 
-  public async getPosts(args: PostFindManyArgs) {
+  public async getPosts(args: FindManyPostArgs) {
     return await this.prisma.post.findMany({
       include: { author: true },
       ...args,

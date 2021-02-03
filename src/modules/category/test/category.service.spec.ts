@@ -74,7 +74,7 @@ describe('CategoryService', () => {
   describe('getCategories', () => {
     it('Should return an array of category', async () => {
       prismaService.category.findMany.mockReturnValue(arrayCategory);
-      const result = await categoryService.getCategories();
+      const result = await categoryService.getCategories({});
       expect(result).toEqual(arrayCategory);
     });
   });

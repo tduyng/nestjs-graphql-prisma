@@ -74,7 +74,7 @@ describe('CategoryResolver', () => {
   describe('categories', () => {
     it('Should return an array of category', async () => {
       categoryService.getCategories.mockReturnValue(arrayCategory);
-      const result = await categoryResolver.categories();
+      const result = await categoryResolver.categories({});
       expect(result).toEqual(arrayCategory);
     });
   });

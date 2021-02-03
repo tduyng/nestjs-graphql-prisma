@@ -2,46 +2,75 @@ import { PrismaService } from '@modules/prisma/prisma.service';
 import { Test, TestingModule } from '@nestjs/testing';
 import { PostService } from '../post.service';
 import { User } from '@modules/user/user.model';
-import { UserWhereUniqueInput } from '@modules/user/dto';
+import { CreatePostInput } from '../dto';
+import { Post, PostWhereUniqueInput } from '@common/@generated/post';
+import { CategoryService } from '@modules/category/category.service';
+import { Category } from '@modules/category/category.model';
 
 const oneUser = {
-  id: 'some postId',
+  id: 'some userId',
   email: 'some email',
   username: 'some-username',
 } as User;
 
+const onePost = {
+  id: 'some postId',
+  title: 'some title',
+  content: 'some content',
+  author: oneUser,
+} as Post;
+
 const postInput = {
-  firstName: 'some first name',
-  lastName: 'some last name',
-  bio: 'some bio',
+  title: 'some title',
+  content: 'some content',
+  categories: [
+    {
+      name: 'Web development',
+    },
+    {
+      name: 'Monorepo',
+    },
+  ],
 } as CreatePostInput;
+const oneCategory = {
+  id: 'some id',
+  name: 'name name',
+} as Category;
+
+const arrayPost = [onePost, onePost];
 
 const postWhereUniqueInput = {
   id: 'some postId',
 } as PostWhereUniqueInput;
 
-const userWhereUniqueInput = {
-  id: 'some userId',
-} as UserWhereUniqueInput;
-
 describe('PostService', () => {
   let postService: PostService;
   let prismaService;
+  let categoryService;
 
   const mockPrismaService = () => ({
     post: {
       findMany: jest.fn(),
+      findUnique: jest.fn(),
       create: jest.fn(),
       update: jest.fn(),
-      findUnique: jest.fn(),
       delete: jest.fn(),
+      upsert: jest.fn(),
     },
+  });
+
+  const mockCategoryService = () => ({
+    createCategories: jest.fn(),
   });
 
   beforeAll(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         PostService,
+        {
+          provide: CategoryService,
+          useFactory: mockCategoryService,
+        },
         {
           provide: PrismaService,
           useFactory: mockPrismaService,
@@ -51,10 +80,19 @@ describe('PostService', () => {
 
     postService = module.get<PostService>(PostService);
     prismaService = module.get<PrismaService>(PrismaService);
+    categoryService = module.get<CategoryService>(CategoryService);
   });
 
   it('Should be defined', () => {
     expect(postService).toBeDefined();
+  });
+
+  describe('getPosts', () => {
+    it('Should return an array post', async () => {
+      prismaService.post.findMany.mockReturnValue(arrayPost);
+      const result = await postService.getPosts({});
+      expect(result).toEqual(arrayPost);
+    });
   });
 
   describe('getPost', () => {
@@ -65,31 +103,19 @@ describe('PostService', () => {
     });
   });
 
-  describe('getPostByUser', () => {
-    it('Should return an post', async () => {
-      prismaService.post.findMany.mockReturnValue([onePost]);
-      const result = await postService.getPostByUser(userWhereUniqueInput);
-      expect(result).toEqual(onePost);
-    });
-  });
-
   describe('getUserOfPost', () => {
     it('Should return an post', async () => {
       prismaService.post.findUnique.mockReturnValue(onePost);
       const result = await postService.getUserOfPost(postWhereUniqueInput);
-      expect(result).toEqual(onePost.user);
+      expect(result).toEqual(onePost.author);
     });
   });
 
   describe('createPost', () => {
     it('Should return an user after created successfully', async () => {
       prismaService.post.create.mockReturnValue(onePost);
-      const input = postInput;
-      const user = oneUser;
-      const result = await postService.createPost({
-        input,
-        user,
-      });
+      categoryService.createCategories.mockReturnValue([oneCategory]);
+      const result = await postService.createPost(postInput, oneUser);
       expect(result).toEqual(onePost);
     });
   });

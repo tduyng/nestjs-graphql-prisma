@@ -1,4 +1,7 @@
-import { CategoryWhereUniqueInput } from '@common/@generated/category';
+import {
+  CategoryWhereUniqueInput,
+  FindManyCategoryArgs,
+} from '@common/@generated/category';
 import { Post } from '@modules/post/post.model';
 import {
   Args,
@@ -18,8 +21,8 @@ export class CategoryResolver {
 
   /* Query */
   @Query(() => [Category])
-  public async categories() {
-    return await this.categoryService.getCategories();
+  public async categories(args: FindManyCategoryArgs) {
+    return await this.categoryService.getCategories(args);
   }
 
   @Query(() => Category)

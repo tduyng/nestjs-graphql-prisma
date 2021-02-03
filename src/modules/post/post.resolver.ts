@@ -13,9 +13,10 @@ import { UpdatePostInput } from './dto/update-post.input';
 import { CurrentUser } from '@modules/user/user.decorator';
 import { User } from '@modules/user/user.model';
 import { Prisma } from '@prisma/client';
-import { PostFindManyArgs } from './args/post-find-many.args';
-import { PostWhereUniqueInput } from '@common/@generated/post';
-import { UserWhereUniqueInput } from '@modules/user/dto';
+import {
+  FindManyPostArgs,
+  PostWhereUniqueInput,
+} from '@common/@generated/post';
 
 @Resolver(() => Post)
 export class PostResolver {
@@ -23,16 +24,12 @@ export class PostResolver {
 
   /* Query */
   @Query(() => Post)
-  public async posts(@Args() args: PostFindManyArgs) {
+  public async posts(@Args() args: FindManyPostArgs) {
     return await this.postService.getPosts(args);
   }
   @Query(() => Post)
   public async post(@Args('where') where: PostWhereUniqueInput) {
     return await this.postService.getPost(where);
-  }
-  @Query(() => Post)
-  public async postByUser(@Args('where') where: UserWhereUniqueInput) {
-    return await this.postService.getPostByUser(where);
   }
 
   @ResolveField(() => User)
@@ -49,7 +46,7 @@ export class PostResolver {
     @Args('data') input: CreatePostInput,
     @CurrentUser() user: User,
   ) {
-    return await this.postService.createPost({ input, user });
+    return await this.postService.createPost(input, user);
   }
 
   @Mutation(() => Post)

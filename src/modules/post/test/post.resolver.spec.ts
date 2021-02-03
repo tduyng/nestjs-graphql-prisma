@@ -1,125 +1,121 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { ProfileService } from '../post.service';
-import { Profile } from '../profile.model';
-import { ProfileResolver } from '../post.resolver';
-import { CreateProfileInput } from '../dto/create-post.input';
-import { ProfileWhereUniqueInput } from '../dto/post-where-unique.input';
+import { PostService } from '../post.service';
+import { Post } from '../post.model';
+import { PostResolver } from '../post.resolver';
+import { CreatePostInput } from '../dto/create-post.input';
 import { User } from '@modules/user/user.model';
-import { UserWhereUniqueInput } from '@modules/user/dto';
-
-const oneProfile = {
-  id: 'some profileId',
-  firstName: 'some  first name',
-  lastName: 'some last name',
-  user: {
-    id: 'some postId',
-    email: 'some email',
-    username: 'some-username',
-  } as User,
-} as Profile;
+import { PostWhereUniqueInput } from '@common/@generated/post';
 
 const oneUser = {
-  id: 'some postId',
+  id: 'some userId',
   email: 'some email',
   username: 'some-username',
 } as User;
 
-const profileInput = {
-  firstName: 'some first name',
-  lastName: 'some last name',
-  bio: 'some bio',
-} as CreateProfileInput;
+const onePost = {
+  id: 'some postId',
+  title: 'some title',
+  content: 'some content',
+  author: oneUser,
+} as Post;
 
-const profileWhereUniqueInput = {
-  id: 'some profileId',
-} as ProfileWhereUniqueInput;
+const postInput = {
+  title: 'some title',
+  content: 'some content',
+  categories: [
+    {
+      name: 'Web development',
+    },
+    {
+      name: 'Monorepo',
+    },
+  ],
+} as CreatePostInput;
 
-const userWhereUniqueInput = {
-  id: 'some userId',
-} as UserWhereUniqueInput;
+const arrayPost = [onePost, onePost];
 
-describe('ProfileResolver', () => {
-  let profileResolver: ProfileResolver;
-  let profileService;
+const postWhereUniqueInput = {
+  id: 'some postId',
+} as PostWhereUniqueInput;
 
-  const mockProfileService = () => ({
-    getProfile: jest.fn(),
-    getProfileByUser: jest.fn(),
-    getUserOfProfile: jest.fn(),
-    createProfile: jest.fn(),
-    updateProfile: jest.fn(),
-    deleteProfile: jest.fn(),
+describe('PostResolver', () => {
+  let postResolver: PostResolver;
+  let postService;
+
+  const mockPostService = () => ({
+    getPosts: jest.fn(),
+    getPost: jest.fn(),
+    getPostByUser: jest.fn(),
+    getUserOfPost: jest.fn(),
+    createPost: jest.fn(),
+    updatePost: jest.fn(),
+    deletePost: jest.fn(),
   });
 
   beforeAll(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
-        ProfileResolver,
+        PostResolver,
         {
-          provide: ProfileService,
-          useFactory: mockProfileService,
+          provide: PostService,
+          useFactory: mockPostService,
         },
       ],
     }).compile();
 
-    profileResolver = module.get<ProfileResolver>(ProfileResolver);
-    profileService = module.get<ProfileService>(ProfileService);
+    postResolver = module.get<PostResolver>(PostResolver);
+    postService = module.get<PostService>(PostService);
   });
 
   it('Should be defined', () => {
-    expect(profileResolver).toBeDefined();
+    expect(postResolver).toBeDefined();
   });
 
-  describe('profile', () => {
-    it('Should return profile', async () => {
-      profileService.getProfile.mockReturnValue(oneProfile);
-      const result = await profileResolver.profile(profileWhereUniqueInput);
-      expect(result).toEqual(oneProfile);
+  describe('posts', () => {
+    it('Should return an array posts', async () => {
+      postService.getPosts.mockReturnValue(arrayPost);
+      const result = await postResolver.posts({});
+      expect(result).toEqual(arrayPost);
     });
   });
 
-  describe('profileByUser', () => {
-    it('Should return profile', async () => {
-      profileService.getProfileByUser.mockReturnValue(oneProfile);
-      const result = await profileResolver.profileByUser(userWhereUniqueInput);
-      expect(result).toEqual(oneProfile);
+  describe('post', () => {
+    it('Should return post', async () => {
+      postService.getPost.mockReturnValue(onePost);
+      const result = await postResolver.post(postWhereUniqueInput);
+      expect(result).toEqual(onePost);
     });
   });
 
   describe('user', () => {
     it('Should return an user', async () => {
-      profileService.getUserOfProfile.mockReturnValue(oneProfile.user);
-      const result = await profileResolver.user(oneProfile);
-      expect(result).toEqual(oneProfile.user);
+      postService.getUserOfPost.mockReturnValue(onePost.author);
+      const result = await postResolver.user(onePost);
+      expect(result).toEqual(onePost.author);
     });
   });
 
-  describe('createProfile', () => {
-    it('Should return an profile', async () => {
-      profileService.createProfile.mockReturnValue(oneProfile);
-      const result = await profileResolver.createProfile(profileInput, oneUser);
-      expect(result).toEqual(oneProfile);
+  describe('createPost', () => {
+    it('Should return an post', async () => {
+      postService.createPost.mockReturnValue(onePost);
+      const result = await postResolver.createPost(postInput, oneUser);
+      expect(result).toEqual(onePost);
     });
   });
 
-  describe('updateProfile', () => {
-    it('Should return an Profile as result', async () => {
-      profileService.updateProfile.mockReturnValue(oneProfile);
-      const result = await profileResolver.updateProfile(
-        oneProfile,
-        profileInput,
-      );
-      expect(result).toEqual(oneProfile);
+  describe('updatePost', () => {
+    it('Should return an Post as result', async () => {
+      postService.updatePost.mockReturnValue(onePost);
+      const result = await postResolver.updatePost(onePost, postInput);
+      expect(result).toEqual(onePost);
     });
   });
 
-  describe('deleteProfile', () => {
-    it('Should return an profile', async () => {
-      profileService.deleteProfile.mockReturnValue(oneProfile);
-      const result = await profileResolver.deleteProfile(
-        profileWhereUniqueInput,
-      );
-      expect(result).toEqual(oneProfile);
+  describe('deletePost', () => {
+    it('Should return an post', async () => {
+      postService.deletePost.mockReturnValue(onePost);
+      const result = await postResolver.deletePost(postWhereUniqueInput);
+      expect(result).toEqual(onePost);
     });
   });
 });

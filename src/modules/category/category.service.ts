@@ -4,14 +4,17 @@ import { CreateCategoryInput, UpdateCategoryInput } from './dto';
 import slugify from 'slugify';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { Category } from './category.model';
-import { CategoryWhereUniqueInput } from '@common/@generated/category';
+import {
+  CategoryWhereUniqueInput,
+  FindManyCategoryArgs,
+} from '@common/@generated/category';
 
 @Injectable()
 export class CategoryService {
   constructor(private prisma: PrismaService) {}
 
-  public async getCategories() {
-    return await this.prisma.category.findMany({});
+  public async getCategories(args: FindManyCategoryArgs) {
+    return await this.prisma.category.findMany({ ...args });
   }
 
   public async getPostsOfCategory(categoryId: string): Promise<Post[]> {
