@@ -15,6 +15,7 @@
     "TypeScript"
   ],
   "scripts": {
+    "precommit": "lint-staged && npm run prettier && npm run lint",
     "prebuild": "rimraf dist",
     "build": "nest build",
     "start": "nest start",
@@ -112,13 +113,17 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "npm run precommit"
     }
   },
   "lint-staged": {
-    "*.(t|j)s": [
-      "prettier --write",
-      "eslint --fix"
+    "{src,apps,libs,test}/**/*.ts": [
+      "npm run lint",
+      "git add"
+    ],
+    "./**/*.{ts,js,json,*rc}": [
+      "npm run prettier",
+      "git add"
     ]
   }
 }
