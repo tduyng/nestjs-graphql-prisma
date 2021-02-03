@@ -1,6 +1,5 @@
 import { Post } from '@modules/post/post.model';
 import { PrismaService } from '@modules/prisma/prisma.service';
-import { ConflictException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { Category } from '../category.model';
 import { CategoryService } from '../category.service';
@@ -50,6 +49,7 @@ describe('CategoryService', () => {
       update: jest.fn(),
       findUnique: jest.fn(),
       delete: jest.fn(),
+      upsert: jest.fn(),
     },
   });
 
@@ -99,20 +99,21 @@ describe('CategoryService', () => {
   });
 
   describe('createCategory', () => {
-    it('Should throw an error when slug category already existed', async () => {
-      prismaService.category.findUnique.mockReturnValue(oneCategory);
-      try {
-        await categoryService.createCategory(categoryInput);
-      } catch (error) {
-        expect(error).toBeInstanceOf(ConflictException);
-      }
-    });
-
     it('Should return an user after created successfully', async () => {
-      prismaService.category.findUnique.mockReturnValue(null);
-      prismaService.category.create.mockReturnValue(oneCategory);
+      prismaService.category.upsert.mockReturnValue(oneCategory);
       const result = await categoryService.createCategory(categoryInput);
       expect(result).toEqual(oneCategory);
+    });
+  });
+
+  describe('createCategories', () => {
+    it('Should return an array of categories after created successfully', async () => {
+      prismaService.category.upsert.mockReturnValue(oneCategory);
+      const result = await categoryService.createCategories([
+        categoryInput,
+        categoryInput,
+      ]);
+      expect(result).toEqual([oneCategory, oneCategory]);
     });
   });
 

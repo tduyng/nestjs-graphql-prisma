@@ -49,6 +49,7 @@ describe('CategoryResolver', () => {
     createCategory: jest.fn(),
     updateCategory: jest.fn(),
     deleteCategory: jest.fn(),
+    createCategories: jest.fn(),
   });
 
   beforeAll(async () => {
@@ -99,6 +100,20 @@ describe('CategoryResolver', () => {
       categoryService.createCategory.mockReturnValue(oneCategory);
       const result = await categoryResolver.createCategory(categoryInput);
       expect(result).toEqual(oneCategory);
+    });
+  });
+
+  describe('createCategories', () => {
+    it('Should return an category', async () => {
+      categoryService.createCategories.mockReturnValue([
+        oneCategory,
+        oneCategory,
+      ]);
+      const result = await categoryResolver.createCategories([
+        categoryInput,
+        categoryInput,
+      ]);
+      expect(result).toEqual([oneCategory, oneCategory]);
     });
   });
 

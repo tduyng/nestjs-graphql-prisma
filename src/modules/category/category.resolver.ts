@@ -39,6 +39,11 @@ export class CategoryResolver {
     return await this.categoryService.createCategory(data);
   }
 
+  @Mutation(() => [Category])
+  public async createCategories(@Args('data') data: CreateCategoryInput[]) {
+    return await this.categoryService.createCategories(data);
+  }
+
   @Mutation(() => Category)
   public async updateCategory(
     @Args('where') where: CategoryWhereUniqueInput,

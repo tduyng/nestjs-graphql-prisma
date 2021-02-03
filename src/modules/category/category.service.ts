@@ -3,12 +3,7 @@ import { Post } from '@modules/post/post.model';
 import { CategoryWhereUniqueInput } from './dto/category-where-unique.input';
 import { CreateCategoryInput } from './dto/create-category.input';
 import slugify from 'slugify';
-import {
-  ConflictException,
-  HttpException,
-  HttpStatus,
-  Injectable,
-} from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { UpdateCategoryInput } from './dto/update-category.input';
 import { Category } from './category.model';
 
@@ -41,24 +36,41 @@ export class CategoryService {
     try {
       const { name } = categoryInput;
       const slug = slugify(name, { lower: true });
-      const checkCategory = await this.prisma.category.findUnique({
+      return await this.prisma.category.upsert({
         where: { slug: slug },
-      });
-      if (checkCategory) {
-        throw new ConflictException(
-          `Category with name '${name}' already exists`,
-        );
-      }
-      return await this.prisma.category.create({
-        data: {
+        create: {
           name,
           slug,
         },
+        update: {},
       });
     } catch (error) {
       if (error.status) {
         throw error;
       }
+      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  public async createCategories(
+    categories: CreateCategoryInput[],
+  ): Promise<Category[]> {
+    const result: Category[] = [];
+    try {
+      for (const category of categories) {
+        const slug = slugify(category.name);
+        const cat = await this.prisma.category.upsert({
+          where: { slug: slug },
+          create: {
+            name: category.name,
+            slug: slug,
+          },
+          update: {},
+        });
+        result.push(cat);
+      }
+      return result;
+    } catch (error) {
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
