@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   nest-api:
-    container_name: nest-graphql-api-prod
+    container_name: nest-graphql-api-test
     build:
       context: .
       dockerfile: docker/Dockerfile
@@ -13,12 +13,17 @@ services:
     networks:
       - nest-graphql-network
 
+
   postgres:
     image: postgres:latest
-    container_name: nest-postgres
+    container_name: nest-postgres-test
     restart: always
     env_file:
-      - .env.production
+      - .env.test
+    expose:
+      - 5434
+    ports:
+      - 5434:5432
     environment:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
@@ -30,21 +35,22 @@ services:
     logging:
       driver: none
 
-
-  nest-nginx:
-    container_name: nest-nginx
-    restart: always
-    build:
-      context: docker/nginx
-      dockerfile: Dockerfile.nginx
-    depends_on:
-      - nest-api
+  pgadmin:
+    links:
+    - postgres:postgres
+    container_name: nest-pgadmin
+    image: dpage/pgadmin4
+    restart: unless-stopped
     ports:
-      - 80:80
+      - '8080:80'
+    volumes:
+      - /data/pgadmin:/root/.pgadmin
     env_file:
-      - .env.nginx
+      - .env
     networks:
       - nest-graphql-network
+    logging:
+      driver: none
 
 
 volumes:

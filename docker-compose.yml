@@ -13,32 +13,10 @@ services:
     networks:
       - nest-graphql-network
 
-  prisma:
-    image: prismagraphql/prisma:latest
-    ports:
-      - '4466:4466'
-    depends_on:
-      - postgres
-    env_file:
-      - ".env"
-    environment:
-      PRISMA_CONFIG: |
-        port: 4466
-        databases:
-          default:
-            connector: ${DB_CONNECTOR}
-            host: ${DB_HOST}
-            port: ${DB_PORT}
-            user: ${DB_USER}
-            password: ${DB_PASSWORD}
-    networks:
-      - nest-graphql-network
-    logging:
-      driver: none
-
 
   postgres:
     image: postgres:latest
+    container_name: nest-postgres
     restart: always
     env_file:
       - ".env"
@@ -56,7 +34,7 @@ services:
   pgadmin:
     links:
     - postgres:postgres
-    container_name: pgadmin
+    container_name: nest-pgadmin
     image: dpage/pgadmin4
     restart: unless-stopped
     ports:
