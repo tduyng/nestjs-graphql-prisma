@@ -6,7 +6,7 @@ export class PaginationArgs {
   skip?: number;
 
   @Field(() => String, { nullable: true })
-  after?: string;
+  take?: string;
 
   @Field(() => String, { nullable: true })
   before?: string;

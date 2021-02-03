@@ -11,6 +11,13 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+generator nestgraphql {
+  provider                   = "node node_modules/prisma-nestjs-graphql"
+  output                     = "../src/common/@generated"
+  types_DateTime_fieldType   = "Date | string"
+  types_DateTime_graphqlType = "Date"
+}
+
 model User {
   id        String   @id @default(uuid())
   email     String   @unique

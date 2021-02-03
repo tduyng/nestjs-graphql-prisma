@@ -1,10 +1,7 @@
 {
   "compilerOptions": {
     "target": "esNext",
-    "typeRoots": [
-      "./node_modules/@types",
-      "src/common/types"
-    ],
+    "typeRoots": ["./node_modules/@types", "src/common/types"],
     "module": "commonjs",
     "pretty": true,
     "sourceMap": true,
@@ -25,7 +22,6 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
 
-
     "forceConsistentCasingInFileNames": true,
     "outDir": "./dist",
     "allowJs": true,
@@ -35,14 +31,9 @@
       "@modules/*": ["src/modules/*"],
       "@common/*": ["src/common/*"],
       "@app/*": ["src/app/*"],
-
+      "@generated/*": ["/src/common/generated*"]
     }
   },
-  "include": [
-    "src", "prisma"
-  ],
-  "exclude": [
-    "node_modules",
-    "test"
-  ]
+  "include": ["src", "prisma"],
+  "exclude": ["node_modules", "test"]
 }
