@@ -35,16 +35,16 @@ model Profile {
 }
 
 model Post {
-  id        String     @id @default(uuid())
-  title     String
-  slug      String     @unique
-  content   String
-  published Boolean    @default(false)
-  authorId  String?
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
-  author    User?      @relation(fields: [authorId], references: [id])
-  Category  Category[]
+  id         String     @id @default(uuid())
+  title      String
+  slug       String     @unique
+  content    String
+  published  Boolean    @default(true)
+  authorId   String?
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  author     User?      @relation(fields: [authorId], references: [id])
+  categories Category[]
 }
 
 model Category {
@@ -53,7 +53,7 @@ model Category {
   slug      String   @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  Post      Post[]
+  posts     Post[]
 }
 
 enum Role {

@@ -30,12 +30,12 @@ Table Post {
   title String [not null]
   slug String [unique, not null]
   content String [not null]
-  published Boolean [not null, default: false]
+  published Boolean [not null, default: true]
   authorId String
   createdAt DateTime [default: `now()`, not null]
   updatedAt DateTime [not null]
   author User
-  Category Category
+  categories Category
 }
 
 Table Category {
@@ -44,12 +44,12 @@ Table Category {
   slug String [unique, not null]
   createdAt DateTime [default: `now()`, not null]
   updatedAt DateTime [not null]
-  Post Post
+  posts Post
 }
 
 Table CategoryToPost {
-  categoryId String [ref: > Category.id]
-  postId String [ref: > Post.id]
+  categoriesId String [ref: > Category.id]
+  postsId String [ref: > Post.id]
 }
 
 Enum Role {
