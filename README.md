@@ -1,6 +1,15 @@
 # NestJS - GraphQL - Prisma
 
-Example backend [NestJS](https://nestjs.com/) - [Graphql](https://graphql.org/) project using [Prisma 2](https://www.prisma.io/) & [PostgreSQL](https://www.postgresql.org/)
+<p align="center">
+  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
+</p>
+
+<div align="center">
+Example backend <a href="https://nestjs.com/">NestJS</a> - <a href="https://graphql.org/">GraphQL</a> project using <a href="https://prisma.io/">Prisma 2</a> & <a href="https://postgresql.org/" >PostgreSQL</a>
+
+</div>
+
+
 
 ---
 
@@ -15,7 +24,7 @@ Example backend [NestJS](https://nestjs.com/) - [Graphql](https://graphql.org/) 
   - [Getting started](#getting-started)
     - [Installation](#installation)
     - [Command lines](#command-lines)
-    - [**Docker**](#docker)
+  - [Docker](#docker)
   - [Project structure](#project-structure)
   - [Thanks](#thanks)
 
@@ -41,6 +50,7 @@ Features of project:
 - Next generation Typescript
 - Testing: Unit testing, End to End testing
 - Database seeding
+- CI-CD with circle-ci
 
 ## Prerequisite
 
@@ -173,7 +183,7 @@ Other useful commands to work with project:
 
 
   You can check more other commands in section `scripts` of `package.json`.
-### **Docker**
+## Docker
 
 **Working in progress: Explication how to use**
 
