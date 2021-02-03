@@ -30,8 +30,7 @@
     "paths": {
       "@modules/*": ["src/modules/*"],
       "@common/*": ["src/common/*"],
-      "@app/*": ["src/app/*"],
-      "@generated/*": ["/src/common/generated*"]
+      "@app/*": ["src/app/*"]
     }
   },
   "include": ["src", "prisma"],
