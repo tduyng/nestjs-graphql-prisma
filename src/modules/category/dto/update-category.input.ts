@@ -1,9 +1,5 @@
-import { Field, InputType } from '@nestjs/graphql';
-import { IsNotEmpty } from 'class-validator';
+import { InputType, PartialType } from '@nestjs/graphql';
+import { CreateCategoryInput } from './create-category.input';
 
 @InputType()
-export class UpdateCategoryInput {
-  @Field(() => String)
-  @IsNotEmpty()
-  name: string;
-}
+export class UpdateCategoryInput extends PartialType(CreateCategoryInput) {}

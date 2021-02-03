@@ -1,4 +1,4 @@
-import { BaseModel } from '@common/types/base.model';
+import { BaseModel } from '@common/abstract-model/base.model';
 import { Post } from '@modules/post/post.model';
 import { Field, ObjectType } from '@nestjs/graphql';
 import { IsNotEmpty } from 'class-validator';
