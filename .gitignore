@@ -117,6 +117,7 @@ build
 
 # Variables enviroment
 .env
+.env.test
 .env.local
 .env.development
 .env.production
