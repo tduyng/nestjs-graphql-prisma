@@ -1,7 +1,7 @@
 version: '3.8'
 services:
-  nest-api:
-    container_name: nest-graphql-api
+  nest-api-prod:
+    container_name: nest-graphql-api-prod
     build:
       context: .
       dockerfile: docker/Dockerfile

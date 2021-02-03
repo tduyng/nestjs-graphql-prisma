@@ -32,6 +32,7 @@
     "prisma:generate": "npx prisma generate",
     "prisma:generate:watch": "npx prisma generate --watch",
     "start:db": "npm run migrate:up && npm run prisma:generate && npm run seed",
+    "preseed": "npx prisma generate",
     "seed": "ts-node prisma/seed.ts",
     "docker:migrate": "docker-compose -f docker-compose.migrate.yml up -d",
     "docker:seed": "docker exec -it nest-api npm run seed",
