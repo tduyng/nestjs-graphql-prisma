@@ -1,4 +1,4 @@
-import { BaseModel } from '@common/types/base.model';
+import { BaseModel } from '@common/abstract-model/base.model';
 import { Post } from '@modules/post/post.model';
 import { Profile } from '@modules/profile/profile.model';
 import {
