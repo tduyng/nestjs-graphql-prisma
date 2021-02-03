@@ -20,7 +20,7 @@ Example backend <a href="https://nestjs.com/">NestJS</a> - <a href="https://grap
 
 - [NestJS - GraphQL - Prisma](#nestjs---graphql---prisma)
   - [Features](#features)
-  - [Prerequisite](#prerequisite)
+  - [Prerequisites](#prerequisites)
   - [Getting started](#getting-started)
     - [Installation](#installation)
     - [Command lines](#command-lines)
@@ -44,7 +44,7 @@ Features of project:
 - GraphQL with [apollo-server-express](https://github.com/apollographql/apollo-server), solution [code first](https://docs.nestjs.com/graphql/quick-start#code-first) and using [GraphQL play ground](https://github.com/graphql/graphql-playground)
 - Using [PostgreQL](https://github.com/brianc/node-postgres) for database and [Prisma 2](https://github.com/prisma/prisma) as ORM
 - CRUD operations, database relationship, pagination
-- [NestJS Authentication](https://docs.nestjs.com/security/authentication) with [Passport](https://github.com/jaredhanson/passport), [JWT](http://www.passportjs.org/packages/passport-jwt/) and [Bcrypt](https://github.com/kelektiv/node.bcrypt.js/)
+- [NestJS Authentication](https://docs.nestjs.com/security/authentication) with [Passport](https://github.com/jaredhanson/passport), [JWT](http://www.passportjs.org/packages/passport-jwt/), [Bcrypt](https://github.com/kelektiv/node.bcrypt.js/) encrypted password and refresh token JWT
 - Verification email for register
 - Docker solution for PostgreSQL, PGAdmin, Prisma
 - Next generation Typescript
@@ -52,7 +52,7 @@ Features of project:
 - Database seeding
 - CI-CD with circle-ci
 
-## Prerequisite
+## Prerequisites
 
 If you want to develop project only on your local, your need have:
 - [NodeJS](https://nodejs.org/en/download/): I use NodeJS lts version (14.15.1)
@@ -185,7 +185,7 @@ Other useful commands to work with project:
   You can check more other commands in section `scripts` of `package.json`.
 ## Docker
 
-**Working in progress: Explication how to use**
+**Working in progress: Explanation how to use**
 
 ## Project structure
 
