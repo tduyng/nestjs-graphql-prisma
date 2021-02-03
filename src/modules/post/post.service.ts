@@ -3,16 +3,12 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { Post } from './post.model';
 import { User } from '@modules/user/user.model';
 import { Prisma } from '@prisma/client';
-import {
-  CreatePostInput,
-  PostOrderByInput,
-  PostWhereUniqueInput,
-  UpdatePostInput,
-} from './dto';
+import { CreatePostInput, UpdatePostInput } from './dto';
 import slugify from 'slugify';
 import { randomBytes } from 'crypto';
 import { CategoryService } from '@modules/category/category.service';
 import { PaginationArgs } from '@common/abstract-model/pagination/pagination.args';
+import { PostWhereUniqueInput } from '@common/@generated/post';
 
 @Injectable()
 export class PostService {
