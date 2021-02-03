@@ -14,7 +14,7 @@ Example backend [NestJS](https://nestjs.com/) - [Graphql](https://graphql.org/) 
   - [Prerequisite](#prerequisite)
   - [Getting started](#getting-started)
     - [Installation](#installation)
-    - [Development](#development)
+    - [Command lines](#command-lines)
     - [**Docker**](#docker)
   - [Project structure](#project-structure)
   - [Thanks](#thanks)
@@ -57,10 +57,9 @@ If you don't want to install all this tools, you can check the [docker solution]
 ### Installation
 
 - Clone project from this repository
-- Create and update `.env` & `prisma.env` files for variables environment
+- Create and update `.env` file for variables environment
   ```bash
   $ cp .env.example .env
-  $ cp docker/prisma/prisma.env.example docker/prisma/prisma.env
   ```
 
   Then modify the variables as you want.
@@ -99,7 +98,7 @@ If you don't want to install all this tools, you can check the [docker solution]
   # or npm run start:dev
   ```
 
-### Development
+### Command lines
 
 Other useful commands to work with project:
 - Run production
@@ -155,8 +154,25 @@ Other useful commands to work with project:
   ```bash
   $ yarn seed
   ```
+- Prisma studio
+  A Visual Interface for Your Database
+  [Prisma Studio](https://www.prisma.io/blog/prisma-studio-3rtf78dg99fe) helps developers manage their application data. We're excited to share that it is now part of the stable Prisma release. Try out the [online demo](https://prisma.studio/) or connect it to your existing database.
 
-  You can check more other `yarn command` in `scripts` of `package.json`.
+  So with Prisma studio, you maybe don't need **pgAdmin** anymore.
+  <div align="center">
+    <img src="docs/img/prisma-studio.png" alt="prisma-studio"/>
+  </div>
+
+  Ton run Prisma studio:
+  ```bash
+  $ yarn prisma:studio
+  # or npx prisma studio
+  # or yarn prisma studio
+  ```
+  Then check out at http://localhost:5555
+
+
+  You can check more other commands in section `scripts` of `package.json`.
 ### **Docker**
 
 **Working in progress: Explication how to use**
