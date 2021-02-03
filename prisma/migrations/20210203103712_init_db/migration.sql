@@ -65,7 +65,7 @@ CREATE UNIQUE INDEX "User.email_unique" ON "User"("email");
 CREATE UNIQUE INDEX "User.username_unique" ON "User"("username");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Profile_userId_unique" ON "Profile"("userId");
+CREATE UNIQUE INDEX "Profile.userId_unique" ON "Profile"("userId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Post.slug_unique" ON "Post"("slug");

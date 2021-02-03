@@ -7,10 +7,10 @@ Table User {
   email String [unique, not null]
   password String [not null]
   username String [unique]
-  posts Post
   role Role [not null, default: 'USER']
   createdAt DateTime [default: `now()`, not null]
   updatedAt DateTime [not null]
+  posts Post
   profile Profile
 }
 
@@ -19,10 +19,10 @@ Table Profile {
   firstName String
   lastName String
   bio String
-  user User
-  userId String
+  userId String [unique]
   createdAt DateTime [default: `now()`, not null]
   updatedAt DateTime [not null]
+  user User
 }
 
 Table Post {
@@ -31,25 +31,25 @@ Table Post {
   slug String [unique, not null]
   content String [not null]
   published Boolean [not null, default: false]
-  author User
   authorId String
-  categories Category
   createdAt DateTime [default: `now()`, not null]
   updatedAt DateTime [not null]
+  author User
+  Category Category
 }
 
 Table Category {
   id String [pk]
   name String [not null]
   slug String [unique, not null]
-  posts Post
   createdAt DateTime [default: `now()`, not null]
   updatedAt DateTime [not null]
+  Post Post
 }
 
 Table CategoryToPost {
-  categoriesId String [ref: > Category.id]
-  postsId String [ref: > Post.id]
+  categoryId String [ref: > Category.id]
+  postId String [ref: > Post.id]
 }
 
 Enum Role {
