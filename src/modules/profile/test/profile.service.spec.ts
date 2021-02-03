@@ -2,10 +2,10 @@ import { PrismaService } from '@modules/prisma/prisma.service';
 import { Test, TestingModule } from '@nestjs/testing';
 import { Profile } from '../profile.model';
 import { ProfileService } from '../profile.service';
-import { ProfileWhereUniqueInput } from '../dto/profile-where-unique.input';
-import { CreateProfileInput } from '../dto/create-profile.input';
 import { User } from '@modules/user/user.model';
-import { UserWhereUniqueInput } from '@modules/user/dto';
+import { ProfileWhereUniqueInput } from '@common/@generated/profile';
+import { UserWhereUniqueInput } from '@common/@generated/user';
+import { CreateProfileInput } from '../dto';
 
 const oneProfile = {
   id: 'some profileId',

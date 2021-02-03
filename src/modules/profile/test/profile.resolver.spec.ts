@@ -2,10 +2,10 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { ProfileService } from '../profile.service';
 import { Profile } from '../profile.model';
 import { ProfileResolver } from '../profile.resolver';
-import { CreateProfileInput } from '../dto/create-profile.input';
-import { ProfileWhereUniqueInput } from '../dto/profile-where-unique.input';
+import { CreateProfileInput } from '../dto';
 import { User } from '@modules/user/user.model';
-import { UserWhereUniqueInput } from '@modules/user/dto';
+import { ProfileWhereUniqueInput } from '@common/@generated/profile';
+import { UserWhereUniqueInput } from '@common/@generated/user';
 
 const oneProfile = {
   id: 'some profileId',

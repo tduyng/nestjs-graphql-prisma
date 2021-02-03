@@ -3,8 +3,8 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { CategoryService } from '../category.service';
 import { Category } from '../category.model';
 import { CategoryResolver } from '../category.resolver';
-import { CreateCategoryInput } from '../dto/create-category.input';
-import { CategoryWhereUniqueInput } from '../dto/category-where-unique.input';
+import { CreateCategoryInput } from '../dto';
+import { CategoryWhereUniqueInput } from '@common/@generated/category';
 
 const oneCategory = {
   id: 'some categoryId',

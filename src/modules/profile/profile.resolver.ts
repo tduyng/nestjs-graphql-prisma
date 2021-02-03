@@ -8,13 +8,12 @@ import {
 } from '@nestjs/graphql';
 import { Profile } from './profile.model';
 import { ProfileService } from './profile.service';
-import { ProfileWhereUniqueInput } from './dto/profile-where-unique.input';
-import { CreateProfileInput } from './dto/create-profile.input';
-import { UpdateProfileInput } from './dto/update-profile.input';
 import { CurrentUser } from '@modules/user/user.decorator';
 import { User } from '@modules/user/user.model';
-import { UserWhereUniqueInput } from '@modules/user/dto';
 import { Prisma } from '@prisma/client';
+import { ProfileWhereUniqueInput } from '@common/@generated/profile';
+import { UserWhereUniqueInput } from '@common/@generated/user';
+import { CreateProfileInput, UpdateProfileInput } from './dto';
 
 @Resolver(() => Profile)
 export class ProfileResolver {

@@ -7,8 +7,8 @@ import { CreatePostInput, UpdatePostInput } from './dto';
 import slugify from 'slugify';
 import { randomBytes } from 'crypto';
 import { CategoryService } from '@modules/category/category.service';
-import { PaginationArgs } from '@common/abstract-model/pagination/pagination.args';
 import { PostWhereUniqueInput } from '@common/@generated/post';
+import { PostFindManyArgs } from './args/post-find-many.args';
 
 @Injectable()
 export class PostService {
@@ -17,11 +17,7 @@ export class PostService {
     private categoryService: CategoryService,
   ) {}
 
-  public async getPosts(
-    args: PaginationArgs,
-    query: string,
-    orderBy: PostOrderByInput,
-  ) {
+  public async getPosts(args: PostFindManyArgs) {
     return await this.prisma.post.findMany({
       include: { author: true },
       ...args,

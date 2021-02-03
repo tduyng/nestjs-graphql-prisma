@@ -10,9 +10,9 @@ import { User } from '@modules/user/user.model';
 import { UserService } from './services/user.service';
 import { CurrentUser } from './user.decorator';
 import { Post } from '@modules/post/post.model';
-import { UserWhereUniqueInput } from './dto/user-where-unique.input';
 import { UpdateUserInput } from './dto/update-user.input';
 import { ChangePasswordInput } from './dto/change-password.input';
+import { UserWhereUniqueInput } from '@common/@generated/user';
 
 @Resolver(() => User)
 export class UserResolver {

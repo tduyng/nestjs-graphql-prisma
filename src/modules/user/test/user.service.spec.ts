@@ -1,12 +1,9 @@
+import { UserWhereUniqueInput } from '@common/@generated/user';
 import { Post } from '@modules/post/post.model';
 import { PrismaService } from '@modules/prisma/prisma.service';
 import { BadRequestException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
-import {
-  ChangePasswordInput,
-  UpdateUserInput,
-  UserWhereUniqueInput,
-} from '../dto';
+import { ChangePasswordInput, UpdateUserInput } from '../dto';
 import { PasswordService } from '../services/password.service';
 import { UserService } from '../services/user.service';
 import { User } from '../user.model';

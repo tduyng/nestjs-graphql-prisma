@@ -7,10 +7,11 @@ import {
 } from '@nestjs/common';
 import { ChangePasswordInput } from '../dto/change-password.input';
 import { PasswordService } from './password.service';
-import { UserWhereUniqueInput, UpdateUserInput } from '../dto';
+import { UpdateUserInput } from '../dto';
 import { User } from '../user.model';
 import { Post } from '@modules/post/post.model';
 import { Profile } from '@modules/profile/profile.model';
+import { UserWhereUniqueInput } from '@common/@generated/user';
 
 @Injectable()
 export class UserService {

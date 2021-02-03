@@ -1,10 +1,7 @@
+import { UserWhereUniqueInput } from '@common/@generated/user';
 import { Post } from '@modules/post/post.model';
 import { Test, TestingModule } from '@nestjs/testing';
-import {
-  ChangePasswordInput,
-  UpdateUserInput,
-  UserWhereUniqueInput,
-} from '../dto';
+import { ChangePasswordInput, UpdateUserInput } from '../dto';
 import { UserService } from '../services/user.service';
 import { User } from '../user.model';
 import { UserResolver } from '../user.resolver';

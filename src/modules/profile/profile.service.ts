@@ -1,12 +1,12 @@
 import { PrismaService } from '@modules/prisma/prisma.service';
-import { ProfileWhereUniqueInput } from './dto/profile-where-unique.input';
-import { CreateProfileInput } from './dto/create-profile.input';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { UpdateProfileInput } from './dto/update-profile.input';
 import { Profile } from './profile.model';
 import { User } from '@modules/user/user.model';
 import { Prisma } from '@prisma/client';
-import { UserWhereUniqueInput } from '@modules/user/dto';
+import { ProfileWhereUniqueInput } from '@common/@generated/profile';
+import { UserWhereUniqueInput } from '@common/@generated/user';
+import { CreateProfileInput } from './dto';
 
 @Injectable()
 export class ProfileService {

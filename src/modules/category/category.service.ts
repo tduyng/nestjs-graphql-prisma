@@ -1,11 +1,10 @@
 import { PrismaService } from '@modules/prisma/prisma.service';
 import { Post } from '@modules/post/post.model';
-import { CategoryWhereUniqueInput } from './dto/category-where-unique.input';
-import { CreateCategoryInput } from './dto/create-category.input';
+import { CreateCategoryInput, UpdateCategoryInput } from './dto';
 import slugify from 'slugify';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { UpdateCategoryInput } from './dto/update-category.input';
 import { Category } from './category.model';
+import { CategoryWhereUniqueInput } from '@common/@generated/category';
 
 @Injectable()
 export class CategoryService {

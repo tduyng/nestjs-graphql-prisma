@@ -1,3 +1,4 @@
+import { CategoryWhereUniqueInput } from '@common/@generated/category';
 import { Post } from '@modules/post/post.model';
 import {
   Args,
@@ -9,9 +10,7 @@ import {
 } from '@nestjs/graphql';
 import { Category } from './category.model';
 import { CategoryService } from './category.service';
-import { CategoryWhereUniqueInput } from './dto/category-where-unique.input';
-import { CreateCategoryInput } from './dto/create-category.input';
-import { UpdateCategoryInput } from './dto/update-category.input';
+import { CreateCategoryInput, UpdateCategoryInput } from './dto';
 
 @Resolver(() => Category)
 export class CategoryResolver {

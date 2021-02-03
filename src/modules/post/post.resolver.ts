@@ -8,15 +8,14 @@ import {
 } from '@nestjs/graphql';
 import { Post } from './post.model';
 import { PostService } from './post.service';
-import { PostWhereUniqueInput } from './dto/post-where-unique.input';
 import { CreatePostInput } from './dto/create-post.input';
 import { UpdatePostInput } from './dto/update-post.input';
 import { CurrentUser } from '@modules/user/user.decorator';
 import { User } from '@modules/user/user.model';
-import { UserWhereUniqueInput } from '@modules/user/dto';
 import { Prisma } from '@prisma/client';
-import { PaginationArgs } from '@common/abstract-model/pagination/pagination.args';
-import { PostOrderByInput } from './dto';
+import { PostFindManyArgs } from './args/post-find-many.args';
+import { PostWhereUniqueInput } from '@common/@generated/post';
+import { UserWhereUniqueInput } from '@modules/user/dto';
 
 @Resolver(() => Post)
 export class PostResolver {
@@ -24,18 +23,8 @@ export class PostResolver {
 
   /* Query */
   @Query(() => Post)
-  public async posts(
-    @Args() args: PaginationArgs,
-    @Args({ name: 'query', type: () => String, nullable: true })
-    query: string,
-    @Args({
-      name: 'orderBy',
-      type: () => PostOrderByInput,
-      nullable: true,
-    })
-    orderBy: PostOrderByInput,
-  ) {
-    return await this.postService.getPosts(args, query, orderBy);
+  public async posts(@Args() args: PostFindManyArgs) {
+    return await this.postService.getPosts(args);
   }
   @Query(() => Post)
   public async post(@Args('where') where: PostWhereUniqueInput) {

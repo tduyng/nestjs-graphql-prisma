@@ -1,11 +1,10 @@
+import { CategoryWhereUniqueInput } from '@common/@generated/category';
 import { Post } from '@modules/post/post.model';
 import { PrismaService } from '@modules/prisma/prisma.service';
 import { Test, TestingModule } from '@nestjs/testing';
 import { Category } from '../category.model';
 import { CategoryService } from '../category.service';
-import { CategoryWhereUniqueInput } from '../dto/category-where-unique.input';
-import { CreateCategoryInput } from '../dto/create-category.input';
-
+import { CreateCategoryInput } from '../dto';
 const oneCategory = {
   id: 'some categoryId',
   name: 'some name',
