@@ -48,6 +48,7 @@
     "docker:prisma:generate": "docker-compose -f docker-compose.yml run --rm nest-api yarn prisma:generate",
     "docker:migrate": "docker-compose -f docker-compose.yml run --rm nest-api yarn migrate:dev",
     "docker:seed": "docker-compose -f docker-compose.yml run --rm nest-api yarn seed",
+    "docker:prisma:studio": "docker-compose -f docker-compose.yml run nest-api -d yarn prisma:studio",
     "docker:start:dev": "docker-compose up",
     "docker:test:seed": "docker-compose -f docker-compose.test.yml run --rm nest-api yarn seed",
     "docker:test:migrate": "docker-compose -f docker-compose.test.yml run --rm nest-api yarn migrate:dev",
