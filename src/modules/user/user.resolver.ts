@@ -11,10 +11,15 @@ import { UserService } from './services/user.service';
 import { Post } from '@modules/post/post.model';
 import { UpdateUserInput } from './dto/update-user.input';
 import { ChangePasswordInput } from './dto/change-password.input';
+import { GqlUser, Roles } from './decorators';
+import { UseGuards } from '@nestjs/common';
+import { JwtGuard } from '@modules/auth/guards/jwt.guard';
+import { RolesGuard } from '@modules/auth/guards/roles.guard';
 import { UserWhereUniqueInput } from '@common/@generated/user';
-import { GqlUser } from './decorators';
 
 @Resolver(() => User)
+@UseGuards(JwtGuard, RolesGuard)
+@Roles('USER')
 export class UserResolver {
   constructor(private userService: UserService) {}
 
@@ -24,12 +29,6 @@ export class UserResolver {
   @Query(() => User)
   public async me(@GqlUser() user: User) {
     return user;
-  }
-
-  /* Query for single user*/
-  @Query(() => User)
-  public async user(@Args('where') where: UserWhereUniqueInput) {
-    return await this.userService.getUserByUniqueInput(where);
   }
 
   @ResolveField(() => [Post])
@@ -45,11 +44,19 @@ export class UserResolver {
   /* Mutations */
 
   @Mutation(() => User)
-  public async updateUser(
+  public async updateAccount(
     @GqlUser() user: User,
     @Args('data') newUserData: UpdateUserInput,
   ) {
-    return this.userService.updateUser(user.id, newUserData);
+    return this.userService.updateOneUser(user.id, newUserData);
+  }
+
+  @Mutation(() => User)
+  public async deleteAccount(@GqlUser() user: User) {
+    const where: UserWhereUniqueInput = {
+      id: user.id,
+    };
+    return this.userService.deleteOneUser(where);
   }
 
   @Mutation(() => User)

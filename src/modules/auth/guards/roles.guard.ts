@@ -1,4 +1,3 @@
-import { IRequestWithUser } from '@modules/user/interfaces/request-with-user.interface';
 import { IUserFromRequest } from '@modules/user/interfaces/user-from-request.interface';
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';

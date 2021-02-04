@@ -53,7 +53,7 @@ export class UserService {
     return result;
   }
 
-  public async updateUser(userId: string, newUserData: UpdateUserInput) {
+  public async updateOneUser(userId: string, newUserData: UpdateUserInput) {
     try {
       return await this.prisma.user.update({
         data: newUserData,
@@ -61,6 +61,14 @@ export class UserService {
           id: userId,
         },
       });
+    } catch (error) {
+      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  public async deleteOneUser(where: UserWhereUniqueInput): Promise<User> {
+    try {
+      return await this.prisma.user.delete({ where });
     } catch (error) {
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
     }
