@@ -58,14 +58,16 @@ export class CategoryService {
     const result: Category[] = [];
     try {
       for (const category of categories) {
-        const slug = slugify(category.name);
+        const slug = slugify(category.name, { lower: true });
         const cat = await this.prisma.category.upsert({
           where: { slug: slug },
           create: {
             name: category.name,
             slug: slug,
           },
-          update: {},
+          update: {
+            slug: slug,
+          },
         });
         result.push(cat);
       }

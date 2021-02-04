@@ -10,6 +10,11 @@ services:
       - /usr/src/app/node_modules
     depends_on:
       - postgres
+
+    env_file:
+      - .env
+    ports:
+      - ${SERVER_PORT}:${SERVER_PORT}
     networks:
       - nest-graphql-network
 
