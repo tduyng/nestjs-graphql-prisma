@@ -25,6 +25,9 @@ Example backend <a href="https://nestjs.com/">NestJS</a> - <a href="https://grap
     - [Installation](#installation)
     - [Command lines](#command-lines)
   - [Project structure](#project-structure)
+    - [Tree project](#tree-project)
+    - [Structure details](#structure-details)
+  - [Resolvers of Project (Endpoints)](#resolvers-of-project-endpoints)
   - [Docker](#docker)
     - [Command line](#command-line)
     - [PgAdmin4](#pgadmin4)
@@ -189,7 +192,115 @@ Other useful commands to work with project:
 
 ## Project structure
 
-**Working in progress: Add table for explaining each folder container**
+### Tree project
+
+<details>
+<summary>Click to expand sections</summary>
+
+```tree
+.
+├── docker
+│   ├── Dockerfile
+│   ├── Dockerfile.prod
+│   └── nginx
+│       ├── Dockerfile.nginx
+│       └── nginx.conf
+├── docker-compose.production.yml
+├── docker-compose.test.yml
+├── docker-compose.yml
+├── graphql
+├── jest.config.js
+├── LICENSE
+├── nest-cli.json
+├── package.json
+├── prisma
+│   ├── dbml
+│   ├── migrations
+│   ├── schema.prisma
+│   └── seed.ts
+├── README.md
+├── src
+│   ├── app
+│   │   ├── app.controller.ts
+│   │   ├── app.module.ts
+│   │   ├── app.resolver.ts
+│   │   ├── app.service.ts
+│   ├── common
+│   │   ├── abstract-model
+│   │   ├── configs
+│   │   ├── @generated
+│   │   │   ├── category
+│   │   │   ├── post
+│   │   │   ├── prisma
+│   │   │   ├── profile
+│   │   │   └── user
+│   │   └── types
+│   │       └── node.d.ts
+│   ├── main.ts
+│   ├── modules
+│   │   ├── category
+│   │   ├── email
+│   │   ├── post
+│   │   ├── prisma
+│   │   ├── profile
+│   │   └── user
+│   └── schema.gql
+├── test
+│   ├── app.e2e-spec.ts
+│   └── jest-e2e.json
+├── tsconfig.build.json
+├── tsconfig.json
+└── yarn.lock
+
+```
+
+</details>
+
+### Structure details
+
+<details>
+<summary>
+Click here to expand section
+</summary>
+
+- `src`:
+  - `app`: contains NestJS app files
+  - `common`: contains shared or general files, type, model, config ... of application
+    - `@generated`: contains generated inputs graphql that match with input of prisma. Thanks [Roman Vasilev](https://github.com/unlight) for this [https://github.com/unlight/prisma-nestjs-graphql] tool.
+    - `configs`: contains configurations of project  as Graphql, Prisma, TypeORM ...
+    - `types`: define general types using for project here
+  - `modules`: contain modules (NestJS) of projects. We separate module for each unit. Each module contains its own data like: model, interface, dto, service, controller, resolver, repository, types...
+    - model
+    - service
+    - resolver
+    - controller
+    - module
+    - interfaces
+    - dto
+    - types
+    - test
+    - decorator
+    - args
+  - `main.ts`: main file to run server
+- `prisma`:  contains `prisma.shema`, migrations, and seeding
+- `graphql`: contains example queries & mutations of graphql for project
+- `docker`: contains all files related Docker as `Dockerfile`, `nginx` (except docker-compose)
+- `test`: for end to end testing
+- `docker-compose*.yml`: docker compose files to run different environment docker
+- `.env*`: different environment variables files
+- `.estlint*, prettier*, .editorconfig`: Style & format code
+- `jest.config.js`: configuration for testing with jest
+- `package.json`
+- `tsconfig.json`: configuration for TypeScript
+- `.circle-ci.yml, .travis.yml, .github/workflows`: CI-CD
+
+
+</details>
+
+
+## Resolvers of Project (Endpoints)
+
+**Working in progress: Resolvers or Endpoints of project**
 
 ---
 ## Docker
