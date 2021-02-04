@@ -3,7 +3,7 @@ import { User } from '@modules/user/user.model';
 import { BaseModel } from '@common/abstract-model/base.model';
 import { Category } from '@modules/category/category.model';
 
-@ObjectType()
+@ObjectType('post')
 export class Post extends BaseModel {
   @Field(() => String, { nullable: false })
   title: string;

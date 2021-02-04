@@ -10,13 +10,13 @@ import { Post } from './post.model';
 import { PostService } from './post.service';
 import { CreatePostInput } from './dto/create-post.input';
 import { UpdatePostInput } from './dto/update-post.input';
-import { CurrentUser } from '@modules/user/decorators/user.decorator';
 import { User } from '@modules/user/user.model';
 import { Prisma } from '@prisma/client';
 import {
   FindManyPostArgs,
   PostWhereUniqueInput,
 } from '@common/@generated/post';
+import { GqlUser } from '@modules/user/decorators';
 
 @Resolver(() => Post)
 export class PostResolver {
@@ -44,7 +44,7 @@ export class PostResolver {
   @Mutation(() => Post)
   public async createPost(
     @Args('data') input: CreatePostInput,
-    @CurrentUser() user: User,
+    @GqlUser() user: User,
   ) {
     return await this.postService.createPost(input, user);
   }

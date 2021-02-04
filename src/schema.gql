@@ -11,6 +11,31 @@ type Category {
   updatedAt: DateTime!
 }
 
+type CategoryCountAggregate {
+  _all: Int!
+  createdAt: Int
+  id: Int
+  name: Int
+  slug: Int
+  updatedAt: Int
+}
+
+type CategoryMaxAggregate {
+  createdAt: DateTime
+  id: String
+  name: String
+  slug: String
+  updatedAt: DateTime
+}
+
+type CategoryMinAggregate {
+  createdAt: DateTime
+  id: String
+  name: String
+  slug: String
+  updatedAt: DateTime
+}
+
 input CategoryWhereUniqueInput {
   id: String
   slug: String
@@ -37,23 +62,25 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 scalar DateTime
 
 type Mutation {
-  changePassword(data: ChangePasswordInput!): User!
-  createCategory(data: CreateCategoryInput!): Category!
-  createProfile(data: CreateProfileInput!): Profile!
-  deleteCategory(where: CategoryWhereUniqueInput!): Category!
-  deleteProfile(where: ProfileWhereUniqueInput!): Profile!
-  updateCategory(data: UpdateCategoryInput!, where: CategoryWhereUniqueInput!): Category!
-  updateProfile(data: UpdateProfileInput!, where: ProfileWhereUniqueInput!): Profile!
-  updateUser(data: UpdateUserInput!): User!
+  changePassword(data: ChangePasswordInput!): user!
+  createCategories(data: [CreateCategoryInput!]!): [category!]!
+  createCategory(data: CreateCategoryInput!): category!
+  createProfile(data: CreateProfileInput!): profile!
+  deleteCategory(where: CategoryWhereUniqueInput!): category!
+  deleteProfile(where: ProfileWhereUniqueInput!): profile!
+  updateCategory(data: UpdateCategoryInput!, where: CategoryWhereUniqueInput!): category!
+  updateProfile(data: UpdateProfileInput!, where: ProfileWhereUniqueInput!): profile!
+  updateUser(data: UpdateUserInput!): user!
 }
 
 type Post {
   author: User
+  authorId: String
   categories: [Category!]
   content: String!
   createdAt: DateTime!
   id: ID!
-  published: String!
+  published: Boolean!
   slug: String!
   title: String!
   updatedAt: DateTime!
@@ -67,25 +94,63 @@ type Profile {
   lastName: String
   updatedAt: DateTime!
   user: User
+  userId: String
+}
+
+type ProfileCountAggregate {
+  _all: Int!
+  bio: Int
+  createdAt: Int
+  firstName: Int
+  id: Int
+  lastName: Int
+  updatedAt: Int
+  userId: Int
+}
+
+type ProfileMaxAggregate {
+  bio: String
+  createdAt: DateTime
+  firstName: String
+  id: String
+  lastName: String
+  updatedAt: DateTime
+  userId: String
+}
+
+type ProfileMinAggregate {
+  bio: String
+  createdAt: DateTime
+  firstName: String
+  id: String
+  lastName: String
+  updatedAt: DateTime
+  userId: String
 }
 
 input ProfileWhereUniqueInput {
   id: String
+  userId: String
 }
 
 type Query {
-  categories: [Category!]!
-  category(where: CategoryWhereUniqueInput!): Category!
+  categories: [category!]!
+  category(where: CategoryWhereUniqueInput!): category!
   hello(name: String!): String!
   helloWorld: String!
-  me: User!
-  profile(where: ProfileWhereUniqueInput!): Profile!
-  profileByUser(where: UserWhereUniqueInput!): Profile!
-  user(where: UserWhereUniqueInput!): User!
+  me: user!
+  profile(where: ProfileWhereUniqueInput!): profile!
+  profileByUser(where: UserWhereUniqueInput!): profile!
+  user(where: UserWhereUniqueInput!): user!
+}
+
+enum Role {
+  ADMIN
+  USER
 }
 
 input UpdateCategoryInput {
-  name: String!
+  name: String
 }
 
 input UpdateProfileInput {
@@ -103,15 +168,89 @@ type User {
   createdAt: DateTime!
   email: String!
   id: ID!
+  password: String!
   posts: [Post!]
   profile: Profile
-  role: String!
+  role: Role!
   updatedAt: DateTime!
+  username: String
+}
+
+type UserCountAggregate {
+  _all: Int!
+  createdAt: Int
+  email: Int
+  id: Int
+  password: Int
+  role: Int
+  updatedAt: Int
+  username: Int
+}
+
+type UserMaxAggregate {
+  createdAt: DateTime
+  email: String
+  id: String
+  password: String
+  role: Role
+  updatedAt: DateTime
+  username: String
+}
+
+type UserMinAggregate {
+  createdAt: DateTime
+  email: String
+  id: String
+  password: String
+  role: Role
+  updatedAt: DateTime
   username: String
 }
 
 input UserWhereUniqueInput {
   email: String
   id: String
+  username: String
+}
+
+type category {
+  createdAt: DateTime!
+  id: ID!
+  name: String!
+  posts: [post!]
+  slug: String!
+  updatedAt: DateTime!
+}
+
+type post {
+  author: user
+  categories: [category!]
+  content: String!
+  createdAt: DateTime!
+  id: ID!
+  published: String!
+  slug: String!
+  title: String!
+  updatedAt: DateTime!
+}
+
+type profile {
+  bio: String
+  createdAt: DateTime!
+  firstName: String
+  id: ID!
+  lastName: String
+  updatedAt: DateTime!
+  user: user
+}
+
+type user {
+  createdAt: DateTime!
+  email: String!
+  id: ID!
+  posts: [post!]
+  profile: profile
+  role: String!
+  updatedAt: DateTime!
   username: String
 }

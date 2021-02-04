@@ -3,7 +3,7 @@ import { Post } from '@modules/post/post.model';
 import { Field, ObjectType } from '@nestjs/graphql';
 import { IsNotEmpty } from 'class-validator';
 
-@ObjectType()
+@ObjectType('category')
 export class Category extends BaseModel {
   @Field(() => String, { nullable: false })
   @IsNotEmpty()

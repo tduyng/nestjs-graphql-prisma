@@ -1,2 +1,3 @@
-export * from './create-category.input';
-export * from './update-category.input';
+export { CreateCategoryInput } from './create-category.input';
+export { UpdateCategoryInput } from './update-category.input';
+export { CreateMultipleCategoryInput } from './create-multiple-category.input';

@@ -54,9 +54,7 @@ export class CategoryService {
     }
   }
 
-  public async createCategories(
-    categories: CreateCategoryInput[],
-  ): Promise<Category[]> {
+  public async createCategories(categories: CreateCategoryInput[]) {
     const result: Category[] = [];
     try {
       for (const category of categories) {

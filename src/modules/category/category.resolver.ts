@@ -42,7 +42,10 @@ export class CategoryResolver {
   }
 
   @Mutation(() => [Category])
-  public async createCategories(@Args('data') data: CreateCategoryInput[]) {
+  public async createCategories(
+    @Args({ name: 'data', type: () => [CreateCategoryInput] })
+    data: CreateCategoryInput[],
+  ) {
     return await this.categoryService.createCategories(data);
   }
 

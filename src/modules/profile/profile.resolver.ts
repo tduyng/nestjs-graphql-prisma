@@ -8,12 +8,12 @@ import {
 } from '@nestjs/graphql';
 import { Profile } from './profile.model';
 import { ProfileService } from './profile.service';
-import { CurrentUser } from '@modules/user/decorators/user.decorator';
 import { User } from '@modules/user/user.model';
 import { Prisma } from '@prisma/client';
 import { ProfileWhereUniqueInput } from '@common/@generated/profile';
 import { UserWhereUniqueInput } from '@common/@generated/user';
 import { CreateProfileInput, UpdateProfileInput } from './dto';
+import { GqlUser } from '@modules/user/decorators';
 
 @Resolver(() => Profile)
 export class ProfileResolver {
@@ -41,7 +41,7 @@ export class ProfileResolver {
   @Mutation(() => Profile)
   public async createProfile(
     @Args('data') input: CreateProfileInput,
-    @CurrentUser() user: User,
+    @GqlUser() user: User,
   ) {
     return await this.profileService.createProfile({ input, user });
   }

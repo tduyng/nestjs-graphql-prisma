@@ -14,7 +14,7 @@ registerEnumType(Role, {
   name: 'Role',
   description: 'User role',
 });
-@ObjectType()
+@ObjectType('user')
 export class User extends BaseModel {
   @Field(() => String, { nullable: false })
   email: string;
