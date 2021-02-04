@@ -24,8 +24,10 @@ Example backend <a href="https://nestjs.com/">NestJS</a> - <a href="https://grap
   - [Getting started](#getting-started)
     - [Installation](#installation)
     - [Command lines](#command-lines)
-  - [Docker](#docker)
   - [Project structure](#project-structure)
+  - [Docker](#docker)
+    - [Command line](#command-line)
+    - [PgAdmin4](#pgadmin4)
   - [Thanks](#thanks)
 
 
@@ -184,15 +186,92 @@ Other useful commands to work with project:
 
 
   You can check more other commands in section `scripts` of `package.json`.
-## Docker
-
-**Working in progress: Explanation how to use**
 
 ## Project structure
 
 **Working in progress: Add table for explaining each folder container**
 
-..........................
+---
+## Docker
+
+To start working with **Docker**, you need have [Docker](https://docs.docker.com/engine/install/) installed locally and also the package manage as **npm** ro **yarn**
+
+In the **development** mode, we have already **PostgreSQL** and **PgAdmin4** in our `docker-compose` file. You can use the same values environment in your `.env` like before.
+
+### Command line
+
+I think all of you know already how to run docker with `docker-compose`:
+We have some simple commands:
+
+```bash
+$ docker-compose build # Build all services in docker-compose.yml file
+$ docker-compose up # Run all services in docker-compose.yml
+$ docker-compose down # Stop all services
+$ docker-compose up nest-api # Run only a  service
+```
+
+But that is not the think I want to say here, we need work with docker like we work locally as `prisma generate`, `prisma migration`, seeding, run test ...
+In that case how it work?
+
+Well we  will run directly docker-compose file for our service `nest-api` and with `yarn` or `npm` we use as when we work locally.
+
+```
+$ docker-compose -f docker-compose.yml run --rm nest-api yarn prisma:generate
+```
+  - `-f`: file --> using with the name `docker-compose.***.yml` file
+  - `--rm`: flag to stop automatically docker service after executing.
+  - `nest-api`: name service of our server (specify in docker-compose file)
+  - `yarn prisma:generate`: command that we want to execute
+
+But if you always write command like that, it will be take a lot of time and difficult to remember. So we will prepare theme in section `scripts` of `package.json`.
+
+**Scripts of package.json**
+```json
+{
+  "script":{
+    // .....
+    "docker:build": "docker-compose -f docker-compose.yml build --no-cache",
+    "docker:prisma:generate": "docker-compose -f docker-compose.yml run --rm nest-api yarn prisma:generate",
+    "docker:migrate": "docker-compose -f docker-compose.yml run --rm nest-api yarn migrate:dev",
+    "docker:seed": "docker-compose -f docker-compose.yml run --rm nest-api yarn seed",
+    "docker:prisma:studio": "docker-compose -f docker-compose.yml run nest-api -d yarn prisma:studio",
+    "docker:start:dev": "docker-compose up",
+    "docker:test:seed": "docker-compose -f docker-compose.test.yml run --rm nest-api yarn seed",
+    "docker:test:migrate": "docker-compose -f docker-compose.test.yml run --rm nest-api yarn migrate:dev",
+    "docker:test:build": "docker-compose -f docker-compose.test.yml build --no-cache",
+    "docker:test:run": "docker-compose -f docker-compose.test.yml run --rm nest-api yarn test"
+
+  }
+}
+
+```
+--> You can write your own scripts to work better with docker.
+
+**Hint**: For this moment **integration testing** or **end to end testing** with Prisma is quite difficult for me. Because `env(DATABASE_URI)` take the variable only in `.env` file. I don't want to change manually it when I want to run integration test and e2e test, so I think Docker is very good solution to solve this issue.
+
+**Hint**: You can check [Portainer tool](https://www.portainer.io/) to manage easier multiple docker services. I think you will find it useful too.
+
+### PgAdmin4
+
+A little information to start with docker PgAdmin.
+
+PgAdmin4 is database management tool for PostgreSQL. Because it is a web application based, so PgAdmin is work really well with docker. We can access directly from our browser.
+
+After running successfully server with docker, we will open `http://localhost:8080` (Port `8080` is port specified for PgAdmin in `docker-compose` file).
+
+If you remember, in `.env` file, we have the variables of PgAdmin:
+```
+PGADMIN_DEFAULT_EMAIL=admin@admin.com
+PGADMIN_DEFAULT_PASSWORD=admin
+```
+We  will use these credentials to connect our PgAdmin.
+
+
+<div align="center">
+<img src="docs/img/pgadmin.png" alt ="pgadmin"/>
+<img src="docs/img/pgadmin-2.png" alt ="pgadmin"/>
+</div>
+
 
 ---
 ## Thanks
