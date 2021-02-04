@@ -8,7 +8,7 @@ import {
 } from '@nestjs/graphql';
 import { Profile } from './profile.model';
 import { ProfileService } from './profile.service';
-import { CurrentUser } from '@modules/user/user.decorator';
+import { CurrentUser } from '@modules/user/decorators/user.decorator';
 import { User } from '@modules/user/user.model';
 import { Prisma } from '@prisma/client';
 import { ProfileWhereUniqueInput } from '@common/@generated/profile';

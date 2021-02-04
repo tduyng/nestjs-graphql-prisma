@@ -10,7 +10,7 @@ import { Post } from './post.model';
 import { PostService } from './post.service';
 import { CreatePostInput } from './dto/create-post.input';
 import { UpdatePostInput } from './dto/update-post.input';
-import { CurrentUser } from '@modules/user/user.decorator';
+import { CurrentUser } from '@modules/user/decorators/user.decorator';
 import { User } from '@modules/user/user.model';
 import { Prisma } from '@prisma/client';
 import {

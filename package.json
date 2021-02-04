@@ -9,10 +9,13 @@
     "NestJS",
     "GraphQL",
     "Prisma",
+    "prisma 2",
     "Boilerplate",
     "Starter",
     "Postgres",
-    "TypeScript"
+    "TypeScript",
+    "nestjs-graphql-boilerplate",
+    "nestjs-graphql-prisma"
   ],
   "scripts": {
     "precommit": "lint-staged && npm run prettier && npm run lint",
