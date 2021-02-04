@@ -8,5 +8,10 @@ declare namespace NodeJS {
     readonly DB_PORT: string;
     readonly DB_DATABASE: string;
     readonly DATABASE_URL: string;
+    readonly SMTP_SERVER: string;
+    readonly SMTP_LOGIN: string;
+    readonly SMTP_PASSWORD: string;
+    readonly SMTP_FROM_NAME: string;
+    readonly SMTP_FROM_EMAIL: string;
   }
 }

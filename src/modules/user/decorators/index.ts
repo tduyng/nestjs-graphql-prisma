@@ -1,2 +1,2 @@
-export { UserRole } from './user-role.decorator';
+export { Roles } from './roles.decorator';
 export { GqlUser, HttpUser } from './user.decorator';

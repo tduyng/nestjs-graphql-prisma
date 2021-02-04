@@ -4,6 +4,7 @@ import { setupSwagger } from '@common/configs/swagger-options';
 import { ValidationPipe } from '@nestjs/common';
 import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
+import { Logger } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -26,7 +27,7 @@ async function bootstrap() {
   const port = Number(process.env.SERVER_PORT);
 
   await app.listen(port, () => {
-    console.log(`Server is running at http://localhost:${port}/graphql`);
+    Logger.log(`Server is running at http://localhost:${port}/graphql`);
   });
 }
 bootstrap();

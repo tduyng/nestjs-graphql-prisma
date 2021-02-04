@@ -45,6 +45,7 @@ Features of project:
 - Using [PostgreQL](https://github.com/brianc/node-postgres) for database and [Prisma 2](https://github.com/prisma/prisma) as ORM
 - CRUD operations, database relationship, pagination
 - [NestJS Authentication](https://docs.nestjs.com/security/authentication) with [Passport](https://github.com/jaredhanson/passport), [JWT](http://www.passportjs.org/packages/passport-jwt/), [Bcrypt](https://github.com/kelektiv/node.bcrypt.js/) encrypted password and refresh token JWT
+- Rating limit with [nestjs-throttler](https://github.com/nestjs/throttler), flexible for multi plateform framework with NestJS
 - Verification email for register
 - Docker solution for PostgreSQL, PGAdmin, Prisma
 - Next generation Typescript
