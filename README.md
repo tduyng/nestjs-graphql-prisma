@@ -1,8 +1,8 @@
 # NestJS - GraphQL - Prisma
 
-<p align="center">
+<div align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
-</p>
+</div>
 
 <div align="center">
 Example backend <a href="https://nestjs.com/">NestJS</a> - <a href="https://graphql.org/">GraphQL</a> project using <a href="https://prisma.io/">Prisma 2</a> & <a href="https://postgresql.org/" >PostgreSQL</a>
@@ -45,7 +45,7 @@ Features of project:
 - Using [PostgreQL](https://github.com/brianc/node-postgres) for database and [Prisma 2](https://github.com/prisma/prisma) as ORM
 - CRUD operations, database relationship, pagination
 - [NestJS Authentication](https://docs.nestjs.com/security/authentication) with [Passport](https://github.com/jaredhanson/passport), [JWT](http://www.passportjs.org/packages/passport-jwt/), [Bcrypt](https://github.com/kelektiv/node.bcrypt.js/) encrypted password and refresh token JWT
-- Rating limit with [nestjs-throttler](https://github.com/nestjs/throttler), flexible for multi plateform framework with NestJS
+- Rating limit API with [express-rate-limit](https://github.com/nfriedly/express-rate-limit)
 - Verification email for register
 - Docker solution for PostgreSQL, PGAdmin, Prisma
 - Next generation Typescript
