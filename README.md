@@ -403,7 +403,7 @@ We  will use these credentials to connect our PgAdmin.
 
 - [ ] Integrate with REST API
 - [ ] Mailer service
-- [ ] CI-CD
+- [x] CI-CD
 - [ ] End to end testing
 - [ ] Multi-language with i18n options
 - [ ] Add model subscribers
