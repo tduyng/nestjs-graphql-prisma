@@ -5,19 +5,18 @@ import { UserWhereUniqueInput } from './user-where-unique.input';
 
 @InputType()
 export class UserCreateOneWithoutProfileInput {
+  @Field(() => UserCreateWithoutProfileInput, {
+    nullable: true,
+  })
+  create?: UserCreateWithoutProfileInput;
 
-    @Field(() => UserCreateWithoutProfileInput, {
-            nullable: true,
-        })
-    create?: UserCreateWithoutProfileInput;
+  @Field(() => UserWhereUniqueInput, {
+    nullable: true,
+  })
+  connect?: UserWhereUniqueInput;
 
-    @Field(() => UserWhereUniqueInput, {
-            nullable: true,
-        })
-    connect?: UserWhereUniqueInput;
-
-    @Field(() => UserCreateOrConnectWithoutprofileInput, {
-            nullable: true,
-        })
-    connectOrCreate?: UserCreateOrConnectWithoutprofileInput;
+  @Field(() => UserCreateOrConnectWithoutprofileInput, {
+    nullable: true,
+  })
+  connectOrCreate?: UserCreateOrConnectWithoutprofileInput;
 }

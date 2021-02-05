@@ -4,39 +4,38 @@ import { Role } from '../prisma/role.enum';
 
 @InputType()
 export class UserUncheckedCreateWithoutProfileInput {
+  @Field(() => String, {
+    nullable: true,
+  })
+  id?: string;
 
-    @Field(() => String, {
-            nullable: true,
-        })
-    id?: string;
+  @Field(() => String, {
+    nullable: false,
+  })
+  email!: string;
 
-    @Field(() => String, {
-            nullable: false,
-        })
-    email!: string;
+  @Field(() => String, {
+    nullable: false,
+  })
+  password!: string;
 
-    @Field(() => String, {
-            nullable: false,
-        })
-    password!: string;
+  @Field(() => Role, {
+    nullable: true,
+  })
+  role?: Role;
 
-    @Field(() => Role, {
-            nullable: true,
-        })
-    role?: Role;
+  @Field(() => Date, {
+    nullable: true,
+  })
+  createdAt?: Date | string;
 
-    @Field(() => Date, {
-            nullable: true,
-        })
-    createdAt?: Date | string;
+  @Field(() => Date, {
+    nullable: true,
+  })
+  updatedAt?: Date | string;
 
-    @Field(() => Date, {
-            nullable: true,
-        })
-    updatedAt?: Date | string;
-
-    @Field(() => PostUncheckedCreateManyWithoutAuthorInput, {
-            nullable: true,
-        })
-    posts?: PostUncheckedCreateManyWithoutAuthorInput;
+  @Field(() => PostUncheckedCreateManyWithoutAuthorInput, {
+    nullable: true,
+  })
+  posts?: PostUncheckedCreateManyWithoutAuthorInput;
 }

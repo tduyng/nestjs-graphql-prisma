@@ -4,14 +4,13 @@ import { PostUpdateManyMutationInput } from './post-update-many-mutation.input';
 
 @InputType()
 export class PostUpdateManyWithWhereWithoutAuthorInput {
+  @Field(() => PostScalarWhereInput, {
+    nullable: false,
+  })
+  where!: PostScalarWhereInput;
 
-    @Field(() => PostScalarWhereInput, {
-            nullable: false,
-        })
-    where!: PostScalarWhereInput;
-
-    @Field(() => PostUpdateManyMutationInput, {
-            nullable: false,
-        })
-    data!: PostUpdateManyMutationInput;
+  @Field(() => PostUpdateManyMutationInput, {
+    nullable: false,
+  })
+  data!: PostUpdateManyMutationInput;
 }

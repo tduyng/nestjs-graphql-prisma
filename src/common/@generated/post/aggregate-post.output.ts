@@ -5,19 +5,18 @@ import { PostMinAggregate } from './post-min-aggregate.output';
 
 @ObjectType()
 export class AggregatePost {
+  @Field(() => PostCountAggregate, {
+    nullable: true,
+  })
+  count?: PostCountAggregate;
 
-    @Field(() => PostCountAggregate, {
-            nullable: true,
-        })
-    count?: PostCountAggregate;
+  @Field(() => PostMinAggregate, {
+    nullable: true,
+  })
+  min?: PostMinAggregate;
 
-    @Field(() => PostMinAggregate, {
-            nullable: true,
-        })
-    min?: PostMinAggregate;
-
-    @Field(() => PostMaxAggregate, {
-            nullable: true,
-        })
-    max?: PostMaxAggregate;
+  @Field(() => PostMaxAggregate, {
+    nullable: true,
+  })
+  max?: PostMaxAggregate;
 }

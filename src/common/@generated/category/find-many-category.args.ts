@@ -6,34 +6,33 @@ import { CategoryWhereInput } from './category-where.input';
 
 @ArgsType()
 export class FindManyCategoryArgs {
+  @Field(() => CategoryWhereInput, {
+    nullable: true,
+  })
+  where?: CategoryWhereInput;
 
-    @Field(() => CategoryWhereInput, {
-            nullable: true,
-        })
-    where?: CategoryWhereInput;
+  @Field(() => [CategoryOrderByInput], {
+    nullable: true,
+  })
+  orderBy?: Array<CategoryOrderByInput>;
 
-    @Field(() => [CategoryOrderByInput], {
-            nullable: true,
-        })
-    orderBy?: Array<CategoryOrderByInput>;
+  @Field(() => CategoryWhereUniqueInput, {
+    nullable: true,
+  })
+  cursor?: CategoryWhereUniqueInput;
 
-    @Field(() => CategoryWhereUniqueInput, {
-            nullable: true,
-        })
-    cursor?: CategoryWhereUniqueInput;
+  @Field(() => Int, {
+    nullable: true,
+  })
+  take?: number;
 
-    @Field(() => Int, {
-            nullable: true,
-        })
-    take?: number;
+  @Field(() => Int, {
+    nullable: true,
+  })
+  skip?: number;
 
-    @Field(() => Int, {
-            nullable: true,
-        })
-    skip?: number;
-
-    @Field(() => [CategoryScalarFieldEnum], {
-            nullable: true,
-        })
-    distinct?: Array<CategoryScalarFieldEnum>;
+  @Field(() => [CategoryScalarFieldEnum], {
+    nullable: true,
+  })
+  distinct?: Array<CategoryScalarFieldEnum>;
 }

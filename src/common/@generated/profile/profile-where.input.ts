@@ -5,64 +5,63 @@ import { UserWhereInput } from '../user/user-where.input';
 
 @InputType()
 export class ProfileWhereInput {
+  @Field(() => [ProfileWhereInput], {
+    nullable: true,
+  })
+  AND?: Array<ProfileWhereInput>;
 
-    @Field(() => [ProfileWhereInput], {
-            nullable: true,
-        })
-    AND?: Array<ProfileWhereInput>;
+  @Field(() => [ProfileWhereInput], {
+    nullable: true,
+  })
+  OR?: Array<ProfileWhereInput>;
 
-    @Field(() => [ProfileWhereInput], {
-            nullable: true,
-        })
-    OR?: Array<ProfileWhereInput>;
+  @Field(() => [ProfileWhereInput], {
+    nullable: true,
+  })
+  NOT?: Array<ProfileWhereInput>;
 
-    @Field(() => [ProfileWhereInput], {
-            nullable: true,
-        })
-    NOT?: Array<ProfileWhereInput>;
+  @Field(() => StringFilter, {
+    nullable: true,
+  })
+  id?: StringFilter;
 
-    @Field(() => StringFilter, {
-            nullable: true,
-        })
-    id?: StringFilter;
+  @Field(() => StringFilter, {
+    nullable: true,
+  })
+  username?: StringFilter;
 
-    @Field(() => StringFilter, {
-            nullable: true,
-        })
-    username?: StringFilter;
+  @Field(() => StringFilter, {
+    nullable: true,
+  })
+  firstName?: StringFilter;
 
-    @Field(() => StringFilter, {
-            nullable: true,
-        })
-    firstName?: StringFilter;
+  @Field(() => StringFilter, {
+    nullable: true,
+  })
+  lastName?: StringFilter;
 
-    @Field(() => StringFilter, {
-            nullable: true,
-        })
-    lastName?: StringFilter;
+  @Field(() => StringFilter, {
+    nullable: true,
+  })
+  bio?: StringFilter;
 
-    @Field(() => StringFilter, {
-            nullable: true,
-        })
-    bio?: StringFilter;
+  @Field(() => DateTimeFilter, {
+    nullable: true,
+  })
+  createdAt?: DateTimeFilter;
 
-    @Field(() => DateTimeFilter, {
-            nullable: true,
-        })
-    createdAt?: DateTimeFilter;
+  @Field(() => DateTimeFilter, {
+    nullable: true,
+  })
+  updatedAt?: DateTimeFilter;
 
-    @Field(() => DateTimeFilter, {
-            nullable: true,
-        })
-    updatedAt?: DateTimeFilter;
+  @Field(() => StringFilter, {
+    nullable: true,
+  })
+  userId?: StringFilter;
 
-    @Field(() => StringFilter, {
-            nullable: true,
-        })
-    userId?: StringFilter;
-
-    @Field(() => UserWhereInput, {
-            nullable: true,
-        })
-    user?: UserWhereInput;
+  @Field(() => UserWhereInput, {
+    nullable: true,
+  })
+  user?: UserWhereInput;
 }

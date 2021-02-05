@@ -4,14 +4,13 @@ import { PostWhereUniqueInput } from './post-where-unique.input';
 
 @InputType()
 export class PostUpdateWithWhereUniqueWithoutCategoriesInput {
+  @Field(() => PostWhereUniqueInput, {
+    nullable: false,
+  })
+  where!: PostWhereUniqueInput;
 
-    @Field(() => PostWhereUniqueInput, {
-            nullable: false,
-        })
-    where!: PostWhereUniqueInput;
-
-    @Field(() => PostUpdateWithoutCategoriesInput, {
-            nullable: false,
-        })
-    data!: PostUpdateWithoutCategoriesInput;
+  @Field(() => PostUpdateWithoutCategoriesInput, {
+    nullable: false,
+  })
+  data!: PostUpdateWithoutCategoriesInput;
 }

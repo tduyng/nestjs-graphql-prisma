@@ -5,45 +5,44 @@ import { Profile } from '../profile/profile.model';
 
 @ObjectType()
 export class User {
+  @Field(() => ID, {
+    nullable: false,
+  })
+  id!: string;
 
-    @Field(() => ID, {
-            nullable: false,
-        })
-    id!: string;
+  @Field(() => String, {
+    nullable: false,
+  })
+  email!: string;
 
-    @Field(() => String, {
-            nullable: false,
-        })
-    email!: string;
+  @Field(() => String, {
+    nullable: false,
+  })
+  password!: string;
 
-    @Field(() => String, {
-            nullable: false,
-        })
-    password!: string;
+  @Field(() => Role, {
+    nullable: false,
+    defaultValue: 'USER',
+  })
+  role!: Role;
 
-    @Field(() => Role, {
-            nullable: false,
-            defaultValue: "USER",
-        })
-    role!: Role;
+  @Field(() => Date, {
+    nullable: false,
+  })
+  createdAt!: Date | string;
 
-    @Field(() => Date, {
-            nullable: false,
-        })
-    createdAt!: Date | string;
+  @Field(() => Date, {
+    nullable: false,
+  })
+  updatedAt!: Date | string;
 
-    @Field(() => Date, {
-            nullable: false,
-        })
-    updatedAt!: Date | string;
+  @Field(() => [Post], {
+    nullable: true,
+  })
+  posts?: Array<Post>;
 
-    @Field(() => [Post], {
-            nullable: true,
-        })
-    posts?: Array<Post>;
-
-    @Field(() => Profile, {
-            nullable: true,
-        })
-    profile?: Profile;
+  @Field(() => Profile, {
+    nullable: true,
+  })
+  profile?: Profile;
 }

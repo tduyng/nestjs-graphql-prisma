@@ -9,54 +9,53 @@ import { CategoryWhereUniqueInput } from './category-where-unique.input';
 
 @InputType()
 export class CategoryUpdateManyWithoutPostsInput {
+  @Field(() => [CategoryCreateWithoutPostsInput], {
+    nullable: true,
+  })
+  create?: Array<CategoryCreateWithoutPostsInput>;
 
-    @Field(() => [CategoryCreateWithoutPostsInput], {
-            nullable: true,
-        })
-    create?: Array<CategoryCreateWithoutPostsInput>;
+  @Field(() => [CategoryWhereUniqueInput], {
+    nullable: true,
+  })
+  connect?: Array<CategoryWhereUniqueInput>;
 
-    @Field(() => [CategoryWhereUniqueInput], {
-            nullable: true,
-        })
-    connect?: Array<CategoryWhereUniqueInput>;
+  @Field(() => [CategoryWhereUniqueInput], {
+    nullable: true,
+  })
+  set?: Array<CategoryWhereUniqueInput>;
 
-    @Field(() => [CategoryWhereUniqueInput], {
-            nullable: true,
-        })
-    set?: Array<CategoryWhereUniqueInput>;
+  @Field(() => [CategoryWhereUniqueInput], {
+    nullable: true,
+  })
+  disconnect?: Array<CategoryWhereUniqueInput>;
 
-    @Field(() => [CategoryWhereUniqueInput], {
-            nullable: true,
-        })
-    disconnect?: Array<CategoryWhereUniqueInput>;
+  @Field(() => [CategoryWhereUniqueInput], {
+    nullable: true,
+  })
+  delete?: Array<CategoryWhereUniqueInput>;
 
-    @Field(() => [CategoryWhereUniqueInput], {
-            nullable: true,
-        })
-    delete?: Array<CategoryWhereUniqueInput>;
+  @Field(() => [CategoryUpdateWithWhereUniqueWithoutPostsInput], {
+    nullable: true,
+  })
+  update?: Array<CategoryUpdateWithWhereUniqueWithoutPostsInput>;
 
-    @Field(() => [CategoryUpdateWithWhereUniqueWithoutPostsInput], {
-            nullable: true,
-        })
-    update?: Array<CategoryUpdateWithWhereUniqueWithoutPostsInput>;
+  @Field(() => [CategoryUpdateManyWithWhereWithoutPostsInput], {
+    nullable: true,
+  })
+  updateMany?: Array<CategoryUpdateManyWithWhereWithoutPostsInput>;
 
-    @Field(() => [CategoryUpdateManyWithWhereWithoutPostsInput], {
-            nullable: true,
-        })
-    updateMany?: Array<CategoryUpdateManyWithWhereWithoutPostsInput>;
+  @Field(() => [CategoryScalarWhereInput], {
+    nullable: true,
+  })
+  deleteMany?: Array<CategoryScalarWhereInput>;
 
-    @Field(() => [CategoryScalarWhereInput], {
-            nullable: true,
-        })
-    deleteMany?: Array<CategoryScalarWhereInput>;
+  @Field(() => [CategoryUpsertWithWhereUniqueWithoutPostsInput], {
+    nullable: true,
+  })
+  upsert?: Array<CategoryUpsertWithWhereUniqueWithoutPostsInput>;
 
-    @Field(() => [CategoryUpsertWithWhereUniqueWithoutPostsInput], {
-            nullable: true,
-        })
-    upsert?: Array<CategoryUpsertWithWhereUniqueWithoutPostsInput>;
-
-    @Field(() => [CategoryCreateOrConnectWithoutpostsInput], {
-            nullable: true,
-        })
-    connectOrCreate?: Array<CategoryCreateOrConnectWithoutpostsInput>;
+  @Field(() => [CategoryCreateOrConnectWithoutpostsInput], {
+    nullable: true,
+  })
+  connectOrCreate?: Array<CategoryCreateOrConnectWithoutpostsInput>;
 }

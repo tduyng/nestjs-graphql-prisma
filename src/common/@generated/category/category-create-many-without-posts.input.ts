@@ -5,19 +5,18 @@ import { CategoryWhereUniqueInput } from './category-where-unique.input';
 
 @InputType()
 export class CategoryCreateManyWithoutPostsInput {
+  @Field(() => [CategoryCreateWithoutPostsInput], {
+    nullable: true,
+  })
+  create?: Array<CategoryCreateWithoutPostsInput>;
 
-    @Field(() => [CategoryCreateWithoutPostsInput], {
-            nullable: true,
-        })
-    create?: Array<CategoryCreateWithoutPostsInput>;
+  @Field(() => [CategoryWhereUniqueInput], {
+    nullable: true,
+  })
+  connect?: Array<CategoryWhereUniqueInput>;
 
-    @Field(() => [CategoryWhereUniqueInput], {
-            nullable: true,
-        })
-    connect?: Array<CategoryWhereUniqueInput>;
-
-    @Field(() => [CategoryCreateOrConnectWithoutpostsInput], {
-            nullable: true,
-        })
-    connectOrCreate?: Array<CategoryCreateOrConnectWithoutpostsInput>;
+  @Field(() => [CategoryCreateOrConnectWithoutpostsInput], {
+    nullable: true,
+  })
+  connectOrCreate?: Array<CategoryCreateOrConnectWithoutpostsInput>;
 }

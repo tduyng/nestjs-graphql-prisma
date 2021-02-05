@@ -1,3 +1,6 @@
 node_module
 tsconfig.json
 test
+jest.config.js
+src/common/@generated
+@generated

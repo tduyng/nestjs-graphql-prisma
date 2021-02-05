@@ -7,44 +7,43 @@ import { ProfileWhereInput } from './profile-where.input';
 
 @ArgsType()
 export class AggregateProfileArgs {
+  @Field(() => ProfileWhereInput, {
+    nullable: true,
+  })
+  where?: ProfileWhereInput;
 
-    @Field(() => ProfileWhereInput, {
-            nullable: true,
-        })
-    where?: ProfileWhereInput;
+  @Field(() => [ProfileOrderByInput], {
+    nullable: true,
+  })
+  orderBy?: Array<ProfileOrderByInput>;
 
-    @Field(() => [ProfileOrderByInput], {
-            nullable: true,
-        })
-    orderBy?: Array<ProfileOrderByInput>;
+  @Field(() => ProfileWhereUniqueInput, {
+    nullable: true,
+  })
+  cursor?: ProfileWhereUniqueInput;
 
-    @Field(() => ProfileWhereUniqueInput, {
-            nullable: true,
-        })
-    cursor?: ProfileWhereUniqueInput;
+  @Field(() => Int, {
+    nullable: true,
+  })
+  take?: number;
 
-    @Field(() => Int, {
-            nullable: true,
-        })
-    take?: number;
+  @Field(() => Int, {
+    nullable: true,
+  })
+  skip?: number;
 
-    @Field(() => Int, {
-            nullable: true,
-        })
-    skip?: number;
+  @Field(() => Boolean, {
+    nullable: true,
+  })
+  count?: true;
 
-    @Field(() => Boolean, {
-            nullable: true,
-        })
-    count?: true;
+  @Field(() => ProfileMinAggregateInput, {
+    nullable: true,
+  })
+  min?: ProfileMinAggregateInput;
 
-    @Field(() => ProfileMinAggregateInput, {
-            nullable: true,
-        })
-    min?: ProfileMinAggregateInput;
-
-    @Field(() => ProfileMaxAggregateInput, {
-            nullable: true,
-        })
-    max?: ProfileMaxAggregateInput;
+  @Field(() => ProfileMaxAggregateInput, {
+    nullable: true,
+  })
+  max?: ProfileMaxAggregateInput;
 }

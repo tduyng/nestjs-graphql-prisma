@@ -5,19 +5,18 @@ import { PostWhereUniqueInput } from './post-where-unique.input';
 
 @InputType()
 export class PostUncheckedCreateManyWithoutAuthorInput {
+  @Field(() => [PostCreateWithoutAuthorInput], {
+    nullable: true,
+  })
+  create?: Array<PostCreateWithoutAuthorInput>;
 
-    @Field(() => [PostCreateWithoutAuthorInput], {
-            nullable: true,
-        })
-    create?: Array<PostCreateWithoutAuthorInput>;
+  @Field(() => [PostWhereUniqueInput], {
+    nullable: true,
+  })
+  connect?: Array<PostWhereUniqueInput>;
 
-    @Field(() => [PostWhereUniqueInput], {
-            nullable: true,
-        })
-    connect?: Array<PostWhereUniqueInput>;
-
-    @Field(() => [PostCreateOrConnectWithoutauthorInput], {
-            nullable: true,
-        })
-    connectOrCreate?: Array<PostCreateOrConnectWithoutauthorInput>;
+  @Field(() => [PostCreateOrConnectWithoutauthorInput], {
+    nullable: true,
+  })
+  connectOrCreate?: Array<PostCreateOrConnectWithoutauthorInput>;
 }

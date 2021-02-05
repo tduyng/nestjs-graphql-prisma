@@ -7,39 +7,38 @@ import { UserWhereUniqueInput } from './user-where-unique.input';
 
 @InputType()
 export class UserUpdateOneWithoutPostsInput {
+  @Field(() => UserCreateWithoutPostsInput, {
+    nullable: true,
+  })
+  create?: UserCreateWithoutPostsInput;
 
-    @Field(() => UserCreateWithoutPostsInput, {
-            nullable: true,
-        })
-    create?: UserCreateWithoutPostsInput;
+  @Field(() => UserWhereUniqueInput, {
+    nullable: true,
+  })
+  connect?: UserWhereUniqueInput;
 
-    @Field(() => UserWhereUniqueInput, {
-            nullable: true,
-        })
-    connect?: UserWhereUniqueInput;
+  @Field(() => Boolean, {
+    nullable: true,
+  })
+  disconnect?: boolean;
 
-    @Field(() => Boolean, {
-            nullable: true,
-        })
-    disconnect?: boolean;
+  @Field(() => Boolean, {
+    nullable: true,
+  })
+  delete?: boolean;
 
-    @Field(() => Boolean, {
-            nullable: true,
-        })
-    delete?: boolean;
+  @Field(() => UserUpdateWithoutPostsInput, {
+    nullable: true,
+  })
+  update?: UserUpdateWithoutPostsInput;
 
-    @Field(() => UserUpdateWithoutPostsInput, {
-            nullable: true,
-        })
-    update?: UserUpdateWithoutPostsInput;
+  @Field(() => UserUpsertWithoutPostsInput, {
+    nullable: true,
+  })
+  upsert?: UserUpsertWithoutPostsInput;
 
-    @Field(() => UserUpsertWithoutPostsInput, {
-            nullable: true,
-        })
-    upsert?: UserUpsertWithoutPostsInput;
-
-    @Field(() => UserCreateOrConnectWithoutpostsInput, {
-            nullable: true,
-        })
-    connectOrCreate?: UserCreateOrConnectWithoutpostsInput;
+  @Field(() => UserCreateOrConnectWithoutpostsInput, {
+    nullable: true,
+  })
+  connectOrCreate?: UserCreateOrConnectWithoutpostsInput;
 }

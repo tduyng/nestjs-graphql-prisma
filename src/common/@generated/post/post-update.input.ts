@@ -4,49 +4,48 @@ import { UserUpdateOneWithoutPostsInput } from '../user/user-update-one-without-
 
 @InputType()
 export class PostUpdateInput {
+  @Field(() => String, {
+    nullable: true,
+  })
+  id?: string;
 
-    @Field(() => String, {
-            nullable: true,
-        })
-    id?: string;
+  @Field(() => String, {
+    nullable: true,
+  })
+  title?: string;
 
-    @Field(() => String, {
-            nullable: true,
-        })
-    title?: string;
+  @Field(() => String, {
+    nullable: true,
+  })
+  slug?: string;
 
-    @Field(() => String, {
-            nullable: true,
-        })
-    slug?: string;
+  @Field(() => String, {
+    nullable: true,
+  })
+  content?: string;
 
-    @Field(() => String, {
-            nullable: true,
-        })
-    content?: string;
+  @Field(() => Boolean, {
+    nullable: true,
+  })
+  published?: boolean;
 
-    @Field(() => Boolean, {
-            nullable: true,
-        })
-    published?: boolean;
+  @Field(() => Date, {
+    nullable: true,
+  })
+  createdAt?: Date | string;
 
-    @Field(() => Date, {
-            nullable: true,
-        })
-    createdAt?: Date | string;
+  @Field(() => Date, {
+    nullable: true,
+  })
+  updatedAt?: Date | string;
 
-    @Field(() => Date, {
-            nullable: true,
-        })
-    updatedAt?: Date | string;
+  @Field(() => UserUpdateOneWithoutPostsInput, {
+    nullable: true,
+  })
+  author?: UserUpdateOneWithoutPostsInput;
 
-    @Field(() => UserUpdateOneWithoutPostsInput, {
-            nullable: true,
-        })
-    author?: UserUpdateOneWithoutPostsInput;
-
-    @Field(() => CategoryUpdateManyWithoutPostsInput, {
-            nullable: true,
-        })
-    categories?: CategoryUpdateManyWithoutPostsInput;
+  @Field(() => CategoryUpdateManyWithoutPostsInput, {
+    nullable: true,
+  })
+  categories?: CategoryUpdateManyWithoutPostsInput;
 }
