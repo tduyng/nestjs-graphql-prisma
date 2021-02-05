@@ -11,6 +11,17 @@ Example backend <a href="https://nestjs.com/">NestJS</a> - <a href="https://grap
 
 
 
+
+<div align="center">
+<p></p>
+
+
+<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
+<a href='https://coveralls.io/gitlab/tienduy-nguyen/nestjs-graphql-prisma?branch=master'><img src='https://coveralls.io/repos/gitlab/tienduy-nguyen/nestjs-graphql-prisma/badge.svg?branch=master' alt='Coverage Status' /></a>
+
+</div>
+
+
 ---
 
 **Table of contents**
