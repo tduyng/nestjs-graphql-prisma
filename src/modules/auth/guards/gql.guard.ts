@@ -1,9 +1,9 @@
-import { IUserFromRequest } from '@modules/user/interfaces/user-from-request.interface';
+import { Role } from '@common/@generated/prisma';
+import { IUserFromRequest } from '@modules/user/interfaces';
 import { ExecutionContext, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { GqlExecutionContext } from '@nestjs/graphql';
 import { AuthGuard } from '@nestjs/passport';
-import { Role } from '@prisma/client';
 
 @Injectable()
 export class GqlGuard extends AuthGuard('jwt') {

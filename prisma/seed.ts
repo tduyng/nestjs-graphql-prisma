@@ -50,7 +50,7 @@ async function main() {
     where: { email: 'tester-user1@example.com' },
     create: {
       email: 'tester1@example.com',
-      password: '$2y$10$hd/JLwBF16K9QNgXdlbzbOgCaGjYrRtQIiTGwxo6U7tA8XaWgvhAq',
+      password: '$2b$10$a3EO2zZK7kmIbYdgX45Jh.K7ZN.tuwumrFG1z536y8GiU6ReDizgy',
       role: 'USER',
       profile: {
         create: {
@@ -63,7 +63,7 @@ async function main() {
     },
     update: {
       email: 'tester1@example.com',
-      password: '$2y$10$hd/JLwBF16K9QNgXdlbzbOgCaGjYrRtQIiTGwxo6U7tA8XaWgvhAq',
+      password: '$2b$10$a3EO2zZK7kmIbYdgX45Jh.K7ZN.tuwumrFG1z536y8GiU6ReDizgy',
       role: 'USER',
       profile: {
         upsert: {
@@ -87,7 +87,7 @@ async function main() {
     where: { email: 'tester-user2@example.com' },
     create: {
       email: 'tester-user2@example.com',
-      password: '$2y$10$hd/JLwBF16K9QNgXdlbzbOgCaGjYrRtQIiTGwxo6U7tA8XaWgvhAq',
+      password: '$2b$10$a3EO2zZK7kmIbYdgX45Jh.K7ZN.tuwumrFG1z536y8GiU6ReDizgy',
       role: 'USER',
       profile: {
         create: {
@@ -100,7 +100,7 @@ async function main() {
     },
     update: {
       email: 'tester-user2@example.com',
-      password: '$2y$10$hd/JLwBF16K9QNgXdlbzbOgCaGjYrRtQIiTGwxo6U7tA8XaWgvhAq',
+      password: '$2b$10$a3EO2zZK7kmIbYdgX45Jh.K7ZN.tuwumrFG1z536y8GiU6ReDizgy',
       role: 'USER',
       profile: {
         upsert: {
@@ -126,7 +126,7 @@ async function main() {
     where: { email: 'tester-admin1@example.com' },
     create: {
       email: 'tester-admin1@example.com',
-      password: '$2y$10$hd/JLwBF16K9QNgXdlbzbOgCaGjYrRtQIiTGwxo6U7tA8XaWgvhAq',
+      password: '$2b$10$a3EO2zZK7kmIbYdgX45Jh.K7ZN.tuwumrFG1z536y8GiU6ReDizgy',
       role: 'ADMIN',
       profile: {
         create: {
@@ -138,7 +138,7 @@ async function main() {
       },
     },
     update: {
-      password: '$2y$10$hd/JLwBF16K9QNgXdlbzbOgCaGjYrRtQIiTGwxo6U7tA8XaWgvhAq',
+      password: '$2b$10$a3EO2zZK7kmIbYdgX45Jh.K7ZN.tuwumrFG1z536y8GiU6ReDizgy',
       role: 'ADMIN',
       profile: {
         upsert: {

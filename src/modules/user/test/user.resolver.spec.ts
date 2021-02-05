@@ -37,6 +37,7 @@ describe('UserResolver', () => {
     changePassword: jest.fn(),
     getPostsOfUser: jest.fn(),
     getUserByUniqueInput: jest.fn(),
+    getProfileOfUser: jest.fn(),
   });
 
   beforeAll(async () => {
@@ -59,28 +60,29 @@ describe('UserResolver', () => {
   });
 
   describe('me', () => {
-    it('Should be implemented later with auth', () => {
-      expect('me').toEqual('me');
-    });
-  });
-
-  describe('user', () => {
     it('Should return user', async () => {
-      userService.getUserByUniqueInput.mockReturnValue(oneUser);
       const result = await userResolver.me(oneUser);
       expect(result).toEqual(oneUser);
     });
   });
 
+  describe('profile', () => {
+    it('Should return profile of user', async () => {
+      userService.getProfileOfUser.mockReturnValue(oneUser.profile);
+      const result = await userResolver.profile(oneUser);
+      expect(result).toEqual(oneUser.profile);
+    });
+  });
+
   describe('posts', () => {
-    it('Should return an array of post from query', async () => {
+    it('Should return an array of post of user from query', async () => {
       userService.getPostsOfUser.mockReturnValue(oneUser.posts);
       const result = await userResolver.posts(oneUser);
       expect(result).toEqual(oneUser.posts);
     });
   });
 
-  describe('updateUser', () => {
+  describe('updateAccount', () => {
     it('Should return an User as result', async () => {
       userService.updateOneUser.mockReturnValue(oneUser);
       const result = await userResolver.updateAccount(oneUser, userInput);
