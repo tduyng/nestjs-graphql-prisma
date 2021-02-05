@@ -11,15 +11,13 @@ import { UserService } from './services/user.service';
 import { Post } from '@modules/post/post.model';
 import { UpdateUserInput } from './dto/update-user.input';
 import { ChangePasswordInput } from './dto/change-password.input';
-import { GqlUser, Roles } from './decorators';
+import { GqlUser } from './decorators';
 import { UseGuards } from '@nestjs/common';
-import { JwtGuard } from '@modules/auth/guards/jwt.guard';
-import { RolesGuard } from '@modules/auth/guards/roles.guard';
+import { GqlGuard } from '@modules/auth/guards/gql.guard';
 import { UserWhereUniqueInput } from '@common/@generated/user';
 
 @Resolver(() => User)
-@UseGuards(JwtGuard, RolesGuard)
-@Roles('USER')
+@UseGuards(GqlGuard)
 export class UserResolver {
   constructor(private userService: UserService) {}
 

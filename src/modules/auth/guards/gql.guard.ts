@@ -1,14 +1,18 @@
 import { IUserFromRequest } from '@modules/user/interfaces/user-from-request.interface';
-import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
+import { ExecutionContext, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { GqlExecutionContext } from '@nestjs/graphql';
+import { AuthGuard } from '@nestjs/passport';
 import { Role } from '@prisma/client';
 
 @Injectable()
-export class RolesGuard implements CanActivate {
-  constructor(private readonly reflector: Reflector) {}
-
+export class GqlGuard extends AuthGuard('jwt') {
+  constructor(private readonly reflector: Reflector) {
+    super();
+  }
   public async canActivate(context: ExecutionContext) {
+    await super.canActivate(context);
+
     const ctx = GqlExecutionContext.create(context);
     const user = ctx.getContext().req.user as IUserFromRequest;
 
@@ -30,5 +34,10 @@ export class RolesGuard implements CanActivate {
 
     // if array[Admin, role from decorator ...] include user role --> alow access
     return user.role && allowedRoles.includes(user.role);
+  }
+
+  getRequest(context: ExecutionContext) {
+    const ctx = GqlExecutionContext.create(context);
+    return ctx.getContext().req;
   }
 }

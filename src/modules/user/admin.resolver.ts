@@ -13,11 +13,10 @@ import { UpdateUserInput } from './dto/update-user.input';
 import { UserWhereUniqueInput } from '@common/@generated/user';
 import { GqlUser, Roles } from './decorators';
 import { UseGuards } from '@nestjs/common';
-import { JwtGuard } from '@modules/auth/guards/jwt.guard';
-import { RolesGuard } from '@modules/auth/guards/roles.guard';
+import { GqlGuard } from '@modules/auth/guards/gql.guard';
 
 @Resolver(() => User)
-@UseGuards(JwtGuard, RolesGuard)
+@UseGuards(GqlGuard)
 @Roles('ADMIN')
 export class AdminResolver {
   constructor(private userService: UserService) {}
