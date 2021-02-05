@@ -9,13 +9,15 @@ module.exports = {
   testEnvironment: 'node',
   moduleDirectories: ['node_modules', 'src'],
   moduleNameMapper: {
-    '@common/(.*)': '<rootDir>/common/$1',
-    '@modules/(.*)': '<rootDir>/modules/$1',
-    '@app/(.*)': '<rootDir>/app/$1',
+    '^@common/(.*)$': '<rootDir>/common/$1',
+    '^@modules/(.*)$': '<rootDir>/modules/$1',
+    '^@app/(.*)$': '<rootDir>/app/$1',
+    '^@generated/(.*)$': '<rootDir>/app/$1',
   },
 
   collectCoverageFrom: ['<rootDir>/modules/**/*.ts'],
   coverageDirectory: '../coverage',
+  collectCoverage: true,
   coveragePathIgnorePatterns: [
     'node_modules',
     'test-config',
@@ -35,12 +37,4 @@ module.exports = {
     '.decorator.ts',
     '.types.ts',
   ],
-  coverageThreshold: {
-    global: {
-      branches: 20,
-      functions: 30,
-      lines: 50,
-      statements: 50,
-    },
-  },
 };
