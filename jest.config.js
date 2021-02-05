@@ -32,7 +32,6 @@ module.exports = {
     '.input.ts',
     '.spec.ts',
     '.test.ts',
-    '.gitkeep',
     '.decorator.ts',
     '.types.ts',
   ],
