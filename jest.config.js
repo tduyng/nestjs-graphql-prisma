@@ -6,8 +6,6 @@ module.exports = {
   transform: {
     '^.+\\.(t|j)s$': 'ts-jest',
   },
-  collectCoverageFrom: ['**/*.(t|j)s'],
-  coverageDirectory: '../coverage',
   testEnvironment: 'node',
   moduleDirectories: ['node_modules', 'src'],
   moduleNameMapper: {
@@ -15,5 +13,35 @@ module.exports = {
     '@modules/(.*)': '<rootDir>/modules/$1',
     '@app/(.*)': '<rootDir>/app/$1',
   },
-  clearMocks: true,
+
+  collectCoverageFrom: ['<rootDir>/modules/**/*.ts'],
+  coverageDirectory: '../coverage',
+  coveragePathIgnorePatterns: [
+    'node_modules',
+    'test-config',
+    'interfaces',
+    '.interface.ts',
+    'jestGlobalMocks.ts',
+    '.module.ts',
+    '<rootDir>/main.ts',
+    '.mock.ts',
+    '.model.ts',
+    '.entity.ts',
+    '.dto.ts',
+    'index.ts',
+    '.input.ts',
+    '.spec.ts',
+    '.test.ts',
+    '.gitkeep',
+    '.decorator.ts',
+    '.types.ts',
+  ],
+  coverageThreshold: {
+    global: {
+      branches: 20,
+      functions: 30,
+      lines: 50,
+      statements: 50,
+    },
+  },
 };
