@@ -1,14 +1,5 @@
-import {
-  Args,
-  Int,
-  Mutation,
-  Parent,
-  Query,
-  ResolveField,
-  Resolver,
-} from '@nestjs/graphql';
+import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { User } from '@modules/user/user.model';
-import { Post } from '@modules/post/post.model';
 import {
   FindFirstUserArgs,
   FindManyUserArgs,
@@ -41,7 +32,7 @@ export class AdminResolver {
     return await this.userService.getFirstUser(args);
   }
 
-  @Query(() => User)
+  @Query(() => [User])
   public async adminFindManyUser(@Args() args: FindManyUserArgs) {
     return await this.userService.getManyUsers(args);
   }
@@ -87,16 +78,5 @@ export class AdminResolver {
   @Mutation(() => BatchPayload)
   public async adminDeleteManyUser(@Args('where') where: UserWhereInput) {
     return await this.userService.deleteManyUsers(where);
-  }
-
-  /* Relation field */
-  @ResolveField(() => [Post])
-  public async posts(@Parent() author: User) {
-    return await this.userService.getPostsOfUser(author.id);
-  }
-
-  @ResolveField(() => [Post])
-  public async profile(@Parent() author: User) {
-    return await this.userService.getProfileOfUser(author.id);
   }
 }

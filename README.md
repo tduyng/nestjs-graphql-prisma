@@ -41,9 +41,9 @@ Example backend <a href="https://nestjs.com/">NestJS</a> - <a href="https://grap
 
 ## Features
 
-Project inspired from [Nestjs-prisma-starter](https://github.com/fivethree-team/nestjs-prisma-starter) of [fivethree-team](https://github.com/fivethree-team)
-
 I create this repo for learning, practicing and understanding how to work NestJS, GraphQL & Prisma together. Project also how to build a clean architecture scalable & testable.
+
+Project inspired from [Nestjs-prisma-starter](https://github.com/fivethree-team/nestjs-prisma-starter) of [fivethree-team](https://github.com/fivethree-team).
 
 Features of project:
 
