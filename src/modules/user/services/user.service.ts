@@ -47,40 +47,42 @@ export class UserService {
     return user.profile;
   }
 
-  public async getUserByUniqueInput(where: UserWhereUniqueInput) {
+  public async getUserByUniqueInput(
+    where: UserWhereUniqueInput,
+  ): Promise<User> {
     return await this.prisma.user.findUnique({
       where,
       rejectOnNotFound: true,
     });
   }
 
-  public async getUserRandom() {
+  public async getUserRandom(): Promise<User> {
     const [result] = await this.prisma.$queryRaw<User[]>(
       `SELECT * FROM "User" ORDER BY random() LIMIT 1`,
     );
     return result;
   }
 
-  public async getFirstUser(args: FindFirstUserArgs) {
+  public async getFirstUser(args: FindFirstUserArgs): Promise<User> {
     return await this.prisma.user.findFirst({ ...args });
   }
 
-  public async getManyUsers(args: FindManyUserArgs) {
+  public async getManyUsers(args: FindManyUserArgs): Promise<User[]> {
     return await this.prisma.user.findMany({ ...args });
   }
 
-  public async countManyUsers(args: FindManyUserArgs) {
+  public async countManyUsers(args: FindManyUserArgs): Promise<number> {
     return await this.prisma.user.count({ ...args });
   }
 
   /* Mutations*/
-  public async createOneUser(data: CreateUserInput) {
+  public async createOneUser(data: CreateUserInput): Promise<User> {
     return await this.prisma.user.create({
       data,
     });
   }
 
-  public async upsertOneUser(data: CreateUserInput) {
+  public async upsertOneUser(data: CreateUserInput): Promise<User> {
     return await this.prisma.user.upsert({
       where: { email: data.email },
       create: { ...data },
@@ -90,11 +92,11 @@ export class UserService {
 
   public async updateOneUser(
     where: UserWhereUniqueInput,
-    newUserData: UpdateUserInput,
-  ) {
+    data: UpdateUserInput,
+  ): Promise<User> {
     try {
       return await this.prisma.user.update({
-        data: newUserData,
+        data,
         where,
       });
     } catch (error) {
@@ -102,6 +104,11 @@ export class UserService {
     }
   }
 
+  /**
+   * [async description]
+   *
+   * @return  {[type]}  [return description]
+   */
   public async updateManyUsers(
     where: UserWhereInput,
     data: UpdateUserInput,

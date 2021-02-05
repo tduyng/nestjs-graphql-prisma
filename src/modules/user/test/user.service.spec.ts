@@ -1,4 +1,10 @@
-import { UserWhereUniqueInput } from '@common/@generated/user';
+import { BatchPayload } from '@common/@generated/prisma';
+import {
+  FindManyUserArgs,
+  UserCreateInput,
+  UserWhereInput,
+  UserWhereUniqueInput,
+} from '@common/@generated/user';
 import { Post } from '@modules/post/post.model';
 import { PrismaService } from '@modules/prisma/prisma.service';
 import { BadRequestException } from '@nestjs/common';
@@ -28,14 +34,23 @@ const oneUser = {
   ] as Post[],
 } as User;
 
-const userInput = {
-  username: 'some-username',
-  email: 'some email',
-} as UpdateUserInput;
+const arrayUsers = [oneUser, oneUser];
+
+const findManyArgs = {
+  where: { email: { contains: 'email' } },
+} as FindManyUserArgs;
 
 const userWhereUniqueInput = {
   email: 'some email',
 } as UserWhereUniqueInput;
+
+const dataUser = {
+  email: 'some email',
+  username: 'some username',
+  password: 'some password',
+} as UserCreateInput;
+
+const batchPayload = { count: 1 } as BatchPayload;
 
 describe('UserService', () => {
   let userService: UserService;
@@ -44,10 +59,20 @@ describe('UserService', () => {
 
   const mockPrismaService = () => ({
     user: {
-      update: jest.fn(),
       findUnique: jest.fn(),
+      findFirst: jest.fn(),
+      findMany: jest.fn(),
+      count: jest.fn(),
+      create: jest.fn(),
+      upsert: jest.fn(),
+      update: jest.fn(),
+      updateMany: jest.fn(),
+      delete: jest.fn(),
+      deleteMany: jest.fn(),
     },
+    $queryRaw: jest.fn(),
   });
+
   const mockPasswordService = () => ({
     validatePassword: jest.fn(),
     hashPassword: jest.fn(),
@@ -77,17 +102,7 @@ describe('UserService', () => {
     expect(userService).toBeDefined();
   });
 
-  describe('updateUser', () => {
-    it('Should return an user', async () => {
-      prismaService.user.update.mockReturnValue(oneUser);
-      const where: UserWhereUniqueInput = {
-        id: oneUser.id,
-      };
-      const result = await userService.updateOneUser(where, userInput);
-      expect(result).toEqual(oneUser);
-    });
-  });
-
+  /* Queries test */
   describe('getUserByUniqueInput', () => {
     it('Should return an user', async () => {
       prismaService.user.findUnique.mockReturnValue(oneUser);
@@ -111,6 +126,100 @@ describe('UserService', () => {
       prismaService.user.findUnique.mockReturnValue(oneUser);
       const result = await userService.getProfileOfUser(oneUser.id);
       expect(result).toEqual(oneUser.profile);
+    });
+  });
+
+  describe('getUserRandom', () => {
+    it('Should return an user', async () => {
+      prismaService.$queryRaw.mockReturnValue(oneUser);
+      const result = userService.getUserRandom();
+      expect(result).toEqual(result);
+    });
+  });
+
+  describe('getFirstUser', () => {
+    it('Should return an user', async () => {
+      prismaService.user.findFirst.mockReturnValue(oneUser);
+      const result = await userService.getFirstUser(findManyArgs);
+      expect(prismaService.user.findFirst).toHaveBeenCalledWith({
+        ...findManyArgs,
+      });
+      expect(result).toEqual(oneUser);
+    });
+  });
+
+  describe('getManyUsers', () => {
+    it('Should return an array of users', async () => {
+      prismaService.user.findMany.mockReturnValue(arrayUsers);
+      const result = await userService.getManyUsers(findManyArgs);
+      expect(prismaService.user.findMany).toHaveBeenCalledWith({
+        ...findManyArgs,
+      });
+      expect(result).toEqual(arrayUsers);
+    });
+  });
+
+  describe('countManyUsers', () => {
+    it('Should return an number', async () => {
+      prismaService.user.count.mockReturnValue(1);
+      const result = await userService.countManyUsers(findManyArgs);
+      expect(prismaService.user.count).toHaveBeenCalledWith({
+        ...findManyArgs,
+      });
+      expect(result).toEqual(1);
+    });
+  });
+
+  /* Test mutation method */
+  describe('createOneUser', () => {
+    it('Should return an user', async () => {
+      prismaService.user.create.mockReturnValue(oneUser);
+      const result = await userService.createOneUser(dataUser);
+      expect(prismaService.user.create).toHaveBeenCalledWith({
+        data: dataUser,
+      });
+      expect(result).toEqual(oneUser);
+    });
+  });
+
+  describe('upsertOneUser', () => {
+    it('Should return an user', async () => {
+      prismaService.user.upsert.mockReturnValue(oneUser);
+      const result = await userService.upsertOneUser(dataUser);
+      expect(prismaService.user.upsert).toHaveBeenCalledWith({
+        where: {
+          email: dataUser.email,
+        },
+        create: { ...dataUser },
+        update: {},
+      });
+      expect(result).toEqual(oneUser);
+    });
+  });
+
+  describe('updateOneUser', () => {
+    it('Should return an user', async () => {
+      prismaService.user.update.mockReturnValue(oneUser);
+      const result = await userService.updateOneUser(
+        userWhereUniqueInput,
+        dataUser,
+      );
+      expect(prismaService.user.update).toHaveBeenCalledWith({
+        data: dataUser,
+        where: userWhereUniqueInput,
+      });
+      expect(result).toEqual(oneUser);
+    });
+  });
+
+  describe('updateManyUser', () => {
+    it('Should return { count: number } as the result', async () => {
+      prismaService.user.updateMany.mockReturnValue(batchPayload);
+      const result = await userService.updateManyUsers(
+        { email: { contains: 'email' } } as UserWhereInput,
+        { username: 'some thing' } as UpdateUserInput,
+      );
+      expect(result).toEqual(batchPayload);
     });
   });
 
