@@ -31,6 +31,7 @@ Example backend <a href="https://nestjs.com/">NestJS</a> - <a href="https://grap
   - [Docker](#docker)
     - [Command line](#command-line)
     - [PgAdmin4](#pgadmin4)
+  - [Todo](#todo)
   - [Thanks](#thanks)
 
 
@@ -385,4 +386,14 @@ We  will use these credentials to connect our PgAdmin.
 
 
 ---
+
+## Todo
+
+- [ ] Mailer service
+- [ ] CI-CD
+- [ ] End to end testing
+- [ ] Multi-language with i18n options
+- [ ] Add model subscribers
+- [ ] Integrate AWS
+- [ ] ...
 ## Thanks
