@@ -13,7 +13,7 @@ import { Prisma } from '@prisma/client';
 import { ProfileWhereUniqueInput } from '@common/@generated/profile';
 import { UserWhereUniqueInput } from '@common/@generated/user';
 import { CreateProfileInput, UpdateProfileInput } from './dto';
-import { GqlUser } from '@modules/user/decorators';
+import { CurrentUser } from '@modules/user/decorators';
 import { UseGuards } from '@nestjs/common';
 import { GqlGuard } from '@modules/auth/guards/gql.guard';
 
@@ -44,7 +44,7 @@ export class ProfileResolver {
   @Mutation(() => Profile)
   public async createProfile(
     @Args('data') input: CreateProfileInput,
-    @GqlUser() user: User,
+    @CurrentUser() user: User,
   ) {
     return await this.profileService.createProfile({ input, user });
   }

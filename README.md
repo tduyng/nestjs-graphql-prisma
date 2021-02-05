@@ -390,6 +390,7 @@ We  will use these credentials to connect our PgAdmin.
 
 ## Todo
 
+- [ ] Integrate with REST API
 - [ ] Mailer service
 - [ ] CI-CD
 - [ ] End to end testing

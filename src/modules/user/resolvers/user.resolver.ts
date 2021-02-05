@@ -11,7 +11,7 @@ import { UserService } from '../services/user.service';
 import { Post } from '@modules/post/post.model';
 import { UpdateUserInput } from '../dto/update-user.input';
 import { ChangePasswordInput } from '../dto/change-password.input';
-import { GqlUser } from '../decorators';
+import { CurrentUser } from '../decorators';
 import { UseGuards } from '@nestjs/common';
 import { GqlGuard } from '@modules/auth/guards/gql.guard';
 import { UserWhereUniqueInput } from '@common/@generated/user';
@@ -25,7 +25,7 @@ export class UserResolver {
    * Query for self profile.
    */
   @Query(() => User)
-  public async me(@GqlUser() user: User) {
+  public async me(@CurrentUser() user: User) {
     return user;
   }
 
@@ -43,7 +43,7 @@ export class UserResolver {
 
   @Mutation(() => User)
   public async updateAccount(
-    @GqlUser() user: User,
+    @CurrentUser() user: User,
     @Args('data') newUserData: UpdateUserInput,
   ) {
     const where: UserWhereUniqueInput = {
@@ -53,7 +53,7 @@ export class UserResolver {
   }
 
   @Mutation(() => User)
-  public async deleteAccount(@GqlUser() user: User) {
+  public async deleteAccount(@CurrentUser() user: User) {
     const where: UserWhereUniqueInput = {
       id: user.id,
     };
@@ -62,7 +62,7 @@ export class UserResolver {
 
   @Mutation(() => User)
   public async changePassword(
-    @GqlUser() user: User,
+    @CurrentUser() user: User,
     @Args('data') input: ChangePasswordInput,
   ) {
     return this.userService.changePassword(user.id, user.password, input);
