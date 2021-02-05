@@ -5,6 +5,9 @@ import { Field, ObjectType } from '@nestjs/graphql';
 @ObjectType('profile')
 export class Profile extends BaseModel {
   @Field(() => String, { nullable: true })
+  username!: string;
+
+  @Field(() => String, { nullable: true })
   firstName?: string;
 
   @Field(() => String, { nullable: true })

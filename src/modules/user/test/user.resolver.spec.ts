@@ -4,12 +4,15 @@ import { ChangePasswordInput, UpdateUserInput } from '../dto';
 import { UserService } from '../services/user.service';
 import { User } from '../user.model';
 import { UserResolver } from '../resolvers/user.resolver';
+import { Profile } from '@modules/profile/profile.model';
 
 const oneUser = {
   id: 'some userId',
   email: 'some email',
-  username: 'some-username',
   password: 'some password',
+  profile: {
+    username: 'some-username',
+  } as Profile,
   posts: [
     {
       id: 'some postId1',

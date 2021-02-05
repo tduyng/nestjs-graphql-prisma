@@ -9,19 +9,18 @@ import { UserWhereUniqueInput } from '@common/@generated/user';
 
 const oneProfile = {
   id: 'some profileId',
+  username: 'some-username',
   firstName: 'some  first name',
   lastName: 'some last name',
   user: {
     id: 'some postId',
     email: 'some email',
-    username: 'some-username',
   } as User,
 } as Profile;
 
 const oneUser = {
   id: 'some postId',
   email: 'some email',
-  username: 'some-username',
 } as User;
 
 const profileInput = {
@@ -108,16 +107,6 @@ describe('ProfileResolver', () => {
       const result = await profileResolver.updateProfile(
         oneProfile,
         profileInput,
-      );
-      expect(result).toEqual(oneProfile);
-    });
-  });
-
-  describe('deleteProfile', () => {
-    it('Should return an profile', async () => {
-      profileService.deleteProfile.mockReturnValue(oneProfile);
-      const result = await profileResolver.deleteProfile(
-        profileWhereUniqueInput,
       );
       expect(result).toEqual(oneProfile);
     });

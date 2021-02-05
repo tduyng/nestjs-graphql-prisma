@@ -3,8 +3,9 @@ import { CategoryWhereUniqueInput } from './category-where-unique.input';
 
 @ArgsType()
 export class FindUniqueCategoryArgs {
-  @Field(() => CategoryWhereUniqueInput, {
-    nullable: false,
-  })
-  where!: CategoryWhereUniqueInput;
+
+    @Field(() => CategoryWhereUniqueInput, {
+            nullable: false,
+        })
+    where!: CategoryWhereUniqueInput;
 }

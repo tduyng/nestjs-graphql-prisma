@@ -5,18 +5,19 @@ import { PostWhereUniqueInput } from './post-where-unique.input';
 
 @InputType()
 export class PostUpsertWithWhereUniqueWithoutAuthorInput {
-  @Field(() => PostWhereUniqueInput, {
-    nullable: false,
-  })
-  where!: PostWhereUniqueInput;
 
-  @Field(() => PostUpdateWithoutAuthorInput, {
-    nullable: false,
-  })
-  update!: PostUpdateWithoutAuthorInput;
+    @Field(() => PostWhereUniqueInput, {
+            nullable: false,
+        })
+    where!: PostWhereUniqueInput;
 
-  @Field(() => PostCreateWithoutAuthorInput, {
-    nullable: false,
-  })
-  create!: PostCreateWithoutAuthorInput;
+    @Field(() => PostUpdateWithoutAuthorInput, {
+            nullable: false,
+        })
+    update!: PostUpdateWithoutAuthorInput;
+
+    @Field(() => PostCreateWithoutAuthorInput, {
+            nullable: false,
+        })
+    create!: PostCreateWithoutAuthorInput;
 }

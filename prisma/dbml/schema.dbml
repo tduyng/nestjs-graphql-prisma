@@ -6,7 +6,6 @@ Table User {
   id String [pk]
   email String [unique, not null]
   password String [not null]
-  username String [unique]
   role Role [not null, default: 'USER']
   createdAt DateTime [default: `now()`, not null]
   updatedAt DateTime [not null]
@@ -16,12 +15,13 @@ Table User {
 
 Table Profile {
   id String [pk]
+  username String [unique, not null]
   firstName String
   lastName String
   bio String
-  userId String [unique]
   createdAt DateTime [default: `now()`, not null]
   updatedAt DateTime [not null]
+  userId String [unique]
   user User
 }
 
@@ -31,9 +31,9 @@ Table Post {
   slug String [unique, not null]
   content String [not null]
   published Boolean [not null, default: true]
-  authorId String
   createdAt DateTime [default: `now()`, not null]
   updatedAt DateTime [not null]
+  authorId String
   author User
   categories Category
 }

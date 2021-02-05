@@ -7,38 +7,39 @@ import { UserWhereUniqueInput } from './user-where-unique.input';
 
 @InputType()
 export class UserUpdateOneWithoutProfileInput {
-  @Field(() => UserCreateWithoutProfileInput, {
-    nullable: true,
-  })
-  create?: UserCreateWithoutProfileInput;
 
-  @Field(() => UserWhereUniqueInput, {
-    nullable: true,
-  })
-  connect?: UserWhereUniqueInput;
+    @Field(() => UserCreateWithoutProfileInput, {
+            nullable: true,
+        })
+    create?: UserCreateWithoutProfileInput;
 
-  @Field(() => Boolean, {
-    nullable: true,
-  })
-  disconnect?: boolean;
+    @Field(() => UserWhereUniqueInput, {
+            nullable: true,
+        })
+    connect?: UserWhereUniqueInput;
 
-  @Field(() => Boolean, {
-    nullable: true,
-  })
-  delete?: boolean;
+    @Field(() => Boolean, {
+            nullable: true,
+        })
+    disconnect?: boolean;
 
-  @Field(() => UserUpdateWithoutProfileInput, {
-    nullable: true,
-  })
-  update?: UserUpdateWithoutProfileInput;
+    @Field(() => Boolean, {
+            nullable: true,
+        })
+    delete?: boolean;
 
-  @Field(() => UserUpsertWithoutProfileInput, {
-    nullable: true,
-  })
-  upsert?: UserUpsertWithoutProfileInput;
+    @Field(() => UserUpdateWithoutProfileInput, {
+            nullable: true,
+        })
+    update?: UserUpdateWithoutProfileInput;
 
-  @Field(() => UserCreateOrConnectWithoutprofileInput, {
-    nullable: true,
-  })
-  connectOrCreate?: UserCreateOrConnectWithoutprofileInput;
+    @Field(() => UserUpsertWithoutProfileInput, {
+            nullable: true,
+        })
+    upsert?: UserUpsertWithoutProfileInput;
+
+    @Field(() => UserCreateOrConnectWithoutprofileInput, {
+            nullable: true,
+        })
+    connectOrCreate?: UserCreateOrConnectWithoutprofileInput;
 }

@@ -6,33 +6,34 @@ import { PostWhereInput } from './post-where.input';
 
 @ArgsType()
 export class FindManyPostArgs {
-  @Field(() => PostWhereInput, {
-    nullable: true,
-  })
-  where?: PostWhereInput;
 
-  @Field(() => [PostOrderByInput], {
-    nullable: true,
-  })
-  orderBy?: Array<PostOrderByInput>;
+    @Field(() => PostWhereInput, {
+            nullable: true,
+        })
+    where?: PostWhereInput;
 
-  @Field(() => PostWhereUniqueInput, {
-    nullable: true,
-  })
-  cursor?: PostWhereUniqueInput;
+    @Field(() => [PostOrderByInput], {
+            nullable: true,
+        })
+    orderBy?: Array<PostOrderByInput>;
 
-  @Field(() => Int, {
-    nullable: true,
-  })
-  take?: number;
+    @Field(() => PostWhereUniqueInput, {
+            nullable: true,
+        })
+    cursor?: PostWhereUniqueInput;
 
-  @Field(() => Int, {
-    nullable: true,
-  })
-  skip?: number;
+    @Field(() => Int, {
+            nullable: true,
+        })
+    take?: number;
 
-  @Field(() => [PostScalarFieldEnum], {
-    nullable: true,
-  })
-  distinct?: Array<PostScalarFieldEnum>;
+    @Field(() => Int, {
+            nullable: true,
+        })
+    skip?: number;
+
+    @Field(() => [PostScalarFieldEnum], {
+            nullable: true,
+        })
+    distinct?: Array<PostScalarFieldEnum>;
 }

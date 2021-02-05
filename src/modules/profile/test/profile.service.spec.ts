@@ -9,19 +9,18 @@ import { CreateProfileInput } from '../dto';
 
 const oneProfile = {
   id: 'some profileId',
+  username: 'some-username',
   firstName: 'some  first name',
   lastName: 'some last name',
   user: {
     id: 'some postId',
     email: 'some email',
-    username: 'some-username',
   } as User,
 } as Profile;
 
 const oneUser = {
   id: 'some postId',
   email: 'some email',
-  username: 'some-username',
 } as User;
 
 const profileInput = {
@@ -118,16 +117,6 @@ describe('ProfileService', () => {
       const result = await profileService.updateProfile(
         profileWhereUniqueInput,
         profileInput,
-      );
-      expect(result).toEqual(oneProfile);
-    });
-  });
-
-  describe('deleteProfile', () => {
-    it('Should return an profile', async () => {
-      prismaService.profile.delete.mockReturnValue(oneProfile);
-      const result = await profileService.deleteProfile(
-        profileWhereUniqueInput,
       );
       expect(result).toEqual(oneProfile);
     });

@@ -3,33 +3,34 @@ import { Post } from '../post/post.model';
 
 @ObjectType()
 export class Category {
-  @Field(() => ID, {
-    nullable: false,
-  })
-  id!: string;
 
-  @Field(() => String, {
-    nullable: false,
-  })
-  name!: string;
+    @Field(() => ID, {
+            nullable: false,
+        })
+    id!: string;
 
-  @Field(() => String, {
-    nullable: false,
-  })
-  slug!: string;
+    @Field(() => String, {
+            nullable: false,
+        })
+    name!: string;
 
-  @Field(() => Date, {
-    nullable: false,
-  })
-  createdAt!: Date | string;
+    @Field(() => String, {
+            nullable: false,
+        })
+    slug!: string;
 
-  @Field(() => Date, {
-    nullable: false,
-  })
-  updatedAt!: Date | string;
+    @Field(() => Date, {
+            nullable: false,
+        })
+    createdAt!: Date | string;
 
-  @Field(() => [Post], {
-    nullable: true,
-  })
-  posts?: Array<Post>;
+    @Field(() => Date, {
+            nullable: false,
+        })
+    updatedAt!: Date | string;
+
+    @Field(() => [Post], {
+            nullable: true,
+        })
+    posts?: Array<Post>;
 }

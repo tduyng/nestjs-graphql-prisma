@@ -4,13 +4,14 @@ import { CategoryWhereUniqueInput } from './category-where-unique.input';
 
 @InputType()
 export class CategoryUpdateWithWhereUniqueWithoutPostsInput {
-  @Field(() => CategoryWhereUniqueInput, {
-    nullable: false,
-  })
-  where!: CategoryWhereUniqueInput;
 
-  @Field(() => CategoryUpdateWithoutPostsInput, {
-    nullable: false,
-  })
-  data!: CategoryUpdateWithoutPostsInput;
+    @Field(() => CategoryWhereUniqueInput, {
+            nullable: false,
+        })
+    where!: CategoryWhereUniqueInput;
+
+    @Field(() => CategoryUpdateWithoutPostsInput, {
+            nullable: false,
+        })
+    data!: CategoryUpdateWithoutPostsInput;
 }

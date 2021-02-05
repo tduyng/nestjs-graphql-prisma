@@ -3,43 +3,49 @@ import { User } from '../user/user.model';
 
 @ObjectType()
 export class Profile {
-  @Field(() => ID, {
-    nullable: false,
-  })
-  id!: string;
 
-  @Field(() => String, {
-    nullable: true,
-  })
-  firstName?: string;
+    @Field(() => ID, {
+            nullable: false,
+        })
+    id!: string;
 
-  @Field(() => String, {
-    nullable: true,
-  })
-  lastName?: string;
+    @Field(() => String, {
+            nullable: false,
+        })
+    username!: string;
 
-  @Field(() => String, {
-    nullable: true,
-  })
-  bio?: string;
+    @Field(() => String, {
+            nullable: true,
+        })
+    firstName?: string;
 
-  @Field(() => String, {
-    nullable: true,
-  })
-  readonly userId?: string;
+    @Field(() => String, {
+            nullable: true,
+        })
+    lastName?: string;
 
-  @Field(() => Date, {
-    nullable: false,
-  })
-  createdAt!: Date | string;
+    @Field(() => String, {
+            nullable: true,
+        })
+    bio?: string;
 
-  @Field(() => Date, {
-    nullable: false,
-  })
-  updatedAt!: Date | string;
+    @Field(() => Date, {
+            nullable: false,
+        })
+    createdAt!: Date | string;
 
-  @Field(() => User, {
-    nullable: true,
-  })
-  user?: User;
+    @Field(() => Date, {
+            nullable: false,
+        })
+    updatedAt!: Date | string;
+
+    @Field(() => String, {
+            nullable: true,
+        })
+    readonly userId?: string;
+
+    @Field(() => User, {
+            nullable: true,
+        })
+    user?: User;
 }

@@ -6,33 +6,34 @@ import { UserWhereInput } from './user-where.input';
 
 @ArgsType()
 export class FindFirstUserArgs {
-  @Field(() => UserWhereInput, {
-    nullable: true,
-  })
-  where?: UserWhereInput;
 
-  @Field(() => [UserOrderByInput], {
-    nullable: true,
-  })
-  orderBy?: Array<UserOrderByInput>;
+    @Field(() => UserWhereInput, {
+            nullable: true,
+        })
+    where?: UserWhereInput;
 
-  @Field(() => UserWhereUniqueInput, {
-    nullable: true,
-  })
-  cursor?: UserWhereUniqueInput;
+    @Field(() => [UserOrderByInput], {
+            nullable: true,
+        })
+    orderBy?: Array<UserOrderByInput>;
 
-  @Field(() => Int, {
-    nullable: true,
-  })
-  take?: number;
+    @Field(() => UserWhereUniqueInput, {
+            nullable: true,
+        })
+    cursor?: UserWhereUniqueInput;
 
-  @Field(() => Int, {
-    nullable: true,
-  })
-  skip?: number;
+    @Field(() => Int, {
+            nullable: true,
+        })
+    take?: number;
 
-  @Field(() => [UserScalarFieldEnum], {
-    nullable: true,
-  })
-  distinct?: Array<UserScalarFieldEnum>;
+    @Field(() => Int, {
+            nullable: true,
+        })
+    skip?: number;
+
+    @Field(() => [UserScalarFieldEnum], {
+            nullable: true,
+        })
+    distinct?: Array<UserScalarFieldEnum>;
 }

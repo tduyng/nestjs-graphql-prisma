@@ -3,6 +3,7 @@ import { User } from '@modules/user/user.model';
 import {
   FindFirstUserArgs,
   FindManyUserArgs,
+  UserCreateInput,
   UserUpdateInput,
   UserWhereInput,
   UserWhereUniqueInput,
@@ -10,10 +11,8 @@ import {
 import { Roles } from '../decorators';
 import { UseGuards } from '@nestjs/common';
 import { GqlGuard } from '@modules/auth/guards/gql.guard';
-import { CreateUserInput } from '../dto/create-user.input';
 import { BatchPayload } from '@common/@generated/prisma';
 import { UserService } from '../services/user.service';
-import { UpdateUserInput } from '../dto';
 
 @Resolver(() => User)
 @UseGuards(GqlGuard)
@@ -45,19 +44,19 @@ export class AdminResolver {
   /* Mutations */
 
   @Mutation(() => User)
-  public async adminCreateOneUser(@Args('data') data: CreateUserInput) {
+  public async adminCreateOneUser(@Args('data') data: UserCreateInput) {
     return await this.userService.createOneUser(data);
   }
 
   @Mutation(() => User)
-  public async adminUpsertOneUser(@Args('data') data: CreateUserInput) {
+  public async adminUpsertOneUser(@Args('data') data: UserCreateInput) {
     return await this.userService.upsertOneUser(data);
   }
 
   @Mutation(() => User)
   public async adminUpdateOneUser(
     @Args('where') where: UserWhereUniqueInput,
-    @Args('data') newUserData: UpdateUserInput,
+    @Args('data') newUserData: UserUpdateInput,
   ) {
     return await this.userService.updateOneUser(where, newUserData);
   }

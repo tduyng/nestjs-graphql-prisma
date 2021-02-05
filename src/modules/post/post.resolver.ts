@@ -25,7 +25,7 @@ export class PostResolver {
   constructor(private postService: PostService) {}
 
   /* Query */
-  @Query(() => Post)
+  @Query(() => [Post])
   public async posts(@Args() args: FindManyPostArgs) {
     return await this.postService.getPosts(args);
   }

@@ -22,7 +22,6 @@ model User {
   id        String   @id @default(uuid())
   email     String   @unique
   password  String
-  username  String?  @unique
   role      Role     @default(USER)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -32,12 +31,13 @@ model User {
 
 model Profile {
   id        String   @id @default(uuid())
+  username  String   @unique
   firstName String?
   lastName  String?
   bio       String?
-  userId    String?  @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  userId    String?  @unique
   user      User?    @relation(fields: [userId], references: [id])
 }
 
@@ -47,9 +47,9 @@ model Post {
   slug       String     @unique
   content    String
   published  Boolean    @default(true)
-  authorId   String?
   createdAt  DateTime   @default(now())
   updatedAt  DateTime   @updatedAt
+  authorId   String?
   author     User?      @relation(fields: [authorId], references: [id])
   categories Category[]
 }

@@ -5,18 +5,19 @@ import { CategoryMinAggregate } from './category-min-aggregate.output';
 
 @ObjectType()
 export class AggregateCategory {
-  @Field(() => CategoryCountAggregate, {
-    nullable: true,
-  })
-  count?: CategoryCountAggregate;
 
-  @Field(() => CategoryMinAggregate, {
-    nullable: true,
-  })
-  min?: CategoryMinAggregate;
+    @Field(() => CategoryCountAggregate, {
+            nullable: true,
+        })
+    count?: CategoryCountAggregate;
 
-  @Field(() => CategoryMaxAggregate, {
-    nullable: true,
-  })
-  max?: CategoryMaxAggregate;
+    @Field(() => CategoryMinAggregate, {
+            nullable: true,
+        })
+    min?: CategoryMinAggregate;
+
+    @Field(() => CategoryMaxAggregate, {
+            nullable: true,
+        })
+    max?: CategoryMaxAggregate;
 }

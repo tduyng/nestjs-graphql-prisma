@@ -6,7 +6,6 @@ CREATE TABLE "User" (
     "id" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
-    "username" TEXT,
     "role" "Role" NOT NULL DEFAULT E'USER',
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -17,12 +16,13 @@ CREATE TABLE "User" (
 -- CreateTable
 CREATE TABLE "Profile" (
     "id" TEXT NOT NULL,
+    "username" TEXT NOT NULL,
     "firstName" TEXT,
     "lastName" TEXT,
     "bio" TEXT,
-    "userId" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
+    "userId" TEXT,
 
     PRIMARY KEY ("id")
 );
@@ -34,9 +34,9 @@ CREATE TABLE "Post" (
     "slug" TEXT NOT NULL,
     "content" TEXT NOT NULL,
     "published" BOOLEAN NOT NULL DEFAULT true,
-    "authorId" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
+    "authorId" TEXT,
 
     PRIMARY KEY ("id")
 );
@@ -62,7 +62,7 @@ CREATE TABLE "_CategoryToPost" (
 CREATE UNIQUE INDEX "User.email_unique" ON "User"("email");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "User.username_unique" ON "User"("username");
+CREATE UNIQUE INDEX "Profile.username_unique" ON "Profile"("username");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Profile.userId_unique" ON "Profile"("userId");

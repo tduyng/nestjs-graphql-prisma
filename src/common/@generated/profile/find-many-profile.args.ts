@@ -6,33 +6,34 @@ import { ProfileWhereInput } from './profile-where.input';
 
 @ArgsType()
 export class FindManyProfileArgs {
-  @Field(() => ProfileWhereInput, {
-    nullable: true,
-  })
-  where?: ProfileWhereInput;
 
-  @Field(() => [ProfileOrderByInput], {
-    nullable: true,
-  })
-  orderBy?: Array<ProfileOrderByInput>;
+    @Field(() => ProfileWhereInput, {
+            nullable: true,
+        })
+    where?: ProfileWhereInput;
 
-  @Field(() => ProfileWhereUniqueInput, {
-    nullable: true,
-  })
-  cursor?: ProfileWhereUniqueInput;
+    @Field(() => [ProfileOrderByInput], {
+            nullable: true,
+        })
+    orderBy?: Array<ProfileOrderByInput>;
 
-  @Field(() => Int, {
-    nullable: true,
-  })
-  take?: number;
+    @Field(() => ProfileWhereUniqueInput, {
+            nullable: true,
+        })
+    cursor?: ProfileWhereUniqueInput;
 
-  @Field(() => Int, {
-    nullable: true,
-  })
-  skip?: number;
+    @Field(() => Int, {
+            nullable: true,
+        })
+    take?: number;
 
-  @Field(() => [ProfileScalarFieldEnum], {
-    nullable: true,
-  })
-  distinct?: Array<ProfileScalarFieldEnum>;
+    @Field(() => Int, {
+            nullable: true,
+        })
+    skip?: number;
+
+    @Field(() => [ProfileScalarFieldEnum], {
+            nullable: true,
+        })
+    distinct?: Array<ProfileScalarFieldEnum>;
 }

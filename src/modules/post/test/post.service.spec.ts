@@ -10,7 +10,6 @@ import { Category } from '@modules/category/category.model';
 const oneUser = {
   id: 'some userId',
   email: 'some email',
-  username: 'some-username',
 } as User;
 
 const onePost = {

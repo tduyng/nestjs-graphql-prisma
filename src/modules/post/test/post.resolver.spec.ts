@@ -9,7 +9,6 @@ import { PostWhereUniqueInput } from '@common/@generated/post';
 const oneUser = {
   id: 'some userId',
   email: 'some email',
-  username: 'some-username',
 } as User;
 
 const onePost = {

@@ -5,18 +5,19 @@ import { PostWhereUniqueInput } from './post-where-unique.input';
 
 @InputType()
 export class PostCreateManyWithoutCategoriesInput {
-  @Field(() => [PostCreateWithoutCategoriesInput], {
-    nullable: true,
-  })
-  create?: Array<PostCreateWithoutCategoriesInput>;
 
-  @Field(() => [PostWhereUniqueInput], {
-    nullable: true,
-  })
-  connect?: Array<PostWhereUniqueInput>;
+    @Field(() => [PostCreateWithoutCategoriesInput], {
+            nullable: true,
+        })
+    create?: Array<PostCreateWithoutCategoriesInput>;
 
-  @Field(() => [PostCreateOrConnectWithoutcategoriesInput], {
-    nullable: true,
-  })
-  connectOrCreate?: Array<PostCreateOrConnectWithoutcategoriesInput>;
+    @Field(() => [PostWhereUniqueInput], {
+            nullable: true,
+        })
+    connect?: Array<PostWhereUniqueInput>;
+
+    @Field(() => [PostCreateOrConnectWithoutcategoriesInput], {
+            nullable: true,
+        })
+    connectOrCreate?: Array<PostCreateOrConnectWithoutcategoriesInput>;
 }

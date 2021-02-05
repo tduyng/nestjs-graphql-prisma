@@ -9,6 +9,7 @@ import { AppService } from './app.service';
 import { UserModule } from '@modules/user/user.module';
 import { CategoryModule } from '@modules/category/category.module';
 import { ProfileModule } from '@modules/profile/profile.module';
+import { PostModule } from '@modules/post/post.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { ProfileModule } from '@modules/profile/profile.module';
     UserModule,
     CategoryModule,
     ProfileModule,
+    PostModule,
   ],
   providers: [AppResolver, AppService],
   controllers: [AppController],

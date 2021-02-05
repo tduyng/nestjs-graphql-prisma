@@ -157,18 +157,18 @@ input CreateCategoryInput {
   name: String!
 }
 
+input CreatePostInput {
+  categories: [CreateCategoryInput!]
+  content: String!
+  published: Boolean
+  title: String!
+}
+
 input CreateProfileInput {
   bio: String
   firstName: String
   lastName: String
-}
-
-input CreateUserInput {
-  email: String!
-  password: String!
-  profile: ProfileCreateOneWithoutUserInput
-  role: Role
-  username: String
+  username: String!
 }
 
 """
@@ -195,21 +195,23 @@ input EnumRoleFilter {
 }
 
 type Mutation {
-  adminCreateOneUser(data: CreateUserInput!): user!
+  adminCreateOneUser(data: UserCreateInput!): user!
   adminDeleteManyUser(where: UserWhereInput!): BatchPayload!
   adminDeleteOneUser(where: UserWhereUniqueInput!): user!
   adminUpdateManyUser(data: UserUpdateInput!, where: UserWhereInput!): BatchPayload!
-  adminUpdateOneUser(data: UpdateUserInput!, where: UserWhereUniqueInput!): user!
-  adminUpsertOneUser(data: CreateUserInput!): user!
+  adminUpdateOneUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): user!
+  adminUpsertOneUser(data: UserCreateInput!): user!
   changePassword(data: ChangePasswordInput!): user!
   createCategories(data: [CreateCategoryInput!]!): [category!]!
   createCategory(data: CreateCategoryInput!): category!
+  createPost(data: CreatePostInput!): post!
   createProfile(data: CreateProfileInput!): profile!
   deleteAccount: user!
   deleteCategory(where: CategoryWhereUniqueInput!): category!
-  deleteProfile(where: ProfileWhereUniqueInput!): profile!
+  deletePost(where: PostWhereUniqueInput!): post!
   updateAccount(data: UpdateUserInput!): user!
   updateCategory(data: UpdateCategoryInput!, where: CategoryWhereUniqueInput!): category!
+  updatePost(data: UpdatePostInput!, where: PostWhereUniqueInput!): post!
   updateProfile(data: UpdateProfileInput!, where: ProfileWhereUniqueInput!): profile!
 }
 
@@ -224,6 +226,24 @@ type Post {
   slug: String!
   title: String!
   updatedAt: DateTime!
+}
+
+type PostCountAggregate {
+  _all: Int!
+  authorId: Int
+  content: Int
+  createdAt: Int
+  id: Int
+  published: Int
+  slug: Int
+  title: Int
+  updatedAt: Int
+}
+
+input PostCreateManyWithoutAuthorInput {
+  connect: [PostWhereUniqueInput!]
+  connectOrCreate: [PostCreateOrConnectWithoutauthorInput!]
+  create: [PostCreateWithoutAuthorInput!]
 }
 
 input PostCreateOrConnectWithoutauthorInput {
@@ -246,6 +266,50 @@ input PostListRelationFilter {
   every: PostWhereInput
   none: PostWhereInput
   some: PostWhereInput
+}
+
+type PostMaxAggregate {
+  authorId: String
+  content: String
+  createdAt: DateTime
+  id: String
+  published: Boolean
+  slug: String
+  title: String
+  updatedAt: DateTime
+}
+
+type PostMinAggregate {
+  authorId: String
+  content: String
+  createdAt: DateTime
+  id: String
+  published: Boolean
+  slug: String
+  title: String
+  updatedAt: DateTime
+}
+
+input PostOrderByInput {
+  authorId: SortOrder
+  content: SortOrder
+  createdAt: SortOrder
+  id: SortOrder
+  published: SortOrder
+  slug: SortOrder
+  title: SortOrder
+  updatedAt: SortOrder
+}
+
+enum PostScalarFieldEnum {
+  authorId
+  content
+  createdAt
+  id
+  published
+  slug
+  title
+  updatedAt
 }
 
 input PostScalarWhereInput {
@@ -342,6 +406,7 @@ type Profile {
   updatedAt: DateTime!
   user: User
   userId: String
+  username: String!
 }
 
 type ProfileCountAggregate {
@@ -353,6 +418,7 @@ type ProfileCountAggregate {
   lastName: Int
   updatedAt: Int
   userId: Int
+  username: Int
 }
 
 input ProfileCreateOneWithoutUserInput {
@@ -373,6 +439,7 @@ input ProfileCreateWithoutUserInput {
   id: String
   lastName: String
   updatedAt: DateTime
+  username: String!
 }
 
 type ProfileMaxAggregate {
@@ -383,6 +450,7 @@ type ProfileMaxAggregate {
   lastName: String
   updatedAt: DateTime
   userId: String
+  username: String
 }
 
 type ProfileMinAggregate {
@@ -393,6 +461,7 @@ type ProfileMinAggregate {
   lastName: String
   updatedAt: DateTime
   userId: String
+  username: String
 }
 
 input ProfileUpdateOneWithoutUserInput {
@@ -412,6 +481,7 @@ input ProfileUpdateWithoutUserInput {
   id: String
   lastName: String
   updatedAt: DateTime
+  username: String
 }
 
 input ProfileUpsertWithoutUserInput {
@@ -431,23 +501,27 @@ input ProfileWhereInput {
   updatedAt: DateTimeFilter
   user: UserWhereInput
   userId: StringFilter
+  username: StringFilter
 }
 
 input ProfileWhereUniqueInput {
   id: String
   userId: String
+  username: String
 }
 
 type Query {
   adminCountManyUsers(cursor: UserWhereUniqueInput, distinct: [UserScalarFieldEnum!], orderBy: [UserOrderByInput!], skip: Int, take: Int, where: UserWhereInput): Int!
   adminFindFirstUser(cursor: UserWhereUniqueInput, distinct: [UserScalarFieldEnum!], orderBy: [UserOrderByInput!], skip: Int, take: Int, where: UserWhereInput): user!
-  adminFindManyUser(cursor: UserWhereUniqueInput, distinct: [UserScalarFieldEnum!], orderBy: [UserOrderByInput!], skip: Int, take: Int, where: UserWhereInput): user!
+  adminFindManyUser(cursor: UserWhereUniqueInput, distinct: [UserScalarFieldEnum!], orderBy: [UserOrderByInput!], skip: Int, take: Int, where: UserWhereInput): [user!]!
   adminFindUniqueUser(where: UserWhereUniqueInput!): user!
   categories: [category!]!
   category(where: CategoryWhereUniqueInput!): category!
   hello(name: String!): String!
   helloWorld: String!
   me: user!
+  post(where: PostWhereUniqueInput!): post!
+  posts(cursor: PostWhereUniqueInput, distinct: [PostScalarFieldEnum!], orderBy: [PostOrderByInput!], skip: Int, take: Int, where: PostWhereInput): [post!]!
   profile(where: ProfileWhereUniqueInput!): profile!
   profileByUser(where: UserWhereUniqueInput!): profile!
 }
@@ -486,16 +560,22 @@ input UpdateCategoryInput {
   name: String
 }
 
+input UpdatePostInput {
+  content: String
+  published: Boolean
+  title: String
+}
+
 input UpdateProfileInput {
   bio: String
   firstName: String
   lastName: String
+  username: String
 }
 
 input UpdateUserInput {
   email: String
   profile: ProfileUpdateOneWithoutUserInput
-  username: String
 }
 
 type User {
@@ -507,7 +587,6 @@ type User {
   profile: Profile
   role: Role!
   updatedAt: DateTime!
-  username: String
 }
 
 type UserCountAggregate {
@@ -518,7 +597,17 @@ type UserCountAggregate {
   password: Int
   role: Int
   updatedAt: Int
-  username: Int
+}
+
+input UserCreateInput {
+  createdAt: DateTime
+  email: String!
+  id: String
+  password: String!
+  posts: PostCreateManyWithoutAuthorInput
+  profile: ProfileCreateOneWithoutUserInput
+  role: Role
+  updatedAt: DateTime
 }
 
 type UserMaxAggregate {
@@ -528,7 +617,6 @@ type UserMaxAggregate {
   password: String
   role: Role
   updatedAt: DateTime
-  username: String
 }
 
 type UserMinAggregate {
@@ -538,7 +626,6 @@ type UserMinAggregate {
   password: String
   role: Role
   updatedAt: DateTime
-  username: String
 }
 
 input UserOrderByInput {
@@ -548,7 +635,6 @@ input UserOrderByInput {
   password: SortOrder
   role: SortOrder
   updatedAt: SortOrder
-  username: SortOrder
 }
 
 enum UserScalarFieldEnum {
@@ -558,7 +644,6 @@ enum UserScalarFieldEnum {
   password
   role
   updatedAt
-  username
 }
 
 input UserUpdateInput {
@@ -570,7 +655,6 @@ input UserUpdateInput {
   profile: ProfileUpdateOneWithoutUserInput
   role: Role
   updatedAt: DateTime
-  username: String
 }
 
 input UserWhereInput {
@@ -585,13 +669,11 @@ input UserWhereInput {
   profile: ProfileWhereInput
   role: EnumRoleFilter
   updatedAt: DateTimeFilter
-  username: StringFilter
 }
 
 input UserWhereUniqueInput {
   email: String
   id: String
-  username: String
 }
 
 type category {
@@ -613,6 +695,7 @@ type post {
   slug: String!
   title: String!
   updatedAt: DateTime!
+  user: user!
 }
 
 type profile {
@@ -623,6 +706,7 @@ type profile {
   lastName: String
   updatedAt: DateTime!
   user: user
+  username: String
 }
 
 type user {
@@ -633,5 +717,4 @@ type user {
   profile: profile
   role: String!
   updatedAt: DateTime!
-  username: String
 }

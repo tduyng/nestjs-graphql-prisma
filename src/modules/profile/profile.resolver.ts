@@ -56,9 +56,4 @@ export class ProfileResolver {
   ) {
     return await this.profileService.updateProfile(where, data);
   }
-
-  @Mutation(() => Profile)
-  public async deleteProfile(@Args('where') where: ProfileWhereUniqueInput) {
-    return await this.profileService.deleteProfile(where);
-  }
 }

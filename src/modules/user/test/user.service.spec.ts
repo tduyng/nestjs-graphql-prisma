@@ -17,10 +17,10 @@ import { User } from '../user.model';
 const oneUser = {
   id: 'some userId',
   email: 'some email',
-  username: 'some-username',
   password: 'some password',
   profile: {
     id: 'some profileId',
+    username: 'some-username',
     firstName: 'some first name',
     lastName: 'some last name',
   },

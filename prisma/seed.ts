@@ -50,11 +50,11 @@ async function main() {
     where: { email: 'tester-user1@example.com' },
     create: {
       email: 'tester1@example.com',
-      username: 'tester-user1',
       password: '$2y$10$hd/JLwBF16K9QNgXdlbzbOgCaGjYrRtQIiTGwxo6U7tA8XaWgvhAq',
       role: 'USER',
       profile: {
         create: {
+          username: 'tester-user1',
           firstName: 'User 1',
           lastName: 'Tester',
           bio: 'Web developer',
@@ -63,12 +63,12 @@ async function main() {
     },
     update: {
       email: 'tester1@example.com',
-      username: 'tester1',
       password: '$2y$10$hd/JLwBF16K9QNgXdlbzbOgCaGjYrRtQIiTGwxo6U7tA8XaWgvhAq',
       role: 'USER',
       profile: {
         upsert: {
           create: {
+            username: 'tester1',
             firstName: 'User 1',
             lastName: 'Tester',
             bio: 'Web developer',
@@ -87,11 +87,11 @@ async function main() {
     where: { email: 'tester-user2@example.com' },
     create: {
       email: 'tester-user2@example.com',
-      username: 'tester-user2',
       password: '$2y$10$hd/JLwBF16K9QNgXdlbzbOgCaGjYrRtQIiTGwxo6U7tA8XaWgvhAq',
       role: 'USER',
       profile: {
         create: {
+          username: 'tester-user2',
           firstName: 'User 2',
           lastName: 'Tester',
           bio: 'Web developer',
@@ -100,12 +100,12 @@ async function main() {
     },
     update: {
       email: 'tester-user2@example.com',
-      username: 'tester-user2',
       password: '$2y$10$hd/JLwBF16K9QNgXdlbzbOgCaGjYrRtQIiTGwxo6U7tA8XaWgvhAq',
       role: 'USER',
       profile: {
         upsert: {
           create: {
+            username: 'tester-user2',
             firstName: 'User 2',
             lastName: 'Tester',
             bio: 'Web developer',
@@ -126,11 +126,11 @@ async function main() {
     where: { email: 'tester-admin1@example.com' },
     create: {
       email: 'tester-admin1@example.com',
-      username: 'tester-admin1',
       password: '$2y$10$hd/JLwBF16K9QNgXdlbzbOgCaGjYrRtQIiTGwxo6U7tA8XaWgvhAq',
       role: 'ADMIN',
       profile: {
         create: {
+          username: 'tester-admin1',
           firstName: 'Admin 1',
           lastName: 'Tester',
           bio: 'Fullstack developer',
@@ -138,12 +138,12 @@ async function main() {
       },
     },
     update: {
-      username: 'tester-admin1',
       password: '$2y$10$hd/JLwBF16K9QNgXdlbzbOgCaGjYrRtQIiTGwxo6U7tA8XaWgvhAq',
       role: 'ADMIN',
       profile: {
         upsert: {
           create: {
+            username: 'tester-admin1',
             firstName: 'Admin 1',
             lastName: 'Tester',
             bio: 'Fullstack developer',

@@ -7,43 +7,44 @@ import { CategoryWhereInput } from './category-where.input';
 
 @ArgsType()
 export class AggregateCategoryArgs {
-  @Field(() => CategoryWhereInput, {
-    nullable: true,
-  })
-  where?: CategoryWhereInput;
 
-  @Field(() => [CategoryOrderByInput], {
-    nullable: true,
-  })
-  orderBy?: Array<CategoryOrderByInput>;
+    @Field(() => CategoryWhereInput, {
+            nullable: true,
+        })
+    where?: CategoryWhereInput;
 
-  @Field(() => CategoryWhereUniqueInput, {
-    nullable: true,
-  })
-  cursor?: CategoryWhereUniqueInput;
+    @Field(() => [CategoryOrderByInput], {
+            nullable: true,
+        })
+    orderBy?: Array<CategoryOrderByInput>;
 
-  @Field(() => Int, {
-    nullable: true,
-  })
-  take?: number;
+    @Field(() => CategoryWhereUniqueInput, {
+            nullable: true,
+        })
+    cursor?: CategoryWhereUniqueInput;
 
-  @Field(() => Int, {
-    nullable: true,
-  })
-  skip?: number;
+    @Field(() => Int, {
+            nullable: true,
+        })
+    take?: number;
 
-  @Field(() => Boolean, {
-    nullable: true,
-  })
-  count?: true;
+    @Field(() => Int, {
+            nullable: true,
+        })
+    skip?: number;
 
-  @Field(() => CategoryMinAggregateInput, {
-    nullable: true,
-  })
-  min?: CategoryMinAggregateInput;
+    @Field(() => Boolean, {
+            nullable: true,
+        })
+    count?: true;
 
-  @Field(() => CategoryMaxAggregateInput, {
-    nullable: true,
-  })
-  max?: CategoryMaxAggregateInput;
+    @Field(() => CategoryMinAggregateInput, {
+            nullable: true,
+        })
+    min?: CategoryMinAggregateInput;
+
+    @Field(() => CategoryMaxAggregateInput, {
+            nullable: true,
+        })
+    max?: CategoryMaxAggregateInput;
 }
