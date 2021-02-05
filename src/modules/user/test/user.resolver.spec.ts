@@ -1,10 +1,9 @@
-import { UserWhereUniqueInput } from '@common/@generated/user';
 import { Post } from '@modules/post/post.model';
 import { Test, TestingModule } from '@nestjs/testing';
 import { ChangePasswordInput, UpdateUserInput } from '../dto';
 import { UserService } from '../services/user.service';
 import { User } from '../user.model';
-import { UserResolver } from '../user.resolver';
+import { UserResolver } from '../resolvers/user.resolver';
 
 const oneUser = {
   id: 'some userId',
@@ -26,16 +25,12 @@ const userInput = {
   email: 'some email',
 } as UpdateUserInput;
 
-const userWhereUniqueInput = {
-  email: 'some email',
-} as UserWhereUniqueInput;
-
 describe('UserResolver', () => {
   let userResolver: UserResolver;
   let userService;
 
   const mockUserService = () => ({
-    updateUser: jest.fn(),
+    updateOneUser: jest.fn(),
     changePassword: jest.fn(),
     getPostsOfUser: jest.fn(),
     getUserByUniqueInput: jest.fn(),
@@ -69,7 +64,7 @@ describe('UserResolver', () => {
   describe('user', () => {
     it('Should return user', async () => {
       userService.getUserByUniqueInput.mockReturnValue(oneUser);
-      const result = await userResolver.user(userWhereUniqueInput);
+      const result = await userResolver.me(oneUser);
       expect(result).toEqual(oneUser);
     });
   });
@@ -84,8 +79,8 @@ describe('UserResolver', () => {
 
   describe('updateUser', () => {
     it('Should return an User as result', async () => {
-      userService.updateUser.mockReturnValue(oneUser);
-      const result = await userResolver.updateUser(oneUser, userInput);
+      userService.updateOneUser.mockReturnValue(oneUser);
+      const result = await userResolver.updateAccount(oneUser, userInput);
       expect(result).toEqual(oneUser);
     });
   });

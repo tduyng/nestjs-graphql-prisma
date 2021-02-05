@@ -80,7 +80,10 @@ describe('UserService', () => {
   describe('updateUser', () => {
     it('Should return an user', async () => {
       prismaService.user.update.mockReturnValue(oneUser);
-      const result = await userService.updateUser(oneUser.id, userInput);
+      const where: UserWhereUniqueInput = {
+        id: oneUser.id,
+      };
+      const result = await userService.updateOneUser(where, userInput);
       expect(result).toEqual(oneUser);
     });
   });

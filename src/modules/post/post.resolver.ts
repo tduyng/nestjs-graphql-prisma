@@ -17,6 +17,8 @@ import {
   PostWhereUniqueInput,
 } from '@common/@generated/post';
 import { GqlUser } from '@modules/user/decorators';
+import { UseGuards } from '@nestjs/common';
+import { GqlGuard } from '@modules/auth/guards/gql.guard';
 
 @Resolver(() => Post)
 export class PostResolver {
@@ -42,6 +44,7 @@ export class PostResolver {
 
   /* Mutations */
   @Mutation(() => Post)
+  @UseGuards(GqlGuard)
   public async createPost(
     @Args('data') input: CreatePostInput,
     @GqlUser() user: User,
@@ -50,6 +53,7 @@ export class PostResolver {
   }
 
   @Mutation(() => Post)
+  @UseGuards(GqlGuard)
   public async updatePost(
     @Args('where') where: PostWhereUniqueInput,
     @Args('data') data: UpdatePostInput,
@@ -58,6 +62,7 @@ export class PostResolver {
   }
 
   @Mutation(() => Post)
+  @UseGuards(GqlGuard)
   public async deletePost(@Args('where') where: PostWhereUniqueInput) {
     return await this.postService.deletePost(where);
   }

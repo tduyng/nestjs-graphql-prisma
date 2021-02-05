@@ -214,7 +214,6 @@ Other useful commands to work with project:
 ├── nest-cli.json
 ├── package.json
 ├── prisma
-│   ├── dbml
 │   ├── migrations
 │   ├── schema.prisma
 │   └── seed.ts
@@ -289,7 +288,7 @@ Click here to expand section
 - `test`: for end to end testing
 - `docker-compose*.yml`: docker compose files to run different environment docker
 - `.env*`: different environment variables files
-- `.estlint*, prettier*, .editorconfig`: Style & format code
+- `.eslint*, prettier*, .editorconfig`: Style & format code
 - `jest.config.js`: configuration for testing with jest
 - `package.json`
 - `tsconfig.json`: configuration for TypeScript

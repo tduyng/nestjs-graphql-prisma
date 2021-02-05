@@ -14,8 +14,11 @@ import { ProfileWhereUniqueInput } from '@common/@generated/profile';
 import { UserWhereUniqueInput } from '@common/@generated/user';
 import { CreateProfileInput, UpdateProfileInput } from './dto';
 import { GqlUser } from '@modules/user/decorators';
+import { UseGuards } from '@nestjs/common';
+import { GqlGuard } from '@modules/auth/guards/gql.guard';
 
 @Resolver(() => Profile)
+@UseGuards(GqlGuard)
 export class ProfileResolver {
   constructor(private profileService: ProfileService) {}
 
