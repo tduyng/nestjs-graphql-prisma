@@ -394,6 +394,7 @@ We  will use these credentials to connect our PgAdmin.
 - [ ] End to end testing
 - [ ] Multi-language with i18n options
 - [ ] Add model subscribers
-- [ ] Integrate AWS
+- [ ] Integrate with AWS service (S3, RDS)
+- [ ] Caching with Redis
 - [ ] ...
 ## Thanks
