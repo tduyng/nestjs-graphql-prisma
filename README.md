@@ -282,9 +282,10 @@ Click here to expand section
     - decorator
     - args
   - `main.ts`: main file to run server
+- `.vscode`: debug configuration in vscode
+- `docker`: contains all files related Docker as `Dockerfile`, `nginx` (except docker-compose)
 - `prisma`:  contains `prisma.shema`, migrations, and seeding
 - `graphql`: contains example queries & mutations of graphql for project
-- `docker`: contains all files related Docker as `Dockerfile`, `nginx` (except docker-compose)
 - `test`: for end to end testing
 - `docker-compose*.yml`: docker compose files to run different environment docker
 - `.env*`: different environment variables files
