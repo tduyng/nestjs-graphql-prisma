@@ -57,6 +57,7 @@ Features of project:
 - Next generation Typescript
 - Testing: Unit testing, End to End testing
 - Database seeding
+- Role base system: Admin & User
 - CI-CD with circle-ci
 
 ## Prerequisites

@@ -223,6 +223,24 @@ describe('UserService', () => {
     });
   });
 
+  describe('deleteOneUser', () => {
+    it('Should return an deleted user', async () => {
+      prismaService.user.delete.mockReturnValue(oneUser);
+      const result = await userService.deleteOneUser(userWhereUniqueInput);
+      expect(result).toEqual(oneUser);
+    });
+  });
+
+  describe('deleteManyUser', () => {
+    it('Should return a batch payload: {count: number}', async () => {
+      prismaService.user.deleteMany.mockReturnValue(batchPayload);
+      const result = await userService.deleteManyUsers({
+        email: { contains: 'email' },
+      } as UserWhereInput);
+      expect(result).toEqual(result);
+    });
+  });
+
   describe('changePassword', () => {
     it('Should throw error when oldPassword not matched', async () => {
       passwordService.validatePassword.mockReturnValue(false);
