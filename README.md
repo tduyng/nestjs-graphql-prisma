@@ -202,6 +202,44 @@ Other useful commands to work with project:
   ```
   Then check out at http://localhost:5555
 
+- **Precommit** with [husky](https://github.com/typicode/husky#readme) & [lint-staged](https://github.com/okonet/lint-staged#readme)
+  Two awesome packages help us to improve our git commits. We can run linters  and check test before commit changed files.
+
+  Check their config in the end of `package.json` file.
+  ```json
+   "husky": {
+    "hooks": {
+      "pre-commit": "npm run precommit"
+    }
+  },
+  "lint-staged": {
+    "{src,apps,libs,test}/**/*.ts": [
+      "npm run lint",
+      "npm run test",
+      "git add"
+    ],
+    "./**/*.{ts,js,json,*rc}": [
+      "npm run prettier",
+      "git add"
+    ]
+  }
+  ```
+
+  So now, each time when we make a commit:
+
+  ```bash
+  $ git add .
+  # or git add files
+  $ git commit -m "Message commit"
+  ```
+  All files in your projects will be check automatically with Eslint, Prettier, & testing. If there are issues in your code base, the commit will be failed. Thanks to that, you can keep your code base always clean in your git repository.
+
+  **Hint**: Sometime if you need to commit your code and you don't want to verify them. You can do with flag `--no-verify`:
+
+  ```bash
+  $ git commit - "Message commit" --no-verify
+  ```
+
 
   You can check more other commands in section `scripts` of `package.json`.
 
@@ -315,6 +353,8 @@ Click here to expand section
 
 ## Resolvers of Project (Endpoints)
 
+- [ ] Todo
+
 **Working in progress: Resolvers or Endpoints of project**
 
 ---
@@ -403,13 +443,14 @@ We  will use these credentials to connect our PgAdmin.
 
 ## Todo
 
-- [ ] Integrate with REST API
-- [ ] Mailer service
 - [x] CI-CD
+- [ ] Update Auth
+- [ ] Mailer service
 - [ ] End to end testing
 - [ ] Multi-language with i18n options
-- [ ] Add model subscribers
 - [ ] Integrate with AWS service (S3, RDS)
-- [ ] Caching with Redis
+- [ ] In-memory caching or caching with Redis
+- [ ] Integrate with REST API
+- [ ] Add model subscribers
 - [ ] ...
 ## Thanks
