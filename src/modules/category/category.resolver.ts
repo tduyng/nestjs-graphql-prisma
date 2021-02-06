@@ -15,6 +15,7 @@ import { Category } from './category.model';
 import { CategoryService } from './category.service';
 import { CreateCategoryInput, UpdateCategoryInput } from './dto';
 
+/* istanbul ignore next */
 @Resolver(() => Category)
 export class CategoryResolver {
   constructor(private categoryService: CategoryService) {}
