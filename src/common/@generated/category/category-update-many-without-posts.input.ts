@@ -14,6 +14,16 @@ export class CategoryUpdateManyWithoutPostsInput {
   })
   create?: Array<CategoryCreateWithoutPostsInput>;
 
+  @Field(() => [CategoryCreateOrConnectWithoutpostsInput], {
+    nullable: true,
+  })
+  connectOrCreate?: Array<CategoryCreateOrConnectWithoutpostsInput>;
+
+  @Field(() => [CategoryUpsertWithWhereUniqueWithoutPostsInput], {
+    nullable: true,
+  })
+  upsert?: Array<CategoryUpsertWithWhereUniqueWithoutPostsInput>;
+
   @Field(() => [CategoryWhereUniqueInput], {
     nullable: true,
   })
@@ -48,14 +58,4 @@ export class CategoryUpdateManyWithoutPostsInput {
     nullable: true,
   })
   deleteMany?: Array<CategoryScalarWhereInput>;
-
-  @Field(() => [CategoryUpsertWithWhereUniqueWithoutPostsInput], {
-    nullable: true,
-  })
-  upsert?: Array<CategoryUpsertWithWhereUniqueWithoutPostsInput>;
-
-  @Field(() => [CategoryCreateOrConnectWithoutpostsInput], {
-    nullable: true,
-  })
-  connectOrCreate?: Array<CategoryCreateOrConnectWithoutpostsInput>;
 }

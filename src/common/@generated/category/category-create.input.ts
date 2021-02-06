@@ -1,5 +1,5 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { PostCreateManyWithoutCategoriesInput } from '../post/post-create-many-without-categories.input';
+import { PostCreateNestedManyWithoutCategoriesInput } from '../prisma/post-create-nested-many-without-categories.input';
 
 @InputType()
 export class CategoryCreateInput {
@@ -28,8 +28,8 @@ export class CategoryCreateInput {
   })
   updatedAt?: Date | string;
 
-  @Field(() => PostCreateManyWithoutCategoriesInput, {
+  @Field(() => PostCreateNestedManyWithoutCategoriesInput, {
     nullable: true,
   })
-  posts?: PostCreateManyWithoutCategoriesInput;
+  posts?: PostCreateNestedManyWithoutCategoriesInput;
 }

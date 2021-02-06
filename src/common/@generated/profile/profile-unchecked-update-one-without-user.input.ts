@@ -12,6 +12,16 @@ export class ProfileUncheckedUpdateOneWithoutUserInput {
   })
   create?: ProfileCreateWithoutUserInput;
 
+  @Field(() => ProfileCreateOrConnectWithoutuserInput, {
+    nullable: true,
+  })
+  connectOrCreate?: ProfileCreateOrConnectWithoutuserInput;
+
+  @Field(() => ProfileUpsertWithoutUserInput, {
+    nullable: true,
+  })
+  upsert?: ProfileUpsertWithoutUserInput;
+
   @Field(() => ProfileWhereUniqueInput, {
     nullable: true,
   })
@@ -31,14 +41,4 @@ export class ProfileUncheckedUpdateOneWithoutUserInput {
     nullable: true,
   })
   update?: ProfileUpdateWithoutUserInput;
-
-  @Field(() => ProfileUpsertWithoutUserInput, {
-    nullable: true,
-  })
-  upsert?: ProfileUpsertWithoutUserInput;
-
-  @Field(() => ProfileCreateOrConnectWithoutuserInput, {
-    nullable: true,
-  })
-  connectOrCreate?: ProfileCreateOrConnectWithoutuserInput;
 }

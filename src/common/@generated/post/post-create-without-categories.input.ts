@@ -1,5 +1,5 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { UserCreateOneWithoutPostsInput } from '../user/user-create-one-without-posts.input';
+import { UserCreateNestedOneWithoutPostsInput } from '../prisma/user-create-nested-one-without-posts.input';
 
 @InputType()
 export class PostCreateWithoutCategoriesInput {
@@ -38,8 +38,8 @@ export class PostCreateWithoutCategoriesInput {
   })
   updatedAt?: Date | string;
 
-  @Field(() => UserCreateOneWithoutPostsInput, {
+  @Field(() => UserCreateNestedOneWithoutPostsInput, {
     nullable: true,
   })
-  author?: UserCreateOneWithoutPostsInput;
+  author?: UserCreateNestedOneWithoutPostsInput;
 }

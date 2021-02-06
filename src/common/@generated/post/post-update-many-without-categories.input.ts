@@ -14,6 +14,16 @@ export class PostUpdateManyWithoutCategoriesInput {
   })
   create?: Array<PostCreateWithoutCategoriesInput>;
 
+  @Field(() => [PostCreateOrConnectWithoutcategoriesInput], {
+    nullable: true,
+  })
+  connectOrCreate?: Array<PostCreateOrConnectWithoutcategoriesInput>;
+
+  @Field(() => [PostUpsertWithWhereUniqueWithoutCategoriesInput], {
+    nullable: true,
+  })
+  upsert?: Array<PostUpsertWithWhereUniqueWithoutCategoriesInput>;
+
   @Field(() => [PostWhereUniqueInput], {
     nullable: true,
   })
@@ -48,14 +58,4 @@ export class PostUpdateManyWithoutCategoriesInput {
     nullable: true,
   })
   deleteMany?: Array<PostScalarWhereInput>;
-
-  @Field(() => [PostUpsertWithWhereUniqueWithoutCategoriesInput], {
-    nullable: true,
-  })
-  upsert?: Array<PostUpsertWithWhereUniqueWithoutCategoriesInput>;
-
-  @Field(() => [PostCreateOrConnectWithoutcategoriesInput], {
-    nullable: true,
-  })
-  connectOrCreate?: Array<PostCreateOrConnectWithoutcategoriesInput>;
 }

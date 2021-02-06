@@ -18,7 +18,6 @@
     "nestjs-graphql-prisma"
   ],
   "scripts": {
-    "precommit": "lint-staged && npm run prettier && npm run lint",
     "prebuild": "rimraf dist",
     "build": "nest build",
     "start": "nest start",
@@ -42,7 +41,7 @@
     "test": "cross-env NODE_ENV=test jest",
     "test:watch": "cross-env NODE_ENV=test jest --watch",
     "test:cov": "cross-env NODE_ENV=test jest --coverage",
-    "coveralls": "jest --coverage && cat ./coverage/lcov.info | node node_modules/.bin/coveralls",
+    "coveralls": "yarn test:cov && cat ./coverage/lcov.info | coveralls",
     "test:debug": "cross-env NODE_ENV=test node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "cross-env NODE_ENV=test jest --config ./test/jest-e2e.json",
     "docker:build": "docker-compose -f docker-compose.yml build --no-cache",
@@ -55,6 +54,20 @@
     "docker:test:migrate": "docker-compose -f docker-compose.test.yml run --rm nest-api yarn migrate:dev",
     "docker:test:build": "docker-compose -f docker-compose.test.yml build --no-cache",
     "docker:test:run": "docker-compose -f docker-compose.test.yml run --rm nest-api yarn test"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "{src,apps,libs,test}/**/*.ts": [
+      "yarn lint"
+    ],
+    "./**/*.{ts,js,json,*rc}": [
+      "yarn prettier"
+    ]
   },
   "dependencies": {
     "@nest-modules/mailer": "^1.3.22",
@@ -91,6 +104,8 @@
     "swagger-ui-express": "^4.1.6"
   },
   "devDependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
     "@nestjs/cli": "^7.5.1",
     "@nestjs/schematics": "^7.1.3",
     "@nestjs/testing": "^7.5.1",
@@ -106,6 +121,8 @@
     "@types/supertest": "^2.0.10",
     "@typescript-eslint/eslint-plugin": "^4.6.1",
     "@typescript-eslint/parser": "^4.6.1",
+    "coveralls": "^3.1.0",
+    "cz-conventional-changelog": "^3.3.0",
     "dotenv": "^8.2.0",
     "eslint": "^7.12.1",
     "eslint-config-prettier": "7.1.0",
@@ -121,22 +138,11 @@
     "ts-loader": "^8.0.8",
     "ts-node": "^9.0.0",
     "tsconfig-paths": "^3.9.0",
-    "typescript": "^4.0.5",
-    "coveralls": "^3.1.0"
+    "typescript": "^4.0.5"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run precommit"
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
     }
-  },
-  "lint-staged": {
-    "{src,apps,libs,test}/**/*.ts": [
-      "npm run lint",
-      "git add"
-    ],
-    "./**/*.{ts,js,json,*rc}": [
-      "npm run prettier",
-      "git add"
-    ]
   }
 }

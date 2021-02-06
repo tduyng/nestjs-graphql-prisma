@@ -20,7 +20,7 @@ type Category {
   createdAt: DateTime!
   id: ID!
   name: String!
-  posts: [Post!]
+  posts: [Post!]!
   slug: String!
   updatedAt: DateTime!
 }
@@ -34,7 +34,7 @@ type CategoryCountAggregate {
   updatedAt: Int
 }
 
-input CategoryCreateManyWithoutPostsInput {
+input CategoryCreateNestedManyWithoutPostsInput {
   connect: [CategoryWhereUniqueInput!]
   connectOrCreate: [CategoryCreateOrConnectWithoutpostsInput!]
   create: [CategoryCreateWithoutPostsInput!]
@@ -218,7 +218,7 @@ type Mutation {
 type Post {
   author: User
   authorId: String
-  categories: [Category!]
+  categories: [Category!]!
   content: String!
   createdAt: DateTime!
   id: ID!
@@ -240,7 +240,7 @@ type PostCountAggregate {
   updatedAt: Int
 }
 
-input PostCreateManyWithoutAuthorInput {
+input PostCreateNestedManyWithoutAuthorInput {
   connect: [PostWhereUniqueInput!]
   connectOrCreate: [PostCreateOrConnectWithoutauthorInput!]
   create: [PostCreateWithoutAuthorInput!]
@@ -252,7 +252,7 @@ input PostCreateOrConnectWithoutauthorInput {
 }
 
 input PostCreateWithoutAuthorInput {
-  categories: CategoryCreateManyWithoutPostsInput
+  categories: CategoryCreateNestedManyWithoutPostsInput
   content: String!
   createdAt: DateTime
   id: String
@@ -291,6 +291,7 @@ type PostMinAggregate {
 }
 
 input PostOrderByInput {
+  author: UserOrderByInput
   authorId: SortOrder
   content: SortOrder
   createdAt: SortOrder
@@ -421,7 +422,7 @@ type ProfileCountAggregate {
   username: Int
 }
 
-input ProfileCreateOneWithoutUserInput {
+input ProfileCreateNestedOneWithoutUserInput {
   connect: ProfileWhereUniqueInput
   connectOrCreate: ProfileCreateOrConnectWithoutuserInput
   create: ProfileCreateWithoutUserInput
@@ -462,6 +463,17 @@ type ProfileMinAggregate {
   updatedAt: DateTime
   userId: String
   username: String
+}
+
+input ProfileOrderByInput {
+  bio: SortOrder
+  createdAt: SortOrder
+  firstName: SortOrder
+  id: SortOrder
+  lastName: SortOrder
+  updatedAt: SortOrder
+  userId: SortOrder
+  username: SortOrder
 }
 
 input ProfileUpdateOneWithoutUserInput {
@@ -583,7 +595,7 @@ type User {
   email: String!
   id: ID!
   password: String!
-  posts: [Post!]
+  posts: [Post!]!
   profile: Profile
   role: Role!
   updatedAt: DateTime!
@@ -604,8 +616,8 @@ input UserCreateInput {
   email: String!
   id: String
   password: String!
-  posts: PostCreateManyWithoutAuthorInput
-  profile: ProfileCreateOneWithoutUserInput
+  posts: PostCreateNestedManyWithoutAuthorInput
+  profile: ProfileCreateNestedOneWithoutUserInput
   role: Role
   updatedAt: DateTime
 }
@@ -633,6 +645,7 @@ input UserOrderByInput {
   email: SortOrder
   id: SortOrder
   password: SortOrder
+  profile: ProfileOrderByInput
   role: SortOrder
   updatedAt: SortOrder
 }

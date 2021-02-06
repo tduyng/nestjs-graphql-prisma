@@ -51,7 +51,7 @@ export class Post {
   author?: User;
 
   @Field(() => [Category], {
-    nullable: true,
+    nullable: false,
   })
-  categories?: Array<Category>;
+  categories!: Array<Category>;
 }

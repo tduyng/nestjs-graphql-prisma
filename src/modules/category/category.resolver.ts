@@ -15,17 +15,18 @@ import { Category } from './category.model';
 import { CategoryService } from './category.service';
 import { CreateCategoryInput, UpdateCategoryInput } from './dto';
 
-/* istanbul ignore next */
 @Resolver(() => Category)
 export class CategoryResolver {
   constructor(private categoryService: CategoryService) {}
 
   /* Query */
+  /* istanbul ignore next */
   @Query(() => [Category])
   public async categories(args: FindManyCategoryArgs) {
     return await this.categoryService.getCategories(args);
   }
 
+  /* istanbul ignore next */
   @Query(() => Category)
   public async category(@Args('where') where: CategoryWhereUniqueInput) {
     return await this.categoryService.getCategoryByUniqueInput(where);
@@ -36,12 +37,14 @@ export class CategoryResolver {
     return await this.categoryService.getPostsOfCategory(category.id);
   }
 
+  /* istanbul ignore next */
   /* Mutations */
   @Mutation(() => Category)
   public async createCategory(@Args('data') data: CreateCategoryInput) {
     return await this.categoryService.createCategory(data);
   }
 
+  /* istanbul ignore next */
   @Mutation(() => [Category])
   public async createCategories(
     @Args({ name: 'data', type: () => [CreateCategoryInput] })
@@ -50,6 +53,7 @@ export class CategoryResolver {
     return await this.categoryService.createCategories(data);
   }
 
+  /* istanbul ignore next */
   @Mutation(() => Category)
   public async updateCategory(
     @Args('where') where: CategoryWhereUniqueInput,
@@ -58,6 +62,7 @@ export class CategoryResolver {
     return await this.categoryService.updateCategory(where, data);
   }
 
+  /* istanbul ignore next */
   @Mutation(() => Category)
   public async deleteCategory(@Args('where') where: CategoryWhereUniqueInput) {
     return await this.categoryService.deleteCategory(where);

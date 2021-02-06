@@ -205,26 +205,6 @@ Other useful commands to work with project:
 - **Precommit** with [husky](https://github.com/typicode/husky#readme) & [lint-staged](https://github.com/okonet/lint-staged#readme)
   Two awesome packages help us to improve our git commits. We can run linters  and check test before commit changed files.
 
-  Check their config in the end of `package.json` file.
-  ```json
-   "husky": {
-    "hooks": {
-      "pre-commit": "npm run precommit"
-    }
-  },
-  "lint-staged": {
-    "{src,apps,libs,test}/**/*.ts": [
-      "npm run lint",
-      "npm run test",
-      "git add"
-    ],
-    "./**/*.{ts,js,json,*rc}": [
-      "npm run prettier",
-      "git add"
-    ]
-  }
-  ```
-
   So now, each time when we make a commit:
 
   ```bash
@@ -232,9 +212,9 @@ Other useful commands to work with project:
   # or git add files
   $ git commit -m "Message commit"
   ```
-  All files in your projects will be check automatically with Eslint, Prettier, & testing. If there are issues in your code base, the commit will be failed. Thanks to that, you can keep your code base always clean in your git repository.
+  All files in your projects will be check and fix automatically with Eslint, Prettier. You can also add `run test` in `precommit` command  to check test before commit.
 
-  **Hint**: Sometime if you need to commit your code and you don't want to verify them. You can do with flag `--no-verify`:
+  **Hint**: Sometime, if you need to commit your code and you don't want to verify them. You can do with flag `--no-verify`:
 
   ```bash
   $ git commit - "Message commit" --no-verify
@@ -413,7 +393,7 @@ But if you always write command like that, it will be take a lot of time and dif
 ```
 --> You can write your own scripts to work better with docker.
 
-**Hint**: For this moment **integration testing** or **end to end testing** with Prisma is quite difficult for me. Because `env(DATABASE_URI)` take the variable only in `.env` file. I don't want to change manually it when I want to run integration test and e2e test, so I think Docker is very good solution to solve this issue.
+**Hint**: For this moment **integration testing** or **end to end testing** with Prisma is not flexible. Because `env(DATABASE_URI)` take the variable only in `.env` file. I don't want to change manually it when I want to run integration test and e2e test, so I think Docker is very good solution to solve this issue.
 
 **Hint**: You can check [Portainer tool](https://www.portainer.io/) to manage easier multiple docker services. I think you will find it useful too.
 
@@ -452,5 +432,6 @@ We  will use these credentials to connect our PgAdmin.
 - [ ] In-memory caching or caching with Redis
 - [ ] Integrate with REST API
 - [ ] Add model subscribers
+- [ ] Enhanced docker, build images
 - [ ] ...
 ## Thanks

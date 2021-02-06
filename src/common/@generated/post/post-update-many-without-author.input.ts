@@ -14,6 +14,16 @@ export class PostUpdateManyWithoutAuthorInput {
   })
   create?: Array<PostCreateWithoutAuthorInput>;
 
+  @Field(() => [PostCreateOrConnectWithoutauthorInput], {
+    nullable: true,
+  })
+  connectOrCreate?: Array<PostCreateOrConnectWithoutauthorInput>;
+
+  @Field(() => [PostUpsertWithWhereUniqueWithoutAuthorInput], {
+    nullable: true,
+  })
+  upsert?: Array<PostUpsertWithWhereUniqueWithoutAuthorInput>;
+
   @Field(() => [PostWhereUniqueInput], {
     nullable: true,
   })
@@ -48,14 +58,4 @@ export class PostUpdateManyWithoutAuthorInput {
     nullable: true,
   })
   deleteMany?: Array<PostScalarWhereInput>;
-
-  @Field(() => [PostUpsertWithWhereUniqueWithoutAuthorInput], {
-    nullable: true,
-  })
-  upsert?: Array<PostUpsertWithWhereUniqueWithoutAuthorInput>;
-
-  @Field(() => [PostCreateOrConnectWithoutauthorInput], {
-    nullable: true,
-  })
-  connectOrCreate?: Array<PostCreateOrConnectWithoutauthorInput>;
 }

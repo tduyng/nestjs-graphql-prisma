@@ -29,7 +29,7 @@ export class Category {
   updatedAt!: Date | string;
 
   @Field(() => [Post], {
-    nullable: true,
+    nullable: false,
   })
-  posts?: Array<Post>;
+  posts!: Array<Post>;
 }

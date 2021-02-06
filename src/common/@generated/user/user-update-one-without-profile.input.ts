@@ -12,6 +12,16 @@ export class UserUpdateOneWithoutProfileInput {
   })
   create?: UserCreateWithoutProfileInput;
 
+  @Field(() => UserCreateOrConnectWithoutprofileInput, {
+    nullable: true,
+  })
+  connectOrCreate?: UserCreateOrConnectWithoutprofileInput;
+
+  @Field(() => UserUpsertWithoutProfileInput, {
+    nullable: true,
+  })
+  upsert?: UserUpsertWithoutProfileInput;
+
   @Field(() => UserWhereUniqueInput, {
     nullable: true,
   })
@@ -31,14 +41,4 @@ export class UserUpdateOneWithoutProfileInput {
     nullable: true,
   })
   update?: UserUpdateWithoutProfileInput;
-
-  @Field(() => UserUpsertWithoutProfileInput, {
-    nullable: true,
-  })
-  upsert?: UserUpsertWithoutProfileInput;
-
-  @Field(() => UserCreateOrConnectWithoutprofileInput, {
-    nullable: true,
-  })
-  connectOrCreate?: UserCreateOrConnectWithoutprofileInput;
 }
