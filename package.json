@@ -18,6 +18,7 @@
     "nestjs-graphql-prisma"
   ],
   "scripts": {
+    "test:env": "cross-env NODE_ENV=production nodemon src/common/configs/graphql-options.ts",
     "prebuild": "rimraf dist",
     "build": "nest build",
     "start": "nest start",
@@ -95,7 +96,6 @@
     "nodemailer": "^6.4.17",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
-    "passport-local": "^1.0.0",
     "pg": "^8.5.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
@@ -117,7 +117,6 @@
     "@types/jest": "^26.0.15",
     "@types/node": "^14.14.6",
     "@types/passport-jwt": "^3.0.4",
-    "@types/passport-local": "^1.0.33",
     "@types/supertest": "^2.0.10",
     "@typescript-eslint/eslint-plugin": "^4.6.1",
     "@typescript-eslint/parser": "^4.6.1",
