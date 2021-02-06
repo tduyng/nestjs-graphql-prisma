@@ -3,6 +3,10 @@ language: node_js
 nodejs:
   - 14
 
+branches:
+  only:
+  - master
+
 cache:
   directories:
     - "node_modules"
