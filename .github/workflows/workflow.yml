@@ -1,0 +1,40 @@
+name: NestJS
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [14.x]
+        environment: [node]
+    name: Node ${{ matrix.node }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+      - run: yarn install
+      - run: yarn build
+      - run: yarn coveralls
+      - name: Coveralls
+        uses: coverallsapp/github-action@v1.1.0
+        env:
+          NODE_COVERALLS_DEBUG: 1
+        with:
+          github-token: ${{ secrets.github_token }}
+          parallel: true
+          flag-name: run-${{ matrix.test_number }}
+
+  finish:
+      needs: test
+      runs-on: ubuntu-latest
+      steps:
+        - name: Coveralls Finished
+          uses: coverallsapp/github-action@v1.1.0
+          with:
+            github-token: ${{ secrets.github_token }}
+            parallel-finished: true
