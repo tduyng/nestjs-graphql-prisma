@@ -1,7 +1,13 @@
 # NestJS - GraphQL - Prisma
 
+<!--
 <div align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
+</div>
+-->
+
+<div align="center">
+  <a href="http://nestjs.com/" target="blank"><img src="docs/img/logo1.png" width="320" alt="Nest Logo" /></a>
 </div>
 
 <div align="center">
