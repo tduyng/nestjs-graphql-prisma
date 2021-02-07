@@ -71,7 +71,8 @@ Features of project:
 - CRUD operations, database relationship, pagination
 - [NestJS Authentication](https://docs.nestjs.com/security/authentication) with [Passport](https://github.com/jaredhanson/passport), [JWT](http://www.passportjs.org/packages/passport-jwt/), [Bcrypt](https://github.com/kelektiv/node.bcrypt.js/) encrypted password and refresh token JWT
 - Rating limit API with [express-rate-limit](https://github.com/nfriedly/express-rate-limit)
-- Verification email for register
+- Email scheduling
+- Using custom exceptions filter, custom decorators
 - Docker solution for PostgreSQL, PGAdmin, Prisma
 - Next generation Typescript
 - Testing: Unit testing, End to End testing
@@ -88,7 +89,7 @@ If you want to develop project only on your local, your need have:
 - [PostgreSQL](https://www.postgresql.org/download/)
 - [PgAdmin(optional)](https://www.pgadmin.org/download/): UI tool to manage database from PostgreSQL
 
-If you don't want to install all this tools, you can check the [docker solution](#docker) below.
+If you don't want to install all these tools, you can check the [docker solution](#docker) below.
 ## Getting started
 
 ### Installation

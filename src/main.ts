@@ -1,4 +1,4 @@
-import { NestFactory } from '@nestjs/core';
+import { HttpAdapterHost, NestFactory } from '@nestjs/core';
 import { AppModule } from './app/app.module';
 import { setupSwagger } from '@common/configs/swagger-options';
 import { ValidationPipe } from '@nestjs/common';
@@ -6,15 +6,29 @@ import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
 import { Logger } from '@nestjs/common';
 import RateLimit from 'express-rate-limit';
+import { environment } from '@common/environment';
+import { useContainer } from 'class-validator';
+import { AllExceptionsFilter } from '@common/global-exceptions-filter/all-exceptions-filter';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, { logger: true });
   // Validation
   app.useGlobalPipes(
     new ValidationPipe({
       skipMissingProperties: true,
+      transform: true,
+      validationError: {
+        target: false,
+      },
     }),
   );
+
+  // Custom exceptions filter
+  const { httpAdapter } = app.get(HttpAdapterHost);
+  app.useGlobalFilters(new AllExceptionsFilter(httpAdapter));
+
+  useContainer(app.select(AppModule), { fallbackOnErrors: true });
+
   app.enableCors();
   app.use(cookieParser());
   app.use(
@@ -32,10 +46,12 @@ async function bootstrap() {
   );
 
   setupSwagger(app);
-  const port = Number(process.env.SERVER_PORT);
+  const env = environment();
+  const port: number = env.serverPort;
+  const siteUrl: string = env.siteUrl;
 
   await app.listen(port, () => {
-    Logger.log(`Server is running at http://localhost:${port}/graphql`);
+    Logger.log(`Server is running at ${siteUrl}`);
   });
 }
 bootstrap();

@@ -2595,6 +2595,13 @@ apollo-env@0.6.5, apollo-env@^0.6.1, apollo-env@^0.6.5:
     node-fetch "^2.2.0"
     sha.js "^2.4.11"
 
+apollo-error-converter@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/apollo-error-converter/-/apollo-error-converter-1.1.1.tgz#8c00c05eca7467e6cbb55e781e6a7a1d294416c6"
+  integrity sha512-Eb3JC4s82mpEVzjd2IcvL6r/aOYHprCYf7TakeTfeZysAq7TMvFZ3Iu4LLgix0PXoLYoWwDsF8QRBD17M1igwg==
+  dependencies:
+    apollo-server-core "2.x.x"
+
 apollo-graphql@^0.4.0:
   version "0.4.5"
   resolved "https://registry.yarnpkg.com/apollo-graphql/-/apollo-graphql-0.4.5.tgz#936529335010f9be9e239619b82fb9060c70521d"
@@ -2671,7 +2678,7 @@ apollo-server-core@2.16.1:
     subscriptions-transport-ws "^0.9.11"
     ws "^6.0.0"
 
-apollo-server-core@^2.15.1, apollo-server-core@^2.19.2:
+apollo-server-core@2.x.x, apollo-server-core@^2.15.1, apollo-server-core@^2.19.2:
   version "2.19.2"
   resolved "https://registry.yarnpkg.com/apollo-server-core/-/apollo-server-core-2.19.2.tgz#9a5651be233aceab6b062e82eef4c8072f6ac230"
   integrity sha512-liLgLhTIGWZtdQbxuxo3/Yv8j+faKQcI60kOL+uwfByGhoKLZEQp5nqi2IdMK6JXt1VuyKwKu7lTzj02a9S3jA==
@@ -8200,6 +8207,13 @@ passport-jwt@^4.0.0:
   dependencies:
     jsonwebtoken "^8.2.0"
     passport-strategy "^1.0.0"
+
+passport-local@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/passport-local/-/passport-local-1.0.0.tgz#1fe63268c92e75606626437e3b906662c15ba6ee"
+  integrity sha1-H+YyaMkudWBmJkN+O5BmYsFbpu4=
+  dependencies:
+    passport-strategy "1.x.x"
 
 passport-strategy@1.x.x, passport-strategy@^1.0.0:
   version "1.0.0"
