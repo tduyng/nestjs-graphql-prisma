@@ -1,14 +1,14 @@
 # NestJS - GraphQL - Prisma
 
-<!--
-<div align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
-</div>
--->
 
 <div align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="docs/img/logo1.png" width="320" alt="Nest Logo" /></a>
+<a href="https://graphql.org/" target="blank"><img src="docs/img/GraphQL_Logo.svg" width="120" alt="Nest Logo" /></a> <a href="https://www.prisma.io/" target="blank"><img src="docs/img/prisma-seeklogo.com.svg" width="90" alt="Nest Logo" /></a> <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
 </div>
+
+
+<!-- <div align="center">
+  <a href="http://nestjs.com/" target="blank"><img src="docs/img/logo1.png" width="320" alt="Nest Logo" /></a>
+</div> -->
 
 <div align="center">
 Example backend <a href="https://nestjs.com/">NestJS</a> - <a href="https://graphql.org/">GraphQL</a> project using <a href="https://prisma.io/">Prisma 2</a> & <a href="https://postgresql.org/" >PostgreSQL</a>
