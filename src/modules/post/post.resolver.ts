@@ -16,7 +16,7 @@ import {
   FindManyPostArgs,
   PostWhereUniqueInput,
 } from '@common/@generated/post';
-import { GqlUser } from '@modules/user/decorators';
+import { CurrentUser } from '@modules/user/decorators';
 import { UseGuards } from '@nestjs/common';
 import { GqlGuard } from '@modules/auth/guards/gql.guard';
 
@@ -47,7 +47,7 @@ export class PostResolver {
   @UseGuards(GqlGuard)
   public async createPost(
     @Args('data') input: CreatePostInput,
-    @GqlUser() user: User,
+    @CurrentUser() user: User,
   ) {
     return await this.postService.createPost(input, user);
   }
