@@ -4,6 +4,7 @@ import { setupSwagger } from '@common/configs/setup-swagger';
 import { ValidationPipe } from '@nestjs/common';
 import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
+import compression from 'compression';
 import { Logger } from '@nestjs/common';
 import RateLimit from 'express-rate-limit';
 import { environment } from '@common/environment';
@@ -12,6 +13,10 @@ import { AllExceptionsFilter } from '@common/global-exceptions-filter/all-except
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { logger: true });
+  const env = environment();
+  const port: number = env.serverPort;
+  const siteUrl: string = env.siteUrl;
+
   // Validation
   app.useGlobalPipes(
     new ValidationPipe({
@@ -31,12 +36,11 @@ async function bootstrap() {
 
   app.enableCors();
   app.use(cookieParser());
-  app.use(
-    helmet({
-      contentSecurityPolicy:
-        process.env.NODE_ENV === 'production' ? undefined : false,
-    }),
-  );
+
+  if (env.isProduction) {
+    app.use(compression());
+    app.use(helmet());
+  }
 
   app.use(
     RateLimit({
@@ -46,9 +50,6 @@ async function bootstrap() {
   );
 
   setupSwagger(app);
-  const env = environment();
-  const port: number = env.serverPort;
-  const siteUrl: string = env.siteUrl;
 
   await app.listen(port, () => {
     Logger.log(`Server is running at ${siteUrl}`);
