@@ -39,7 +39,7 @@ export class PostResolver {
     const where: Prisma.PostWhereUniqueInput = {
       id: post.id,
     };
-    return await this.postService.getUserOfPost(where);
+    return await this.postService.getAuthorOfPost(where);
   }
 
   /* Mutations */

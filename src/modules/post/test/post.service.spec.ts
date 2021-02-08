@@ -102,10 +102,10 @@ describe('PostService', () => {
     });
   });
 
-  describe('getUserOfPost', () => {
+  describe('getAuthorOfPost', () => {
     it('Should return an post', async () => {
       prismaService.post.findUnique.mockReturnValue(onePost);
-      const result = await postService.getUserOfPost(postWhereUniqueInput);
+      const result = await postService.getAuthorOfPost(postWhereUniqueInput);
       expect(result).toEqual(onePost.author);
     });
   });

@@ -32,8 +32,15 @@ export class PostService {
       rejectOnNotFound: true,
     });
   }
+  public async getPostWithAuthor(where: PostWhereUniqueInput) {
+    return await this.prisma.post.findUnique({
+      include: { author: true },
+      where,
+      rejectOnNotFound: true,
+    });
+  }
 
-  public async getUserOfPost(where: PostWhereUniqueInput): Promise<User> {
+  public async getAuthorOfPost(where: PostWhereUniqueInput): Promise<User> {
     const post: Post = await this.prisma.post.findUnique({
       where,
       include: {
