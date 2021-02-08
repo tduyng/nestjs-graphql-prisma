@@ -20,21 +20,21 @@ async function bootstrap() {
   const port: number = env.serverPort;
   const siteUrl: string = env.siteUrl;
 
-  app.enable('trust proxy'); // only if you're behind a reverse proxy (Heroku, Bluemix, AWS ELB, Nginx, etc)
   app.enableCors();
   app.use(cookieParser());
 
   if (env.isProduction) {
+    app.enable('trust proxy'); // only if you're behind a reverse proxy (Heroku, Bluemix, AWS ELB, Nginx, etc)
     app.use(compression());
     app.use(helmet());
-  }
 
-  app.use(
-    RateLimit({
-      windowMs: 15 * 60 * 1000, // 15 minutes
-      max: 100, // limit each IP to 100 requests per windowMs
-    }),
-  );
+    app.use(
+      RateLimit({
+        windowMs: 15 * 60 * 1000, // 15 minutes
+        max: 100, // limit each IP to 100 requests per windowMs
+      }),
+    );
+  }
 
   // Validation
   app.useGlobalPipes(
