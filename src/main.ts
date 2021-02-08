@@ -1,6 +1,6 @@
 import { HttpAdapterHost, NestFactory } from '@nestjs/core';
-import { AppModule } from './app/app.module';
-import { setupSwagger } from '@common/configs/swagger-options';
+import { AppModule } from './app.module';
+import { setupSwagger } from '@common/configs/setup-swagger';
 import { ValidationPipe } from '@nestjs/common';
 import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
@@ -8,7 +8,7 @@ import { Logger } from '@nestjs/common';
 import RateLimit from 'express-rate-limit';
 import { environment } from '@common/environment';
 import { useContainer } from 'class-validator';
-import { AllExceptionsFilter } from '@common/global-exceptions-filter/all-exceptions-filter';
+import { AllExceptionsFilter } from '@common/global-exceptions-filter/all-exceptions.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { logger: true });

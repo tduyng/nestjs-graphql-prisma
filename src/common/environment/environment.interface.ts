@@ -5,9 +5,10 @@ import { CookieOptions } from 'express';
 
 export interface IEnvironment {
   readonly siteUrl?: string;
+  readonly serverPort: number;
+  readonly isDevelopment: boolean;
+  readonly isProduction: boolean;
   readonly cookie?: Omit<CookieOptions, 'maxAge'>;
-  readonly production?: boolean;
-  readonly serverPort?: number;
   readonly graphql?: GqlModuleOptions;
   readonly jwtOptions?: JwtModuleOptions;
   readonly expiresInRememberMe?: number;

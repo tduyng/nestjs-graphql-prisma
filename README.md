@@ -70,15 +70,15 @@ Features of project:
 - Using [PostgreQL](https://github.com/brianc/node-postgres) for database and [Prisma 2](https://github.com/prisma/prisma) as ORM
 - CRUD operations, database relationship, pagination
 - [NestJS Authentication](https://docs.nestjs.com/security/authentication) with [Passport](https://github.com/jaredhanson/passport), [JWT](http://www.passportjs.org/packages/passport-jwt/), [Bcrypt](https://github.com/kelektiv/node.bcrypt.js/) encrypted password and refresh token JWT
+- Role base system: Admin & User
+- Database seeding
+- Multi-languages with I18n
 - Rating limit API with [express-rate-limit](https://github.com/nfriedly/express-rate-limit)
 - Email scheduling
 - Using custom exceptions filter, custom decorators
 - Docker solution for PostgreSQL, PGAdmin, Prisma
-- Next generation Typescript
 - Testing: Unit testing, End to End testing
-- Database seeding
-- Role base system: Admin & User
-- CI-CD with circle-ci
+- CI-CD with circle-ci, travis-ci, github actions
 
 ## Prerequisites
 
@@ -431,14 +431,14 @@ We  will use these credentials to connect our PgAdmin.
 ## Todo
 
 - [x] CI-CD
-- [ ] Update Auth
+- [x] Update Auth
+- [x] Multi-language with i18n options
 - [ ] Mailer service
-- [ ] End to end testing
-- [ ] Multi-language with i18n options
+- [ ] Integration & end to end testing
 - [ ] Integrate with AWS service (S3, RDS)
-- [ ] In-memory caching or caching with Redis
-- [ ] Integrate with REST API
-- [ ] Add model subscribers
-- [ ] Enhanced docker, build images
+- [ ] In-memory caching or caching with Redis ?
+- [ ] Integrate with REST API ?
+- [ ] Enhanced docker, build images ?
+- [ ] Add Event/Subscribers module ?
 - [ ] ...
 ## Thanks

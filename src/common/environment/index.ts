@@ -12,6 +12,8 @@ export const environment = () => {
   return {
     siteUrl: process.env.SITE_URL,
     serverPort: Number(process.env.SERVER_PORT),
+    isDevelopment: process.env.NODE_ENV === 'development',
+    isProduction: process.env.NODE_ENV === 'production',
 
     // Graphql
     graphql: {

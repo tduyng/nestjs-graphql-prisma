@@ -17,11 +17,20 @@ export const graphqlModuleFactory = async () => {
   const logger = new Logger();
   return {
     ...graphqlEnvironmentOptions,
-    context: (data: any) => {
-      return {
-        token: undefined as string | undefined,
-        req: data.req as Request,
-      };
+    context: ({ req, connection }) => {
+      if (!connection) {
+        // Http request
+        return {
+          token: undefined as string | undefined,
+          req: req as Request,
+        };
+      } else {
+        // USE THIS TO PROVIDE THE RIGHT CONTEXT FOR I18N
+        return {
+          token: undefined as string | undefined,
+          req: connection.context as Request,
+        };
+      }
     },
     formatError: new ApolloErrorConverter({
       logger: (err: any) => {

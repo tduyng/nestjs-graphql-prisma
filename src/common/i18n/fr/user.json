@@ -1,0 +1,9 @@
+{
+  "HELLO": "Bonjour",
+  "ARRAY": ["UN", "DEUX", "TROIS"],
+  "SET-UP-PASSWORD": {
+    "HEADING": "Bonjour, {username}",
+    "TITLE": "Mot de passe oublié",
+    "FOLLOWLINK": "Veuillez suivre le lien pour configurer votre mot de passe"
+  }
+}

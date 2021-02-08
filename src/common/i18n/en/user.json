@@ -1,0 +1,11 @@
+{
+  "HELLO": "Hello",
+  "ENGLISH": "English",
+  "ARRAY": ["ONE", "TWO", "THREE"],
+  "ONLY_EN_KEY": "this key only exists in en lang",
+  "SET-UP-PASSWORD": {
+    "HEADING": "Hello, {username}",
+    "TITLE": "Forgot password",
+    "FOLLOWLINK": "Please follow the link to set up your password"
+  }
+}
