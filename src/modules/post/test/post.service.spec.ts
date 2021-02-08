@@ -1,6 +1,6 @@
 import { PrismaService } from '@modules/prisma/prisma.service';
 import { Test, TestingModule } from '@nestjs/testing';
-import { PostService } from '../services/post.service';
+import { PostService } from '../post.service';
 import { User } from '@modules/user/user.model';
 import { CreatePostInput } from '../dto';
 import { Post, PostWhereUniqueInput } from '@common/@generated/post';

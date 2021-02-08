@@ -1,9 +1,9 @@
 import { PrismaService } from '@modules/prisma/prisma.service';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { Post } from '../post.model';
+import { Post } from './post.model';
 import { User } from '@modules/user/user.model';
 import { Prisma } from '@prisma/client';
-import { CreatePostInput, UpdatePostInput } from '../dto';
+import { CreatePostInput, UpdatePostInput } from './dto';
 import slugify from 'slugify';
 import { randomBytes } from 'crypto';
 import { CategoryService } from '@modules/category/category.service';

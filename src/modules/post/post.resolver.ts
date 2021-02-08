@@ -1,6 +1,5 @@
 import {
   Args,
-  Info,
   Mutation,
   Parent,
   Query,
@@ -8,7 +7,7 @@ import {
   Resolver,
 } from '@nestjs/graphql';
 import { Post } from './post.model';
-import { PostService } from './services/post.service';
+import { PostService } from './post.service';
 import { CreatePostInput } from './dto/create-post.input';
 import { UpdatePostInput } from './dto/update-post.input';
 import { User } from '@modules/user/user.model';
