@@ -2,7 +2,7 @@ import { PostWhereUniqueInput } from '@common/@generated/post';
 import { IRequestWithUser } from '@modules/user/interfaces/request-with-user.interface';
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { GqlExecutionContext } from '@nestjs/graphql';
-import { PostService } from '../post.service';
+import { PostService } from '../services/post.service';
 
 @Injectable()
 export class AuthorGuard implements CanActivate {

@@ -1,5 +1,6 @@
 import {
   Args,
+  Info,
   Mutation,
   Parent,
   Query,
@@ -7,7 +8,7 @@ import {
   Resolver,
 } from '@nestjs/graphql';
 import { Post } from './post.model';
-import { PostService } from './post.service';
+import { PostService } from './services/post.service';
 import { CreatePostInput } from './dto/create-post.input';
 import { UpdatePostInput } from './dto/update-post.input';
 import { User } from '@modules/user/user.model';
@@ -30,8 +31,8 @@ export class PostResolver {
     return await this.postService.getPosts(args);
   }
   @Query(() => Post)
-  public async post(@Args('where') where: PostWhereUniqueInput) {
-    return await this.postService.getPost(where);
+  public async post(@Args('where') args: PostWhereUniqueInput) {
+    return await this.postService.getPost(args);
   }
 
   @ResolveField(() => User)

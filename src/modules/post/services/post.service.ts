@@ -1,9 +1,9 @@
 import { PrismaService } from '@modules/prisma/prisma.service';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { Post } from './post.model';
+import { Post } from '../post.model';
 import { User } from '@modules/user/user.model';
 import { Prisma } from '@prisma/client';
-import { CreatePostInput, UpdatePostInput } from './dto';
+import { CreatePostInput, UpdatePostInput } from '../dto';
 import slugify from 'slugify';
 import { randomBytes } from 'crypto';
 import { CategoryService } from '@modules/category/category.service';
@@ -21,14 +21,13 @@ export class PostService {
 
   public async getPosts(args: FindManyPostArgs) {
     return await this.prisma.post.findMany({
-      include: { author: true },
       ...args,
     });
   }
 
-  public async getPost(where: PostWhereUniqueInput) {
+  public async getPost(args: PostWhereUniqueInput) {
     return await this.prisma.post.findUnique({
-      where,
+      where: args,
       rejectOnNotFound: true,
     });
   }

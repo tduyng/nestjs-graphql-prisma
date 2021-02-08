@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { PostService } from '../post.service';
+import { PostService } from '../services/post.service';
 import { Post } from '../post.model';
 import { PostResolver } from '../post.resolver';
 import { CreatePostInput } from '../dto/create-post.input';
