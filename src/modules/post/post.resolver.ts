@@ -35,7 +35,7 @@ export class PostResolver {
   }
 
   @ResolveField(() => User)
-  public async user(@Parent() post: Post) {
+  public async author(@Parent() post: Post) {
     const where: Prisma.PostWhereUniqueInput = {
       id: post.id,
     };

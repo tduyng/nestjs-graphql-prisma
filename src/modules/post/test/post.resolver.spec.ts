@@ -89,7 +89,7 @@ describe('PostResolver', () => {
   describe('user', () => {
     it('Should return an user', async () => {
       postService.getUserOfPost.mockReturnValue(onePost.author);
-      const result = await postResolver.user(onePost);
+      const result = await postResolver.author(onePost);
       expect(result).toEqual(onePost.author);
     });
   });

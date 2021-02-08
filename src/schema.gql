@@ -708,7 +708,6 @@ type post {
   slug: String!
   title: String!
   updatedAt: DateTime!
-  user: user!
 }
 
 type profile {

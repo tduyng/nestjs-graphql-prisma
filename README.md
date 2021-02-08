@@ -434,6 +434,7 @@ We  will use these credentials to connect our PgAdmin.
 - [x] Update Auth
 - [x] Multi-language with i18n options
 - [ ] Mailer service
+- [ ] Solve N+1 problem graphql
 - [ ] Integration & end to end testing
 - [ ] Integrate with AWS service (S3, RDS)
 - [ ] In-memory caching or caching with Redis ?
