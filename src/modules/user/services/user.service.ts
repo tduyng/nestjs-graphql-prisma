@@ -19,14 +19,15 @@ import {
 } from '@common/@generated/user';
 import { CreateUserInput } from '../dto/create-user.input';
 import { BatchPayload } from '@common/@generated/prisma';
-import { PrismaSelect } from '@paljs/plugins';
 import { GraphQLResolveInfo } from 'graphql';
+import { PrismaSelectService } from '@modules/prisma/prisma-select.service';
 
 @Injectable()
 export class UserService {
   constructor(
     private prisma: PrismaService,
     private passwordService: PasswordService,
+    private prismaSelectService: PrismaSelectService,
   ) {}
 
   /* Queries */
@@ -34,7 +35,7 @@ export class UserService {
     where: UserWhereUniqueInput,
     info?: GraphQLResolveInfo,
   ): Promise<User> {
-    const select = new PrismaSelect(info).value;
+    const select = this.prismaSelectService.getValue(info);
     return await this.prisma.user.findUnique({
       ...select,
       where,
@@ -53,7 +54,7 @@ export class UserService {
     args: FindFirstUserArgs,
     info?: GraphQLResolveInfo,
   ): Promise<User> {
-    const select = new PrismaSelect(info).value;
+    const select = this.prismaSelectService.getValue(info);
     return await this.prisma.user.findFirst({ ...args, ...select });
   }
 
@@ -61,7 +62,7 @@ export class UserService {
     args: FindManyUserArgs,
     info?: GraphQLResolveInfo,
   ): Promise<User[]> {
-    const select = new PrismaSelect(info).value;
+    const select = this.prismaSelectService.getValue(info);
     return await this.prisma.user.findMany({ ...args, ...select });
   }
 

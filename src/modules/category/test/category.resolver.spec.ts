@@ -5,6 +5,7 @@ import { Category } from '../category.model';
 import { CategoryResolver } from '../category.resolver';
 import { CreateCategoryInput } from '../dto';
 import { CategoryWhereUniqueInput } from '@common/@generated/category';
+import { PrismaSelect } from '@paljs/plugins';
 
 const oneCategory = {
   id: 'some categoryId',
@@ -60,6 +61,12 @@ describe('CategoryResolver', () => {
           provide: CategoryService,
           useFactory: mockCategoryService,
         },
+        {
+          provide: PrismaSelect,
+          useValue: {
+            value: jest.fn().mockReturnValue({}),
+          },
+        },
       ],
     }).compile();
 
@@ -74,6 +81,7 @@ describe('CategoryResolver', () => {
   describe('categories', () => {
     it('Should return an array of category', async () => {
       categoryService.getCategories.mockReturnValue(arrayCategory);
+
       const result = await categoryResolver.categories({});
       expect(result).toEqual(arrayCategory);
     });
@@ -84,14 +92,6 @@ describe('CategoryResolver', () => {
       categoryService.getCategoryByUniqueInput.mockReturnValue(oneCategory);
       const result = await categoryResolver.category(categoryWhereUniqueInput);
       expect(result).toEqual(oneCategory);
-    });
-  });
-
-  describe('posts', () => {
-    it('Should return an array of post from query', async () => {
-      categoryService.getPostsOfCategory.mockReturnValue(oneCategory.posts);
-      const result = await categoryResolver.posts(oneCategory);
-      expect(result).toEqual(oneCategory.posts);
     });
   });
 

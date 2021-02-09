@@ -7,18 +7,21 @@ import { Prisma } from '@prisma/client';
 import { ProfileWhereUniqueInput } from '@common/@generated/profile';
 import { CreateProfileInput } from './dto';
 import { GraphQLResolveInfo } from 'graphql';
-import { PrismaSelect } from '@paljs/plugins';
+import { PrismaSelectService } from '@modules/prisma/prisma-select.service';
 
 @Injectable()
 export class ProfileService {
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private prisma: PrismaService,
+    private prismaSelectService: PrismaSelectService,
+  ) {}
 
   public async getProfile(
     where: ProfileWhereUniqueInput,
     info?: GraphQLResolveInfo,
   ) {
     // Prisma select to solve n+1 graphql problem
-    const select = new PrismaSelect(info).value;
+    const select = this.prismaSelectService.getValue(info);
     return await this.prisma.profile.findUnique({
       ...select,
       where,
