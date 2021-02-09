@@ -6,6 +6,7 @@ import {
   UserWhereUniqueInput,
 } from '@common/@generated/user';
 import { Post } from '@modules/post/post.model';
+import { PrismaSelectService } from '@modules/prisma/prisma-select.service';
 import { PrismaService } from '@modules/prisma/prisma.service';
 import { BadRequestException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
@@ -89,6 +90,12 @@ describe('UserService', () => {
         {
           provide: PasswordService,
           useFactory: mockPasswordService,
+        },
+        {
+          provide: PrismaSelectService,
+          useValue: {
+            getValue: jest.fn().mockReturnValue({}),
+          },
         },
       ],
     }).compile();

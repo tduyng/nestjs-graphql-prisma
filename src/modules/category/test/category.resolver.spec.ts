@@ -5,7 +5,6 @@ import { Category } from '../category.model';
 import { CategoryResolver } from '../category.resolver';
 import { CreateCategoryInput } from '../dto';
 import { CategoryWhereUniqueInput } from '@common/@generated/category';
-import { PrismaSelect } from '@paljs/plugins';
 
 const oneCategory = {
   id: 'some categoryId',
@@ -60,12 +59,6 @@ describe('CategoryResolver', () => {
         {
           provide: CategoryService,
           useFactory: mockCategoryService,
-        },
-        {
-          provide: PrismaSelect,
-          useValue: {
-            value: jest.fn().mockReturnValue({}),
-          },
         },
       ],
     }).compile();

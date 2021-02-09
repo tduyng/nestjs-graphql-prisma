@@ -5,7 +5,6 @@ import { ProfileResolver } from '../profile.resolver';
 import { CreateProfileInput } from '../dto';
 import { User } from '@modules/user/user.model';
 import { ProfileWhereUniqueInput } from '@common/@generated/profile';
-import { UserWhereUniqueInput } from '@common/@generated/user';
 
 const oneProfile = {
   id: 'some profileId',
@@ -32,10 +31,6 @@ const profileInput = {
 const profileWhereUniqueInput = {
   id: 'some profileId',
 } as ProfileWhereUniqueInput;
-
-const userWhereUniqueInput = {
-  id: 'some userId',
-} as UserWhereUniqueInput;
 
 describe('ProfileResolver', () => {
   let profileResolver: ProfileResolver;
@@ -82,14 +77,6 @@ describe('ProfileResolver', () => {
       profileService.getProfileByUser.mockReturnValue(oneProfile);
       const result = await profileResolver.profileCurrentUser(oneUser);
       expect(result).toEqual(oneProfile);
-    });
-  });
-
-  describe('user', () => {
-    it('Should return an user', async () => {
-      profileService.getUserOfProfile.mockReturnValue(oneProfile.user);
-      const result = await profileResolver.user(oneProfile);
-      expect(result).toEqual(oneProfile.user);
     });
   });
 

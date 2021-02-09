@@ -1,5 +1,6 @@
 import { CategoryWhereUniqueInput } from '@common/@generated/category';
 import { Post } from '@modules/post/post.model';
+import { PrismaSelectService } from '@modules/prisma/prisma-select.service';
 import { PrismaService } from '@modules/prisma/prisma.service';
 import { Test, TestingModule } from '@nestjs/testing';
 import { Category } from '../category.model';
@@ -56,9 +57,16 @@ describe('CategoryService', () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         CategoryService,
+
         {
           provide: PrismaService,
           useFactory: mockPrismaService,
+        },
+        {
+          provide: PrismaSelectService,
+          useValue: {
+            getValue: jest.fn().mockReturnValue({}),
+          },
         },
       ],
     }).compile();

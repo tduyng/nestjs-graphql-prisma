@@ -61,24 +61,9 @@ describe('UserResolver', () => {
 
   describe('me', () => {
     it('Should return user', async () => {
+      userService.getUserByUniqueInput.mockReturnValue(oneUser);
       const result = await userResolver.me(oneUser);
       expect(result).toEqual(oneUser);
-    });
-  });
-
-  describe('profile', () => {
-    it('Should return profile of user', async () => {
-      userService.getProfileOfUser.mockReturnValue(oneUser.profile);
-      const result = await userResolver.profile(oneUser);
-      expect(result).toEqual(oneUser.profile);
-    });
-  });
-
-  describe('posts', () => {
-    it('Should return an array of post of user from query', async () => {
-      userService.getPostsOfUser.mockReturnValue(oneUser.posts);
-      const result = await userResolver.posts(oneUser);
-      expect(result).toEqual(oneUser.posts);
     });
   });
 
