@@ -27,15 +27,18 @@ export class CategoryService {
   public async getPostsOfCategory(categoryId: string): Promise<Post[]> {
     const category: Category = await this.prisma.category.findUnique({
       where: { id: categoryId },
-      include: {
-        posts: true,
-      },
+      include: { posts: true },
     });
     return category.posts;
   }
 
-  public async getCategoryByUniqueInput(where: CategoryWhereUniqueInput) {
+  public async getCategoryByUniqueInput(
+    where: CategoryWhereUniqueInput,
+    info?: GraphQLResolveInfo,
+  ) {
+    const select = new PrismaSelect(info).value;
     return await this.prisma.category.findUnique({
+      ...select,
       where,
       rejectOnNotFound: true,
     });

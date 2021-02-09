@@ -77,10 +77,10 @@ describe('ProfileResolver', () => {
     });
   });
 
-  describe('profileByUser', () => {
+  describe('profileCurrentUser', () => {
     it('Should return profile', async () => {
       profileService.getProfileByUser.mockReturnValue(oneProfile);
-      const result = await profileResolver.profileByUser(userWhereUniqueInput);
+      const result = await profileResolver.profileCurrentUser(oneUser);
       expect(result).toEqual(oneProfile);
     });
   });

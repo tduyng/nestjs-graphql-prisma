@@ -2,16 +2,7 @@ import {
   CategoryWhereUniqueInput,
   FindManyCategoryArgs,
 } from '@common/@generated/category';
-import { Post } from '@modules/post/post.model';
-import {
-  Args,
-  Info,
-  Mutation,
-  Parent,
-  Query,
-  ResolveField,
-  Resolver,
-} from '@nestjs/graphql';
+import { Args, Info, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { Category } from './category.model';
 import { CategoryService } from './category.service';
 import { CreateCategoryInput, UpdateCategoryInput } from './dto';
@@ -33,13 +24,11 @@ export class CategoryResolver {
 
   /* istanbul ignore next */
   @Query(() => Category)
-  public async category(@Args('where') where: CategoryWhereUniqueInput) {
-    return await this.categoryService.getCategoryByUniqueInput(where);
-  }
-
-  @ResolveField(() => [Post])
-  public async posts(@Parent() category: Category) {
-    return await this.categoryService.getPostsOfCategory(category.id);
+  public async category(
+    @Args('where') where: CategoryWhereUniqueInput,
+    @Info() info?: GraphQLResolveInfo,
+  ) {
+    return await this.categoryService.getCategoryByUniqueInput(where, info);
   }
 
   /* istanbul ignore next */
@@ -72,4 +61,14 @@ export class CategoryResolver {
   public async deleteCategory(@Args('where') where: CategoryWhereUniqueInput) {
     return await this.categoryService.deleteCategory(where);
   }
+
+  /**
+   * No need Resolved field when we use Prisma select
+   * Note: When we use resolved field--> We have always problems with N+1 graphql
+   * Note: uuid not work with Prisma select --> so need to use cuid
+   */
+  // @ResolveField(() => [Post])
+  // public async posts_noneed(@Parent() category: Category) {
+  //   return await this.categoryService.getPostsOfCategory(category.id);
+  // }
 }

@@ -550,8 +550,8 @@ type Query {
   me: user!
   post(where: PostWhereUniqueInput!): post!
   posts(cursor: PostWhereUniqueInput, distinct: [PostScalarFieldEnum!], orderBy: [PostOrderByInput!], skip: Int, take: Int, where: PostWhereInput): [post!]!
-  profile(where: ProfileWhereUniqueInput!): profile!
-  profileByUser(where: UserWhereUniqueInput!): profile!
+  profile(where: UserWhereUniqueInput!): profile!
+  profileCurrentUser: profile!
 }
 
 enum QueryMode {

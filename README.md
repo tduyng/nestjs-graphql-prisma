@@ -79,6 +79,7 @@ Features of project:
 - Docker solution for PostgreSQL, PGAdmin, Prisma
 - Testing: Unit testing, End to End testing
 - CI-CD with circle-ci, travis-ci, github actions
+- Solve N+1 problem graphql (using [@paljs/plugin](https://github.com/paljs/prisma-tools/blob/master/packages/plugins/README.md))
 
 ## Prerequisites
 
@@ -433,8 +434,8 @@ We  will use these credentials to connect our PgAdmin.
 - [x] CI-CD
 - [x] Update Auth
 - [x] Multi-language with i18n options
+- [x] Solve N+1 problem graphql (using @paljs/plugin) (make sure use prisma @id as @cuid(), not @uuid()). @uuid() does not work when we query with Prisma select with join table
 - [ ] Mailer service
-- [ ] Solve N+1 problem graphql (tried with @paljs/plugin but not work yet)
 - [ ] Integration & end to end testing
 - [ ] Integrate with AWS service (S3, RDS)
 - [ ] In-memory caching or caching with Redis ?

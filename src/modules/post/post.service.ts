@@ -11,6 +11,8 @@ import {
   FindManyPostArgs,
   PostWhereUniqueInput,
 } from '@common/@generated/post';
+import { PrismaSelect } from '@paljs/plugins';
+import { GraphQLResolveInfo } from 'graphql';
 
 @Injectable()
 export class PostService {
@@ -19,14 +21,19 @@ export class PostService {
     private categoryService: CategoryService,
   ) {}
 
-  public async getPosts(args: FindManyPostArgs) {
+  public async getPosts(args: FindManyPostArgs, info?: GraphQLResolveInfo) {
+    // Prisma Select to solve N+1 graphql problem
+    const select = new PrismaSelect(info).value;
     return await this.prisma.post.findMany({
       ...args,
+      ...select,
     });
   }
 
-  public async getPost(args: PostWhereUniqueInput) {
+  public async getPost(args: PostWhereUniqueInput, info?: GraphQLResolveInfo) {
+    const select = new PrismaSelect(info).value;
     return await this.prisma.post.findUnique({
+      ...select,
       where: args,
       rejectOnNotFound: true,
     });
