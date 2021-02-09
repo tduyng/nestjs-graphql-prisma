@@ -8,13 +8,19 @@ import {
   CategoryWhereUniqueInput,
   FindManyCategoryArgs,
 } from '@common/@generated/category';
+import { GraphQLResolveInfo } from 'graphql';
+import { PrismaSelect } from '@paljs/plugins';
 
 @Injectable()
 export class CategoryService {
   constructor(private prisma: PrismaService) {}
 
-  public async getCategories(args: FindManyCategoryArgs) {
-    return await this.prisma.category.findMany({ ...args });
+  public async getCategories(
+    args: FindManyCategoryArgs,
+    info?: GraphQLResolveInfo,
+  ) {
+    const select = new PrismaSelect(info).value?.select;
+    return await this.prisma.category.findMany({ ...args, select });
   }
 
   public async getPostsOfCategory(categoryId: string): Promise<Post[]> {

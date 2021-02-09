@@ -75,6 +75,22 @@ type CategoryMinAggregate {
   updatedAt: DateTime
 }
 
+input CategoryOrderByInput {
+  createdAt: SortOrder
+  id: SortOrder
+  name: SortOrder
+  slug: SortOrder
+  updatedAt: SortOrder
+}
+
+enum CategoryScalarFieldEnum {
+  createdAt
+  id
+  name
+  slug
+  updatedAt
+}
+
 input CategoryScalarWhereInput {
   AND: [CategoryScalarWhereInput!]
   NOT: [CategoryScalarWhereInput!]
@@ -527,7 +543,7 @@ type Query {
   adminFindFirstUser(cursor: UserWhereUniqueInput, distinct: [UserScalarFieldEnum!], orderBy: [UserOrderByInput!], skip: Int, take: Int, where: UserWhereInput): user!
   adminFindManyUser(cursor: UserWhereUniqueInput, distinct: [UserScalarFieldEnum!], orderBy: [UserOrderByInput!], skip: Int, take: Int, where: UserWhereInput): [user!]!
   adminFindUniqueUser(where: UserWhereUniqueInput!): user!
-  categories: [category!]!
+  categories(cursor: CategoryWhereUniqueInput, distinct: [CategoryScalarFieldEnum!], orderBy: [CategoryOrderByInput!], skip: Int, take: Int, where: CategoryWhereInput): [category!]!
   category(where: CategoryWhereUniqueInput!): category!
   hello(name: String!): String!
   helloWorld: String!

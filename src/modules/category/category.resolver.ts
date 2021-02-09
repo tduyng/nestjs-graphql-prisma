@@ -5,6 +5,7 @@ import {
 import { Post } from '@modules/post/post.model';
 import {
   Args,
+  Info,
   Mutation,
   Parent,
   Query,
@@ -14,6 +15,7 @@ import {
 import { Category } from './category.model';
 import { CategoryService } from './category.service';
 import { CreateCategoryInput, UpdateCategoryInput } from './dto';
+import { GraphQLResolveInfo } from 'graphql';
 
 @Resolver(() => Category)
 export class CategoryResolver {
@@ -22,8 +24,11 @@ export class CategoryResolver {
   /* Query */
   /* istanbul ignore next */
   @Query(() => [Category])
-  public async categories(args: FindManyCategoryArgs) {
-    return await this.categoryService.getCategories(args);
+  public async categories(
+    @Args() args: FindManyCategoryArgs,
+    @Info() info?: GraphQLResolveInfo,
+  ) {
+    return await this.categoryService.getCategories(args, info);
   }
 
   /* istanbul ignore next */
