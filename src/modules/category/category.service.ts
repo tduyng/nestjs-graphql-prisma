@@ -8,27 +8,40 @@ import {
   CategoryWhereUniqueInput,
   FindManyCategoryArgs,
 } from '@common/@generated/category';
+import { GraphQLResolveInfo } from 'graphql';
+import { PrismaSelectService } from '@modules/prisma/prisma-select.service';
 
 @Injectable()
 export class CategoryService {
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private prisma: PrismaService,
+    private prismaSelectService: PrismaSelectService,
+  ) {}
 
-  public async getCategories(args: FindManyCategoryArgs) {
-    return await this.prisma.category.findMany({ ...args });
+  public async getCategories(
+    args: FindManyCategoryArgs,
+    info?: GraphQLResolveInfo,
+  ) {
+    const select = this.prismaSelectService.getValue(info);
+    const options = { ...args, ...select };
+    return await this.prisma.category.findMany(options);
   }
 
   public async getPostsOfCategory(categoryId: string): Promise<Post[]> {
     const category: Category = await this.prisma.category.findUnique({
       where: { id: categoryId },
-      include: {
-        posts: true,
-      },
+      include: { posts: true },
     });
     return category.posts;
   }
 
-  public async getCategoryByUniqueInput(where: CategoryWhereUniqueInput) {
+  public async getCategoryByUniqueInput(
+    where: CategoryWhereUniqueInput,
+    info?: GraphQLResolveInfo,
+  ) {
+    const select = this.prismaSelectService.getValue(info);
     return await this.prisma.category.findUnique({
+      ...select,
       where,
       rejectOnNotFound: true,
     });

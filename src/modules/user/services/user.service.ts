@@ -19,15 +19,58 @@ import {
 } from '@common/@generated/user';
 import { CreateUserInput } from '../dto/create-user.input';
 import { BatchPayload } from '@common/@generated/prisma';
+import { GraphQLResolveInfo } from 'graphql';
+import { PrismaSelectService } from '@modules/prisma/prisma-select.service';
 
 @Injectable()
 export class UserService {
   constructor(
     private prisma: PrismaService,
     private passwordService: PasswordService,
+    private prismaSelectService: PrismaSelectService,
   ) {}
 
   /* Queries */
+  public async getUserByUniqueInput(
+    where: UserWhereUniqueInput,
+    info?: GraphQLResolveInfo,
+  ): Promise<User> {
+    const select = this.prismaSelectService.getValue(info);
+    return await this.prisma.user.findUnique({
+      ...select,
+      where,
+      rejectOnNotFound: true,
+    });
+  }
+
+  public async getUserRandom(): Promise<User> {
+    const [result] = await this.prisma.$queryRaw<User[]>(
+      `SELECT * FROM "User" ORDER BY random() LIMIT 1`,
+    );
+    return result;
+  }
+
+  public async getFirstUser(
+    args: FindFirstUserArgs,
+    info?: GraphQLResolveInfo,
+  ): Promise<User> {
+    const select = this.prismaSelectService.getValue(info);
+    return await this.prisma.user.findFirst({ ...args, ...select });
+  }
+
+  public async getManyUsers(
+    args: FindManyUserArgs,
+    info?: GraphQLResolveInfo,
+  ): Promise<User[]> {
+    const select = this.prismaSelectService.getValue(info);
+    return await this.prisma.user.findMany({ ...args, ...select });
+  }
+
+  public async countManyUsers(args: FindManyUserArgs): Promise<number> {
+    return await this.prisma.user.count({ ...args });
+  }
+
+  // Query relations
   public async getPostsOfUser(userId: string): Promise<Post[]> {
     const user: User = await this.prisma.user.findUnique({
       where: { id: userId },
@@ -45,34 +88,6 @@ export class UserService {
       },
     });
     return user.profile;
-  }
-
-  public async getUserByUniqueInput(
-    where: UserWhereUniqueInput,
-  ): Promise<User> {
-    return await this.prisma.user.findUnique({
-      where,
-      rejectOnNotFound: true,
-    });
-  }
-
-  public async getUserRandom(): Promise<User> {
-    const [result] = await this.prisma.$queryRaw<User[]>(
-      `SELECT * FROM "User" ORDER BY random() LIMIT 1`,
-    );
-    return result;
-  }
-
-  public async getFirstUser(args: FindFirstUserArgs): Promise<User> {
-    return await this.prisma.user.findFirst({ ...args });
-  }
-
-  public async getManyUsers(args: FindManyUserArgs): Promise<User[]> {
-    return await this.prisma.user.findMany({ ...args });
-  }
-
-  public async countManyUsers(args: FindManyUserArgs): Promise<number> {
-    return await this.prisma.user.count({ ...args });
   }
 
   /* Mutations*/

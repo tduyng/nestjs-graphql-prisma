@@ -74,6 +74,7 @@ describe('CategoryResolver', () => {
   describe('categories', () => {
     it('Should return an array of category', async () => {
       categoryService.getCategories.mockReturnValue(arrayCategory);
+
       const result = await categoryResolver.categories({});
       expect(result).toEqual(arrayCategory);
     });
@@ -84,14 +85,6 @@ describe('CategoryResolver', () => {
       categoryService.getCategoryByUniqueInput.mockReturnValue(oneCategory);
       const result = await categoryResolver.category(categoryWhereUniqueInput);
       expect(result).toEqual(oneCategory);
-    });
-  });
-
-  describe('posts', () => {
-    it('Should return an array of post from query', async () => {
-      categoryService.getPostsOfCategory.mockReturnValue(oneCategory.posts);
-      const result = await categoryResolver.posts(oneCategory);
-      expect(result).toEqual(oneCategory.posts);
     });
   });
 

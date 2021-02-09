@@ -1,4 +1,4 @@
-import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Args, Info, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { User } from '@modules/user/user.model';
 import {
   FindFirstUserArgs,
@@ -9,31 +9,41 @@ import {
   UserWhereUniqueInput,
 } from '@common/@generated/user';
 import { Roles } from '../decorators';
-import { UseGuards } from '@nestjs/common';
-import { GqlGuard } from '@modules/auth/guards/gql.guard';
 import { BatchPayload } from '@common/@generated/prisma';
 import { UserService } from '../services/user.service';
+import { GraphQLResolveInfo } from 'graphql';
+// import { UseGuards } from '@nestjs/common';
+// import { GqlGuard } from '@modules/auth/guards/gql.guard';
 
 @Resolver(() => User)
-@UseGuards(GqlGuard)
+// @UseGuards(GqlGuard)
 @Roles('ADMIN')
 export class AdminResolver {
   constructor(private userService: UserService) {}
 
   /* Query for single user*/
   @Query(() => User)
-  public async adminFindUniqueUser(@Args('where') where: UserWhereUniqueInput) {
-    return await this.userService.getUserByUniqueInput(where);
+  public async adminFindUniqueUser(
+    @Args('where') where: UserWhereUniqueInput,
+    @Info() info?: GraphQLResolveInfo,
+  ) {
+    return await this.userService.getUserByUniqueInput(where, info);
   }
 
   @Query(() => User)
-  public async adminFindFirstUser(@Args() args: FindFirstUserArgs) {
-    return await this.userService.getFirstUser(args);
+  public async adminFindFirstUser(
+    @Args() args: FindFirstUserArgs,
+    @Info() info?: GraphQLResolveInfo,
+  ) {
+    return await this.userService.getFirstUser(args, info);
   }
 
   @Query(() => [User])
-  public async adminFindManyUser(@Args() args: FindManyUserArgs) {
-    return await this.userService.getManyUsers(args);
+  public async adminFindManyUser(
+    @Args() args: FindManyUserArgs,
+    @Info() info?: GraphQLResolveInfo,
+  ) {
+    return await this.userService.getManyUsers(args, info);
   }
 
   @Query(() => Int)

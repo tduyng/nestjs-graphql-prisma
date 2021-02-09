@@ -1,17 +1,9 @@
-import {
-  Args,
-  Mutation,
-  Parent,
-  Query,
-  ResolveField,
-  Resolver,
-} from '@nestjs/graphql';
+import { Args, Info, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { Post } from './post.model';
 import { PostService } from './post.service';
 import { CreatePostInput } from './dto/create-post.input';
 import { UpdatePostInput } from './dto/update-post.input';
 import { User } from '@modules/user/user.model';
-import { Prisma } from '@prisma/client';
 import {
   FindManyPostArgs,
   PostWhereUniqueInput,
@@ -19,6 +11,7 @@ import {
 import { CurrentUser } from '@modules/user/decorators';
 import { UseGuards } from '@nestjs/common';
 import { GqlGuard } from '@modules/auth/guards/gql.guard';
+import { GraphQLResolveInfo } from 'graphql';
 
 @Resolver(() => Post)
 export class PostResolver {
@@ -26,20 +19,18 @@ export class PostResolver {
 
   /* Query */
   @Query(() => [Post])
-  public async posts(@Args() args: FindManyPostArgs) {
-    return await this.postService.getPosts(args);
+  public async posts(
+    @Args() args: FindManyPostArgs,
+    @Info() info?: GraphQLResolveInfo,
+  ) {
+    return await this.postService.getPosts(args, info);
   }
   @Query(() => Post)
-  public async post(@Args('where') args: PostWhereUniqueInput) {
-    return await this.postService.getPost(args);
-  }
-
-  @ResolveField(() => User)
-  public async author(@Parent() post: Post) {
-    const where: Prisma.PostWhereUniqueInput = {
-      id: post.id,
-    };
-    return await this.postService.getAuthorOfPost(where);
+  public async post(
+    @Args('where') args: PostWhereUniqueInput,
+    @Info() info?: GraphQLResolveInfo,
+  ) {
+    return await this.postService.getPost(args, info);
   }
 
   /* Mutations */
@@ -66,4 +57,15 @@ export class PostResolver {
   public async deletePost(@Args('where') where: PostWhereUniqueInput) {
     return await this.postService.deletePost(where);
   }
+
+  /**
+   * We don't need provide ResolvedField when use Prisma select
+   */
+  // @ResolveField(() => User)
+  // public async author(@Parent() post: Post) {
+  //   const where: Prisma.PostWhereUniqueInput = {
+  //     id: post.id,
+  //   };
+  //   return await this.postService.getAuthorOfPost(where);
+  // }
 }
