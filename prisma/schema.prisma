@@ -19,7 +19,7 @@ generator nestgraphql {
 }
 
 model User {
-  id        String   @id @default(uuid())
+  id        String   @id @default(cuid())
   email     String   @unique
   password  String
   role      Role     @default(USER)
@@ -30,7 +30,7 @@ model User {
 }
 
 model Profile {
-  id        String   @id @default(uuid())
+  id        String   @id @default(cuid())
   username  String   @unique
   firstName String?
   lastName  String?
@@ -42,7 +42,7 @@ model Profile {
 }
 
 model Post {
-  id         String     @id @default(uuid())
+  id         String     @id @default(cuid())
   title      String
   slug       String     @unique
   content    String
@@ -55,7 +55,7 @@ model Post {
 }
 
 model Category {
-  id        String   @id @default(uuid())
+  id        String   @id @default(cuid())
   name      String
   slug      String   @unique
   createdAt DateTime @default(now())

@@ -19,8 +19,9 @@ export class CategoryService {
     args: FindManyCategoryArgs,
     info?: GraphQLResolveInfo,
   ) {
-    const select = new PrismaSelect(info).value?.select;
-    return await this.prisma.category.findMany({ ...args, select });
+    const select = new PrismaSelect(info).value;
+    const options = { ...args, ...select };
+    return await this.prisma.category.findMany(options);
   }
 
   public async getPostsOfCategory(categoryId: string): Promise<Post[]> {
