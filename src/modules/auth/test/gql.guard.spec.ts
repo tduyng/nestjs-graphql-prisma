@@ -1,5 +1,5 @@
 import { Role } from '@common/@generated/prisma';
-import { IRequestWithUser, IUserFromRequest } from '@modules/user/interfaces';
+import { IRequestWithUser, IUserFromRequest } from '@common/global-interfaces';
 import { ExecutionContext } from '@nestjs/common';
 import { GqlExecutionContext } from '@nestjs/graphql';
 import { Test, TestingModule } from '@nestjs/testing';

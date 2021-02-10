@@ -40,9 +40,7 @@ declare namespace NodeJS {
     // Graphql
     readonly GRAPHQL_PLAYGROUND: string;
 
-    // Cookie
-    readonly COOKIE_SECURE: string;
-    readonly COOKIE_SAMESITE: 'lax' | 'strict' | 'none';
-    readonly COOKIE_DOMAIN: string;
+    // Session
+    readonly SESSION_SECRET: string;
   }
 }

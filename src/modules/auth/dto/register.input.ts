@@ -1,6 +1,6 @@
 import { ProfileCreateOneWithoutUserInput } from '@common/@generated/profile';
 import { Field, InputType } from '@nestjs/graphql';
-import { IsEmail, Validate } from 'class-validator';
+import { IsEmail, IsString, MinLength, Validate } from 'class-validator';
 import { UserExitsValidator } from '@modules/user/decorators';
 
 @InputType()
@@ -15,6 +15,8 @@ export class RegisterInput {
   @Field(() => String, {
     nullable: false,
   })
+  @IsString()
+  @MinLength(3)
   password!: string;
 
   @Field(() => ProfileCreateOneWithoutUserInput, {

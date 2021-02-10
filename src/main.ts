@@ -11,6 +11,10 @@ import { environment } from '@common/environment';
 import { useContainer } from 'class-validator';
 import { AllExceptionsFilter } from '@common/global-exceptions-filter/all-exceptions.filter';
 import { NestExpressApplication } from '@nestjs/platform-express';
+import { sessionConfig } from '@common/configs/session-config';
+import session from 'express-session';
+import Redis from 'ioredis';
+import { ISessionOption } from '@common/environment/environment.interface';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
@@ -35,6 +39,12 @@ async function bootstrap() {
       }),
     );
   }
+
+  // Setup session with redis
+  const redisClient = new Redis();
+  const sessionEnv: ISessionOption = env.session;
+  const sessionOptions = sessionConfig(redisClient, sessionEnv);
+  app.use(session(sessionOptions));
 
   // Validation
   app.useGlobalPipes(

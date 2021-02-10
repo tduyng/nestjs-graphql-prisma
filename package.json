@@ -1,7 +1,7 @@
 {
   "name": "graphql-simple-boilerplate",
   "version": "0.0.1",
-  "description": "Example starter project with NestJS - GraphQL - Prisma",
+  "description": "Boilerplate starter project with NestJS - GraphQL - Prisma",
   "author": "Tien Duy",
   "private": false,
   "license": "MIT",
@@ -14,8 +14,9 @@
     "Starter",
     "Postgres",
     "TypeScript",
-    "nestjs-graphql-boilerplate",
-    "nestjs-graphql-prisma"
+    "nestjs graphql boilerplate",
+    "nestjs graphql prisma",
+    "nestjs template"
   ],
   "scripts": {
     "prebuild": "rimraf dist",

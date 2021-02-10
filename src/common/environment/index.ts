@@ -39,11 +39,8 @@ export const environment = () => {
     },
     expiresInRememberMe: Number(process.env.JWT_EXPIRE_REFRESH_TIME),
 
-    // Cookie
-    cookie: {
-      secure: process.env.COOKIE_SECURE.toLowerCase() === 'true',
-      sameSite: process.env.COOKIE_SECURE as CookieSameSiteType,
-      domain: process.env.COOKIE_DOMAIN,
+    session: {
+      secret: process.env.SESSION_SECRET,
     },
 
     // Email
@@ -55,5 +52,3 @@ export const environment = () => {
     },
   } as IEnvironment;
 };
-
-type CookieSameSiteType = boolean | 'lax' | 'strict' | 'none';

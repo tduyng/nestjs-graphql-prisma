@@ -6,7 +6,7 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { GqlContextType, GqlExecutionContext } from '@nestjs/graphql';
-import { IUserFromRequest } from '../interfaces';
+import { IUserFromRequest } from '@common/global-interfaces';
 
 export const CurrentUser = createParamDecorator(
   (data, context: ExecutionContext) => {
