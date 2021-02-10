@@ -56,6 +56,28 @@ services:
     logging:
       driver: none
 
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"
+    networks:
+      - nestjs_network
+    logging:
+      driver: none
+
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    environment:
+      - REDIS_HOSTS=local:redis:6379
+    ports:
+      - "8081:8081"
+    depends_on:
+        - redis
+    networks:
+      - nestjs_network
+    logging:
+      driver: none
+
 
 volumes:
   postgres_data:
