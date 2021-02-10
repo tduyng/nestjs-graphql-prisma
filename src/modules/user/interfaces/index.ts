@@ -1,2 +1,1 @@
-export { IRequestWithUser } from './request-with-user.interface';
-export { IUserFromRequest } from './user-from-request.interface';
+export { IRequestWithUser, IUserFromRequest } from './user.interface';

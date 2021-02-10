@@ -439,7 +439,7 @@ We  will use these credentials to connect our PgAdmin.
 - [ ] Integration & end to end testing
 - [ ] Integrate with AWS service (S3, RDS)
 - [ ] In-memory caching or caching with Redis ?
-- [ ] Integrate with REST API ?
+- [ ] Integrate with REST API? --> create controllers
 - [ ] Enhanced docker, build images ?
 - [ ] Add Event/Subscribers module ?
 - [ ] ...
