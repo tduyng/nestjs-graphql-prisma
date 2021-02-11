@@ -3,7 +3,13 @@ import { User } from '@modules/user/user.model';
 import { LoginUserInput, RegisterUserInput } from './dto';
 import { AuthService } from './auth.service';
 import { BadRequestException } from '@nestjs/common';
-import { IHttpContext, IPayloadUserJwt } from '@common/global-interfaces';
+import {
+  IHttpContext,
+  IPayloadUserJwt,
+  ISessionAuthToken,
+} from '@common/global-interfaces';
+import { REDIS_AUTH_TOKEN_SESSION } from '@modules/redis/redis.constant';
+// import { RedisService } from '@modules/redis/redis.service';
 
 @Resolver(() => User)
 export class AuthResolver {
@@ -38,16 +44,25 @@ export class AuthResolver {
       email: user.email,
       role: user.role,
     };
-    const authToken = await this.authService.generateAuthTokenFromLogin(
+    const authToken: ISessionAuthToken = await this.authService.generateAuthTokenFromLogin(
       payload,
     );
     // Save token to session (auto save with redis)
     ctx.req.session.authToken = authToken;
     return user;
   }
-  // authPasswordResetRequest
+
+  @Mutation(() => Boolean)
+  public async logout(@Context() ctx: IHttpContext) {
+    try {
+      await ctx.req.session?.destroy();
+      ctx.req.res?.clearCookie(REDIS_AUTH_TOKEN_SESSION);
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
   /* Mutation*/
-  // register
-  // login
+  // authPasswordResetRequest
   // changePassword
 }

@@ -231,6 +231,7 @@ type Mutation {
   deleteCategory(where: CategoryWhereUniqueInput!): category!
   deletePost(where: PostWhereUniqueInput!): post!
   login(data: LoginUserInput!): user!
+  logout: Boolean!
   register(data: RegisterUserInput!): user!
   updateAccount(data: UpdateUserInput!): user!
   updateCategory(data: UpdateCategoryInput!, where: CategoryWhereUniqueInput!): category!

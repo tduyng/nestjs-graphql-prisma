@@ -6,7 +6,7 @@ import { ChangePasswordInput } from '../dto/change-password.input';
 import { CurrentUser } from '../decorators';
 import { UserWhereUniqueInput } from '@common/@generated/user';
 import { GraphQLResolveInfo } from 'graphql';
-import { UseGuards } from '@nestjs/common';
+import { BadRequestException, UseGuards } from '@nestjs/common';
 import { JwtGuard } from '@modules/auth/guards/jwt.guard';
 
 @Resolver(() => User)
@@ -22,10 +22,15 @@ export class UserResolver {
     @CurrentUser() user: User,
     @Info() info?: GraphQLResolveInfo,
   ) {
+    // Re-find user from database for search the  related field too
     const where: UserWhereUniqueInput = {
       id: user.id,
     };
-    return await this.userService.getUserByUniqueInput(where, info);
+    const userFound = await this.userService.getUserByUniqueInput(where, info);
+    if (userFound) {
+      throw new BadRequestException('Unauthorized: user did not authenticated');
+    }
+    return userFound;
   }
 
   /* Mutations */

@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { PassportStrategy } from '@nestjs/passport';
 import { UserService } from '@modules/user/services/user.service';
@@ -11,7 +11,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     super({
       jwtFromRequest: ExtractJwt.fromExtractors([
         (req: any) => {
-          return req?.session?.authToken.accessToken; //get access token from session
+          return req?.session?.authToken?.accessToken; //get access token from session
         },
       ]),
       ignoreExpiration: false,
@@ -23,6 +23,9 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       id: payload.userId,
     };
     const user = await this.userService.getUserByUniqueInput(where);
+    if (!user) {
+      throw new BadRequestException('Unauthorized: use did not authenticated');
+    }
     return user;
   }
 }

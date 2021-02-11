@@ -1,5 +1,7 @@
 import { PrismaModule } from '@modules/prisma/prisma.module';
 import { PrismaService } from '@modules/prisma/prisma.service';
+import { RedisModule } from '@modules/redis/redis.module';
+import { RedisService } from '@modules/redis/redis.service';
 import { UserService } from '@modules/user/services/user.service';
 import { UserModule } from '@modules/user/user.module';
 import { Module } from '@nestjs/common';
@@ -23,6 +25,7 @@ import { LocalStrategy } from './strategies/local.strategy';
     }),
     UserModule,
     PrismaModule,
+    RedisModule,
   ],
   providers: [
     PrismaService,
@@ -31,6 +34,7 @@ import { LocalStrategy } from './strategies/local.strategy';
     JwtStrategy,
     AuthService,
     AuthResolver,
+    RedisService,
   ],
 })
 export class AuthModule {}
