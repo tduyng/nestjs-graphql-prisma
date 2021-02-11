@@ -26,8 +26,6 @@ export class AuthResolver {
   @Mutation(() => User)
   public async register(@Args('data') data: RegisterUserInput) {
     const user = await this.authService.register(data);
-    console.log('----------------------------', ' why not trigger here');
-
     // --> Todo: Send verification
     // If process.env === 'production'
 
@@ -37,12 +35,7 @@ export class AuthResolver {
     }
     return user;
   }
-  @Mutation(() => User)
-  public async registerTest(@Args('data') data: RegisterUserInput) {
-    const user = await this.authService.register(data);
-    console.log('----------------------------', ' why not trigger here');
-    return user;
-  }
+
   // authLogin
   @Mutation(() => User)
   public async login(

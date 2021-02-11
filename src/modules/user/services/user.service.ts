@@ -40,7 +40,6 @@ export class UserService {
     return await this.prisma.user.findUnique({
       ...select,
       where,
-      rejectOnNotFound: true,
     });
   }
 

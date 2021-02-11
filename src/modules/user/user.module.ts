@@ -5,8 +5,11 @@ import { UserService } from './services/user.service';
 import { UserResolver } from './resolvers/user.resolver';
 import { AdminResolver } from './resolvers/admin-user.resolver';
 import { PrismaSelectService } from '@modules/prisma/prisma-select.service';
+import { PrismaModule } from '@modules/prisma/prisma.module';
+import { UserExitsValidator } from './decorators';
 
 @Module({
+  imports: [PrismaModule],
   providers: [
     UserService,
     PasswordService,
@@ -14,6 +17,7 @@ import { PrismaSelectService } from '@modules/prisma/prisma-select.service';
     UserResolver,
     AdminResolver,
     PrismaSelectService,
+    UserExitsValidator,
   ],
   exports: [PasswordService, UserService],
 })

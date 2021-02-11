@@ -20,8 +20,12 @@ export class UserExitsValidator implements ValidatorConstraintInterface {
     const where: UserWhereUniqueInput = {
       email,
     };
-    const result = await this.userService.getUserByUniqueInput(where);
-    return !result;
+    try {
+      const check = await this.userService.getUserByUniqueInput(where);
+      return !check;
+    } catch (error) {
+      return true;
+    }
   }
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   defaultMessage(_args: ValidationArguments) {

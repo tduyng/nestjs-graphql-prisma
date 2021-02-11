@@ -3,6 +3,7 @@ import { PrismaModule } from '@modules/prisma/prisma.module';
 import { PrismaService } from '@modules/prisma/prisma.service';
 import { RedisModule } from '@modules/redis/redis.module';
 import { RedisService } from '@modules/redis/redis.service';
+import { PasswordService } from '@modules/user/services/password.service';
 import { UserService } from '@modules/user/services/user.service';
 import { UserModule } from '@modules/user/user.module';
 import { Module } from '@nestjs/common';
@@ -12,7 +13,6 @@ import { PassportModule } from '@nestjs/passport';
 import { AuthResolver } from './auth.resolver';
 import { AuthService } from './auth.service';
 import { JwtStrategy } from './strategies/jwt.strategy';
-import { LocalStrategy } from './strategies/local.strategy';
 
 @Module({
   imports: [
@@ -31,9 +31,10 @@ import { LocalStrategy } from './strategies/local.strategy';
   providers: [
     PrismaService,
     UserService,
-    LocalStrategy,
     JwtStrategy,
     AuthService,
+    UserService,
+    PasswordService,
     AuthResolver,
     RedisService,
     EmailService,

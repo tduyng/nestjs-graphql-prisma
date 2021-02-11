@@ -37,12 +37,12 @@ export class EmailService {
     const env = environment();
     const context: GeneralContext = {
       siteUrl: env.siteUrl,
-      hiddenPreheaderText: 'Awsome website',
+      hiddenPreheaderText: 'Awesome website',
       header: 'Welcome to our website',
-      subHeading: 'Thanks so much for your registration',
-      body: 'Main body',
-      footerHeader: 'Footer header',
-      footerBody: 'Footer body',
+      subHeading: '',
+      body: 'Thanks so much for your registration',
+      footerHeader: '',
+      footerBody: '',
     };
 
     return this.send({
