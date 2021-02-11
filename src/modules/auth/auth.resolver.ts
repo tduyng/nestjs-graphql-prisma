@@ -1,37 +1,14 @@
-import {
-  Args,
-  Context,
-  Info,
-  Mutation,
-  Resolver,
-  Query,
-} from '@nestjs/graphql';
+import { Args, Context, Mutation, Resolver } from '@nestjs/graphql';
 import { User } from '@modules/user/user.model';
 import { LoginUserInput, RegisterUserInput } from './dto';
 import { AuthService } from './auth.service';
-import { BadRequestException, UseGuards } from '@nestjs/common';
+import { BadRequestException } from '@nestjs/common';
 import { IHttpContext, IPayloadUserJwt } from '@common/global-interfaces';
-import { GraphQLResolveInfo } from 'graphql';
-import { UserService } from '@modules/user/services/user.service';
-import { CurrentUser } from '@modules/user/decorators';
-import { UserWhereUniqueInput } from '@common/@generated/user';
-import { JwtGuard } from './guards/jwt.guard';
 
 @Resolver(() => User)
 export class AuthResolver {
-  constructor(
-    private authService: AuthService,
-    private userService: UserService,
-  ) {}
+  constructor(private authService: AuthService) {}
   /* Queries*/
-  @Query(() => User)
-  @UseGuards(JwtGuard)
-  public async me(@CurrentUser() user: User, @Info() info: GraphQLResolveInfo) {
-    const where: UserWhereUniqueInput = {
-      id: user.id,
-    };
-    return await this.userService.getUserByUniqueInput(where, info);
-  }
 
   /* Mutation*/
   // authRegister

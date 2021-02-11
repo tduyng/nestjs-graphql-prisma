@@ -20,7 +20,6 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   }
   public async validate(payload: IPayloadUserJwt) {
     const where: UserWhereUniqueInput = {
-      email: payload.email,
       id: payload.userId,
     };
     const user = await this.userService.getUserByUniqueInput(where);

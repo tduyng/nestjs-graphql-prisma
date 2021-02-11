@@ -36,6 +36,7 @@ export class UserService {
     info?: GraphQLResolveInfo,
   ): Promise<User> {
     const select = this.prismaSelectService.getValue(info);
+
     return await this.prisma.user.findUnique({
       ...select,
       where,
