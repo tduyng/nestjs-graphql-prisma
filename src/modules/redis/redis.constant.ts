@@ -1,5 +1,4 @@
-export const REDIS_CONFIRM_USER_PREFIX = 'USER_CONFIRMATION:';
-export const REDIS_FORGOT_PASSWORD_PREFIX = 'REQUEST_FORGOT_PASSWORD:';
-export const REDIS_CONFIRM_CHANGE_PASSWORD_PREFIX = 'CONFIRM_CHANGE_PASSWORD:';
-export const REDIS_AUTH_TOKEN_SESSION = 'AUTH_TOKEN_SESSION';
-export const REDIS_CONFIG_OPTS = 'REDIS_CONFIG_OPTS';
+export const REDIS_CONFIRM_USER_PREFIX = 'user_confirmation:';
+export const REDIS_FORGOT_PASSWORD_PREFIX = 'request_forgot_password:';
+export const REDIS_AUTH_TOKEN_SESSION = 'auth_token_session';
+export const REDIS_CONFIG_OPTS = 'redis_config_opts';

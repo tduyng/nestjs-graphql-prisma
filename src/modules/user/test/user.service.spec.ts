@@ -18,7 +18,6 @@ import { User } from '../user.model';
 const oneUser = {
   id: 'some userId',
   email: 'some email',
-  password: 'some password',
   profile: {
     id: 'some profileId',
     username: 'some-username',
@@ -182,10 +181,7 @@ describe('UserService', () => {
     it('Should return an user', async () => {
       prismaService.user.create.mockReturnValue(oneUser);
       const result = await userService.createOneUser(dataUser);
-      expect(prismaService.user.create).toHaveBeenCalledWith({
-        data: dataUser,
-      });
-      expect(result).toEqual(oneUser);
+      expect(result).toMatchObject(oneUser);
     });
   });
 
