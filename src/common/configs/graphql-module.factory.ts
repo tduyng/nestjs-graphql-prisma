@@ -1,20 +1,14 @@
 import { environment } from '@common/environment';
-import { Logger } from '@nestjs/common';
-import {
-  ApolloErrorConverter,
-  extendMapItem,
-  mapItemBases,
-} from 'apollo-error-converter';
+import { GraphQLError, GraphQLFormattedError } from 'graphql';
 
 //---------------------------------------------------------
 /**
  * Custom graphql factory
- * https://github.com/unlight/nestjs-graphql-prisma-realworld-example-app/blob/master/src/app.module.ts
  *
  */
 export const graphqlModuleFactory = async () => {
   const graphqlEnvironmentOptions = environment().graphql;
-  const logger = new Logger();
+  // const logger = new Logger();
   return {
     ...graphqlEnvironmentOptions,
     context: ({ req, connection }) => {
@@ -32,25 +26,23 @@ export const graphqlModuleFactory = async () => {
         };
       }
     },
-    formatError: new ApolloErrorConverter({
-      logger: (err: any) => {
-        logger.error(err);
-      },
-      errorMap: [
-        {
-          NotFoundError: {
-            name: 'ENTITY_NOT_FOUND',
-            message: 'Entity Not Found',
-            logger: true,
+
+    formatError: (error: GraphQLError) => {
+      const graphQLFormattedError: GraphQLFormattedError = {
+        message:
+          error.extensions?.exception?.response?.message || error.message,
+        locations: error.locations,
+        path: error.path,
+        extensions: {
+          code: error.extensions?.code,
+          exception: {
+            name:
+              error.extensions?.exception?.name ||
+              error.extensions?.exception?.type,
           },
-          BadRequestException: extendMapItem(mapItemBases.InvalidFields, {
-            logger: true,
-            data: (err: any) => {
-              return err?.response;
-            },
-          }),
         },
-      ],
-    }),
+      };
+      return graphQLFormattedError;
+    },
   };
 };
