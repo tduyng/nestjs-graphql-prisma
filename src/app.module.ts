@@ -12,6 +12,7 @@ import { PostModule } from '@modules/post/post.module';
 import { graphqlModuleFactory } from '@common/configs/graphql-module.factory';
 import { I18nModule, I18nJsonParser } from 'nestjs-i18n';
 import { i18nModuleFactory } from '@common/configs/i18n-module.factory';
+import { AuthModule } from '@modules/auth/auth.module';
 
 @Global()
 @Module({
@@ -29,6 +30,7 @@ import { i18nModuleFactory } from '@common/configs/i18n-module.factory';
     }),
     PrismaModule,
     UserModule,
+    AuthModule,
     CategoryModule,
     ProfileModule,
     PostModule,

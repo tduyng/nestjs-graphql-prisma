@@ -10,7 +10,7 @@ import {
 } from '@common/@generated/post';
 import { CurrentUser } from '@modules/user/decorators';
 import { UseGuards } from '@nestjs/common';
-import { GqlGuard } from '@modules/auth/guards/gql.guard';
+import { JwtGuard } from '@modules/auth/guards/jwt.guard';
 import { GraphQLResolveInfo } from 'graphql';
 
 @Resolver(() => Post)
@@ -35,7 +35,7 @@ export class PostResolver {
 
   /* Mutations */
   @Mutation(() => Post)
-  @UseGuards(GqlGuard)
+  @UseGuards(JwtGuard)
   public async createPost(
     @Args('data') input: CreatePostInput,
     @CurrentUser() user: User,
@@ -44,7 +44,7 @@ export class PostResolver {
   }
 
   @Mutation(() => Post)
-  @UseGuards(GqlGuard)
+  @UseGuards(JwtGuard)
   public async updatePost(
     @Args('where') where: PostWhereUniqueInput,
     @Args('data') data: UpdatePostInput,
@@ -53,7 +53,7 @@ export class PostResolver {
   }
 
   @Mutation(() => Post)
-  @UseGuards(GqlGuard)
+  @UseGuards(JwtGuard)
   public async deletePost(@Args('where') where: PostWhereUniqueInput) {
     return await this.postService.deletePost(where);
   }

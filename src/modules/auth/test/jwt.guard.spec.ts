@@ -3,7 +3,7 @@ import { IRequestWithUser, IUserFromRequest } from '@common/global-interfaces';
 import { ExecutionContext } from '@nestjs/common';
 import { GqlExecutionContext } from '@nestjs/graphql';
 import { Test, TestingModule } from '@nestjs/testing';
-import { GqlGuard } from '../guards/gql.guard';
+import { JwtGuard } from '../guards/jwt.guard';
 
 const ctx = {
   getClass: jest.fn(),
@@ -23,14 +23,14 @@ const oneReq = {
   user: { role: Role.ADMIN } as IUserFromRequest,
 } as IRequestWithUser;
 
-describe('GqlGuard', () => {
-  let gqlGuard: GqlGuard;
+describe('JwtGuard', () => {
+  let gqlGuard: JwtGuard;
   let gqlExecutionContext;
 
   beforeAll(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
-        GqlGuard,
+        JwtGuard,
         {
           provide: GqlExecutionContext,
           useFactory: mockGqlExecutionContext,
@@ -38,7 +38,7 @@ describe('GqlGuard', () => {
       ],
     }).compile();
 
-    gqlGuard = module.get<GqlGuard>(GqlGuard);
+    gqlGuard = module.get<JwtGuard>(JwtGuard);
     gqlExecutionContext = module.get<GqlExecutionContext>(GqlExecutionContext);
   });
 
@@ -47,7 +47,7 @@ describe('GqlGuard', () => {
     const { PostService } = jest.createMockFromModule(
       '@modules/post/post.service.ts',
     );
-    expect(new GqlGuard(new PostService())).toBeDefined();
+    expect(new JwtGuard(new PostService())).toBeDefined();
   });
 
   it('should be defined', () => {

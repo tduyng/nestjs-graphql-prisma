@@ -12,11 +12,15 @@ export interface IEnvironment {
     secret: string;
   };
   readonly graphql?: GqlModuleOptions;
-  readonly jwtOptions?: JwtModuleOptions;
-  readonly expiresInRememberMe?: number;
+  readonly jwtOptions?: IJwtOptions;
   readonly mail?: Omit<MailerOptions, 'template'>;
 }
 
 export interface ISessionOption {
   secret: string;
+}
+
+export interface IJwtOptions extends JwtModuleOptions {
+  accessTokenExpiresIn: number;
+  refreshTokenExpiresIn: number;
 }

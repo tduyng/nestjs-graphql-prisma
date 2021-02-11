@@ -13,10 +13,10 @@ import { BatchPayload } from '@common/@generated/prisma';
 import { UserService } from '../services/user.service';
 import { GraphQLResolveInfo } from 'graphql';
 // import { UseGuards } from '@nestjs/common';
-// import { GqlGuard } from '@modules/auth/guards/gql.guard';
+// import { JwtGuard } from '@modules/auth/guards/gql.guard';
 
 @Resolver(() => User)
-// @UseGuards(GqlGuard)
+// @UseGuards(JwtGuard)
 @Roles('ADMIN')
 export class AdminResolver {
   constructor(private userService: UserService) {}

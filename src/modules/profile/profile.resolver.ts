@@ -7,11 +7,11 @@ import { UserWhereUniqueInput } from '@common/@generated/user';
 import { CreateProfileInput, UpdateProfileInput } from './dto';
 import { CurrentUser } from '@modules/user/decorators';
 import { UseGuards } from '@nestjs/common';
-import { GqlGuard } from '@modules/auth/guards/gql.guard';
+import { JwtGuard } from '@modules/auth/guards/jwt.guard';
 import { GraphQLResolveInfo } from 'graphql';
 
 @Resolver(() => Profile)
-@UseGuards(GqlGuard)
+@UseGuards(JwtGuard)
 export class ProfileResolver {
   constructor(private profileService: ProfileService) {}
 

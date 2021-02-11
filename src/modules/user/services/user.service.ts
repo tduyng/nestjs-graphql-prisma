@@ -92,8 +92,15 @@ export class UserService {
 
   /* Mutations*/
   public async createOneUser(data: CreateUserInput): Promise<User> {
+    // Validation already checked with @Validate of class-validator
+    const hashedPassword = await this.passwordService.hashPassword(
+      data.password,
+    );
     return await this.prisma.user.create({
-      data,
+      data: {
+        ...data,
+        password: hashedPassword,
+      },
     });
   }
 

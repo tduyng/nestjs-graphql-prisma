@@ -15,6 +15,8 @@ import { sessionConfig } from '@common/configs/session-config';
 import session from 'express-session';
 import Redis from 'ioredis';
 import { ISessionOption } from '@common/environment/environment.interface';
+import passport from 'passport';
+import express from 'express';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
@@ -26,6 +28,7 @@ async function bootstrap() {
 
   app.enableCors();
   app.use(cookieParser());
+  app.use(express.json());
 
   if (env.isProduction) {
     app.enable('trust proxy'); // only if you're behind a reverse proxy (Heroku, Bluemix, AWS ELB, Nginx, etc)
@@ -46,6 +49,10 @@ async function bootstrap() {
   const sessionOptions = sessionConfig(redisClient, sessionEnv);
   app.use(session(sessionOptions));
 
+  // init 'passport' (npm install passport)
+  app.use(passport.initialize());
+  app.use(passport.session());
+
   // Validation
   app.useGlobalPipes(
     new ValidationPipe({
@@ -65,7 +72,7 @@ async function bootstrap() {
   setupSwagger(app);
 
   await app.listen(port, () => {
-    Logger.log(`Server is running at ${siteUrl}`);
+    Logger.log(`Server is running at ${siteUrl}graphql`);
   });
 }
 bootstrap();

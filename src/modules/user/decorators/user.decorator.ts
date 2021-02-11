@@ -5,22 +5,31 @@ import {
   HttpStatus,
   UnauthorizedException,
 } from '@nestjs/common';
-import { GqlContextType, GqlExecutionContext } from '@nestjs/graphql';
+import { GqlExecutionContext } from '@nestjs/graphql';
 import { IUserFromRequest } from '@common/global-interfaces';
 
 export const CurrentUser = createParamDecorator(
   (data, context: ExecutionContext) => {
     let request;
-    if (context.getType() === 'http') {
-      request = context.switchToHttp().getRequest();
-    } else if (context.getType<GqlContextType>() === 'graphql') {
-      request = GqlExecutionContext.create(context).getContext().req;
-    } else if (context.getType() === 'rpc') {
-      throw new HttpException(
-        'Not implemented',
-        HttpStatus.INTERNAL_SERVER_ERROR,
-      );
+    switch (context.getType() as string) {
+      case 'http':
+        request = context.switchToHttp().getRequest();
+        break;
+      case 'graphql':
+        request = GqlExecutionContext.create(context).getContext().req;
+        break;
+      case 'rpc':
+        throw new HttpException(
+          'Not implemented',
+          HttpStatus.INTERNAL_SERVER_ERROR,
+        );
+      default:
+        throw new HttpException(
+          'Not implemented',
+          HttpStatus.INTERNAL_SERVER_ERROR,
+        );
     }
+
     const user = request?.user;
     if (!user) {
       throw new UnauthorizedException('No user found for request');

@@ -4,7 +4,7 @@ import { IsEmail, IsString, MinLength, Validate } from 'class-validator';
 import { UserExitsValidator } from '@modules/user/decorators';
 
 @InputType()
-export class RegisterInput {
+export class RegisterUserInput {
   @Field(() => String, {
     nullable: false,
   })

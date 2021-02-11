@@ -6,7 +6,7 @@ import { GqlExecutionContext } from '@nestjs/graphql';
 import { AuthGuard } from '@nestjs/passport';
 
 @Injectable()
-export class GqlGuard extends AuthGuard('jwt') {
+export class JwtGuard extends AuthGuard('jwt') {
   constructor(private readonly reflector: Reflector) {
     super();
   }

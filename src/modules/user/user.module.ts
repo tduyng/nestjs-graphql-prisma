@@ -15,6 +15,6 @@ import { PrismaSelectService } from '@modules/prisma/prisma-select.service';
     AdminResolver,
     PrismaSelectService,
   ],
-  exports: [PasswordService],
+  exports: [PasswordService, UserService],
 })
 export class UserModule {}

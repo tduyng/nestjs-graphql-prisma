@@ -210,6 +210,11 @@ input EnumRoleFilter {
   notIn: [Role!]
 }
 
+input LoginUserInput {
+  email: String!
+  password: String!
+}
+
 type Mutation {
   adminCreateOneUser(data: UserCreateInput!): user!
   adminDeleteManyUser(where: UserWhereInput!): BatchPayload!
@@ -225,6 +230,8 @@ type Mutation {
   deleteAccount: user!
   deleteCategory(where: CategoryWhereUniqueInput!): category!
   deletePost(where: PostWhereUniqueInput!): post!
+  login(data: LoginUserInput!): user!
+  register(data: RegisterUserInput!): user!
   updateAccount(data: UpdateUserInput!): user!
   updateCategory(data: UpdateCategoryInput!, where: CategoryWhereUniqueInput!): category!
   updatePost(data: UpdatePostInput!, where: PostWhereUniqueInput!): post!
@@ -444,6 +451,12 @@ input ProfileCreateNestedOneWithoutUserInput {
   create: ProfileCreateWithoutUserInput
 }
 
+input ProfileCreateOneWithoutUserInput {
+  connect: ProfileWhereUniqueInput
+  connectOrCreate: ProfileCreateOrConnectWithoutuserInput
+  create: ProfileCreateWithoutUserInput
+}
+
 input ProfileCreateOrConnectWithoutuserInput {
   create: ProfileCreateWithoutUserInput!
   where: ProfileWhereUniqueInput!
@@ -557,6 +570,12 @@ type Query {
 enum QueryMode {
   default
   insensitive
+}
+
+input RegisterUserInput {
+  email: String!
+  password: String!
+  profile: ProfileCreateOneWithoutUserInput
 }
 
 enum Role {

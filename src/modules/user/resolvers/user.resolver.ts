@@ -6,11 +6,11 @@ import { ChangePasswordInput } from '../dto/change-password.input';
 import { CurrentUser } from '../decorators';
 import { UserWhereUniqueInput } from '@common/@generated/user';
 import { GraphQLResolveInfo } from 'graphql';
-// import { UseGuards } from '@nestjs/common';
-// import { GqlGuard } from '@modules/auth/guards/gql.guard';
+import { UseGuards } from '@nestjs/common';
+import { JwtGuard } from '@modules/auth/guards/jwt.guard';
 
 @Resolver(() => User)
-// @UseGuards(GqlGuard)
+@UseGuards(JwtGuard)
 export class UserResolver {
   constructor(private userService: UserService) {}
 

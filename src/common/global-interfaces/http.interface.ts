@@ -1,15 +1,15 @@
-import { Response } from 'express';
 import { Role } from '@common/@generated/prisma';
+import { Request, Response } from 'express';
 
 export interface IHttpContext {
   req?: IRequestWithUser;
   res?: Response;
 }
 
-export interface IRequestWithUser {
+export interface IRequestWithUser extends Request {
   user?: IUserFromRequest;
   res?: Response;
-  session: any;
+  session?: any;
 }
 
 export interface IUserFromRequest {
@@ -18,9 +18,13 @@ export interface IUserFromRequest {
   role: Role;
 }
 
-export interface ISessionToken {
+export interface ISessionAuthToken {
   accessToken: string;
   refreshToken: string;
-  accessTokenExpiresAt: number;
-  refreshTokenExpiresAt: number;
+}
+
+export interface IPayloadUserJwt {
+  userId: string;
+  email: string;
+  role?: string;
 }
