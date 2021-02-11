@@ -1,4 +1,4 @@
-import { MailerOptions } from '@nest-modules/mailer';
+import { MailerOptions } from '@nestjs-modules/mailer';
 import { GqlModuleOptions } from '@nestjs/graphql';
 import { JwtModuleOptions } from '@nestjs/jwt';
 import {} from 'express-session';

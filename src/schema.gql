@@ -235,6 +235,7 @@ type Mutation {
   login(data: LoginUserInput!): user!
   logout: Boolean!
   register(data: RegisterUserInput!): user!
+  registerTest(data: RegisterUserInput!): user!
   updateAccount(data: UpdateUserInput!): user!
   updateCategory(data: UpdateCategoryInput!, where: CategoryWhereUniqueInput!): category!
   updatePost(data: UpdatePostInput!, where: PostWhereUniqueInput!): post!

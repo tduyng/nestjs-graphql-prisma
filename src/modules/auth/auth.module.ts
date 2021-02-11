@@ -1,3 +1,4 @@
+import { EmailService } from '@modules/email/email.service';
 import { PrismaModule } from '@modules/prisma/prisma.module';
 import { PrismaService } from '@modules/prisma/prisma.service';
 import { RedisModule } from '@modules/redis/redis.module';
@@ -35,6 +36,7 @@ import { LocalStrategy } from './strategies/local.strategy';
     AuthService,
     AuthResolver,
     RedisService,
+    EmailService,
   ],
 })
 export class AuthModule {}

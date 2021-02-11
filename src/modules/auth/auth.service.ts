@@ -39,6 +39,9 @@ export class AuthService {
 
   public async register(data: RegisterUserInput) {
     const user = await this.userService.createOneUser(data);
+    console.log(
+      'why dont trigger here authService.register---------------------',
+    );
     return user;
   }
 

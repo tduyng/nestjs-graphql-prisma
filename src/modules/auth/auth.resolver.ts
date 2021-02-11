@@ -2,7 +2,7 @@ import { Args, Context, Mutation, Resolver } from '@nestjs/graphql';
 import { User } from '@modules/user/user.model';
 import { LoginUserInput, RegisterUserInput } from './dto';
 import { AuthService } from './auth.service';
-import { BadRequestException } from '@nestjs/common';
+import { BadRequestException, UseGuards } from '@nestjs/common';
 import {
   IHttpContext,
   IPayloadUserJwt,
@@ -10,11 +10,15 @@ import {
 } from '@common/global-interfaces';
 import { REDIS_AUTH_TOKEN_SESSION } from '@modules/redis/redis.constant';
 import { ChangePasswordInput } from '@modules/user/dto';
-// import { RedisService } from '@modules/redis/redis.service';
+import { EmailService } from '@modules/email/email.service';
+import { JwtGuard } from './guards';
 
 @Resolver(() => User)
 export class AuthResolver {
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private emailService: EmailService,
+  ) {}
   /* Queries*/
 
   /* Mutation*/
@@ -22,9 +26,21 @@ export class AuthResolver {
   @Mutation(() => User)
   public async register(@Args('data') data: RegisterUserInput) {
     const user = await this.authService.register(data);
+    console.log('----------------------------', ' why not trigger here');
 
-    // Todo: Send verification
+    // --> Todo: Send verification
+    // If process.env === 'production'
 
+    // Test send welcome after registration
+    if (user) {
+      await this.emailService.sendWelcome(user.email);
+    }
+    return user;
+  }
+  @Mutation(() => User)
+  public async registerTest(@Args('data') data: RegisterUserInput) {
+    const user = await this.authService.register(data);
+    console.log('----------------------------', ' why not trigger here');
     return user;
   }
   // authLogin
@@ -52,6 +68,7 @@ export class AuthResolver {
   }
 
   @Mutation(() => Boolean)
+  @UseGuards(JwtGuard)
   public async logout(@Context() ctx: IHttpContext) {
     try {
       await ctx.req.session?.destroy();
@@ -68,6 +85,10 @@ export class AuthResolver {
   @Mutation(() => String)
   public async forgotPassword(@Args('email') email: string): Promise<string> {
     const token = await this.authService.requestForgotPassword(email);
+
+    // --> Todo: send mail --> need check on production
+    this.emailService.sendPasswordReset(email, token);
+
     return token;
   }
 

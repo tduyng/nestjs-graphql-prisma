@@ -14,6 +14,7 @@ import { I18nModule, I18nJsonParser } from 'nestjs-i18n';
 import { i18nModuleFactory } from '@common/configs/i18n-module.factory';
 import { AuthModule } from '@modules/auth/auth.module';
 import { RedisModule } from '@modules/redis/redis.module';
+import { EmailModule } from '@modules/email/email.module';
 
 @Global()
 @Module({
@@ -36,6 +37,7 @@ import { RedisModule } from '@modules/redis/redis.module';
     ProfileModule,
     PostModule,
     RedisModule,
+    EmailModule,
   ],
   providers: [AppResolver, AppService],
   controllers: [AppController],
