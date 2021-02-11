@@ -22,8 +22,7 @@ Example backend <a href="https://nestjs.com/">NestJS</a> - <a href="https://grap
 <p></p>
 
 
-<a href="https://www.travis-ci.com/tienduy-nguyen/nestjs-graphql-prisma.svg?branch=master" target="_blank"><img src="https://www.travis-ci.com/tienduy-nguyen/nestjs-graphql-prisma.svg?branch=master" alt="CircleCI" /></a>
-<a href='https://coveralls.io/gitlab/tienduy-nguyen/nestjs-graphql-prisma?branch=master'><img src='https://coveralls.io/repos/gitlab/tienduy-nguyen/nestjs-graphql-prisma/badge.svg?branch=master' alt='Coverage Status' /></a> <a href='https://coveralls.io/gitlab/tienduy-nguyen/nestjs-graphql-prisma?branch=master'><img src="https://img.shields.io/badge/Licence-MIT-green" alt="License"/></a>
+<a href="https://travis-ci.com/tienduy-nguyen/nestjs-graphql-prisma.svg?branch=master" target="_blank"><img src="https://travis-ci.com/tienduy-nguyen/nestjs-graphql-prisma.svg?branch=master" alt="CircleCI" /> <a href='https://coveralls.io/github/tienduy-nguyen/nestjs-graphql-prisma?branch=master'><img src='https://coveralls.io/repos/github/tienduy-nguyen/nestjs-graphql-prisma/badge.svg?branch=master' alt='Coverage Status' /></a> <a href='https://coveralls.io/gitlab/tienduy-nguyen/nestjs-graphql-prisma?branch=master'><img src="https://img.shields.io/badge/Licence-MIT-green" alt="License"/></a>
 
 
 
