@@ -7,10 +7,10 @@ jobs:
       name: node/default
     steps:
       - checkout
-      - run: npm install
-      - run: npm run prisma generate
-      - run: npm run build
-      - run: npm run test
+      - run: yarn install
+      - run: yarn prisma generate
+      - run: yarn build
+      - run: yarn test
 
 workflows:
   build-and-test:
