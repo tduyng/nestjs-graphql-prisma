@@ -1,21 +1,14 @@
-import { Injectable, Inject, OnApplicationShutdown } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import Redis from 'ioredis';
-import { REDIS_CONFIG_OPTS } from './redis.constant';
 
 @Injectable()
-export class RedisService implements OnApplicationShutdown {
+export class RedisService {
   private _redisClient: any;
-  constructor(@Inject(REDIS_CONFIG_OPTS) private redisOptions?: any) {
-    this._redisClient = new Redis(this.redisOptions);
+  constructor() {
+    this._redisClient = new Redis();
   }
-
   get client() {
     return this._redisClient;
-  }
-
-  onApplicationShutdown(_signal: string) {
-    this._redisClient.disconnect();
-    console.log('Redis Service disconnected');
   }
 }
 
