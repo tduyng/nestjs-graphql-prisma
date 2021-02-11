@@ -167,6 +167,7 @@ input CategoryWhereUniqueInput {
 input ChangePasswordInput {
   newPassword: String!
   oldPassword: String!
+  token: String!
 }
 
 input CreateCategoryInput {
@@ -230,6 +231,7 @@ type Mutation {
   deleteAccount: user!
   deleteCategory(where: CategoryWhereUniqueInput!): category!
   deletePost(where: PostWhereUniqueInput!): post!
+  forgotPassword(email: String!): String!
   login(data: LoginUserInput!): user!
   logout: Boolean!
   register(data: RegisterUserInput!): user!
@@ -623,6 +625,7 @@ input UpdateProfileInput {
 
 input UpdateUserInput {
   email: String
+  password: String
   profile: ProfileUpdateOneWithoutUserInput
 }
 

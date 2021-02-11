@@ -9,6 +9,7 @@ import {
   ISessionAuthToken,
 } from '@common/global-interfaces';
 import { REDIS_AUTH_TOKEN_SESSION } from '@modules/redis/redis.constant';
+import { ChangePasswordInput } from '@modules/user/dto';
 // import { RedisService } from '@modules/redis/redis.service';
 
 @Resolver(() => User)
@@ -41,8 +42,6 @@ export class AuthResolver {
 
     const payload: IPayloadUserJwt = {
       userId: user.id,
-      email: user.email,
-      role: user.role,
     };
     const authToken: ISessionAuthToken = await this.authService.generateAuthTokenFromLogin(
       payload,
@@ -62,7 +61,29 @@ export class AuthResolver {
       return false;
     }
   }
-  /* Mutation*/
-  // authPasswordResetRequest
+
+  /**
+   * Request forgot password
+   */
+  @Mutation(() => String)
+  public async forgotPassword(@Args('email') email: string): Promise<string> {
+    const token = await this.authService.requestForgotPassword(email);
+    return token;
+  }
+
   // changePassword
+  @Mutation(() => User)
+  public async changePassword(
+    @Args('data') data: ChangePasswordInput,
+    @Context() ctx: IHttpContext,
+  ) {
+    const user = await this.authService.changePassword(data);
+    const payload: IPayloadUserJwt = {
+      userId: user.id,
+    };
+    const authToken = this.authService.generateAuthTokenFromLogin(payload);
+    // Login auto after change password
+    ctx.req.session.authToken = authToken;
+    return user;
+  }
 }

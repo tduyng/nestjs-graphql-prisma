@@ -69,7 +69,8 @@ Features of project:
 - GraphQL with [apollo-server-express](https://github.com/apollographql/apollo-server), solution [code first](https://docs.nestjs.com/graphql/quick-start#code-first) and using [GraphQL play ground](https://github.com/graphql/graphql-playground)
 - Using [PostgreQL](https://github.com/brianc/node-postgres) for database and [Prisma 2](https://github.com/prisma/prisma) as ORM
 - CRUD operations, database relationship, pagination
-- [NestJS Authentication](https://docs.nestjs.com/security/authentication) with [Passport](https://github.com/jaredhanson/passport), [JWT](http://www.passportjs.org/packages/passport-jwt/), [Bcrypt](https://github.com/kelektiv/node.bcrypt.js/) encrypted password and refresh token JWT
+- [NestJS Authentication](https://docs.nestjs.com/security/authentication) with  [JWT](http://www.passportjs.org/packages/passport-jwt/), [Redis](https://github.com/luin/ioredis) and [session](https://github.com/expressjs/session)
+- Refresh token solution
 - Role base system: Admin & User
 - Database seeding
 - Multi-languages with I18n
@@ -438,7 +439,7 @@ We  will use these credentials to connect our PgAdmin.
 - [ ] Mailer service
 - [ ] Integration & end to end testing
 - [ ] Integrate with AWS service (S3, RDS)
-- [ ] In-memory caching or caching with Redis ?
+- [ ] Update In-memory caching or caching with Redis ?
 - [ ] Integrate with REST API? --> create controllers
 - [ ] Enhanced docker, build images ?
 - [ ] Add Event/Subscribers module ?

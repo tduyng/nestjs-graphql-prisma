@@ -27,8 +27,10 @@ export class UserResolver {
       id: user.id,
     };
     const userFound = await this.userService.getUserByUniqueInput(where, info);
-    if (userFound) {
-      throw new BadRequestException('Unauthorized: user did not authenticated');
+    if (!userFound) {
+      throw new BadRequestException(
+        'Unauthorized: user did not authenticated!',
+      );
     }
     return userFound;
   }

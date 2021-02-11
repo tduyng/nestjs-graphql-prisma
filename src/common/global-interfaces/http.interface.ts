@@ -25,6 +25,5 @@ export interface ISessionAuthToken {
 
 export interface IPayloadUserJwt {
   userId: string;
-  email: string;
-  role?: string;
+  email?: string;
 }

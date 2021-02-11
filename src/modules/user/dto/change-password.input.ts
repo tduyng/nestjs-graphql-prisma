@@ -12,4 +12,8 @@ export class ChangePasswordInput {
   @IsNotEmpty()
   @MinLength(3)
   newPassword: string;
+
+  @Field()
+  @IsNotEmpty()
+  token: string;
 }
