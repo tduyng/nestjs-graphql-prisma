@@ -11,10 +11,8 @@ import {
   BadRequestException,
   Injectable,
   NotFoundException,
-  UnauthorizedException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import bcrypt from 'bcrypt';
 import { RegisterUserInput } from './dto';
 @Injectable()
 export class AuthService {
@@ -30,9 +28,15 @@ export class AuthService {
       email: email,
     };
     const user = await this.userService.getUserByUniqueInput(where);
-    const isMatchedPassword = await bcrypt.compare(password, user?.password);
-    if (!user || !isMatchedPassword) {
-      throw new UnauthorizedException('Invalid credentials');
+    if (!user) {
+      throw new BadRequestException('Invalid credentials');
+    }
+    const isMatchedPassword = await this.passwordService.validatePassword(
+      password,
+      user.password,
+    );
+    if (!isMatchedPassword) {
+      throw new BadRequestException('Invalid credentials');
     }
     return user;
   }
@@ -56,6 +60,30 @@ export class AuthService {
       }),
     };
     return sessionAuthToken;
+  }
+
+  public async resetCurrentHashesRefreshToken(
+    where: UserWhereUniqueInput,
+    refreshToken: string,
+  ) {
+    const currentHashedRefreshToken = await this.passwordService.hashPassword(
+      refreshToken,
+    );
+
+    const user = await this.userService.updateOneUser(where, {
+      currentHashedRefreshToken,
+    });
+    return user;
+  }
+
+  public async resetAccessToken(payload: IPayloadUserJwt) {
+    const envJwt = environment().jwtOptions;
+    const accessTokenExpiresIn = envJwt.accessTokenExpiresIn;
+
+    const accessToken = await this.jwtService.signAsync(payload, {
+      expiresIn: accessTokenExpiresIn,
+    });
+    return accessToken;
   }
 
   public async requestForgotPassword(email: string): Promise<string> {

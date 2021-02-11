@@ -33,6 +33,11 @@ export class UserCountAggregate {
   updatedAt?: number;
 
   @Field(() => Int, {
+    nullable: true,
+  })
+  currentHashedRefreshToken?: number;
+
+  @Field(() => Int, {
     nullable: false,
   })
   _all!: number;

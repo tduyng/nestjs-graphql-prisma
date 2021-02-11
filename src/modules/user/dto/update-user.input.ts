@@ -1,6 +1,6 @@
 import { ProfileUpdateOneWithoutUserInput } from '@common/@generated/profile';
 import { InputType, Field } from '@nestjs/graphql';
-import { IsEmail, IsOptional, MinLength } from 'class-validator';
+import { IsEmail, IsOptional, IsString, MinLength } from 'class-validator';
 
 @InputType()
 export class UpdateUserInput {
@@ -18,4 +18,9 @@ export class UpdateUserInput {
     nullable: true,
   })
   profile?: ProfileUpdateOneWithoutUserInput;
+
+  @Field(() => String, { nullable: true })
+  @IsOptional()
+  @IsString()
+  currentHashedRefreshToken?: string;
 }

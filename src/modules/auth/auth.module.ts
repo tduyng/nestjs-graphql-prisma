@@ -12,6 +12,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { AuthResolver } from './auth.resolver';
 import { AuthService } from './auth.service';
+import { JwtRefreshTokenStrategy } from './strategies/jwt-refresh-token.strategy';
 import { JwtStrategy } from './strategies/jwt.strategy';
 
 @Module({
@@ -32,6 +33,7 @@ import { JwtStrategy } from './strategies/jwt.strategy';
     PrismaService,
     UserService,
     JwtStrategy,
+    JwtRefreshTokenStrategy,
     AuthService,
     UserService,
     PasswordService,

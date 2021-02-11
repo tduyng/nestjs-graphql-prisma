@@ -436,12 +436,12 @@ We  will use these credentials to connect our PgAdmin.
 - [x] Update Auth
 - [x] Multi-language with i18n options
 - [x] Solve N+1 problem graphql (using @paljs/plugin) (make sure use prisma @id as @cuid(), not @uuid()). @uuid() does not work when we query with Prisma select with join table
-- [ ] Mailer service
-- [ ] Integration & end to end testing
+- [x] Mailer service
 - [ ] Integrate with AWS service (S3, RDS)
 - [ ] Update In-memory caching or caching with Redis ?
-- [ ] Integrate with REST API? --> create controllers
+- [ ] Integration & end to end testing
 - [ ] Enhanced docker, build images ?
 - [ ] Add Event/Subscribers module ?
+- [ ] Integrate with REST API ? --> create controllers
 - [ ] ...
 ## Thanks

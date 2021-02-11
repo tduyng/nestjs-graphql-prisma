@@ -9,6 +9,7 @@ CREATE TABLE "User" (
     "role" "Role" NOT NULL DEFAULT E'USER',
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
+    "currentHashedRefreshToken" TEXT,
 
     PRIMARY KEY ("id")
 );

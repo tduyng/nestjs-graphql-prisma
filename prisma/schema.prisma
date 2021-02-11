@@ -19,14 +19,15 @@ generator nestgraphql {
 }
 
 model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  password  String
-  role      Role     @default(USER)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  posts     Post[]
-  profile   Profile?
+  id                        String   @id @default(cuid())
+  email                     String   @unique
+  password                  String
+  role                      Role     @default(USER)
+  createdAt                 DateTime @default(now())
+  updatedAt                 DateTime @updatedAt
+  posts                     Post[]
+  profile                   Profile?
+  currentHashedRefreshToken String?
 }
 
 model Profile {

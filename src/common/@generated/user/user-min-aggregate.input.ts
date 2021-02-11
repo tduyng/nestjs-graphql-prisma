@@ -31,4 +31,9 @@ export class UserMinAggregateInput {
     nullable: true,
   })
   updatedAt?: true;
+
+  @Field(() => Boolean, {
+    nullable: true,
+  })
+  currentHashedRefreshToken?: true;
 }

@@ -34,6 +34,11 @@ export class UserUncheckedUpdateWithoutPostsInput {
   })
   updatedAt?: Date | string;
 
+  @Field(() => String, {
+    nullable: true,
+  })
+  currentHashedRefreshToken?: string;
+
   @Field(() => ProfileUncheckedUpdateOneWithoutUserInput, {
     nullable: true,
   })

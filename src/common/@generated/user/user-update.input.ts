@@ -35,6 +35,11 @@ export class UserUpdateInput {
   })
   updatedAt?: Date | string;
 
+  @Field(() => String, {
+    nullable: true,
+  })
+  currentHashedRefreshToken?: string;
+
   @Field(() => PostUpdateManyWithoutAuthorInput, {
     nullable: true,
   })
