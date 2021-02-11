@@ -45,7 +45,7 @@ describe('PostResolver', () => {
     getPosts: jest.fn(),
     getPost: jest.fn(),
     getPostByUser: jest.fn(),
-    getUserOfPost: jest.fn(),
+    getAuthorOfPost: jest.fn(),
     createPost: jest.fn(),
     updatePost: jest.fn(),
     deletePost: jest.fn(),
@@ -83,14 +83,6 @@ describe('PostResolver', () => {
       postService.getPost.mockReturnValue(onePost);
       const result = await postResolver.post(postWhereUniqueInput);
       expect(result).toEqual(onePost);
-    });
-  });
-
-  describe('user', () => {
-    it('Should return an user', async () => {
-      postService.getUserOfPost.mockReturnValue(onePost.author);
-      const result = await postResolver.user(onePost);
-      expect(result).toEqual(onePost.author);
     });
   });
 

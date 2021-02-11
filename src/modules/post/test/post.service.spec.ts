@@ -6,6 +6,7 @@ import { CreatePostInput } from '../dto';
 import { Post, PostWhereUniqueInput } from '@common/@generated/post';
 import { CategoryService } from '@modules/category/category.service';
 import { Category } from '@modules/category/category.model';
+import { PrismaSelectService } from '@modules/prisma/prisma-select.service';
 
 const oneUser = {
   id: 'some userId',
@@ -74,6 +75,12 @@ describe('PostService', () => {
           provide: PrismaService,
           useFactory: mockPrismaService,
         },
+        {
+          provide: PrismaSelectService,
+          useValue: {
+            getValue: jest.fn().mockReturnValue({}),
+          },
+        },
       ],
     }).compile();
 
@@ -102,10 +109,10 @@ describe('PostService', () => {
     });
   });
 
-  describe('getUserOfPost', () => {
+  describe('getAuthorOfPost', () => {
     it('Should return an post', async () => {
       prismaService.post.findUnique.mockReturnValue(onePost);
-      const result = await postService.getUserOfPost(postWhereUniqueInput);
+      const result = await postService.getAuthorOfPost(postWhereUniqueInput);
       expect(result).toEqual(onePost.author);
     });
   });

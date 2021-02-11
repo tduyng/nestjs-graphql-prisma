@@ -11,6 +11,7 @@ Table User {
   updatedAt DateTime [not null]
   posts Post
   profile Profile
+  currentHashedRefreshToken String
 }
 
 Table Profile {

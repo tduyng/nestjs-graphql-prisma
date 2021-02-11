@@ -34,6 +34,11 @@ export class UserCreateWithoutPostsInput {
   })
   updatedAt?: Date | string;
 
+  @Field(() => String, {
+    nullable: true,
+  })
+  currentHashedRefreshToken?: string;
+
   @Field(() => ProfileCreateNestedOneWithoutUserInput, {
     nullable: true,
   })

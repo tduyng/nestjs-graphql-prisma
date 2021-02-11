@@ -45,4 +45,9 @@ export class User {
     nullable: true,
   })
   profile?: Profile;
+
+  @Field(() => String, {
+    nullable: true,
+  })
+  currentHashedRefreshToken?: string;
 }

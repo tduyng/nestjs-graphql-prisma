@@ -4,8 +4,8 @@ import { Profile } from '../profile.model';
 import { ProfileService } from '../profile.service';
 import { User } from '@modules/user/user.model';
 import { ProfileWhereUniqueInput } from '@common/@generated/profile';
-import { UserWhereUniqueInput } from '@common/@generated/user';
 import { CreateProfileInput } from '../dto';
+import { PrismaSelectService } from '@modules/prisma/prisma-select.service';
 
 const oneProfile = {
   id: 'some profileId',
@@ -33,10 +33,6 @@ const profileWhereUniqueInput = {
   id: 'some profileId',
 } as ProfileWhereUniqueInput;
 
-const userWhereUniqueInput = {
-  id: 'some userId',
-} as UserWhereUniqueInput;
-
 describe('ProfileService', () => {
   let profileService: ProfileService;
   let prismaService;
@@ -59,6 +55,12 @@ describe('ProfileService', () => {
           provide: PrismaService,
           useFactory: mockPrismaService,
         },
+        {
+          provide: PrismaSelectService,
+          useValue: {
+            getValue: jest.fn().mockReturnValue({}),
+          },
+        },
       ],
     }).compile();
 
@@ -74,16 +76,6 @@ describe('ProfileService', () => {
     it('Should return an profile', async () => {
       prismaService.profile.findUnique.mockReturnValue(oneProfile);
       const result = await profileService.getProfile(profileWhereUniqueInput);
-      expect(result).toEqual(oneProfile);
-    });
-  });
-
-  describe('getProfileByUser', () => {
-    it('Should return an profile', async () => {
-      prismaService.profile.findMany.mockReturnValue([oneProfile]);
-      const result = await profileService.getProfileByUser(
-        userWhereUniqueInput,
-      );
       expect(result).toEqual(oneProfile);
     });
   });

@@ -11,29 +11,43 @@ import {
   FindManyPostArgs,
   PostWhereUniqueInput,
 } from '@common/@generated/post';
+import { GraphQLResolveInfo } from 'graphql';
+import { PrismaSelectService } from '@modules/prisma/prisma-select.service';
 
 @Injectable()
 export class PostService {
   constructor(
     private prisma: PrismaService,
     private categoryService: CategoryService,
+    private prismaSelectService: PrismaSelectService,
   ) {}
 
-  public async getPosts(args: FindManyPostArgs) {
+  public async getPosts(args: FindManyPostArgs, info?: GraphQLResolveInfo) {
+    // Prisma Select to solve N+1 graphql problem
+    const select = this.prismaSelectService.getValue(info);
     return await this.prisma.post.findMany({
-      include: { author: true },
       ...args,
+      ...select,
     });
   }
 
-  public async getPost(where: PostWhereUniqueInput) {
+  public async getPost(args: PostWhereUniqueInput, info?: GraphQLResolveInfo) {
+    const select = this.prismaSelectService.getValue(info);
     return await this.prisma.post.findUnique({
+      ...select,
+      where: args,
+      rejectOnNotFound: true,
+    });
+  }
+  public async getPostWithAuthor(where: PostWhereUniqueInput) {
+    return await this.prisma.post.findUnique({
+      include: { author: true },
       where,
       rejectOnNotFound: true,
     });
   }
 
-  public async getUserOfPost(where: PostWhereUniqueInput): Promise<User> {
+  public async getAuthorOfPost(where: PostWhereUniqueInput): Promise<User> {
     const post: Post = await this.prisma.post.findUnique({
       where,
       include: {

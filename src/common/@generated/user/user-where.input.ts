@@ -61,4 +61,9 @@ export class UserWhereInput {
     nullable: true,
   })
   profile?: ProfileWhereInput;
+
+  @Field(() => StringFilter, {
+    nullable: true,
+  })
+  currentHashedRefreshToken?: StringFilter;
 }

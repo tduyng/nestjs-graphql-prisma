@@ -35,5 +35,10 @@ export class UserCountAggregateInput {
   @Field(() => Boolean, {
     nullable: true,
   })
+  currentHashedRefreshToken?: true;
+
+  @Field(() => Boolean, {
+    nullable: true,
+  })
   _all?: true;
 }

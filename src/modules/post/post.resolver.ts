@@ -1,24 +1,17 @@
-import {
-  Args,
-  Mutation,
-  Parent,
-  Query,
-  ResolveField,
-  Resolver,
-} from '@nestjs/graphql';
+import { Args, Info, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { Post } from './post.model';
 import { PostService } from './post.service';
 import { CreatePostInput } from './dto/create-post.input';
 import { UpdatePostInput } from './dto/update-post.input';
 import { User } from '@modules/user/user.model';
-import { Prisma } from '@prisma/client';
 import {
   FindManyPostArgs,
   PostWhereUniqueInput,
 } from '@common/@generated/post';
-import { GqlUser } from '@modules/user/decorators';
+import { CurrentUser } from '@modules/user/decorators';
 import { UseGuards } from '@nestjs/common';
-import { GqlGuard } from '@modules/auth/guards/gql.guard';
+import { JwtGuard } from '@modules/auth/guards/jwt.guard';
+import { GraphQLResolveInfo } from 'graphql';
 
 @Resolver(() => Post)
 export class PostResolver {
@@ -26,34 +19,32 @@ export class PostResolver {
 
   /* Query */
   @Query(() => [Post])
-  public async posts(@Args() args: FindManyPostArgs) {
-    return await this.postService.getPosts(args);
+  public async posts(
+    @Args() args: FindManyPostArgs,
+    @Info() info?: GraphQLResolveInfo,
+  ) {
+    return await this.postService.getPosts(args, info);
   }
   @Query(() => Post)
-  public async post(@Args('where') where: PostWhereUniqueInput) {
-    return await this.postService.getPost(where);
-  }
-
-  @ResolveField(() => User)
-  public async user(@Parent() post: Post) {
-    const where: Prisma.PostWhereUniqueInput = {
-      id: post.id,
-    };
-    return await this.postService.getUserOfPost(where);
+  public async post(
+    @Args('where') args: PostWhereUniqueInput,
+    @Info() info?: GraphQLResolveInfo,
+  ) {
+    return await this.postService.getPost(args, info);
   }
 
   /* Mutations */
   @Mutation(() => Post)
-  @UseGuards(GqlGuard)
+  @UseGuards(JwtGuard)
   public async createPost(
     @Args('data') input: CreatePostInput,
-    @GqlUser() user: User,
+    @CurrentUser() user: User,
   ) {
     return await this.postService.createPost(input, user);
   }
 
   @Mutation(() => Post)
-  @UseGuards(GqlGuard)
+  @UseGuards(JwtGuard)
   public async updatePost(
     @Args('where') where: PostWhereUniqueInput,
     @Args('data') data: UpdatePostInput,
@@ -62,8 +53,19 @@ export class PostResolver {
   }
 
   @Mutation(() => Post)
-  @UseGuards(GqlGuard)
+  @UseGuards(JwtGuard)
   public async deletePost(@Args('where') where: PostWhereUniqueInput) {
     return await this.postService.deletePost(where);
   }
+
+  /**
+   * We don't need provide ResolvedField when use Prisma select
+   */
+  // @ResolveField(() => User)
+  // public async author(@Parent() post: Post) {
+  //   const where: Prisma.PostWhereUniqueInput = {
+  //     id: post.id,
+  //   };
+  //   return await this.postService.getAuthorOfPost(where);
+  // }
 }

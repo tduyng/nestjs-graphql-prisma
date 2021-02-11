@@ -35,6 +35,11 @@ export class UserUncheckedCreateInput {
   })
   updatedAt?: Date | string;
 
+  @Field(() => String, {
+    nullable: true,
+  })
+  currentHashedRefreshToken?: string;
+
   @Field(() => PostUncheckedCreateNestedManyWithoutAuthorInput, {
     nullable: true,
   })

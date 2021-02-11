@@ -38,4 +38,9 @@ export class UserOrderByInput {
     nullable: true,
   })
   profile?: ProfileOrderByInput;
+
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  currentHashedRefreshToken?: SortOrder;
 }

@@ -1,8 +1,14 @@
 # NestJS - GraphQL - Prisma
 
+
 <div align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
+<a href="https://graphql.org/" target="blank"><img src="docs/img/GraphQL_Logo.svg" width="120" alt="Nest Logo" /></a> <a href="https://www.prisma.io/" target="blank"><img src="docs/img/prisma-seeklogo.com.svg" width="90" alt="Nest Logo" /></a> <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
 </div>
+
+
+<!-- <div align="center">
+  <a href="http://nestjs.com/" target="blank"><img src="docs/img/logo1.png" width="320" alt="Nest Logo" /></a>
+</div> -->
 
 <div align="center">
 Example backend <a href="https://nestjs.com/">NestJS</a> - <a href="https://graphql.org/">GraphQL</a> project using <a href="https://prisma.io/">Prisma 2</a> & <a href="https://postgresql.org/" >PostgreSQL</a>
@@ -63,15 +69,18 @@ Features of project:
 - GraphQL with [apollo-server-express](https://github.com/apollographql/apollo-server), solution [code first](https://docs.nestjs.com/graphql/quick-start#code-first) and using [GraphQL play ground](https://github.com/graphql/graphql-playground)
 - Using [PostgreQL](https://github.com/brianc/node-postgres) for database and [Prisma 2](https://github.com/prisma/prisma) as ORM
 - CRUD operations, database relationship, pagination
-- [NestJS Authentication](https://docs.nestjs.com/security/authentication) with [Passport](https://github.com/jaredhanson/passport), [JWT](http://www.passportjs.org/packages/passport-jwt/), [Bcrypt](https://github.com/kelektiv/node.bcrypt.js/) encrypted password and refresh token JWT
-- Rating limit API with [express-rate-limit](https://github.com/nfriedly/express-rate-limit)
-- Verification email for register
-- Docker solution for PostgreSQL, PGAdmin, Prisma
-- Next generation Typescript
-- Testing: Unit testing, End to End testing
-- Database seeding
+- [NestJS Authentication](https://docs.nestjs.com/security/authentication) with  [JWT](http://www.passportjs.org/packages/passport-jwt/), [Redis](https://github.com/luin/ioredis) and [session](https://github.com/expressjs/session)
+- Refresh token solution
 - Role base system: Admin & User
-- CI-CD with circle-ci
+- Database seeding
+- Multi-languages with I18n
+- Rating limit API with [express-rate-limit](https://github.com/nfriedly/express-rate-limit)
+- Email scheduling
+- Using custom exceptions filter, custom decorators
+- Docker solution for PostgreSQL, PGAdmin, Prisma
+- Testing: Unit testing, End to End testing
+- CI-CD with circle-ci, travis-ci, github actions
+- Solve N+1 problem graphql (using [@paljs/plugin](https://github.com/paljs/prisma-tools/blob/master/packages/plugins/README.md))
 
 ## Prerequisites
 
@@ -82,7 +91,7 @@ If you want to develop project only on your local, your need have:
 - [PostgreSQL](https://www.postgresql.org/download/)
 - [PgAdmin(optional)](https://www.pgadmin.org/download/): UI tool to manage database from PostgreSQL
 
-If you don't want to install all this tools, you can check the [docker solution](#docker) below.
+If you don't want to install all these tools, you can check the [docker solution](#docker) below.
 ## Getting started
 
 ### Installation
@@ -424,14 +433,15 @@ We  will use these credentials to connect our PgAdmin.
 ## Todo
 
 - [x] CI-CD
-- [ ] Update Auth
-- [ ] Mailer service
-- [ ] End to end testing
-- [ ] Multi-language with i18n options
+- [x] Update Auth
+- [x] Multi-language with i18n options
+- [x] Solve N+1 problem graphql (using @paljs/plugin) (make sure use prisma @id as @cuid(), not @uuid()). @uuid() does not work when we query with Prisma select with join table
+- [x] Mailer service
 - [ ] Integrate with AWS service (S3, RDS)
-- [ ] In-memory caching or caching with Redis
-- [ ] Integrate with REST API
-- [ ] Add model subscribers
-- [ ] Enhanced docker, build images
+- [ ] Update In-memory caching or caching with Redis ?
+- [ ] Integration & end to end testing
+- [ ] Enhanced docker, build images ?
+- [ ] Add Event/Subscribers module ?
+- [ ] Integrate with REST API ? --> create controllers
 - [ ] ...
 ## Thanks

@@ -32,4 +32,9 @@ export class UserMinAggregate {
     nullable: true,
   })
   updatedAt?: Date | string;
+
+  @Field(() => String, {
+    nullable: true,
+  })
+  currentHashedRefreshToken?: string;
 }

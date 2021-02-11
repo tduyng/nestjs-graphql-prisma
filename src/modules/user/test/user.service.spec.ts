@@ -6,6 +6,7 @@ import {
   UserWhereUniqueInput,
 } from '@common/@generated/user';
 import { Post } from '@modules/post/post.model';
+import { PrismaSelectService } from '@modules/prisma/prisma-select.service';
 import { PrismaService } from '@modules/prisma/prisma.service';
 import { BadRequestException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
@@ -17,7 +18,6 @@ import { User } from '../user.model';
 const oneUser = {
   id: 'some userId',
   email: 'some email',
-  password: 'some password',
   profile: {
     id: 'some profileId',
     username: 'some-username',
@@ -89,6 +89,12 @@ describe('UserService', () => {
         {
           provide: PasswordService,
           useFactory: mockPasswordService,
+        },
+        {
+          provide: PrismaSelectService,
+          useValue: {
+            getValue: jest.fn().mockReturnValue({}),
+          },
         },
       ],
     }).compile();
@@ -175,10 +181,7 @@ describe('UserService', () => {
     it('Should return an user', async () => {
       prismaService.user.create.mockReturnValue(oneUser);
       const result = await userService.createOneUser(dataUser);
-      expect(prismaService.user.create).toHaveBeenCalledWith({
-        data: dataUser,
-      });
-      expect(result).toEqual(oneUser);
+      expect(result).toMatchObject(oneUser);
     });
   });
 

@@ -1,7 +1,7 @@
 {
   "name": "graphql-simple-boilerplate",
   "version": "0.0.1",
-  "description": "Example starter project with NestJS - GraphQL - Prisma",
+  "description": "Boilerplate starter project with NestJS - GraphQL - Prisma",
   "author": "Tien Duy",
   "private": false,
   "license": "MIT",
@@ -14,8 +14,9 @@
     "Starter",
     "Postgres",
     "TypeScript",
-    "nestjs-graphql-boilerplate",
-    "nestjs-graphql-prisma"
+    "nestjs graphql boilerplate",
+    "nestjs graphql prisma",
+    "nestjs template"
   ],
   "scripts": {
     "prebuild": "rimraf dist",
@@ -41,19 +42,20 @@
     "test": "cross-env NODE_ENV=test jest",
     "test:watch": "cross-env NODE_ENV=test jest --watch",
     "test:cov": "cross-env NODE_ENV=test jest --coverage",
-    "coveralls": "yarn test:cov && cat ./coverage/lcov.info | coveralls",
+    "coveralls": "npm run test:cov && cat ./coverage/lcov.info | coveralls",
     "test:debug": "cross-env NODE_ENV=test node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "cross-env NODE_ENV=test jest --config ./test/jest-e2e.json",
+    "pretest:e2e": "nest build -p tsconfig.test.json && cp ./test/jest-e2e.json ./dist-test/test/",
+    "test:e2e": "jest --config ./dist-test/test/jest-e2e.json",
     "docker:build": "docker-compose -f docker-compose.yml build --no-cache",
-    "docker:prisma:generate": "docker-compose -f docker-compose.yml run --rm nest-api yarn prisma:generate",
-    "docker:migrate": "docker-compose -f docker-compose.yml run --rm nest-api yarn migrate:dev",
-    "docker:seed": "docker-compose -f docker-compose.yml run --rm nest-api yarn seed",
-    "docker:prisma:studio": "docker-compose -f docker-compose.yml run nest-api -d yarn prisma:studio",
+    "docker:prisma:generate": "docker-compose -f docker-compose.yml run --rm nest-api npm run prisma:generate",
+    "docker:migrate": "docker-compose -f docker-compose.yml run --rm nest-api npm run migrate:dev",
+    "docker:seed": "docker-compose -f docker-compose.yml run --rm nest-api npm run seed",
+    "docker:prisma:studio": "docker-compose -f docker-compose.yml run nest-api -d npm run prisma:studio",
     "docker:start:dev": "docker-compose up",
-    "docker:test:seed": "docker-compose -f docker-compose.test.yml run --rm nest-api yarn seed",
-    "docker:test:migrate": "docker-compose -f docker-compose.test.yml run --rm nest-api yarn migrate:dev",
+    "docker:test:seed": "docker-compose -f docker-compose.test.yml run --rm nest-api npm run seed",
+    "docker:test:migrate": "docker-compose -f docker-compose.test.yml run --rm nest-api npm run migrate:dev",
     "docker:test:build": "docker-compose -f docker-compose.test.yml build --no-cache",
-    "docker:test:run": "docker-compose -f docker-compose.test.yml run --rm nest-api yarn test"
+    "docker:test:run": "docker-compose -f docker-compose.test.yml run --rm nest-api npm run test"
   },
   "husky": {
     "hooks": {
@@ -63,14 +65,14 @@
   },
   "lint-staged": {
     "{src,apps,libs,test}/**/*.ts": [
-      "yarn lint"
+      "npm run lint"
     ],
     "./**/*.{ts,js,json,*rc}": [
-      "yarn prettier"
+      "npm run prettier"
     ]
   },
   "dependencies": {
-    "@nest-modules/mailer": "^1.3.22",
+    "@nestjs-modules/mailer": "^1.5.1",
     "@nestjs/common": "^7.5.1",
     "@nestjs/config": "^0.6.3",
     "@nestjs/core": "^7.5.1",
@@ -79,19 +81,24 @@
     "@nestjs/passport": "^7.1.5",
     "@nestjs/platform-express": "^7.5.1",
     "@nestjs/swagger": "^4.7.12",
+    "@paljs/plugins": "^2.12.2",
     "@prisma/client": "^2.15.0",
     "@types/express-rate-limit": "^5.1.1",
     "apollo-server-express": "^2.19.2",
     "bcrypt": "^5.0.0",
     "class-transformer": "^0.3.2",
     "class-validator": "^0.13.1",
-    "cookie": "^0.4.1",
+    "connect-redis": "^5.1.0",
     "cookie-parser": "^1.4.5",
     "cross-env": "^7.0.3",
     "express-rate-limit": "^5.2.3",
+    "express-session": "^1.17.1",
     "graphql": "^15.5.0",
+    "graphql-fields": "^2.0.3",
     "graphql-tools": "^7.0.2",
+    "handlebars": "^4.7.6",
     "helmet": "^4.4.1",
+    "ioredis": "^4.22.0",
     "nodemailer": "^6.4.17",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
@@ -100,6 +107,7 @@
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.6.3",
+    "simplytyped": "^3.3.0",
     "slugify": "^1.4.6",
     "swagger-ui-express": "^4.1.6"
   },
@@ -111,16 +119,17 @@
     "@nestjs/testing": "^7.5.1",
     "@prisma/cli": "2.15.0",
     "@types/bcrypt": "^3.0.0",
-    "@types/cookie": "^0.4.0",
     "@types/cookie-parser": "^1.4.2",
     "@types/express": "^4.17.8",
+    "@types/ioredis": "^4.19.3",
     "@types/jest": "^26.0.15",
     "@types/node": "^14.14.6",
     "@types/passport-jwt": "^3.0.4",
-    "@types/passport-local": "^1.0.33",
     "@types/supertest": "^2.0.10",
     "@typescript-eslint/eslint-plugin": "^4.6.1",
     "@typescript-eslint/parser": "^4.6.1",
+    "apollo-error-converter": "^1.1.1",
+    "compression": "^1.7.4",
     "coveralls": "^3.1.0",
     "cz-conventional-changelog": "^3.3.0",
     "dotenv": "^8.2.0",
@@ -130,6 +139,7 @@
     "husky": "^4.3.8",
     "jest": "^26.6.3",
     "lint-staged": "^10.5.3",
+    "nestjs-i18n": "^8.0.11",
     "prettier": "^2.1.2",
     "prisma-dbml-generator": "^0.4.0",
     "prisma-nestjs-graphql": "^8.0.0",

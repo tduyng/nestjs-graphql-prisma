@@ -75,6 +75,22 @@ type CategoryMinAggregate {
   updatedAt: DateTime
 }
 
+input CategoryOrderByInput {
+  createdAt: SortOrder
+  id: SortOrder
+  name: SortOrder
+  slug: SortOrder
+  updatedAt: SortOrder
+}
+
+enum CategoryScalarFieldEnum {
+  createdAt
+  id
+  name
+  slug
+  updatedAt
+}
+
 input CategoryScalarWhereInput {
   AND: [CategoryScalarWhereInput!]
   NOT: [CategoryScalarWhereInput!]
@@ -151,6 +167,7 @@ input CategoryWhereUniqueInput {
 input ChangePasswordInput {
   newPassword: String!
   oldPassword: String!
+  token: String!
 }
 
 input CreateCategoryInput {
@@ -194,6 +211,11 @@ input EnumRoleFilter {
   notIn: [Role!]
 }
 
+input LoginUserInput {
+  email: String!
+  password: String!
+}
+
 type Mutation {
   adminCreateOneUser(data: UserCreateInput!): user!
   adminDeleteManyUser(where: UserWhereInput!): BatchPayload!
@@ -209,6 +231,11 @@ type Mutation {
   deleteAccount: user!
   deleteCategory(where: CategoryWhereUniqueInput!): category!
   deletePost(where: PostWhereUniqueInput!): post!
+  forgotPassword(email: String!): String!
+  login(data: LoginUserInput!): user!
+  logout: Boolean!
+  refreshToken: String!
+  register(data: RegisterUserInput!): user!
   updateAccount(data: UpdateUserInput!): user!
   updateCategory(data: UpdateCategoryInput!, where: CategoryWhereUniqueInput!): category!
   updatePost(data: UpdatePostInput!, where: PostWhereUniqueInput!): post!
@@ -428,6 +455,12 @@ input ProfileCreateNestedOneWithoutUserInput {
   create: ProfileCreateWithoutUserInput
 }
 
+input ProfileCreateOneWithoutUserInput {
+  connect: ProfileWhereUniqueInput
+  connectOrCreate: ProfileCreateOrConnectWithoutuserInput
+  create: ProfileCreateWithoutUserInput
+}
+
 input ProfileCreateOrConnectWithoutuserInput {
   create: ProfileCreateWithoutUserInput!
   where: ProfileWhereUniqueInput!
@@ -527,20 +560,26 @@ type Query {
   adminFindFirstUser(cursor: UserWhereUniqueInput, distinct: [UserScalarFieldEnum!], orderBy: [UserOrderByInput!], skip: Int, take: Int, where: UserWhereInput): user!
   adminFindManyUser(cursor: UserWhereUniqueInput, distinct: [UserScalarFieldEnum!], orderBy: [UserOrderByInput!], skip: Int, take: Int, where: UserWhereInput): [user!]!
   adminFindUniqueUser(where: UserWhereUniqueInput!): user!
-  categories: [category!]!
+  categories(cursor: CategoryWhereUniqueInput, distinct: [CategoryScalarFieldEnum!], orderBy: [CategoryOrderByInput!], skip: Int, take: Int, where: CategoryWhereInput): [category!]!
   category(where: CategoryWhereUniqueInput!): category!
   hello(name: String!): String!
   helloWorld: String!
   me: user!
   post(where: PostWhereUniqueInput!): post!
   posts(cursor: PostWhereUniqueInput, distinct: [PostScalarFieldEnum!], orderBy: [PostOrderByInput!], skip: Int, take: Int, where: PostWhereInput): [post!]!
-  profile(where: ProfileWhereUniqueInput!): profile!
-  profileByUser(where: UserWhereUniqueInput!): profile!
+  profile(where: UserWhereUniqueInput!): profile!
+  profileCurrentUser: profile!
 }
 
 enum QueryMode {
   default
   insensitive
+}
+
+input RegisterUserInput {
+  email: String!
+  password: String!
+  profile: ProfileCreateOneWithoutUserInput
 }
 
 enum Role {
@@ -586,12 +625,15 @@ input UpdateProfileInput {
 }
 
 input UpdateUserInput {
+  currentHashedRefreshToken: String
   email: String
+  password: String
   profile: ProfileUpdateOneWithoutUserInput
 }
 
 type User {
   createdAt: DateTime!
+  currentHashedRefreshToken: String
   email: String!
   id: ID!
   password: String!
@@ -604,6 +646,7 @@ type User {
 type UserCountAggregate {
   _all: Int!
   createdAt: Int
+  currentHashedRefreshToken: Int
   email: Int
   id: Int
   password: Int
@@ -613,6 +656,7 @@ type UserCountAggregate {
 
 input UserCreateInput {
   createdAt: DateTime
+  currentHashedRefreshToken: String
   email: String!
   id: String
   password: String!
@@ -624,6 +668,7 @@ input UserCreateInput {
 
 type UserMaxAggregate {
   createdAt: DateTime
+  currentHashedRefreshToken: String
   email: String
   id: String
   password: String
@@ -633,6 +678,7 @@ type UserMaxAggregate {
 
 type UserMinAggregate {
   createdAt: DateTime
+  currentHashedRefreshToken: String
   email: String
   id: String
   password: String
@@ -642,6 +688,7 @@ type UserMinAggregate {
 
 input UserOrderByInput {
   createdAt: SortOrder
+  currentHashedRefreshToken: SortOrder
   email: SortOrder
   id: SortOrder
   password: SortOrder
@@ -661,6 +708,7 @@ enum UserScalarFieldEnum {
 
 input UserUpdateInput {
   createdAt: DateTime
+  currentHashedRefreshToken: String
   email: String
   id: String
   password: String
@@ -675,6 +723,7 @@ input UserWhereInput {
   NOT: [UserWhereInput!]
   OR: [UserWhereInput!]
   createdAt: DateTimeFilter
+  currentHashedRefreshToken: StringFilter
   email: StringFilter
   id: StringFilter
   password: StringFilter
@@ -708,7 +757,6 @@ type post {
   slug: String!
   title: String!
   updatedAt: DateTime!
-  user: user!
 }
 
 type profile {

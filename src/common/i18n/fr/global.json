@@ -1,0 +1,8 @@
+{
+  "HELLO_MESSAGE": "Salut {username}",
+  "GOODBYE_MESSAGE": "Aurevoir {username}",
+  "SETUP": {
+    "WELCOME": "Bienvenue {0.username}",
+    "GOODBYE": "Aurevoir {0.username}"
+  }
+}

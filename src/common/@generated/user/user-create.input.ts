@@ -35,6 +35,11 @@ export class UserCreateInput {
   })
   updatedAt?: Date | string;
 
+  @Field(() => String, {
+    nullable: true,
+  })
+  currentHashedRefreshToken?: string;
+
   @Field(() => PostCreateNestedManyWithoutAuthorInput, {
     nullable: true,
   })

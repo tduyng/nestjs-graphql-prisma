@@ -7,7 +7,7 @@ import {
   UserWhereUniqueInput,
 } from '@common/@generated/user';
 import { Test, TestingModule } from '@nestjs/testing';
-import { AdminResolver } from '../resolvers/admin.resolver';
+import { AdminResolver } from '../resolvers/admin-user.resolver';
 import { UserService } from '../services/user.service';
 import { User } from '../user.model';
 
