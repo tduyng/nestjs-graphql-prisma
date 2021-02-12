@@ -104,10 +104,21 @@ export class UserService {
     });
   }
 
+  /**
+   * Upsert user for admin to avoid error when email already exists
+   *
+   * @param   {CreateUserInput<User>}  data  [data description]
+   *
+   * @return  {Promise<User>}                [return description]
+   */
   public async upsertOneUser(data: CreateUserInput): Promise<User> {
+    // If create user
+    const hashedPassword = await this.passwordService.hashPassword(
+      data.password,
+    );
     return await this.prisma.user.upsert({
       where: { email: data.email },
-      create: { ...data },
+      create: { ...data, password: hashedPassword },
       update: {},
     });
   }
