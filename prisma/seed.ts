@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import dotenv from 'dotenv';
+import bcrypt from 'bcrypt';
 
 const prisma = new PrismaClient();
 
@@ -14,10 +15,10 @@ async function main() {
   /* Delete all tables before seeding */
   // Only uncomment these block code below if you want to delete for all existed tables
 
-  await prisma.category.deleteMany({});
-  await prisma.post.deleteMany({});
-  await prisma.profile.deleteMany({});
-  await prisma.user.deleteMany({});
+  // await prisma.category.deleteMany({});
+  // await prisma.post.deleteMany({});
+  // await prisma.profile.deleteMany({});
+  // await prisma.user.deleteMany({});
 
   /*********************************************************************/
 
@@ -50,7 +51,7 @@ async function main() {
     where: { email: 'tester-user1@example.com' },
     create: {
       email: 'tester1@example.com',
-      password: '$2b$10$a3EO2zZK7kmIbYdgX45Jh.K7ZN.tuwumrFG1z536y8GiU6ReDizgy',
+      password: await bcrypt.hash('1234567', 12),
       role: 'USER',
       profile: {
         create: {
@@ -63,7 +64,7 @@ async function main() {
     },
     update: {
       email: 'tester1@example.com',
-      password: '$2b$10$a3EO2zZK7kmIbYdgX45Jh.K7ZN.tuwumrFG1z536y8GiU6ReDizgy',
+      password: await bcrypt.hash('1234567', 12),
       role: 'USER',
       profile: {
         upsert: {
@@ -87,7 +88,7 @@ async function main() {
     where: { email: 'tester-user2@example.com' },
     create: {
       email: 'tester-user2@example.com',
-      password: '$2b$10$a3EO2zZK7kmIbYdgX45Jh.K7ZN.tuwumrFG1z536y8GiU6ReDizgy',
+      password: await bcrypt.hash('1234567', 12),
       role: 'USER',
       profile: {
         create: {
@@ -100,7 +101,7 @@ async function main() {
     },
     update: {
       email: 'tester-user2@example.com',
-      password: '$2b$10$a3EO2zZK7kmIbYdgX45Jh.K7ZN.tuwumrFG1z536y8GiU6ReDizgy',
+      password: await bcrypt.hash('1234567', 12),
       role: 'USER',
       profile: {
         upsert: {
@@ -126,7 +127,7 @@ async function main() {
     where: { email: 'tester-admin1@example.com' },
     create: {
       email: 'tester-admin1@example.com',
-      password: '$2b$10$a3EO2zZK7kmIbYdgX45Jh.K7ZN.tuwumrFG1z536y8GiU6ReDizgy',
+      password: await bcrypt.hash('1234567', 12),
       role: 'ADMIN',
       profile: {
         create: {
@@ -138,7 +139,7 @@ async function main() {
       },
     },
     update: {
-      password: '$2b$10$a3EO2zZK7kmIbYdgX45Jh.K7ZN.tuwumrFG1z536y8GiU6ReDizgy',
+      password: await bcrypt.hash('1234567', 12),
       role: 'ADMIN',
       profile: {
         upsert: {
