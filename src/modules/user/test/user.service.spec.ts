@@ -189,14 +189,7 @@ describe('UserService', () => {
     it('Should return an user', async () => {
       prismaService.user.upsert.mockReturnValue(oneUser);
       const result = await userService.upsertOneUser(dataUser);
-      expect(prismaService.user.upsert).toHaveBeenCalledWith({
-        where: {
-          email: dataUser.email,
-        },
-        create: { ...dataUser },
-        update: {},
-      });
-      expect(result).toEqual(oneUser);
+      expect(result).toMatchObject(oneUser);
     });
   });
 
