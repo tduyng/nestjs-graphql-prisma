@@ -74,7 +74,7 @@
     "@nestjs/jwt": "7.2.0",
     "@nestjs/passport": "7.1.5",
     "@nestjs/platform-express": "7.6.12",
-    "@nestjs/swagger": "4.7.12",
+    "@nestjs/swagger": "4.7.13",
     "@paljs/plugins": "2.12.2",
     "@prisma/client": "2.16.1",
     "@types/express-rate-limit": "5.1.1",
