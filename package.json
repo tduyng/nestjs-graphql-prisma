@@ -84,7 +84,7 @@
     "@paljs/plugins": "2.12.2",
     "@prisma/client": "2.16.0",
     "@types/express-rate-limit": "5.1.1",
-    "apollo-server-express": "2.19.2",
+    "apollo-server-express": "2.21.0",
     "bcrypt": "5.0.0",
     "class-transformer": "0.3.2",
     "class-validator": "0.13.1",
