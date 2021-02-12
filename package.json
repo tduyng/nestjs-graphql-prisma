@@ -57,12 +57,6 @@
     "docker:test:build": "docker-compose -f docker-compose.test.yml build --no-cache",
     "docker:test:run": "docker-compose -f docker-compose.test.yml run --rm nest-api npm run test"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
   "lint-staged": {
     "{src,apps,libs,test}/**/*.ts": [
       "npm run lint"
