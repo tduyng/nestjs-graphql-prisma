@@ -80,7 +80,7 @@
     "@types/express-rate-limit": "5.1.1",
     "apollo-server-express": "2.21.0",
     "bcrypt": "5.0.0",
-    "class-transformer": "0.3.2",
+    "class-transformer": "0.4.0",
     "class-validator": "0.13.1",
     "connect-redis": "5.1.0",
     "cookie-parser": "1.4.5",
