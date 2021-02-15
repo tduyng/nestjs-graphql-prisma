@@ -2,7 +2,7 @@
 pull_request_rules:
   - name: Automated merge for Renovate pull requests
     conditions:
-      - author=author=renovate[bot]
+      - author=renovate[bot]
       - status-success=build
       - status-success=unit-tests
       - status-success=lint
