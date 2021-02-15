@@ -1,11 +1,13 @@
-name: NestJS
+name: Unit Tests
 
 on:
   push:
     branches: [master]
+  pull_request:
+    branches: [master]
 
 jobs:
-  test:
+  unit-tests:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -14,10 +16,10 @@ jobs:
     name: Node ${{ matrix.node }}
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node }}
       - run: yarn install
       - run: yarn prisma generate
-      - run: yarn build
       - run: yarn test
+
