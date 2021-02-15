@@ -7,7 +7,6 @@ pull_request_rules:
       - status-success=unit-tests
       - status-success=lint
       - status-success=Travis CI - Pull Request
-      - status-success=Travis CI - Branch
     actions:
       merge:
         method: merge
