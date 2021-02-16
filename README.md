@@ -22,7 +22,7 @@ Example backend <a href="https://nestjs.com/">NestJS</a> - <a href="https://grap
 <p></p>
 
 
-<a href="https://travis-ci.com/tienduy-nguyen/nestjs-graphql-prisma.svg?branch=master" target="_blank"><img src="https://travis-ci.com/tienduy-nguyen/nestjs-graphql-prisma.svg?branch=master" alt="CircleCI" /> <a href='https://coveralls.io/github/tienduy-nguyen/nestjs-graphql-prisma?branch=master'><img src='https://coveralls.io/repos/github/tienduy-nguyen/nestjs-graphql-prisma/badge.svg?branch=master' alt='Coverage Status' /></a> <a href='https://coveralls.io/gitlab/tienduy-nguyen/nestjs-graphql-prisma?branch=master'><img src="https://img.shields.io/badge/Licence-MIT-green" alt="License"/></a>
+<a href="https://github.com/tienduy-nguyen/nestjs-graphql-prisma/workflows/Build/badge.svg" target="_blank"><img src="https://github.com/tienduy-nguyen/nestjs-graphql-prisma/workflows/Build/badge.svg" alt="Build github action" /> <a href='https://github.com/tienduy-nguyen/nestjs-graphql-prisma/workflows/Lint/badge.svg'><img src='https://github.com/tienduy-nguyen/nestjs-graphql-prisma/workflows/Lint/badge.svg' alt='Lint github action' /></a> <a href='https://github.com/tienduy-nguyen/nestjs-graphql-prisma/workflows/Unit%20tests/badge.svg'><img src='https://github.com/tienduy-nguyen/nestjs-graphql-prisma/workflows/Unit%20tests/badge.svg' alt='Lint github action' /></a> <a href='https://img.shields.io/badge/Licence-MIT-green'><img src="https://img.shields.io/badge/Licence-MIT-green" alt="License"/></a>
 
 
 
@@ -74,11 +74,11 @@ Features of project:
 - Database seeding
 - Multi-languages with I18n
 - Rating limit API with [express-rate-limit](https://github.com/nfriedly/express-rate-limit)
-- Email scheduling
+- Email verification
 - Using custom exceptions filter, custom decorators
 - Docker solution for PostgreSQL, PGAdmin, Prisma
-- Testing: Unit testing, End to End testing
-- CI-CD with circle-ci, travis-ci, github actions
+- Testing: Unit testing, Integration testing, End to End testing (working in progress)
+- CI-CD with Travis-ci, Github actions
 - Solve N+1 problem graphql (using [@paljs/plugin](https://github.com/paljs/prisma-tools/blob/master/packages/plugins/README.md))
 
 ## Prerequisites
