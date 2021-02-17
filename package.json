@@ -85,7 +85,7 @@
     "connect-redis": "5.1.0",
     "cookie-parser": "1.4.5",
     "cross-env": "7.0.3",
-    "express-rate-limit": "5.2.5",
+    "express-rate-limit": "5.2.6",
     "express-session": "1.17.1",
     "graphql": "15.5.0",
     "graphql-fields": "2.0.3",
