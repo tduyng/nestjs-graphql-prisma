@@ -103,7 +103,7 @@
     "rimraf": "3.0.2",
     "rxjs": "6.6.3",
     "simplytyped": "3.3.0",
-    "slugify": "1.4.6",
+    "slugify": "1.4.7",
     "swagger-ui-express": "4.1.6"
   },
   "devDependencies": {
