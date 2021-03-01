@@ -15,5 +15,4 @@ export interface RedisOptionsFactory {
   createRedisOptions(): Promise<RedisModuleOptions> | RedisModuleOptions;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface RedisModuleOptions extends RedisOptions {}

@@ -15,7 +15,6 @@ export class UserExitsValidator implements ValidatorConstraintInterface {
   /**
    * Method should return true, if name is not taken
    */
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public async validate(email: string, _args: ValidationArguments) {
     const where: UserWhereUniqueInput = {
       email,
@@ -27,7 +26,6 @@ export class UserExitsValidator implements ValidatorConstraintInterface {
       return true;
     }
   }
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   defaultMessage(_args: ValidationArguments) {
     return 'User with $property $value already exists';
   }
