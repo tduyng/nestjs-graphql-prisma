@@ -34,6 +34,6 @@
       "@app/*": ["src/app/*"]
     }
   },
-  "include": ["src", "prisma"],
-  "exclude": ["node_modules", "test"]
+  "include": ["src", "prisma", "test"],
+  "exclude": ["node_modules"]
 }
