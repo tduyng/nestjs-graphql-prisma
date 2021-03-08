@@ -76,7 +76,7 @@
     "@nestjs/platform-express": "7.6.13",
     "@nestjs/swagger": "4.7.15",
     "@paljs/plugins": "2.13.0",
-    "@prisma/client": "2.17.0",
+    "@prisma/client": "2.18.0",
     "@types/express-rate-limit": "5.1.1",
     "apollo-server-express": "2.21.0",
     "bcrypt": "5.0.1",
