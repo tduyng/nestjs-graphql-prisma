@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "esNext",
     "typeRoots": ["./node_modules/@types", "src/common/types"],
+    "types": ["jest", "node"],
     "module": "commonjs",
     "pretty": true,
     "sourceMap": true,
