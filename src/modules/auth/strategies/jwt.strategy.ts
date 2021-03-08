@@ -24,7 +24,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     };
     const user = await this.userService.getUserByUniqueInput(where);
     if (!user) {
-      throw new BadRequestException('Unauthorized: use did not authenticated');
+      throw new BadRequestException('Unauthorized: user did not authenticated');
     }
     return user;
   }

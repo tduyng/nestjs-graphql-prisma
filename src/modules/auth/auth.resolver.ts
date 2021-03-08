@@ -1,6 +1,6 @@
 import { Args, Context, Mutation, Resolver } from '@nestjs/graphql';
 import { User } from '@modules/user/user.model';
-import { LoginUserInput, RegisterUserInput } from './dto';
+import { LoginUserInput, RegisterUserInput, ResetPasswordInput } from './dto';
 import { AuthService } from './auth.service';
 import { BadRequestException, UseGuards } from '@nestjs/common';
 import {
@@ -115,11 +115,12 @@ export class AuthResolver {
 
   // changePassword
   @Mutation(() => User)
+  @UseGuards(JwtGuard)
   public async changePassword(
     @Args('data') data: ChangePasswordInput,
     @Context() ctx: IHttpContext,
   ) {
-    const user = await this.authService.changePassword(data);
+    const user = await this.authService.changePassword(ctx.req.user.id, data);
     const payload: IPayloadUserJwt = {
       userId: user.id,
     };
@@ -127,5 +128,20 @@ export class AuthResolver {
     // Login auto after change password
     ctx.req.session.authToken = authToken;
     return user;
+  }
+
+  @Mutation(() => User)
+  public async resetPassword(
+    @Args('data') data: ResetPasswordInput,
+    @Context() ctx: IHttpContext,
+  ) {
+    const user = await this.authService.resetPassword(data);
+    const payload: IPayloadUserJwt = {
+      userId: user.id,
+    };
+    const authToken = this.authService.generateAuthTokenFromLogin(payload);
+    // Login auto after change password
+    await this.logout(ctx.req);
+    return authToken;
   }
 }

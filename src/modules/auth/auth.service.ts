@@ -13,7 +13,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { RegisterUserInput } from './dto';
+import { RegisterUserInput, ResetPasswordInput } from './dto';
 @Injectable()
 export class AuthService {
   constructor(
@@ -117,10 +117,10 @@ export class AuthService {
     return token;
   }
 
-  public async changePassword(data: ChangePasswordInput): Promise<User> {
+  public async resetPassword(data: ResetPasswordInput): Promise<User> {
     // Get userId from redis and from jwt with token
     // Maybe use only token with jwt --> that's enough
-    const { oldPassword, newPassword, token } = data;
+    const { newPassword, token } = data;
     const userId = await this.redis.client.get(
       REDIS_FORGOT_PASSWORD_PREFIX + token,
     );
@@ -137,13 +137,39 @@ export class AuthService {
       throw new BadRequestException('Token is not valid!');
     }
 
-    // Check old password given
+    const newHashedPassword = await this.passwordService.hashPassword(
+      newPassword,
+    );
+    const updated = await this.userService.updateOneUser(
+      { id: userId },
+      { password: newHashedPassword },
+    );
+    await this.redis.client.del(REDIS_FORGOT_PASSWORD_PREFIX + token);
+
+    return updated;
+  }
+
+  public async changePassword(
+    userId: string,
+    data: ChangePasswordInput,
+  ): Promise<User> {
+    const { newPassword, oldPassword } = data;
+
+    // Get user by userId
+    const user = await this.userService.getUserByUniqueInput({ id: userId });
+    if (!user) {
+      throw new BadRequestException('User not found');
+    }
+
     const isMatch = await this.passwordService.validatePassword(
       oldPassword,
       user.password,
     );
+
     if (!isMatch) {
-      throw new BadRequestException('Old password not match current password');
+      throw new BadRequestException(
+        'Old password not match the current password',
+      );
     }
 
     const newHashedPassword = await this.passwordService.hashPassword(
@@ -153,7 +179,6 @@ export class AuthService {
       { id: userId },
       { password: newHashedPassword },
     );
-    await this.redis.client.del(REDIS_FORGOT_PASSWORD_PREFIX + token);
 
     return updated;
   }
