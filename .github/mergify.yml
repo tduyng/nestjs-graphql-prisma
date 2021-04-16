@@ -6,7 +6,7 @@ pull_request_rules:
       - status-success=build (14.x)
       - status-success=unit-tests (14.x)
       - status-success=lint (14.x)
-      - status-success=Travis CI - Pull Request
+
     actions:
       merge:
         method: merge
@@ -19,7 +19,7 @@ pull_request_rules:
       - status-success=build (14.x)
       - status-success=unit-tests (14.x)
       - status-success=lint (14.x)
-      - status-success=Travis CI - Pull Request
+
     actions:
       merge:
         method: merge
