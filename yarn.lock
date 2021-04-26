@@ -8250,16 +8250,15 @@ neo-async@^2.6.0, neo-async@^2.6.2:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
-nestjs-i18n@8.0.11:
-  version "8.0.11"
-  resolved "https://registry.yarnpkg.com/nestjs-i18n/-/nestjs-i18n-8.0.11.tgz#9fe8359ea215496560f270f57abc29e76e231f57"
-  integrity sha512-o2407CCnOqpYiAiH48cGx4r3lLs24/z8OLVrRHLCRQviokahssxZgfCJnik1qvYsU+GvVvk7+ujGqaXVTgdu0w==
+nestjs-i18n@8.1.0:
+  version "8.1.0"
+  resolved "https://registry.yarnpkg.com/nestjs-i18n/-/nestjs-i18n-8.1.0.tgz#f9a722016373e0b1cede100d15b5d9c5baf3ffee"
+  integrity sha512-iXZOIdtST/8SaNrCkHBRM/hlLqvCvJfksgrz0BHJLwTr+JxeN1vWIzX+2ZY3uLfGnSZizBNye0/0+JE8mcnp5w==
   dependencies:
     accept-language-parser "^1.5.0"
     chokidar "^3.5.1"
     cookie "^0.4.1"
-    lodash "^4.17.20"
-    rxjs "^6.6.3"
+    rxjs "^6.6.7"
     string-format "^2.0.0"
 
 netmask@^1.0.6:
@@ -9674,7 +9673,7 @@ rxjs@6.6.3:
   dependencies:
     tslib "^1.9.0"
 
-rxjs@6.6.7, rxjs@^6.4.0, rxjs@^6.6.0, rxjs@^6.6.3:
+rxjs@6.6.7, rxjs@^6.4.0, rxjs@^6.6.0, rxjs@^6.6.3, rxjs@^6.6.7:
   version "6.6.7"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.6.7.tgz#90ac018acabf491bf65044235d5863c4dab804c9"
   integrity sha512-hTdwr+7yYNIT5n4AMYp85KA6yw2Va0FLa3Rguvbpa4W3I5xynaBZo41cM3XM+4Q6fRMj3sBYIR1VAmZMXYJvRQ==
