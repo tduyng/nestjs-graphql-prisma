@@ -30,6 +30,7 @@
     "baseUrl": ".",
     "paths": {
       "@modules/*": ["src/modules/*"],
+      "@providers/*": ["src/providers/*"],
       "@common/*": ["src/common/*"],
       "@app/*": ["src/app/*"]
     }
