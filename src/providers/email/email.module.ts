@@ -1,24 +1,24 @@
+import { envConfig } from '@common/configs';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
-import { join } from 'path';
+import sendGridTransport from 'nodemailer-sendgrid-transport';
 import { EmailService } from './email.service';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      isGlobal: true,
-      envFilePath: '.env',
-    }),
     MailerModule.forRoot({
-      transport: `smtps://${process.env.SMTP_LOGIN}:${process.env.SMTP_PASSWORD}@${process.env.SMTP_SERVER}`,
+      transport: sendGridTransport({
+        auth: {
+          api_key: envConfig().email.sendgridApiKey,
+        },
+      }),
       defaults: {
-        from: `"${process.env.SMTP_FROM_NAME}" <${process.env.SMTP_FROM_EMAIL}>`,
+        from: `"No Reply" <noreply@nestjs.com>`,
       },
-      preview: true,
+      preview: envConfig().mode === 'development',
       template: {
-        dir: join(process.cwd(), '/src/modules/email/templates'),
+        dir: process.cwd() + '/src/providers/email/templates',
         adapter: new HandlebarsAdapter(),
         options: {
           strict: true,
