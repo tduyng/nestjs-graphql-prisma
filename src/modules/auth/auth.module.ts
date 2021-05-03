@@ -1,9 +1,9 @@
-import { EmailService } from '@modules/email/email.service';
-import { PrismaModule } from '@modules/prisma/prisma.module';
-import { PrismaService } from '@modules/prisma/prisma.service';
-import { RedisModule } from '@modules/redis/redis.module';
-import { RedisService } from '@modules/redis/redis.service';
-import { PasswordService } from '@modules/user/services/password.service';
+import { EmailService } from 'src/providers/email/email.service';
+import { PrismaModule } from 'src/providers/prisma/prisma.module';
+import { PrismaService } from 'src/providers/prisma/prisma.service';
+import { RedisModule } from 'src/providers/redis/redis.module';
+import { RedisService } from 'src/providers/redis/redis.service';
+import { PasswordService } from '@modules/auth/services/password.service';
 import { UserService } from '@modules/user/services/user.service';
 import { UserModule } from '@modules/user/user.module';
 import { Module } from '@nestjs/common';
@@ -11,7 +11,7 @@ import { ConfigModule } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { AuthResolver } from './auth.resolver';
-import { AuthService } from './auth.service';
+import { AuthService } from './services/auth.service';
 import { JwtRefreshTokenStrategy } from './strategies/jwt-refresh-token.strategy';
 import { JwtStrategy } from './strategies/jwt.strategy';
 

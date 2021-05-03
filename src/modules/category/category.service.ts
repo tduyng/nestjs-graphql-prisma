@@ -1,4 +1,4 @@
-import { PrismaService } from '@modules/prisma/prisma.service';
+import { PrismaService } from 'src/providers/prisma/prisma.service';
 import { Post } from '@modules/post/post.model';
 import { CreateCategoryInput, UpdateCategoryInput } from './dto';
 import slugify from 'slugify';
@@ -9,7 +9,7 @@ import {
   FindManyCategoryArgs,
 } from '@common/@generated/category';
 import { GraphQLResolveInfo } from 'graphql';
-import { PrismaSelectService } from '@modules/prisma/prisma-select.service';
+import { PrismaSelectService } from 'src/providers/prisma/prisma-select.service';
 
 @Injectable()
 export class CategoryService {

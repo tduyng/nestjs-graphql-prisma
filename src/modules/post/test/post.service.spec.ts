@@ -1,4 +1,4 @@
-import { PrismaService } from '@modules/prisma/prisma.service';
+import { PrismaService } from 'src/providers/prisma/prisma.service';
 import { Test, TestingModule } from '@nestjs/testing';
 import { PostService } from '../post.service';
 import { User } from '@modules/user/user.model';
@@ -6,7 +6,7 @@ import { CreatePostInput } from '../dto';
 import { Post, PostWhereUniqueInput } from '@common/@generated/post';
 import { CategoryService } from '@modules/category/category.service';
 import { Category } from '@modules/category/category.model';
-import { PrismaSelectService } from '@modules/prisma/prisma-select.service';
+import { PrismaSelectService } from 'src/providers/prisma/prisma-select.service';
 
 const oneUser = {
   id: 'some userId',

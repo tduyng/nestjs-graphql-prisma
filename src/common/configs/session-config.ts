@@ -1,5 +1,5 @@
 import { ISessionOption } from '@common/environment/environment.interface';
-import { REDIS_AUTH_TOKEN_SESSION } from '@modules/redis/redis.constant';
+import { REDIS_AUTH_TOKEN_SESSION } from 'src/providers/redis/redis.constant';
 import connectRedis from 'connect-redis';
 import session from 'express-session';
 

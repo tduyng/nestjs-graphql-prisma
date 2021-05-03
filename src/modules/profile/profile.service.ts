@@ -1,4 +1,4 @@
-import { PrismaService } from '@modules/prisma/prisma.service';
+import { PrismaService } from 'src/providers/prisma/prisma.service';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { UpdateProfileInput } from './dto/update-profile.input';
 import { Profile } from './profile.model';
@@ -7,7 +7,7 @@ import { Prisma } from '@prisma/client';
 import { ProfileWhereUniqueInput } from '@common/@generated/profile';
 import { CreateProfileInput } from './dto';
 import { GraphQLResolveInfo } from 'graphql';
-import { PrismaSelectService } from '@modules/prisma/prisma-select.service';
+import { PrismaSelectService } from 'src/providers/prisma/prisma-select.service';
 
 @Injectable()
 export class ProfileService {

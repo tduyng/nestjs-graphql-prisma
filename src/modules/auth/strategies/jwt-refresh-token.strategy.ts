@@ -4,7 +4,7 @@ import { PassportStrategy } from '@nestjs/passport';
 import { IPayloadUserJwt, IRequestWithUser } from '@common/global-interfaces';
 import { UserWhereUniqueInput } from '@common/@generated/user';
 import { UserService } from '@modules/user/services/user.service';
-import { PasswordService } from '@modules/user/services/password.service';
+import { PasswordService } from '@modules/auth/services/password.service';
 
 @Injectable()
 export class JwtRefreshTokenStrategy extends PassportStrategy(

@@ -1,4 +1,4 @@
-import { PrismaService } from '@modules/prisma/prisma.service';
+import { PrismaService } from 'src/providers/prisma/prisma.service';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { Post } from './post.model';
 import { User } from '@modules/user/user.model';
@@ -12,7 +12,7 @@ import {
   PostWhereUniqueInput,
 } from '@common/@generated/post';
 import { GraphQLResolveInfo } from 'graphql';
-import { PrismaSelectService } from '@modules/prisma/prisma-select.service';
+import { PrismaSelectService } from 'src/providers/prisma/prisma-select.service';
 
 @Injectable()
 export class PostService {

@@ -1,7 +1,7 @@
 import { CategoryWhereUniqueInput } from '@common/@generated/category';
 import { Post } from '@modules/post/post.model';
-import { PrismaSelectService } from '@modules/prisma/prisma-select.service';
-import { PrismaService } from '@modules/prisma/prisma.service';
+import { PrismaSelectService } from 'src/providers/prisma/prisma-select.service';
+import { PrismaService } from 'src/providers/prisma/prisma.service';
 import { Test, TestingModule } from '@nestjs/testing';
 import { Category } from '../category.model';
 import { CategoryService } from '../category.service';

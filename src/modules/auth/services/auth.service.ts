@@ -1,10 +1,10 @@
 import { UserWhereUniqueInput } from '@common/@generated/user';
 import { environment } from '@common/environment';
 import { IPayloadUserJwt, ISessionAuthToken } from '@common/global-interfaces';
-import { REDIS_FORGOT_PASSWORD_PREFIX } from '@modules/redis/redis.constant';
-import { RedisService } from '@modules/redis/redis.service';
+import { REDIS_FORGOT_PASSWORD_PREFIX } from 'src/providers/redis/redis.constant';
+import { RedisService } from 'src/providers/redis/redis.service';
 import { ChangePasswordInput } from '@modules/user/dto';
-import { PasswordService } from '@modules/user/services/password.service';
+import { PasswordService } from '@modules/auth/services/password.service';
 import { UserService } from '@modules/user/services/user.service';
 import { User } from '@modules/user/user.model';
 import {
@@ -13,7 +13,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { RegisterUserInput, ResetPasswordInput } from './dto';
+import { RegisterUserInput, ResetPasswordInput } from '../dto';
 @Injectable()
 export class AuthService {
   constructor(

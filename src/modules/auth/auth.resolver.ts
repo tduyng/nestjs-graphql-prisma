@@ -1,7 +1,7 @@
 import { Args, Context, Mutation, Resolver } from '@nestjs/graphql';
 import { User } from '@modules/user/user.model';
 import { LoginUserInput, RegisterUserInput, ResetPasswordInput } from './dto';
-import { AuthService } from './auth.service';
+import { AuthService } from './services/auth.service';
 import { BadRequestException, UseGuards } from '@nestjs/common';
 import {
   IHttpContext,
@@ -9,9 +9,9 @@ import {
   IRequestWithUser,
   ISessionAuthToken,
 } from '@common/global-interfaces';
-import { REDIS_AUTH_TOKEN_SESSION } from '@modules/redis/redis.constant';
+import { REDIS_AUTH_TOKEN_SESSION } from 'src/providers/redis/redis.constant';
 import { ChangePasswordInput } from '@modules/user/dto';
-import { EmailService } from '@modules/email/email.service';
+import { EmailService } from 'src/providers/email/email.service';
 import { JwtGuard, JwtRefreshTokenGuard } from './guards';
 
 @Resolver(() => User)

@@ -1,4 +1,4 @@
-import { PrismaService } from '@modules/prisma/prisma.service';
+import { PrismaService } from 'src/providers/prisma/prisma.service';
 import {
   BadRequestException,
   HttpException,
@@ -6,7 +6,7 @@ import {
   Injectable,
 } from '@nestjs/common';
 import { ChangePasswordInput } from '../dto/change-password.input';
-import { PasswordService } from './password.service';
+import { PasswordService } from '../../auth/services/password.service';
 import { UpdateUserInput } from '../dto';
 import { User } from '../user.model';
 import { Post } from '@modules/post/post.model';
@@ -20,7 +20,7 @@ import {
 import { CreateUserInput } from '../dto/create-user.input';
 import { BatchPayload } from '@common/@generated/prisma';
 import { GraphQLResolveInfo } from 'graphql';
-import { PrismaSelectService } from '@modules/prisma/prisma-select.service';
+import { PrismaSelectService } from 'src/providers/prisma/prisma-select.service';
 
 @Injectable()
 export class UserService {

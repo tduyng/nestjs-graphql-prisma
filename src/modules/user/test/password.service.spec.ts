@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { PasswordService } from '../services/password.service';
+import { PasswordService } from '../../auth/services/password.service';
 
 const plainPassword = '1234567';
 const hashedPassword =
