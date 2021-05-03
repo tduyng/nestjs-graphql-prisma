@@ -92,7 +92,7 @@
     "graphql-tool": "1.0.0",
     "graphql-tools": "7.0.4",
     "handlebars": "4.7.7",
-    "helmet": "4.5.0",
+    "helmet": "4.6.0",
     "ioredis": "4.27.1",
     "nodemailer": "6.5.0",
     "passport": "0.4.1",
