@@ -1,73 +1,60 @@
-import { environment } from '@common/environment';
+import { envConfig, EnvConfig } from '@common/configs';
 import { ISendMailOptions, MailerService } from '@nestjs-modules/mailer';
 import { Injectable } from '@nestjs/common';
-
-import { GeneralContext, PasswordResetContext } from './templates';
 
 type MailOptions = ISendMailOptions & { template?: string };
 
 @Injectable()
 export class EmailService {
-  constructor(private readonly mailer: MailerService) {}
-  //--------------------------------------------------------------------------
+  private _env: EnvConfig;
+  constructor(private readonly mailer: MailerService) {
+    this._env = envConfig();
+  }
   send(options: MailOptions) {
-    return this.mailer.sendMail(options);
+    if (this._env.mode !== 'test') {
+      return this.mailer.sendMail(options);
+    }
+    return null;
   }
-  //--------------------------------------------------------------------------
-  sendGeneral(options: {
-    toEmail: string;
-    subject: string;
-    context: GeneralContext;
-  }) {
-    return this.send({
-      template: 'general',
-      to: options.toEmail,
-      subject: options.subject,
-      context: options.context,
+
+  public async sendWelcome(toEmail: string): Promise<void> {
+    await this.send({
+      template: 'welcome',
+      to: toEmail,
+      subject: '🥳🎉 Welcome to our website',
+      context: {
+        siteUrl: this._env.clientUrl,
+      },
     }).then();
   }
 
-  //--------------------------------------------------------------------------
-  // --> Todo:
-  // sendVerificationEmail();
-  // sendWelcome();
-  // sendYouHaveBeenUpdatedPassword()
-
-  sendWelcome(toEmail: string) {
-    const env = environment();
-    const context: GeneralContext = {
-      siteUrl: env.siteUrl,
-      hiddenPreheaderText: 'Awesome website',
-      header: 'Welcome to our website',
-      subHeading: '',
-      body: 'Thanks so much for your registration',
-      footerHeader: '',
-      footerBody: '',
-    };
-
-    return this.send({
-      template: 'general',
+  public async sendResetPassword(
+    toEmail: string,
+    token: string,
+  ): Promise<void> {
+    const tokenUrl = `${this._env.serverUrl}/api/auth/reset-password?token=${token}`;
+    await this.send({
+      template: 'reset-password',
       to: toEmail,
-      subject: `Welcome to our website.`,
-      context,
+      subject: '🔑 Request to recover your password',
+      context: {
+        tokenUrl,
+      },
     }).then();
   }
 
-  //--------------------------------------------------------------------------
-  sendPasswordReset(toEmail: string, token: string) {
-    const env = environment();
-    const context: PasswordResetContext = {
-      siteUrl: env.siteUrl,
-      resetUrl: `${env.siteUrl}password-reset-confirmation?token=${encodeURI(
-        token,
-      )}`,
-    };
-
-    return this.send({
-      template: 'password-reset',
+  public async sendEmailConfirmation(
+    toEmail: string,
+    token: string,
+  ): Promise<void> {
+    const tokenUrl = `${this._env.serverUrl}/api/auth/activate?token=${token}`;
+    await this.send({
+      template: 'email-confirmation',
       to: toEmail,
-      subject: `Password Reset Request`,
-      context,
+      subject: 'Confirmation you email registration',
+      context: {
+        tokenUrl,
+      },
     }).then();
   }
 }

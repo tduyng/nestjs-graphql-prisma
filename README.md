@@ -68,7 +68,7 @@ Features of project:
 - GraphQL with [apollo-server-express](https://github.com/apollographql/apollo-server), solution [code first](https://docs.nestjs.com/graphql/quick-start#code-first) and using [GraphQL play ground](https://github.com/graphql/graphql-playground)
 - Using [PostgreQL](https://github.com/brianc/node-postgres) for database and [Prisma 2](https://github.com/prisma/prisma) as ORM
 - CRUD operations, database relationship, pagination
-- [NestJS Authentication](https://docs.nestjs.com/security/authentication) with  [JWT](http://www.passportjs.org/packages/passport-jwt/), [Redis](https://github.com/luin/ioredis) and [session](https://github.com/expressjs/session)
+- [NestJS Authentication](https://docs.nestjs.com/security/authentication) with  Redis ~~JWT~~
 - Refresh token solution
 - Role base system: Admin & User
 - Database seeding
