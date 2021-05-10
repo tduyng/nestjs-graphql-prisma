@@ -132,7 +132,7 @@
     "eslint-plugin-prettier": "3.4.0",
     "husky": "6.0.0",
     "jest": "26.6.3",
-    "lint-staged": "10.5.4",
+    "lint-staged": "11.0.0",
     "nestjs-i18n": "8.1.1",
     "prettier": "2.2.1",
     "prisma": "2.19.0",
