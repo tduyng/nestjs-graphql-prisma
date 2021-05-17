@@ -135,7 +135,7 @@
     "lint-staged": "11.0.0",
     "nestjs-i18n": "8.1.1",
     "prettier": "2.3.0",
-    "prisma": "2.19.0",
+    "prisma": "2.22.1",
     "prisma-dbml-generator": "0.5.0",
     "prisma-nestjs-graphql": "9.0.0",
     "supertest": "6.1.3",
