@@ -1551,10 +1551,10 @@
     consola "^2.15.0"
     node-fetch "^2.6.1"
 
-"@paljs/plugins@3.2.0":
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/@paljs/plugins/-/plugins-3.2.0.tgz#9cc42bc859cfd6a7d9593099aa54c47cb6b71eb4"
-  integrity sha512-ng8B02xWSm6lApnlz6gpRLm9yu3zkAJ/iSicuh6Wx4hODIKE6MbleuyWM8MJiUSPwD0SW1kX7K/vD0I+MMFuXg==
+"@paljs/plugins@3.3.3":
+  version "3.3.3"
+  resolved "https://registry.yarnpkg.com/@paljs/plugins/-/plugins-3.3.3.tgz#0e6f5993050dfb2ccdf8d644cd6758d23e753e2c"
+  integrity sha512-/Pt/lx7KDyoSTgIiQlmbBPxwNMnGxbwzc5MX5NjmtUT3Wj0ba6RcTSSMCExuT2OkcXYVCTqlnypz3Dj3NA661Q==
   dependencies:
     "@paljs/types" "^3.2.0"
     graphql-fields "2.0.3"
