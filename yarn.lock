@@ -1572,14 +1572,6 @@
   dependencies:
     "@prisma/engines-version" "2.24.1-2.18095475d5ee64536e2f93995e48ad800737a9e4"
 
-"@prisma/debug@2.16.1":
-  version "2.16.1"
-  resolved "https://registry.yarnpkg.com/@prisma/debug/-/debug-2.16.1.tgz#a9397581179a2535525c5db776644f4d69a655ad"
-  integrity sha512-GdkEHBpudTqeT/az/pHHmwG7aCcZFlVubwkLcRjABT3RlqHKDPDU2rkFAeFX4YW50YvE1fcG3d2uWsCRqqmmug==
-  dependencies:
-    debug "4.3.2"
-    ms "^2.1.3"
-
 "@prisma/debug@2.21.2":
   version "2.21.2"
   resolved "https://registry.yarnpkg.com/@prisma/debug/-/debug-2.21.2.tgz#10ab3e5dd26217920c0a1d1c5c752a1df08ac988"
@@ -1644,22 +1636,12 @@
     temp-dir "^2.0.0"
     tempy "^1.0.0"
 
-"@prisma/generator-helper@2.21.2", "@prisma/generator-helper@^2.20.1":
+"@prisma/generator-helper@2.21.2", "@prisma/generator-helper@^2.16.0", "@prisma/generator-helper@^2.20.1":
   version "2.21.2"
   resolved "https://registry.yarnpkg.com/@prisma/generator-helper/-/generator-helper-2.21.2.tgz#5620e032bd906cc42d65c15a7de8876d239aa170"
   integrity sha512-zo3rqKTWo3GExb2rLgwo0EMHfpeJyj6Lo8b5g1CFWCmtpe3O4gic7mqiTWRz2jk5r6FiSIyOl4+iVRBjDmHFhg==
   dependencies:
     "@prisma/debug" "2.21.2"
-    "@types/cross-spawn" "^6.0.1"
-    chalk "^4.0.0"
-    cross-spawn "^7.0.2"
-
-"@prisma/generator-helper@^2.16.0":
-  version "2.16.1"
-  resolved "https://registry.yarnpkg.com/@prisma/generator-helper/-/generator-helper-2.16.1.tgz#fdae2a80c1999250b339a73712de9dc050f234c5"
-  integrity sha512-HXXD5AI6IUu+O0tkrm9QvNgbXkCHzU/qdpHsS/nSqdabyPXqSi8uC+9CWJD0lyEpK51fL5dGrnZ7du4O3NNSgg==
-  dependencies:
-    "@prisma/debug" "2.16.1"
     "@types/cross-spawn" "^6.0.1"
     chalk "^4.0.0"
     cross-spawn "^7.0.2"
@@ -9095,10 +9077,10 @@ preview-email@3.0.4:
     pug "^3.0.2"
     uuid "^8.3.2"
 
-prisma-dbml-generator@0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/prisma-dbml-generator/-/prisma-dbml-generator-0.5.0.tgz#9513ff8a75a329e9d5ab0c92834e2a47477b95ca"
-  integrity sha512-cFHyx3DvHdEhPA5gMYsPj6tEZC9TJ1zl6soHNdTxkUWkUZfIPit4lA9Nt1KUv6yT2lm4USyv6vl1mfSAPAXpUQ==
+prisma-dbml-generator@0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/prisma-dbml-generator/-/prisma-dbml-generator-0.6.0.tgz#0076979c43c3074814841a1439983a58604577e3"
+  integrity sha512-M8itoPNzfvjKqMFQbmZPANci4IhD2w31Lm/R9QWVCppFPDpkRGl4F5kuyIWwm5FDyshYHyIMDAC5r3JoZQCT2w==
   dependencies:
     "@prisma/generator-helper" "^2.20.1"
     "@prisma/sdk" "^2.20.1"
