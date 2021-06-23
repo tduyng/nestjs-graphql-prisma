@@ -8,7 +8,7 @@ export enum ProfileScalarFieldEnum {
   bio = 'bio',
   createdAt = 'createdAt',
   updatedAt = 'updatedAt',
-  userId = 'userId',
+  userId = 'userId'
 }
 
 registerEnumType(ProfileScalarFieldEnum, { name: 'ProfileScalarFieldEnum' });

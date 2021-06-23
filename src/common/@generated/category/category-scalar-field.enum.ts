@@ -5,7 +5,7 @@ export enum CategoryScalarFieldEnum {
   name = 'name',
   slug = 'slug',
   createdAt = 'createdAt',
-  updatedAt = 'updatedAt',
+  updatedAt = 'updatedAt'
 }
 
 registerEnumType(CategoryScalarFieldEnum, { name: 'CategoryScalarFieldEnum' });

@@ -1,52 +1,52 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { PostUncheckedCreateNestedManyWithoutAuthorInput } from '../post/post-unchecked-create-nested-many-without-author.input';
+import { PostCreateManyWithoutAuthorInput } from '../post/post-create-many-without-author.input';
 import { Role } from '../prisma/role.enum';
-import { ProfileUncheckedCreateNestedOneWithoutUserInput } from '../profile/profile-unchecked-create-nested-one-without-user.input';
+import { ProfileUncheckedCreateOneWithoutUserInput } from '../profile/profile-unchecked-create-one-without-user.input';
 
 @InputType()
 export class UserUncheckedCreateInput {
   @Field(() => String, {
-    nullable: true,
+    nullable: true
   })
   id?: string;
 
   @Field(() => String, {
-    nullable: false,
+    nullable: false
   })
   email!: string;
 
   @Field(() => String, {
-    nullable: false,
+    nullable: false
   })
   password!: string;
 
   @Field(() => Role, {
-    nullable: true,
+    nullable: true
   })
   role?: Role;
 
   @Field(() => Date, {
-    nullable: true,
+    nullable: true
   })
   createdAt?: Date | string;
 
   @Field(() => Date, {
-    nullable: true,
+    nullable: true
   })
   updatedAt?: Date | string;
 
   @Field(() => String, {
-    nullable: true,
+    nullable: true
   })
   currentHashedRefreshToken?: string;
 
-  @Field(() => PostUncheckedCreateNestedManyWithoutAuthorInput, {
-    nullable: true,
+  @Field(() => PostCreateManyWithoutAuthorInput, {
+    nullable: true
   })
-  posts?: PostUncheckedCreateNestedManyWithoutAuthorInput;
+  posts?: PostCreateManyWithoutAuthorInput;
 
-  @Field(() => ProfileUncheckedCreateNestedOneWithoutUserInput, {
-    nullable: true,
+  @Field(() => ProfileUncheckedCreateOneWithoutUserInput, {
+    nullable: true
   })
-  profile?: ProfileUncheckedCreateNestedOneWithoutUserInput;
+  profile?: ProfileUncheckedCreateOneWithoutUserInput;
 }

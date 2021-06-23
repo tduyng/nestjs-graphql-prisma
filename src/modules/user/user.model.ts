@@ -5,14 +5,14 @@ import {
   ObjectType,
   Field,
   HideField,
-  registerEnumType,
+  registerEnumType
 } from '@nestjs/graphql';
 
 import { Role } from './user.types';
 
 registerEnumType(Role, {
   name: 'Role',
-  description: 'User role',
+  description: 'User role'
 });
 @ObjectType('user')
 export class User extends BaseModel {

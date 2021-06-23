@@ -8,42 +8,42 @@ import { CategoryWhereInput } from './category-where.input';
 @ArgsType()
 export class AggregateCategoryArgs {
   @Field(() => CategoryWhereInput, {
-    nullable: true,
+    nullable: true
   })
   where?: CategoryWhereInput;
 
   @Field(() => [CategoryOrderByInput], {
-    nullable: true,
+    nullable: true
   })
   orderBy?: Array<CategoryOrderByInput>;
 
   @Field(() => CategoryWhereUniqueInput, {
-    nullable: true,
+    nullable: true
   })
   cursor?: CategoryWhereUniqueInput;
 
   @Field(() => Int, {
-    nullable: true,
+    nullable: true
   })
   take?: number;
 
   @Field(() => Int, {
-    nullable: true,
+    nullable: true
   })
   skip?: number;
 
   @Field(() => Boolean, {
-    nullable: true,
+    nullable: true
   })
   count?: true;
 
   @Field(() => CategoryMinAggregateInput, {
-    nullable: true,
+    nullable: true
   })
   min?: CategoryMinAggregateInput;
 
   @Field(() => CategoryMaxAggregateInput, {
-    nullable: true,
+    nullable: true
   })
   max?: CategoryMaxAggregateInput;
 }

@@ -1,22 +1,22 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { ProfileCreateOrConnectWithoutuserInput } from './profile-create-or-connect-withoutuser.input';
+import { ProfileCreateOrConnectWithoutUserInput } from './profile-create-or-connect-without-user.input';
 import { ProfileCreateWithoutUserInput } from './profile-create-without-user.input';
 import { ProfileWhereUniqueInput } from './profile-where-unique.input';
 
 @InputType()
 export class ProfileCreateOneWithoutUserInput {
   @Field(() => ProfileCreateWithoutUserInput, {
-    nullable: true,
+    nullable: true
   })
   create?: ProfileCreateWithoutUserInput;
 
+  @Field(() => ProfileCreateOrConnectWithoutUserInput, {
+    nullable: true
+  })
+  connectOrCreate?: ProfileCreateOrConnectWithoutUserInput;
+
   @Field(() => ProfileWhereUniqueInput, {
-    nullable: true,
+    nullable: true
   })
   connect?: ProfileWhereUniqueInput;
-
-  @Field(() => ProfileCreateOrConnectWithoutuserInput, {
-    nullable: true,
-  })
-  connectOrCreate?: ProfileCreateOrConnectWithoutuserInput;
 }

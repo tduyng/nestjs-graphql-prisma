@@ -1,6 +1,6 @@
 import {
   CategoryWhereUniqueInput,
-  FindManyCategoryArgs,
+  FindManyCategoryArgs
 } from '@common/@generated/category';
 import { Args, Info, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { Category } from './category.model';
@@ -17,7 +17,7 @@ export class CategoryResolver {
   @Query(() => [Category])
   public async categories(
     @Args() args: FindManyCategoryArgs,
-    @Info() info?: GraphQLResolveInfo,
+    @Info() info?: GraphQLResolveInfo
   ) {
     return await this.categoryService.getCategories(args, info);
   }
@@ -26,7 +26,7 @@ export class CategoryResolver {
   @Query(() => Category)
   public async category(
     @Args('where') where: CategoryWhereUniqueInput,
-    @Info() info?: GraphQLResolveInfo,
+    @Info() info?: GraphQLResolveInfo
   ) {
     return await this.categoryService.getCategoryByUniqueInput(where, info);
   }
@@ -42,7 +42,7 @@ export class CategoryResolver {
   @Mutation(() => [Category])
   public async createCategories(
     @Args({ name: 'data', type: () => [CreateCategoryInput] })
-    data: CreateCategoryInput[],
+    data: CreateCategoryInput[]
   ) {
     return await this.categoryService.createCategories(data);
   }
@@ -51,7 +51,7 @@ export class CategoryResolver {
   @Mutation(() => Category)
   public async updateCategory(
     @Args('where') where: CategoryWhereUniqueInput,
-    @Args('data') data: UpdateCategoryInput,
+    @Args('data') data: UpdateCategoryInput
   ) {
     return await this.categoryService.updateCategory(where, data);
   }

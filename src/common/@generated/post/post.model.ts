@@ -5,53 +5,53 @@ import { User } from '../user/user.model';
 @ObjectType()
 export class Post {
   @Field(() => ID, {
-    nullable: false,
+    nullable: false
   })
   id!: string;
 
   @Field(() => String, {
-    nullable: false,
+    nullable: false
   })
   title!: string;
 
   @Field(() => String, {
-    nullable: false,
+    nullable: false
   })
   slug!: string;
 
   @Field(() => String, {
-    nullable: false,
+    nullable: false
   })
   content!: string;
 
   @Field(() => Boolean, {
     nullable: false,
-    defaultValue: true,
+    defaultValue: true
   })
   published!: boolean;
 
   @Field(() => Date, {
-    nullable: false,
+    nullable: false
   })
   createdAt!: Date | string;
 
   @Field(() => Date, {
-    nullable: false,
+    nullable: false
   })
   updatedAt!: Date | string;
 
   @Field(() => String, {
-    nullable: true,
+    nullable: true
   })
   readonly authorId?: string;
 
   @Field(() => User, {
-    nullable: true,
+    nullable: true
   })
   author?: User;
 
   @Field(() => [Category], {
-    nullable: false,
+    nullable: false
   })
   categories!: Array<Category>;
 }

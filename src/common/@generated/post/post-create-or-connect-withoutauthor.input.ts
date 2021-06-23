@@ -5,12 +5,12 @@ import { PostWhereUniqueInput } from './post-where-unique.input';
 @InputType()
 export class PostCreateOrConnectWithoutauthorInput {
   @Field(() => PostWhereUniqueInput, {
-    nullable: false,
+    nullable: false
   })
   where!: PostWhereUniqueInput;
 
   @Field(() => PostCreateWithoutAuthorInput, {
-    nullable: false,
+    nullable: false
   })
   create!: PostCreateWithoutAuthorInput;
 }

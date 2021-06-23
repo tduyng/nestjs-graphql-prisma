@@ -8,42 +8,42 @@ import { PostWhereInput } from './post-where.input';
 @ArgsType()
 export class AggregatePostArgs {
   @Field(() => PostWhereInput, {
-    nullable: true,
+    nullable: true
   })
   where?: PostWhereInput;
 
   @Field(() => [PostOrderByInput], {
-    nullable: true,
+    nullable: true
   })
   orderBy?: Array<PostOrderByInput>;
 
   @Field(() => PostWhereUniqueInput, {
-    nullable: true,
+    nullable: true
   })
   cursor?: PostWhereUniqueInput;
 
   @Field(() => Int, {
-    nullable: true,
+    nullable: true
   })
   take?: number;
 
   @Field(() => Int, {
-    nullable: true,
+    nullable: true
   })
   skip?: number;
 
   @Field(() => Boolean, {
-    nullable: true,
+    nullable: true
   })
   count?: true;
 
   @Field(() => PostMinAggregateInput, {
-    nullable: true,
+    nullable: true
   })
   min?: PostMinAggregateInput;
 
   @Field(() => PostMaxAggregateInput, {
-    nullable: true,
+    nullable: true
   })
   max?: PostMaxAggregateInput;
 }

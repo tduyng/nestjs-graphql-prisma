@@ -4,47 +4,47 @@ import { User } from '../user/user.model';
 @ObjectType()
 export class Profile {
   @Field(() => ID, {
-    nullable: false,
+    nullable: false
   })
   id!: string;
 
   @Field(() => String, {
-    nullable: false,
+    nullable: false
   })
   username!: string;
 
   @Field(() => String, {
-    nullable: true,
+    nullable: true
   })
   firstName?: string;
 
   @Field(() => String, {
-    nullable: true,
+    nullable: true
   })
   lastName?: string;
 
   @Field(() => String, {
-    nullable: true,
+    nullable: true
   })
   bio?: string;
 
   @Field(() => Date, {
-    nullable: false,
+    nullable: false
   })
   createdAt!: Date | string;
 
   @Field(() => Date, {
-    nullable: false,
+    nullable: false
   })
   updatedAt!: Date | string;
 
   @Field(() => String, {
-    nullable: true,
+    nullable: true
   })
   readonly userId?: string;
 
   @Field(() => User, {
-    nullable: true,
+    nullable: true
   })
   user?: User;
 }

@@ -1,4 +1,4 @@
-import { PrismaService } from '@modules/prisma/prisma.service';
+import { PrismaService } from 'src/providers/prisma/prisma.service';
 import { Test, TestingModule } from '@nestjs/testing';
 import { PostService } from '../post.service';
 import { User } from '@modules/user/user.model';
@@ -6,18 +6,18 @@ import { CreatePostInput } from '../dto';
 import { Post, PostWhereUniqueInput } from '@common/@generated/post';
 import { CategoryService } from '@modules/category/category.service';
 import { Category } from '@modules/category/category.model';
-import { PrismaSelectService } from '@modules/prisma/prisma-select.service';
+import { PrismaSelectService } from 'src/providers/prisma/prisma-select.service';
 
 const oneUser = {
   id: 'some userId',
-  email: 'some email',
+  email: 'some email'
 } as User;
 
 const onePost = {
   id: 'some postId',
   title: 'some title',
   content: 'some content',
-  author: oneUser,
+  author: oneUser
 } as Post;
 
 const postInput = {
@@ -25,22 +25,22 @@ const postInput = {
   content: 'some content',
   categories: [
     {
-      name: 'Web development',
+      name: 'Web development'
     },
     {
-      name: 'Monorepo',
-    },
-  ],
+      name: 'Monorepo'
+    }
+  ]
 } as CreatePostInput;
 const oneCategory = {
   id: 'some id',
-  name: 'name name',
+  name: 'name name'
 } as Category;
 
 const arrayPost = [onePost, onePost];
 
 const postWhereUniqueInput = {
-  id: 'some postId',
+  id: 'some postId'
 } as PostWhereUniqueInput;
 
 describe('PostService', () => {
@@ -55,12 +55,12 @@ describe('PostService', () => {
       create: jest.fn(),
       update: jest.fn(),
       delete: jest.fn(),
-      upsert: jest.fn(),
-    },
+      upsert: jest.fn()
+    }
   });
 
   const mockCategoryService = () => ({
-    createCategories: jest.fn(),
+    createCategories: jest.fn()
   });
 
   beforeAll(async () => {
@@ -69,19 +69,19 @@ describe('PostService', () => {
         PostService,
         {
           provide: CategoryService,
-          useFactory: mockCategoryService,
+          useFactory: mockCategoryService
         },
         {
           provide: PrismaService,
-          useFactory: mockPrismaService,
+          useFactory: mockPrismaService
         },
         {
           provide: PrismaSelectService,
           useValue: {
-            getValue: jest.fn().mockReturnValue({}),
-          },
-        },
-      ],
+            getValue: jest.fn().mockReturnValue({})
+          }
+        }
+      ]
     }).compile();
 
     postService = module.get<PostService>(PostService);
@@ -131,7 +131,7 @@ describe('PostService', () => {
       prismaService.post.update.mockReturnValue(onePost);
       const result = await postService.updatePost(
         postWhereUniqueInput,
-        postInput,
+        postInput
       );
       expect(result).toEqual(onePost);
     });

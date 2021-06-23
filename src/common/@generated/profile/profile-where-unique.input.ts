@@ -3,17 +3,17 @@ import { Field, InputType } from '@nestjs/graphql';
 @InputType()
 export class ProfileWhereUniqueInput {
   @Field(() => String, {
-    nullable: true,
+    nullable: true
   })
   id?: string;
 
   @Field(() => String, {
-    nullable: true,
+    nullable: true
   })
   username?: string;
 
   @Field(() => String, {
-    nullable: true,
+    nullable: true
   })
   userId?: string;
 }

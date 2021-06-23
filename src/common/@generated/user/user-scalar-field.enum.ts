@@ -6,7 +6,7 @@ export enum UserScalarFieldEnum {
   password = 'password',
   role = 'role',
   createdAt = 'createdAt',
-  updatedAt = 'updatedAt',
+  updatedAt = 'updatedAt'
 }
 
 registerEnumType(UserScalarFieldEnum, { name: 'UserScalarFieldEnum' });

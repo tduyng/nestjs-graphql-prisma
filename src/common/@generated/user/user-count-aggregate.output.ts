@@ -3,42 +3,42 @@ import { Field, Int, ObjectType } from '@nestjs/graphql';
 @ObjectType()
 export class UserCountAggregate {
   @Field(() => Int, {
-    nullable: true,
+    nullable: false
   })
-  id?: number;
+  id!: number;
 
   @Field(() => Int, {
-    nullable: true,
+    nullable: false
   })
-  email?: number;
+  email!: number;
 
   @Field(() => Int, {
-    nullable: true,
+    nullable: false
   })
-  password?: number;
+  password!: number;
 
   @Field(() => Int, {
-    nullable: true,
+    nullable: false
   })
-  role?: number;
+  role!: number;
 
   @Field(() => Int, {
-    nullable: true,
+    nullable: false
   })
-  createdAt?: number;
+  createdAt!: number;
 
   @Field(() => Int, {
-    nullable: true,
+    nullable: false
   })
-  updatedAt?: number;
+  updatedAt!: number;
 
   @Field(() => Int, {
-    nullable: true,
+    nullable: false
   })
-  currentHashedRefreshToken?: number;
+  currentHashedRefreshToken!: number;
 
   @Field(() => Int, {
-    nullable: false,
+    nullable: false
   })
   _all!: number;
 }

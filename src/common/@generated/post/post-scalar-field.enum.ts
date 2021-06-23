@@ -8,7 +8,7 @@ export enum PostScalarFieldEnum {
   published = 'published',
   createdAt = 'createdAt',
   updatedAt = 'updatedAt',
-  authorId = 'authorId',
+  authorId = 'authorId'
 }
 
 registerEnumType(PostScalarFieldEnum, { name: 'PostScalarFieldEnum' });

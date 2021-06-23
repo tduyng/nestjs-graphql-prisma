@@ -1,5 +1,5 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { PostCreateOrConnectWithoutcategoriesInput } from './post-create-or-connect-withoutcategories.input';
+import { PostCreateOrConnectWithoutCategoriesInput } from './post-create-or-connect-without-categories.input';
 import { PostCreateWithoutCategoriesInput } from './post-create-without-categories.input';
 import { PostScalarWhereInput } from './post-scalar-where.input';
 import { PostUpdateManyWithWhereWithoutCategoriesInput } from './post-update-many-with-where-without-categories.input';
@@ -10,52 +10,52 @@ import { PostWhereUniqueInput } from './post-where-unique.input';
 @InputType()
 export class PostUpdateManyWithoutCategoriesInput {
   @Field(() => [PostCreateWithoutCategoriesInput], {
-    nullable: true,
+    nullable: true
   })
   create?: Array<PostCreateWithoutCategoriesInput>;
 
-  @Field(() => [PostCreateOrConnectWithoutcategoriesInput], {
-    nullable: true,
+  @Field(() => [PostCreateOrConnectWithoutCategoriesInput], {
+    nullable: true
   })
-  connectOrCreate?: Array<PostCreateOrConnectWithoutcategoriesInput>;
+  connectOrCreate?: Array<PostCreateOrConnectWithoutCategoriesInput>;
 
   @Field(() => [PostUpsertWithWhereUniqueWithoutCategoriesInput], {
-    nullable: true,
+    nullable: true
   })
   upsert?: Array<PostUpsertWithWhereUniqueWithoutCategoriesInput>;
 
   @Field(() => [PostWhereUniqueInput], {
-    nullable: true,
+    nullable: true
   })
   connect?: Array<PostWhereUniqueInput>;
 
   @Field(() => [PostWhereUniqueInput], {
-    nullable: true,
+    nullable: true
   })
   set?: Array<PostWhereUniqueInput>;
 
   @Field(() => [PostWhereUniqueInput], {
-    nullable: true,
+    nullable: true
   })
   disconnect?: Array<PostWhereUniqueInput>;
 
   @Field(() => [PostWhereUniqueInput], {
-    nullable: true,
+    nullable: true
   })
   delete?: Array<PostWhereUniqueInput>;
 
   @Field(() => [PostUpdateWithWhereUniqueWithoutCategoriesInput], {
-    nullable: true,
+    nullable: true
   })
   update?: Array<PostUpdateWithWhereUniqueWithoutCategoriesInput>;
 
   @Field(() => [PostUpdateManyWithWhereWithoutCategoriesInput], {
-    nullable: true,
+    nullable: true
   })
   updateMany?: Array<PostUpdateManyWithWhereWithoutCategoriesInput>;
 
   @Field(() => [PostScalarWhereInput], {
-    nullable: true,
+    nullable: true
   })
   deleteMany?: Array<PostScalarWhereInput>;
 }

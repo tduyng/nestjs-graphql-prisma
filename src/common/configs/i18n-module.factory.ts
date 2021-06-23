@@ -10,8 +10,8 @@ export const i18nModuleFactory = async () => {
     fallbackLanguage: 'en',
     parserOptions: {
       path: join(process.cwd(), '/src/common/i18n/'),
-      watch: environment().isDevelopment,
-    },
+      watch: environment().isDevelopment
+    }
   };
 };
 

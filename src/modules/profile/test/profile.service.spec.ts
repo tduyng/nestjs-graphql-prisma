@@ -1,11 +1,11 @@
-import { PrismaService } from '@modules/prisma/prisma.service';
+import { PrismaService } from 'src/providers/prisma/prisma.service';
 import { Test, TestingModule } from '@nestjs/testing';
 import { Profile } from '../profile.model';
 import { ProfileService } from '../profile.service';
 import { User } from '@modules/user/user.model';
 import { ProfileWhereUniqueInput } from '@common/@generated/profile';
 import { CreateProfileInput } from '../dto';
-import { PrismaSelectService } from '@modules/prisma/prisma-select.service';
+import { PrismaSelectService } from 'src/providers/prisma/prisma-select.service';
 
 const oneProfile = {
   id: 'some profileId',
@@ -14,23 +14,23 @@ const oneProfile = {
   lastName: 'some last name',
   user: {
     id: 'some postId',
-    email: 'some email',
-  } as User,
+    email: 'some email'
+  } as User
 } as Profile;
 
 const oneUser = {
   id: 'some postId',
-  email: 'some email',
+  email: 'some email'
 } as User;
 
 const profileInput = {
   firstName: 'some first name',
   lastName: 'some last name',
-  bio: 'some bio',
+  bio: 'some bio'
 } as CreateProfileInput;
 
 const profileWhereUniqueInput = {
-  id: 'some profileId',
+  id: 'some profileId'
 } as ProfileWhereUniqueInput;
 
 describe('ProfileService', () => {
@@ -43,8 +43,8 @@ describe('ProfileService', () => {
       create: jest.fn(),
       update: jest.fn(),
       findUnique: jest.fn(),
-      delete: jest.fn(),
-    },
+      delete: jest.fn()
+    }
   });
 
   beforeAll(async () => {
@@ -53,15 +53,15 @@ describe('ProfileService', () => {
         ProfileService,
         {
           provide: PrismaService,
-          useFactory: mockPrismaService,
+          useFactory: mockPrismaService
         },
         {
           provide: PrismaSelectService,
           useValue: {
-            getValue: jest.fn().mockReturnValue({}),
-          },
-        },
-      ],
+            getValue: jest.fn().mockReturnValue({})
+          }
+        }
+      ]
     }).compile();
 
     profileService = module.get<ProfileService>(ProfileService);
@@ -84,7 +84,7 @@ describe('ProfileService', () => {
     it('Should return an profile', async () => {
       prismaService.profile.findUnique.mockReturnValue(oneProfile);
       const result = await profileService.getUserOfProfile(
-        profileWhereUniqueInput,
+        profileWhereUniqueInput
       );
       expect(result).toEqual(oneProfile.user);
     });
@@ -97,7 +97,7 @@ describe('ProfileService', () => {
       const user = oneUser;
       const result = await profileService.createProfile({
         input,
-        user,
+        user
       });
       expect(result).toEqual(oneProfile);
     });
@@ -108,7 +108,7 @@ describe('ProfileService', () => {
       prismaService.profile.update.mockReturnValue(oneProfile);
       const result = await profileService.updateProfile(
         profileWhereUniqueInput,
-        profileInput,
+        profileInput
       );
       expect(result).toEqual(oneProfile);
     });

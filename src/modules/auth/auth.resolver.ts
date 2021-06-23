@@ -1,24 +1,24 @@
 import { Args, Context, Mutation, Resolver } from '@nestjs/graphql';
 import { User } from '@modules/user/user.model';
 import { LoginUserInput, RegisterUserInput, ResetPasswordInput } from './dto';
-import { AuthService } from './auth.service';
+import { AuthService } from './services/auth.service';
 import { BadRequestException, UseGuards } from '@nestjs/common';
 import {
   IHttpContext,
   IPayloadUserJwt,
   IRequestWithUser,
-  ISessionAuthToken,
+  ISessionAuthToken
 } from '@common/global-interfaces';
-import { REDIS_AUTH_TOKEN_SESSION } from '@modules/redis/redis.constant';
+import { REDIS_AUTH_TOKEN_SESSION } from 'src/providers/redis/redis.constant';
 import { ChangePasswordInput } from '@modules/user/dto';
-import { EmailService } from '@modules/email/email.service';
+import { EmailService } from 'src/providers/email/email.service';
 import { JwtGuard, JwtRefreshTokenGuard } from './guards';
 
 @Resolver(() => User)
 export class AuthResolver {
   constructor(
     private authService: AuthService,
-    private emailService: EmailService,
+    private emailService: EmailService
   ) {}
   /* Queries*/
 
@@ -41,7 +41,7 @@ export class AuthResolver {
   @Mutation(() => User)
   public async login(
     @Args('data') data: LoginUserInput,
-    @Context() ctx: IHttpContext,
+    @Context() ctx: IHttpContext
   ) {
     const { email, password } = data;
     const user = await this.authService.validateUser(email, password);
@@ -51,16 +51,16 @@ export class AuthResolver {
     }
 
     const payload: IPayloadUserJwt = {
-      userId: user.id,
+      userId: user.id
     };
     const authToken: ISessionAuthToken = await this.authService.generateAuthTokenFromLogin(
-      payload,
+      payload
     );
 
     // Reset column currentHashedRefreshToken of user
     await this.authService.resetCurrentHashesRefreshToken(
       { id: user.id },
-      authToken.refreshToken,
+      authToken.refreshToken
     );
 
     // Save token to session (auto save with redis)
@@ -86,13 +86,13 @@ export class AuthResolver {
     const req = ctx.req as IRequestWithUser;
     const { user } = req;
     const payload: IPayloadUserJwt = {
-      userId: user.id,
+      userId: user.id
     };
     const newAccessToken = await this.authService.resetAccessToken(payload);
     const currentRefreshToken = req.session?.authToken.refreshToken;
     const authToken: ISessionAuthToken = {
       accessToken: newAccessToken,
-      refreshToken: currentRefreshToken,
+      refreshToken: currentRefreshToken
     };
 
     // Update session
@@ -118,11 +118,11 @@ export class AuthResolver {
   @UseGuards(JwtGuard)
   public async changePassword(
     @Args('data') data: ChangePasswordInput,
-    @Context() ctx: IHttpContext,
+    @Context() ctx: IHttpContext
   ) {
     const user = await this.authService.changePassword(ctx.req.user.id, data);
     const payload: IPayloadUserJwt = {
-      userId: user.id,
+      userId: user.id
     };
     const authToken = this.authService.generateAuthTokenFromLogin(payload);
     // Login auto after change password
@@ -133,11 +133,11 @@ export class AuthResolver {
   @Mutation(() => User)
   public async resetPassword(
     @Args('data') data: ResetPasswordInput,
-    @Context() ctx: IHttpContext,
+    @Context() ctx: IHttpContext
   ) {
     const user = await this.authService.resetPassword(data);
     const payload: IPayloadUserJwt = {
-      userId: user.id,
+      userId: user.id
     };
     const authToken = this.authService.generateAuthTokenFromLogin(payload);
     // Login auto after change password

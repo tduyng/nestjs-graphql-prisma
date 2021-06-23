@@ -20,16 +20,16 @@ export class UserResolver {
   @Query(() => User)
   public async me(
     @CurrentUser() user: User,
-    @Info() info?: GraphQLResolveInfo,
+    @Info() info?: GraphQLResolveInfo
   ) {
     // Re-find user from database for search the  related field too
     const where: UserWhereUniqueInput = {
-      id: user.id,
+      id: user.id
     };
     const userFound = await this.userService.getUserByUniqueInput(where, info);
     if (!userFound) {
       throw new BadRequestException(
-        'Unauthorized: user did not authenticated!',
+        'Unauthorized: user did not authenticated!'
       );
     }
     return userFound;
@@ -40,10 +40,10 @@ export class UserResolver {
   @Mutation(() => User)
   public async updateAccount(
     @CurrentUser() user: User,
-    @Args('data') newUserData: UpdateUserInput,
+    @Args('data') newUserData: UpdateUserInput
   ) {
     const where: UserWhereUniqueInput = {
-      id: user.id,
+      id: user.id
     };
     return this.userService.updateOneUser(where, newUserData);
   }
@@ -51,7 +51,7 @@ export class UserResolver {
   @Mutation(() => User)
   public async deleteAccount(@CurrentUser() user: User) {
     const where: UserWhereUniqueInput = {
-      id: user.id,
+      id: user.id
     };
     return this.userService.deleteOneUser(where);
   }
@@ -59,7 +59,7 @@ export class UserResolver {
   @Mutation(() => User)
   public async changePassword(
     @CurrentUser() user: User,
-    @Args('data') input: ChangePasswordInput,
+    @Args('data') input: ChangePasswordInput
   ) {
     return this.userService.changePassword(user.id, user.password, input);
   }

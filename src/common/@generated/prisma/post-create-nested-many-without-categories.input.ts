@@ -6,17 +6,17 @@ import { PostWhereUniqueInput } from '../post/post-where-unique.input';
 @InputType()
 export class PostCreateNestedManyWithoutCategoriesInput {
   @Field(() => [PostCreateWithoutCategoriesInput], {
-    nullable: true,
+    nullable: true
   })
   create?: Array<PostCreateWithoutCategoriesInput>;
 
   @Field(() => [PostCreateOrConnectWithoutcategoriesInput], {
-    nullable: true,
+    nullable: true
   })
   connectOrCreate?: Array<PostCreateOrConnectWithoutcategoriesInput>;
 
   @Field(() => [PostWhereUniqueInput], {
-    nullable: true,
+    nullable: true
   })
   connect?: Array<PostWhereUniqueInput>;
 }

@@ -1,10 +1,10 @@
 import { UserWhereUniqueInput } from '@common/@generated/user';
 import { environment } from '@common/environment';
-import { IPayloadUserJwt, ISessionAuthToken } from '@common/global-interfaces';
-import { REDIS_FORGOT_PASSWORD_PREFIX } from '@modules/redis/redis.constant';
-import { RedisService } from '@modules/redis/redis.service';
+import { IPayloadUserJwt } from '@common/global-interfaces';
+import { REDIS_FORGOT_PASSWORD_PREFIX } from 'src/providers/redis/redis.constant';
+import { RedisService } from 'src/providers/redis/redis.service';
 import { ChangePasswordInput } from '@modules/user/dto';
-import { PasswordService } from '@modules/user/services/password.service';
+import { PasswordService } from '@modules/auth/services/password.service';
 import { UserService } from '@modules/user/services/user.service';
 import { User } from '@modules/user/user.model';
 import {
@@ -13,7 +13,8 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { RegisterUserInput, ResetPasswordInput } from './dto';
+import { RegisterUserInput, ResetPasswordInput } from '../dto';
+
 @Injectable()
 export class AuthService {
   constructor(
@@ -42,8 +43,7 @@ export class AuthService {
   }
 
   public async register(data: RegisterUserInput) {
-    const user = await this.userService.createOneUser(data);
-    return user;
+    return this.userService.createOneUser(data);
   }
 
   public async generateAuthTokenFromLogin(payload: IPayloadUserJwt) {
@@ -51,7 +51,7 @@ export class AuthService {
     const accessTokenExpiresIn = envJwt.accessTokenExpiresIn;
     const refreshTokenExpiresIn = envJwt.accessTokenExpiresIn;
 
-    const sessionAuthToken: ISessionAuthToken = {
+    return {
       accessToken: await this.jwtService.signAsync(payload, {
         expiresIn: accessTokenExpiresIn,
       }),
@@ -59,7 +59,6 @@ export class AuthService {
         expiresIn: refreshTokenExpiresIn,
       }),
     };
-    return sessionAuthToken;
   }
 
   public async resetCurrentHashesRefreshToken(
@@ -70,20 +69,18 @@ export class AuthService {
       refreshToken,
     );
 
-    const user = await this.userService.updateOneUser(where, {
+    return this.userService.updateOneUser(where, {
       currentHashedRefreshToken,
     });
-    return user;
   }
 
   public async resetAccessToken(payload: IPayloadUserJwt) {
     const envJwt = environment().jwtOptions;
     const accessTokenExpiresIn = envJwt.accessTokenExpiresIn;
 
-    const accessToken = await this.jwtService.signAsync(payload, {
+    return this.jwtService.signAsync(payload, {
       expiresIn: accessTokenExpiresIn,
     });
-    return accessToken;
   }
 
   public async requestForgotPassword(email: string): Promise<string> {

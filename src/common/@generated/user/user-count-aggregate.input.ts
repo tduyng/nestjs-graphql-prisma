@@ -3,42 +3,42 @@ import { Field, InputType } from '@nestjs/graphql';
 @InputType()
 export class UserCountAggregateInput {
   @Field(() => Boolean, {
-    nullable: true,
+    nullable: true
   })
   id?: true;
 
   @Field(() => Boolean, {
-    nullable: true,
+    nullable: true
   })
   email?: true;
 
   @Field(() => Boolean, {
-    nullable: true,
+    nullable: true
   })
   password?: true;
 
   @Field(() => Boolean, {
-    nullable: true,
+    nullable: true
   })
   role?: true;
 
   @Field(() => Boolean, {
-    nullable: true,
+    nullable: true
   })
   createdAt?: true;
 
   @Field(() => Boolean, {
-    nullable: true,
+    nullable: true
   })
   updatedAt?: true;
 
   @Field(() => Boolean, {
-    nullable: true,
+    nullable: true
   })
   currentHashedRefreshToken?: true;
 
   @Field(() => Boolean, {
-    nullable: true,
+    nullable: true
   })
   _all?: true;
 }

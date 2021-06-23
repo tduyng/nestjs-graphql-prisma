@@ -5,42 +5,42 @@ import { Role } from '../prisma/role.enum';
 @InputType()
 export class UserUpdateWithoutProfileInput {
   @Field(() => String, {
-    nullable: true,
+    nullable: true
   })
   id?: string;
 
   @Field(() => String, {
-    nullable: true,
+    nullable: true
   })
   email?: string;
 
   @Field(() => String, {
-    nullable: true,
+    nullable: true
   })
   password?: string;
 
   @Field(() => Role, {
-    nullable: true,
+    nullable: true
   })
   role?: Role;
 
   @Field(() => Date, {
-    nullable: true,
+    nullable: true
   })
   createdAt?: Date | string;
 
   @Field(() => Date, {
-    nullable: true,
+    nullable: true
   })
   updatedAt?: Date | string;
 
   @Field(() => String, {
-    nullable: true,
+    nullable: true
   })
   currentHashedRefreshToken?: string;
 
   @Field(() => PostUpdateManyWithoutAuthorInput, {
-    nullable: true,
+    nullable: true
   })
   posts?: PostUpdateManyWithoutAuthorInput;
 }

@@ -12,15 +12,15 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       jwtFromRequest: ExtractJwt.fromExtractors([
         (req: any) => {
           return req?.session?.authToken?.accessToken; //get access token from session
-        },
+        }
       ]),
       ignoreExpiration: false,
-      secretOrKey: process.env.JWT_PRIVATE_KEY,
+      secretOrKey: process.env.JWT_PRIVATE_KEY
     });
   }
   public async validate(payload: IPayloadUserJwt) {
     const where: UserWhereUniqueInput = {
-      id: payload.userId,
+      id: payload.userId
     };
     const user = await this.userService.getUserByUniqueInput(where);
     if (!user) {

@@ -1,7 +1,7 @@
 import { Global, Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ConfigModule } from '@nestjs/config';
-import { PrismaModule } from '@modules/prisma/prisma.module';
+import { PrismaModule } from 'src/providers/prisma/prisma.module';
 import { AppResolver } from '@app/app.resolver';
 import { AppController } from './app/app.controller';
 import { AppService } from './app/app.service';
@@ -13,22 +13,22 @@ import { graphqlModuleFactory } from '@common/configs/graphql-module.factory';
 import { I18nModule, I18nJsonParser } from 'nestjs-i18n';
 import { i18nModuleFactory } from '@common/configs/i18n-module.factory';
 import { AuthModule } from '@modules/auth/auth.module';
-import { RedisModule } from '@modules/redis/redis.module';
-import { EmailModule } from '@modules/email/email.module';
+import { RedisModule } from 'src/providers/redis/redis.module';
+import { EmailModule } from 'src/providers/email/email.module';
 
 @Global()
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: '.env',
+      envFilePath: '.env'
     }),
     GraphQLModule.forRootAsync({
-      useFactory: graphqlModuleFactory,
+      useFactory: graphqlModuleFactory
     }),
     I18nModule.forRootAsync({
       useFactory: i18nModuleFactory,
-      parser: I18nJsonParser,
+      parser: I18nJsonParser
     }),
     PrismaModule,
     UserModule,
@@ -37,9 +37,9 @@ import { EmailModule } from '@modules/email/email.module';
     ProfileModule,
     PostModule,
     RedisModule,
-    EmailModule,
+    EmailModule
   ],
   providers: [AppResolver, AppService],
-  controllers: [AppController],
+  controllers: [AppController]
 })
 export class AppModule {}

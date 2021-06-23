@@ -6,47 +6,47 @@ import { StringFilter } from '../prisma/string-filter.input';
 @InputType()
 export class CategoryWhereInput {
   @Field(() => [CategoryWhereInput], {
-    nullable: true,
+    nullable: true
   })
   AND?: Array<CategoryWhereInput>;
 
   @Field(() => [CategoryWhereInput], {
-    nullable: true,
+    nullable: true
   })
   OR?: Array<CategoryWhereInput>;
 
   @Field(() => [CategoryWhereInput], {
-    nullable: true,
+    nullable: true
   })
   NOT?: Array<CategoryWhereInput>;
 
   @Field(() => StringFilter, {
-    nullable: true,
+    nullable: true
   })
   id?: StringFilter;
 
   @Field(() => StringFilter, {
-    nullable: true,
+    nullable: true
   })
   name?: StringFilter;
 
   @Field(() => StringFilter, {
-    nullable: true,
+    nullable: true
   })
   slug?: StringFilter;
 
   @Field(() => DateTimeFilter, {
-    nullable: true,
+    nullable: true
   })
   createdAt?: DateTimeFilter;
 
   @Field(() => DateTimeFilter, {
-    nullable: true,
+    nullable: true
   })
   updatedAt?: DateTimeFilter;
 
   @Field(() => PostListRelationFilter, {
-    nullable: true,
+    nullable: true
   })
   posts?: PostListRelationFilter;
 }

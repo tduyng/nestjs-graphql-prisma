@@ -23,9 +23,9 @@ export const environment = () => {
       sortSchema: true,
       uploads: {
         maxFileSize: 20_000_000, // 20 MB
-        maxFiles: 5,
+        maxFiles: 5
       },
-      tracing: false,
+      tracing: false
     },
 
     // JWT
@@ -36,22 +36,22 @@ export const environment = () => {
       secretOrPrivateKey: process.env.JWT_PRIVATE_KEY,
       signOptions: {
         algorithm: process.env.JWT_ALGORITHM as Algorithm,
-        expiresIn: Number(process.env.JWT_EXPIRE_TIME),
+        expiresIn: Number(process.env.JWT_EXPIRE_TIME)
       },
       accessTokenExpiresIn: 60 * 60 * 2, //2h
-      refreshTokenExpiresIn: 60 * 60 * 24 * 30, // 30 days
+      refreshTokenExpiresIn: 60 * 60 * 24 * 30 // 30 days
     },
 
     session: {
-      secret: process.env.SESSION_SECRET,
+      secret: process.env.SESSION_SECRET
     },
 
     // Email
     mail: {
       transport: `smtps://${process.env.SMTP_LOGIN}:${process.env.SMTP_PASSWORD}@${process.env.SMTP_SERVER}`,
       defaults: {
-        from: `"${process.env.SMTP_FROM_NAME}" <${process.env.SMTP_FROM_EMAIL}>`,
-      },
-    },
+        from: `"${process.env.SMTP_FROM_NAME}" <${process.env.SMTP_FROM_EMAIL}>`
+      }
+    }
   } as IEnvironment;
 };

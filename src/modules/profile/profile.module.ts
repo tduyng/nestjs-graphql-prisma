@@ -1,5 +1,5 @@
-import { PrismaSelectService } from '@modules/prisma/prisma-select.service';
-import { PrismaService } from '@modules/prisma/prisma.service';
+import { PrismaSelectService } from 'src/providers/prisma/prisma-select.service';
+import { PrismaService } from 'src/providers/prisma/prisma.service';
 import { Module } from '@nestjs/common';
 import { ProfileResolver } from './profile.resolver';
 import { ProfileService } from './profile.service';
@@ -9,7 +9,7 @@ import { ProfileService } from './profile.service';
     ProfileService,
     ProfileResolver,
     PrismaService,
-    PrismaSelectService,
-  ],
+    PrismaSelectService
+  ]
 })
 export class ProfileModule {}

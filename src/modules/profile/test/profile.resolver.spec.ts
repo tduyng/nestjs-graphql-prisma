@@ -13,23 +13,23 @@ const oneProfile = {
   lastName: 'some last name',
   user: {
     id: 'some postId',
-    email: 'some email',
-  } as User,
+    email: 'some email'
+  } as User
 } as Profile;
 
 const oneUser = {
   id: 'some postId',
-  email: 'some email',
+  email: 'some email'
 } as User;
 
 const profileInput = {
   firstName: 'some first name',
   lastName: 'some last name',
-  bio: 'some bio',
+  bio: 'some bio'
 } as CreateProfileInput;
 
 const profileWhereUniqueInput = {
-  id: 'some profileId',
+  id: 'some profileId'
 } as ProfileWhereUniqueInput;
 
 describe('ProfileResolver', () => {
@@ -42,7 +42,7 @@ describe('ProfileResolver', () => {
     getUserOfProfile: jest.fn(),
     createProfile: jest.fn(),
     updateProfile: jest.fn(),
-    deleteProfile: jest.fn(),
+    deleteProfile: jest.fn()
   });
 
   beforeAll(async () => {
@@ -51,9 +51,9 @@ describe('ProfileResolver', () => {
         ProfileResolver,
         {
           provide: ProfileService,
-          useFactory: mockProfileService,
-        },
-      ],
+          useFactory: mockProfileService
+        }
+      ]
     }).compile();
 
     profileResolver = module.get<ProfileResolver>(ProfileResolver);
@@ -93,7 +93,7 @@ describe('ProfileResolver', () => {
       profileService.updateProfile.mockReturnValue(oneProfile);
       const result = await profileResolver.updateProfile(
         oneProfile,
-        profileInput,
+        profileInput
       );
       expect(result).toEqual(oneProfile);
     });

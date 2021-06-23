@@ -4,17 +4,17 @@ import { Field, InputType } from '@nestjs/graphql';
 @InputType()
 export class CreateUserInput {
   @Field(() => String, {
-    nullable: false,
+    nullable: false
   })
   email!: string;
 
   @Field(() => String, {
-    nullable: false,
+    nullable: false
   })
   password!: string;
 
   @Field(() => ProfileCreateOneWithoutUserInput, {
-    nullable: true,
+    nullable: true
   })
   profile?: ProfileCreateOneWithoutUserInput;
 }

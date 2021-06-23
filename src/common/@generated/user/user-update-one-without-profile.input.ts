@@ -1,5 +1,5 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { UserCreateOrConnectWithoutprofileInput } from './user-create-or-connect-withoutprofile.input';
+import { UserCreateOrConnectWithoutProfileInput } from './user-create-or-connect-without-profile.input';
 import { UserCreateWithoutProfileInput } from './user-create-without-profile.input';
 import { UserUpdateWithoutProfileInput } from './user-update-without-profile.input';
 import { UserUpsertWithoutProfileInput } from './user-upsert-without-profile.input';
@@ -8,37 +8,37 @@ import { UserWhereUniqueInput } from './user-where-unique.input';
 @InputType()
 export class UserUpdateOneWithoutProfileInput {
   @Field(() => UserCreateWithoutProfileInput, {
-    nullable: true,
+    nullable: true
   })
   create?: UserCreateWithoutProfileInput;
 
-  @Field(() => UserCreateOrConnectWithoutprofileInput, {
-    nullable: true,
+  @Field(() => UserCreateOrConnectWithoutProfileInput, {
+    nullable: true
   })
-  connectOrCreate?: UserCreateOrConnectWithoutprofileInput;
+  connectOrCreate?: UserCreateOrConnectWithoutProfileInput;
 
   @Field(() => UserUpsertWithoutProfileInput, {
-    nullable: true,
+    nullable: true
   })
   upsert?: UserUpsertWithoutProfileInput;
 
   @Field(() => UserWhereUniqueInput, {
-    nullable: true,
+    nullable: true
   })
   connect?: UserWhereUniqueInput;
 
   @Field(() => Boolean, {
-    nullable: true,
+    nullable: true
   })
   disconnect?: boolean;
 
   @Field(() => Boolean, {
-    nullable: true,
+    nullable: true
   })
   delete?: boolean;
 
   @Field(() => UserUpdateWithoutProfileInput, {
-    nullable: true,
+    nullable: true
   })
   update?: UserUpdateWithoutProfileInput;
 }

@@ -28,42 +28,28 @@
     "migrate:dev": "prisma migrate dev --name autoMigrate --preview-feature",
     "migrate:dev:create": "prisma migrate dev --create-only --preview-feature",
     "migrate:reset": "prisma migrate reset --preview-feature",
-    "migrate:deploy": "npx prisma migrate deploy --preview-feature",
-    "migrate:status": "npx prisma migrate status --preview-feature",
     "migrate:resolve": "npx prisma migrate resolve --preview-feature",
-    "prisma:studio": "npx prisma studio",
-    "prisma:generate": "npx prisma generate",
-    "prisma:generate:watch": "npx prisma generate --watch",
-    "start:db": "npm run prisma:generate && npm run migrate:dev && npm run seed",
+    "start:db": "yarn prisma:generate && yarn migrate:dev && yarn seed",
     "preseed": "npx prisma generate",
     "seed": "ts-node prisma/seed.ts",
-    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "prettier": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix && prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "test": "cross-env NODE_ENV=test jest",
     "test:watch": "cross-env NODE_ENV=test jest --watch",
     "test:cov": "cross-env NODE_ENV=test jest --coverage",
-    "coveralls": "npm run test:cov && cat ./coverage/lcov.info | coveralls",
+    "coveralls": "yarn test:cov && cat ./coverage/lcov.info | coveralls",
     "test:debug": "cross-env NODE_ENV=test node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "pretest:e2e": "nest build -p tsconfig.test.json && cp ./test/jest-e2e.json ./dist-test/test/",
     "test:e2e": "jest --config ./dist-test/test/jest-e2e.json",
     "docker:build": "docker-compose -f docker-compose.yml build --no-cache",
-    "docker:prisma:generate": "docker-compose -f docker-compose.yml run --rm nest-api npm run prisma:generate",
-    "docker:migrate": "docker-compose -f docker-compose.yml run --rm nest-api npm run migrate:dev",
-    "docker:seed": "docker-compose -f docker-compose.yml run --rm nest-api npm run seed",
-    "docker:prisma:studio": "docker-compose -f docker-compose.yml run nest-api -d npm run prisma:studio",
+    "docker:prisma:generate": "docker-compose -f docker-compose.yml run --rm nest-api yarn prisma:generate",
+    "docker:migrate": "docker-compose -f docker-compose.yml run --rm nest-api yarn migrate:dev",
+    "docker:seed": "docker-compose -f docker-compose.yml run --rm nest-api yarn seed",
+    "docker:prisma:studio": "docker-compose -f docker-compose.yml run nest-api -d yarn prisma:studio",
     "docker:start:dev": "docker-compose up",
-    "docker:test:seed": "docker-compose -f docker-compose.test.yml run --rm nest-api npm run seed",
-    "docker:test:migrate": "docker-compose -f docker-compose.test.yml run --rm nest-api npm run migrate:dev",
+    "docker:test:seed": "docker-compose -f docker-compose.test.yml run --rm nest-api yarn seed",
+    "docker:test:migrate": "docker-compose -f docker-compose.test.yml run --rm nest-api yarn migrate:dev",
     "docker:test:build": "docker-compose -f docker-compose.test.yml build --no-cache",
-    "docker:test:run": "docker-compose -f docker-compose.test.yml run --rm nest-api npm run test"
-  },
-  "lint-staged": {
-    "{src,apps,libs,test}/**/*.ts": [
-      "npm run lint"
-    ],
-    "./**/*.{ts,js,json,*rc}": [
-      "npm run prettier"
-    ]
+    "docker:test:run": "docker-compose -f docker-compose.test.yml run --rm nest-api yarn test"
   },
   "dependencies": {
     "@nestjs-modules/mailer": "1.6.0",
@@ -95,6 +81,7 @@
     "helmet": "4.6.0",
     "ioredis": "4.27.1",
     "nodemailer": "6.6.0",
+    "nodemailer-sendgrid-transport": "^0.2.0",
     "passport": "0.4.1",
     "passport-jwt": "4.0.0",
     "passport-local": "1.0.0",
@@ -132,7 +119,6 @@
     "eslint-plugin-prettier": "3.4.0",
     "husky": "6.0.0",
     "jest": "26.6.3",
-    "lint-staged": "10.5.4",
     "nestjs-i18n": "8.1.1",
     "prettier": "2.2.1",
     "prisma": "2.19.0",
@@ -149,5 +135,13 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "disabled-lint-staged": {
+    "{src,apps,libs,test}/**/*.ts": [
+      "yarn lint"
+    ],
+    "./**/*.{ts,js,json,*rc}": [
+      "yarn prettier"
+    ]
   }
 }

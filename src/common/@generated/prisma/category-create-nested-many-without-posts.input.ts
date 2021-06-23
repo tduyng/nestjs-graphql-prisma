@@ -6,17 +6,17 @@ import { CategoryWhereUniqueInput } from '../category/category-where-unique.inpu
 @InputType()
 export class CategoryCreateNestedManyWithoutPostsInput {
   @Field(() => [CategoryCreateWithoutPostsInput], {
-    nullable: true,
+    nullable: true
   })
   create?: Array<CategoryCreateWithoutPostsInput>;
 
   @Field(() => [CategoryCreateOrConnectWithoutpostsInput], {
-    nullable: true,
+    nullable: true
   })
   connectOrCreate?: Array<CategoryCreateOrConnectWithoutpostsInput>;
 
   @Field(() => [CategoryWhereUniqueInput], {
-    nullable: true,
+    nullable: true
   })
   connect?: Array<CategoryWhereUniqueInput>;
 }

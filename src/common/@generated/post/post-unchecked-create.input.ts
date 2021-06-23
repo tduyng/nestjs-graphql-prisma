@@ -3,42 +3,42 @@ import { Field, InputType } from '@nestjs/graphql';
 @InputType()
 export class PostUncheckedCreateInput {
   @Field(() => String, {
-    nullable: true,
+    nullable: true
   })
   id?: string;
 
   @Field(() => String, {
-    nullable: false,
+    nullable: false
   })
   title!: string;
 
   @Field(() => String, {
-    nullable: false,
+    nullable: false
   })
   slug!: string;
 
   @Field(() => String, {
-    nullable: false,
+    nullable: false
   })
   content!: string;
 
   @Field(() => Boolean, {
-    nullable: true,
+    nullable: true
   })
   published?: boolean;
 
   @Field(() => Date, {
-    nullable: true,
+    nullable: true
   })
   createdAt?: Date | string;
 
   @Field(() => Date, {
-    nullable: true,
+    nullable: true
   })
   updatedAt?: Date | string;
 
   @Field(() => String, {
-    nullable: true,
+    nullable: true
   })
   authorId?: string;
 }

@@ -6,17 +6,17 @@ import { PostWhereUniqueInput } from './post-where-unique.input';
 @InputType()
 export class PostUpsertWithWhereUniqueWithoutCategoriesInput {
   @Field(() => PostWhereUniqueInput, {
-    nullable: false,
+    nullable: false
   })
   where!: PostWhereUniqueInput;
 
   @Field(() => PostUpdateWithoutCategoriesInput, {
-    nullable: false,
+    nullable: false
   })
   update!: PostUpdateWithoutCategoriesInput;
 
   @Field(() => PostCreateWithoutCategoriesInput, {
-    nullable: false,
+    nullable: false
   })
   create!: PostCreateWithoutCategoriesInput;
 }

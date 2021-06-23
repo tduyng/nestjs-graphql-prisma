@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { PasswordService } from '../services/password.service';
+import { PasswordService } from '../../auth/services/password.service';
 
 const plainPassword = '1234567';
 const hashedPassword =
@@ -10,7 +10,7 @@ describe('UserService', () => {
 
   beforeAll(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [PasswordService],
+      providers: [PasswordService]
     }).compile();
 
     passwordService = module.get<PasswordService>(PasswordService);
@@ -24,7 +24,7 @@ describe('UserService', () => {
     it('Should matched password', async () => {
       const result = await passwordService.validatePassword(
         plainPassword,
-        hashedPassword,
+        hashedPassword
       );
       expect(result).toBe(true);
     });

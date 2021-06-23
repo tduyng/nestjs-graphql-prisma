@@ -3,42 +3,42 @@ import { Field, ObjectType } from '@nestjs/graphql';
 @ObjectType()
 export class ProfileMaxAggregate {
   @Field(() => String, {
-    nullable: true,
+    nullable: true
   })
   id?: string;
 
   @Field(() => String, {
-    nullable: true,
+    nullable: true
   })
   username?: string;
 
   @Field(() => String, {
-    nullable: true,
+    nullable: true
   })
   firstName?: string;
 
   @Field(() => String, {
-    nullable: true,
+    nullable: true
   })
   lastName?: string;
 
   @Field(() => String, {
-    nullable: true,
+    nullable: true
   })
   bio?: string;
 
   @Field(() => Date, {
-    nullable: true,
+    nullable: true
   })
   createdAt?: Date | string;
 
   @Field(() => Date, {
-    nullable: true,
+    nullable: true
   })
   updatedAt?: Date | string;
 
   @Field(() => String, {
-    nullable: true,
+    nullable: true
   })
   userId?: string;
 }

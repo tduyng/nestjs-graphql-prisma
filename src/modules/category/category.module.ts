@@ -1,5 +1,5 @@
-import { PrismaSelectService } from '@modules/prisma/prisma-select.service';
-import { PrismaService } from '@modules/prisma/prisma.service';
+import { PrismaSelectService } from 'src/providers/prisma/prisma-select.service';
+import { PrismaService } from 'src/providers/prisma/prisma.service';
 import { Module } from '@nestjs/common';
 import { CategoryResolver } from './category.resolver';
 import { CategoryService } from './category.service';
@@ -9,7 +9,7 @@ import { CategoryService } from './category.service';
     CategoryService,
     CategoryResolver,
     PrismaService,
-    PrismaSelectService,
-  ],
+    PrismaSelectService
+  ]
 })
 export class CategoryModule {}

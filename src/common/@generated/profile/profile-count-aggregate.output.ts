@@ -3,47 +3,47 @@ import { Field, Int, ObjectType } from '@nestjs/graphql';
 @ObjectType()
 export class ProfileCountAggregate {
   @Field(() => Int, {
-    nullable: true,
+    nullable: false
   })
-  id?: number;
+  id!: number;
 
   @Field(() => Int, {
-    nullable: true,
+    nullable: false
   })
-  username?: number;
+  username!: number;
 
   @Field(() => Int, {
-    nullable: true,
+    nullable: false
   })
-  firstName?: number;
+  firstName!: number;
 
   @Field(() => Int, {
-    nullable: true,
+    nullable: false
   })
-  lastName?: number;
+  lastName!: number;
 
   @Field(() => Int, {
-    nullable: true,
+    nullable: false
   })
-  bio?: number;
+  bio!: number;
 
   @Field(() => Int, {
-    nullable: true,
+    nullable: false
   })
-  createdAt?: number;
+  createdAt!: number;
 
   @Field(() => Int, {
-    nullable: true,
+    nullable: false
   })
-  updatedAt?: number;
+  updatedAt!: number;
 
   @Field(() => Int, {
-    nullable: true,
+    nullable: false
   })
-  userId?: number;
+  userId!: number;
 
   @Field(() => Int, {
-    nullable: false,
+    nullable: false
   })
   _all!: number;
 }

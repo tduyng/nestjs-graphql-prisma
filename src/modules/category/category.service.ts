@@ -1,4 +1,4 @@
-import { PrismaService } from '@modules/prisma/prisma.service';
+import { PrismaService } from 'src/providers/prisma/prisma.service';
 import { Post } from '@modules/post/post.model';
 import { CreateCategoryInput, UpdateCategoryInput } from './dto';
 import slugify from 'slugify';
@@ -6,21 +6,21 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { Category } from './category.model';
 import {
   CategoryWhereUniqueInput,
-  FindManyCategoryArgs,
+  FindManyCategoryArgs
 } from '@common/@generated/category';
 import { GraphQLResolveInfo } from 'graphql';
-import { PrismaSelectService } from '@modules/prisma/prisma-select.service';
+import { PrismaSelectService } from 'src/providers/prisma/prisma-select.service';
 
 @Injectable()
 export class CategoryService {
   constructor(
     private prisma: PrismaService,
-    private prismaSelectService: PrismaSelectService,
+    private prismaSelectService: PrismaSelectService
   ) {}
 
   public async getCategories(
     args: FindManyCategoryArgs,
-    info?: GraphQLResolveInfo,
+    info?: GraphQLResolveInfo
   ) {
     const select = this.prismaSelectService.getValue(info);
     const options = { ...args, ...select };
@@ -30,20 +30,20 @@ export class CategoryService {
   public async getPostsOfCategory(categoryId: string): Promise<Post[]> {
     const category: Category = await this.prisma.category.findUnique({
       where: { id: categoryId },
-      include: { posts: true },
+      include: { posts: true }
     });
     return category.posts;
   }
 
   public async getCategoryByUniqueInput(
     where: CategoryWhereUniqueInput,
-    info?: GraphQLResolveInfo,
+    info?: GraphQLResolveInfo
   ) {
     const select = this.prismaSelectService.getValue(info);
     return await this.prisma.category.findUnique({
       ...select,
       where,
-      rejectOnNotFound: true,
+      rejectOnNotFound: true
     });
   }
 
@@ -55,9 +55,9 @@ export class CategoryService {
         where: { slug: slug },
         create: {
           name,
-          slug,
+          slug
         },
-        update: {},
+        update: {}
       });
     } catch (error) {
       if (error.status) {
@@ -76,11 +76,11 @@ export class CategoryService {
           where: { slug: slug },
           create: {
             name: category.name,
-            slug: slug,
+            slug: slug
           },
           update: {
-            slug: slug,
-          },
+            slug: slug
+          }
         });
         result.push(cat);
       }
@@ -92,12 +92,12 @@ export class CategoryService {
 
   public async updateCategory(
     where: CategoryWhereUniqueInput,
-    categoryInput: UpdateCategoryInput,
+    categoryInput: UpdateCategoryInput
   ) {
     try {
       return await this.prisma.category.update({
         where,
-        data: categoryInput,
+        data: categoryInput
       });
     } catch (error) {
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -105,7 +105,7 @@ export class CategoryService {
   }
 
   public async deleteCategory(
-    where: CategoryWhereUniqueInput,
+    where: CategoryWhereUniqueInput
   ): Promise<Category> {
     try {
       return await this.prisma.category.delete({ where });

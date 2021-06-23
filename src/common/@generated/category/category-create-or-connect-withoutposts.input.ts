@@ -5,12 +5,12 @@ import { CategoryWhereUniqueInput } from './category-where-unique.input';
 @InputType()
 export class CategoryCreateOrConnectWithoutpostsInput {
   @Field(() => CategoryWhereUniqueInput, {
-    nullable: false,
+    nullable: false
   })
   where!: CategoryWhereUniqueInput;
 
   @Field(() => CategoryCreateWithoutPostsInput, {
-    nullable: false,
+    nullable: false
   })
   create!: CategoryCreateWithoutPostsInput;
 }
