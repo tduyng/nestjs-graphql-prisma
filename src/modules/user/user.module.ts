@@ -17,8 +17,8 @@ import { UserExitsValidator } from './decorators';
     UserResolver,
     AdminResolver,
     PrismaSelectService,
-    UserExitsValidator,
+    UserExitsValidator
   ],
-  exports: [PasswordService, UserService],
+  exports: [PasswordService, UserService]
 })
 export class UserModule {}

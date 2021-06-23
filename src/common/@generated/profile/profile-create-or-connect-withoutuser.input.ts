@@ -5,12 +5,12 @@ import { ProfileWhereUniqueInput } from './profile-where-unique.input';
 @InputType()
 export class ProfileCreateOrConnectWithoutuserInput {
   @Field(() => ProfileWhereUniqueInput, {
-    nullable: false,
+    nullable: false
   })
   where!: ProfileWhereUniqueInput;
 
   @Field(() => ProfileCreateWithoutUserInput, {
-    nullable: false,
+    nullable: false
   })
   create!: ProfileCreateWithoutUserInput;
 }

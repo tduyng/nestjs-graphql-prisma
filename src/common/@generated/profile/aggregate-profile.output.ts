@@ -6,17 +6,17 @@ import { ProfileMinAggregate } from './profile-min-aggregate.output';
 @ObjectType()
 export class AggregateProfile {
   @Field(() => ProfileCountAggregate, {
-    nullable: true,
+    nullable: true
   })
   count?: ProfileCountAggregate;
 
   @Field(() => ProfileMinAggregate, {
-    nullable: true,
+    nullable: true
   })
   min?: ProfileMinAggregate;
 
   @Field(() => ProfileMaxAggregate, {
-    nullable: true,
+    nullable: true
   })
   max?: ProfileMaxAggregate;
 }

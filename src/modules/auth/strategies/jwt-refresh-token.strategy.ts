@@ -9,26 +9,26 @@ import { PasswordService } from '@modules/auth/services/password.service';
 @Injectable()
 export class JwtRefreshTokenStrategy extends PassportStrategy(
   Strategy,
-  'jwt-refresh-token',
+  'jwt-refresh-token'
 ) {
   constructor(
     private readonly userService: UserService,
-    private passwordService: PasswordService,
+    private passwordService: PasswordService
   ) {
     super({
       jwtFromRequest: ExtractJwt.fromExtractors([
         (req: any) => {
           return req?.session?.authToken?.refreshToken;
-        },
+        }
       ]),
       ignoreExpiration: false,
       secretOrKey: process.env.JWT_PRIVATE_KEY,
-      passReqToCallback: true,
+      passReqToCallback: true
     });
   }
   public async validate(req: IRequestWithUser, payload: IPayloadUserJwt) {
     const where: UserWhereUniqueInput = {
-      id: payload.userId,
+      id: payload.userId
     };
     const user = await this.userService.getUserByUniqueInput(where);
     if (!user) return null;
@@ -36,7 +36,7 @@ export class JwtRefreshTokenStrategy extends PassportStrategy(
     const refreshToken = req.session?.authToken?.refreshToken;
     const isRefreshTokenMatching = await this.passwordService.validatePassword(
       refreshToken,
-      user.currentHashedRefreshToken,
+      user.currentHashedRefreshToken
     );
 
     // If refreshToken not match with token encrypted in database --> return null

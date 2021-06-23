@@ -4,62 +4,62 @@ import { QueryMode } from './query-mode.enum';
 @InputType()
 export class StringFilter {
   @Field(() => String, {
-    nullable: true,
+    nullable: true
   })
   equals?: string;
 
   @Field(() => [String], {
-    nullable: true,
+    nullable: true
   })
   in?: Array<string>;
 
   @Field(() => [String], {
-    nullable: true,
+    nullable: true
   })
   notIn?: Array<string>;
 
   @Field(() => String, {
-    nullable: true,
+    nullable: true
   })
   lt?: string;
 
   @Field(() => String, {
-    nullable: true,
+    nullable: true
   })
   lte?: string;
 
   @Field(() => String, {
-    nullable: true,
+    nullable: true
   })
   gt?: string;
 
   @Field(() => String, {
-    nullable: true,
+    nullable: true
   })
   gte?: string;
 
   @Field(() => String, {
-    nullable: true,
+    nullable: true
   })
   contains?: string;
 
   @Field(() => String, {
-    nullable: true,
+    nullable: true
   })
   startsWith?: string;
 
   @Field(() => String, {
-    nullable: true,
+    nullable: true
   })
   endsWith?: string;
 
   @Field(() => QueryMode, {
-    nullable: true,
+    nullable: true
   })
   mode?: QueryMode;
 
   @Field(() => StringFilter, {
-    nullable: true,
+    nullable: true
   })
   not?: StringFilter;
 }

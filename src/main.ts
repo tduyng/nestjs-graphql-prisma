@@ -20,7 +20,7 @@ import express from 'express';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
-    logger: true,
+    logger: true
   });
   const env = environment();
   const port: number = env.serverPort;
@@ -38,8 +38,8 @@ async function bootstrap() {
     app.use(
       RateLimit({
         windowMs: 15 * 60 * 1000, // 15 minutes
-        max: 100, // limit each IP to 100 requests per windowMs
-      }),
+        max: 100 // limit each IP to 100 requests per windowMs
+      })
     );
   }
 
@@ -59,9 +59,9 @@ async function bootstrap() {
       skipMissingProperties: true,
       transform: true,
       validationError: {
-        target: false,
-      },
-    }),
+        target: false
+      }
+    })
   );
 
   // Custom exceptions filter

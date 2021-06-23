@@ -16,13 +16,13 @@ export const graphqlModuleFactory = async () => {
         // Http request
         return {
           token: undefined as string | undefined,
-          req: req as Request,
+          req: req as Request
         };
       } else {
         // USE THIS TO PROVIDE THE RIGHT CONTEXT FOR I18N
         return {
           token: undefined as string | undefined,
-          req: connection.context as Request,
+          req: connection.context as Request
         };
       }
     },
@@ -38,11 +38,11 @@ export const graphqlModuleFactory = async () => {
           exception: {
             name:
               error.extensions?.exception?.name ||
-              error.extensions?.exception?.type,
-          },
-        },
+              error.extensions?.exception?.type
+          }
+        }
       };
       return graphQLFormattedError;
-    },
+    }
   };
 };

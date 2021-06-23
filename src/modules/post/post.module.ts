@@ -11,7 +11,7 @@ import { PostService } from './post.service';
     PostResolver,
     PrismaService,
     CategoryService,
-    PrismaSelectService,
-  ],
+    PrismaSelectService
+  ]
 })
 export class PostModule {}

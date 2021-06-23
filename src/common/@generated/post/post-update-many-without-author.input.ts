@@ -1,5 +1,6 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { PostCreateOrConnectWithoutauthorInput } from './post-create-or-connect-withoutauthor.input';
+import { PostCreateManyAuthorEnvelopeInput } from './post-create-many-author-envelope.input';
+import { PostCreateOrConnectWithoutAuthorInput } from './post-create-or-connect-without-author.input';
 import { PostCreateWithoutAuthorInput } from './post-create-without-author.input';
 import { PostScalarWhereInput } from './post-scalar-where.input';
 import { PostUpdateManyWithWhereWithoutAuthorInput } from './post-update-many-with-where-without-author.input';
@@ -10,52 +11,57 @@ import { PostWhereUniqueInput } from './post-where-unique.input';
 @InputType()
 export class PostUpdateManyWithoutAuthorInput {
   @Field(() => [PostCreateWithoutAuthorInput], {
-    nullable: true,
+    nullable: true
   })
   create?: Array<PostCreateWithoutAuthorInput>;
 
-  @Field(() => [PostCreateOrConnectWithoutauthorInput], {
-    nullable: true,
+  @Field(() => [PostCreateOrConnectWithoutAuthorInput], {
+    nullable: true
   })
-  connectOrCreate?: Array<PostCreateOrConnectWithoutauthorInput>;
+  connectOrCreate?: Array<PostCreateOrConnectWithoutAuthorInput>;
 
   @Field(() => [PostUpsertWithWhereUniqueWithoutAuthorInput], {
-    nullable: true,
+    nullable: true
   })
   upsert?: Array<PostUpsertWithWhereUniqueWithoutAuthorInput>;
 
+  @Field(() => PostCreateManyAuthorEnvelopeInput, {
+    nullable: true
+  })
+  createMany?: PostCreateManyAuthorEnvelopeInput;
+
   @Field(() => [PostWhereUniqueInput], {
-    nullable: true,
+    nullable: true
   })
   connect?: Array<PostWhereUniqueInput>;
 
   @Field(() => [PostWhereUniqueInput], {
-    nullable: true,
+    nullable: true
   })
   set?: Array<PostWhereUniqueInput>;
 
   @Field(() => [PostWhereUniqueInput], {
-    nullable: true,
+    nullable: true
   })
   disconnect?: Array<PostWhereUniqueInput>;
 
   @Field(() => [PostWhereUniqueInput], {
-    nullable: true,
+    nullable: true
   })
   delete?: Array<PostWhereUniqueInput>;
 
   @Field(() => [PostUpdateWithWhereUniqueWithoutAuthorInput], {
-    nullable: true,
+    nullable: true
   })
   update?: Array<PostUpdateWithWhereUniqueWithoutAuthorInput>;
 
   @Field(() => [PostUpdateManyWithWhereWithoutAuthorInput], {
-    nullable: true,
+    nullable: true
   })
   updateMany?: Array<PostUpdateManyWithWhereWithoutAuthorInput>;
 
   @Field(() => [PostScalarWhereInput], {
-    nullable: true,
+    nullable: true
   })
   deleteMany?: Array<PostScalarWhereInput>;
 }

@@ -3,12 +3,12 @@ import { Field, InputType } from '@nestjs/graphql';
 @InputType()
 export class BooleanFilter {
   @Field(() => Boolean, {
-    nullable: true,
+    nullable: true
   })
   equals?: boolean;
 
   @Field(() => BooleanFilter, {
-    nullable: true,
+    nullable: true
   })
   not?: BooleanFilter;
 }

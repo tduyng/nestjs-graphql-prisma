@@ -3,32 +3,32 @@ import { Field, Int, ObjectType } from '@nestjs/graphql';
 @ObjectType()
 export class CategoryCountAggregate {
   @Field(() => Int, {
-    nullable: true,
+    nullable: false
   })
-  id?: number;
+  id!: number;
 
   @Field(() => Int, {
-    nullable: true,
+    nullable: false
   })
-  name?: number;
+  name!: number;
 
   @Field(() => Int, {
-    nullable: true,
+    nullable: false
   })
-  slug?: number;
+  slug!: number;
 
   @Field(() => Int, {
-    nullable: true,
+    nullable: false
   })
-  createdAt?: number;
+  createdAt!: number;
 
   @Field(() => Int, {
-    nullable: true,
+    nullable: false
   })
-  updatedAt?: number;
+  updatedAt!: number;
 
   @Field(() => Int, {
-    nullable: false,
+    nullable: false
   })
   _all!: number;
 }

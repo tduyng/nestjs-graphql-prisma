@@ -12,15 +12,15 @@ const ctx = {
   getType: jest.fn(),
   getArgs: jest.fn(),
   getRoot: jest.fn(),
-  getInfo: jest.fn(),
+  getInfo: jest.fn()
 };
 
 const mockGqlExecutionContext = () => ({
-  create: jest.fn(),
+  create: jest.fn()
 });
 
 const oneReq = {
-  user: { role: Role.ADMIN } as IUserFromRequest,
+  user: { role: Role.ADMIN } as IUserFromRequest
 } as IRequestWithUser;
 
 describe('JwtGuard', () => {
@@ -33,9 +33,9 @@ describe('JwtGuard', () => {
         JwtGuard,
         {
           provide: GqlExecutionContext,
-          useFactory: mockGqlExecutionContext,
-        },
-      ],
+          useFactory: mockGqlExecutionContext
+        }
+      ]
     }).compile();
 
     gqlGuard = module.get<JwtGuard>(JwtGuard);
@@ -45,7 +45,7 @@ describe('JwtGuard', () => {
   // Test if it work with a class
   it('Should be defined when init directly', () => {
     const { PostService } = jest.createMockFromModule(
-      '@modules/post/post.service.ts',
+      '@modules/post/post.service.ts'
     );
     expect(new JwtGuard(new PostService())).toBeDefined();
   });
@@ -61,7 +61,7 @@ describe('JwtGuard', () => {
 
       const result = gqlGuard.canActivate({
         getHandler: {},
-        getType: {},
+        getType: {}
       } as ExecutionContext);
       expect(result).toBeTruthy();
     });

@@ -11,21 +11,21 @@ const oneUser = {
   email: 'some email',
   password: 'some password',
   profile: {
-    username: 'some-username',
+    username: 'some-username'
   } as Profile,
   posts: [
     {
-      id: 'some postId1',
+      id: 'some postId1'
     },
     {
-      id: 'some postId2',
-    },
-  ] as Post[],
+      id: 'some postId2'
+    }
+  ] as Post[]
 } as User;
 
 const userInput = {
   username: 'some-username',
-  email: 'some email',
+  email: 'some email'
 } as UpdateUserInput;
 
 describe('UserResolver', () => {
@@ -37,7 +37,7 @@ describe('UserResolver', () => {
     changePassword: jest.fn(),
     getPostsOfUser: jest.fn(),
     getUserByUniqueInput: jest.fn(),
-    getProfileOfUser: jest.fn(),
+    getProfileOfUser: jest.fn()
   });
 
   beforeAll(async () => {
@@ -46,9 +46,9 @@ describe('UserResolver', () => {
         UserResolver,
         {
           provide: UserService,
-          useFactory: mockUserService,
-        },
-      ],
+          useFactory: mockUserService
+        }
+      ]
     }).compile();
 
     userResolver = module.get<UserResolver>(UserResolver);
@@ -80,7 +80,7 @@ describe('UserResolver', () => {
       userService.changePassword.mockReturnValue(oneUser);
       const result = await userResolver.changePassword(oneUser, {
         oldPassword: 'some old password',
-        newPassword: 'some new password',
+        newPassword: 'some new password'
       } as ChangePasswordInput);
       expect(result).toEqual(oneUser);
     });

@@ -9,7 +9,7 @@ import { randomBytes } from 'crypto';
 import { CategoryService } from '@modules/category/category.service';
 import {
   FindManyPostArgs,
-  PostWhereUniqueInput,
+  PostWhereUniqueInput
 } from '@common/@generated/post';
 import { GraphQLResolveInfo } from 'graphql';
 import { PrismaSelectService } from 'src/providers/prisma/prisma-select.service';
@@ -19,7 +19,7 @@ export class PostService {
   constructor(
     private prisma: PrismaService,
     private categoryService: CategoryService,
-    private prismaSelectService: PrismaSelectService,
+    private prismaSelectService: PrismaSelectService
   ) {}
 
   public async getPosts(args: FindManyPostArgs, info?: GraphQLResolveInfo) {
@@ -27,7 +27,7 @@ export class PostService {
     const select = this.prismaSelectService.getValue(info);
     return await this.prisma.post.findMany({
       ...args,
-      ...select,
+      ...select
     });
   }
 
@@ -36,14 +36,14 @@ export class PostService {
     return await this.prisma.post.findUnique({
       ...select,
       where: args,
-      rejectOnNotFound: true,
+      rejectOnNotFound: true
     });
   }
   public async getPostWithAuthor(where: PostWhereUniqueInput) {
     return await this.prisma.post.findUnique({
       include: { author: true },
       where,
-      rejectOnNotFound: true,
+      rejectOnNotFound: true
     });
   }
 
@@ -51,8 +51,8 @@ export class PostService {
     const post: Post = await this.prisma.post.findUnique({
       where,
       include: {
-        author: true,
-      },
+        author: true
+      }
     });
     return post.author;
   }
@@ -61,7 +61,7 @@ export class PostService {
     try {
       // Get or create category from input
       const categories = await this.categoryService.createCategories(
-        input.categories,
+        input.categories
       );
 
       const { title } = input;
@@ -72,19 +72,19 @@ export class PostService {
         slug: slug,
         author: {
           connect: {
-            id: user.id,
-          },
+            id: user.id
+          }
         },
         categories: {
-          connect: categories.map((c) => ({ id: c.id })),
-        },
+          connect: categories.map((c) => ({ id: c.id }))
+        }
       };
 
       const post = await this.prisma.post.create({
         data,
         include: {
-          author: true,
-        },
+          author: true
+        }
       });
       return post;
     } catch (error) {
@@ -94,12 +94,12 @@ export class PostService {
 
   public async updatePost(
     where: PostWhereUniqueInput,
-    postInput: UpdatePostInput,
+    postInput: UpdatePostInput
   ) {
     try {
       return await this.prisma.post.update({
         where,
-        data: postInput,
+        data: postInput
       });
     } catch (error) {
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);

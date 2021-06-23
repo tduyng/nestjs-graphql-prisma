@@ -7,32 +7,32 @@ import { ProfileWhereInput } from './profile-where.input';
 @ArgsType()
 export class FindFirstProfileArgs {
   @Field(() => ProfileWhereInput, {
-    nullable: true,
+    nullable: true
   })
   where?: ProfileWhereInput;
 
   @Field(() => [ProfileOrderByInput], {
-    nullable: true,
+    nullable: true
   })
   orderBy?: Array<ProfileOrderByInput>;
 
   @Field(() => ProfileWhereUniqueInput, {
-    nullable: true,
+    nullable: true
   })
   cursor?: ProfileWhereUniqueInput;
 
   @Field(() => Int, {
-    nullable: true,
+    nullable: true
   })
   take?: number;
 
   @Field(() => Int, {
-    nullable: true,
+    nullable: true
   })
   skip?: number;
 
   @Field(() => [ProfileScalarFieldEnum], {
-    nullable: true,
+    nullable: true
   })
   distinct?: Array<ProfileScalarFieldEnum>;
 }

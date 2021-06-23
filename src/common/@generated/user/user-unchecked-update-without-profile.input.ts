@@ -1,46 +1,46 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { PostUncheckedUpdateManyWithoutAuthorInput } from '../post/post-unchecked-update-many-without-author.input';
+import { PostUpdateManyWithoutAuthorInput } from '../post/post-update-many-without-author.input';
 import { Role } from '../prisma/role.enum';
 
 @InputType()
 export class UserUncheckedUpdateWithoutProfileInput {
   @Field(() => String, {
-    nullable: true,
+    nullable: true
   })
   id?: string;
 
   @Field(() => String, {
-    nullable: true,
+    nullable: true
   })
   email?: string;
 
   @Field(() => String, {
-    nullable: true,
+    nullable: true
   })
   password?: string;
 
   @Field(() => Role, {
-    nullable: true,
+    nullable: true
   })
   role?: Role;
 
   @Field(() => Date, {
-    nullable: true,
+    nullable: true
   })
   createdAt?: Date | string;
 
   @Field(() => Date, {
-    nullable: true,
+    nullable: true
   })
   updatedAt?: Date | string;
 
   @Field(() => String, {
-    nullable: true,
+    nullable: true
   })
   currentHashedRefreshToken?: string;
 
-  @Field(() => PostUncheckedUpdateManyWithoutAuthorInput, {
-    nullable: true,
+  @Field(() => PostUpdateManyWithoutAuthorInput, {
+    nullable: true
   })
-  posts?: PostUncheckedUpdateManyWithoutAuthorInput;
+  posts?: PostUpdateManyWithoutAuthorInput;
 }

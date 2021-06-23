@@ -6,7 +6,7 @@ import { UpdatePostInput } from './dto/update-post.input';
 import { User } from '@modules/user/user.model';
 import {
   FindManyPostArgs,
-  PostWhereUniqueInput,
+  PostWhereUniqueInput
 } from '@common/@generated/post';
 import { CurrentUser } from '@modules/user/decorators';
 import { UseGuards } from '@nestjs/common';
@@ -21,14 +21,14 @@ export class PostResolver {
   @Query(() => [Post])
   public async posts(
     @Args() args: FindManyPostArgs,
-    @Info() info?: GraphQLResolveInfo,
+    @Info() info?: GraphQLResolveInfo
   ) {
     return await this.postService.getPosts(args, info);
   }
   @Query(() => Post)
   public async post(
     @Args('where') args: PostWhereUniqueInput,
-    @Info() info?: GraphQLResolveInfo,
+    @Info() info?: GraphQLResolveInfo
   ) {
     return await this.postService.getPost(args, info);
   }
@@ -38,7 +38,7 @@ export class PostResolver {
   @UseGuards(JwtGuard)
   public async createPost(
     @Args('data') input: CreatePostInput,
-    @CurrentUser() user: User,
+    @CurrentUser() user: User
   ) {
     return await this.postService.createPost(input, user);
   }
@@ -47,7 +47,7 @@ export class PostResolver {
   @UseGuards(JwtGuard)
   public async updatePost(
     @Args('where') where: PostWhereUniqueInput,
-    @Args('data') data: UpdatePostInput,
+    @Args('data') data: UpdatePostInput
   ) {
     return await this.postService.updatePost(where, data);
   }

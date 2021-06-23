@@ -10,52 +10,52 @@ import { PostWhereUniqueInput } from './post-where-unique.input';
 @InputType()
 export class PostUncheckedUpdateManyWithoutAuthorInput {
   @Field(() => [PostCreateWithoutAuthorInput], {
-    nullable: true,
+    nullable: true
   })
   create?: Array<PostCreateWithoutAuthorInput>;
 
   @Field(() => [PostCreateOrConnectWithoutauthorInput], {
-    nullable: true,
+    nullable: true
   })
   connectOrCreate?: Array<PostCreateOrConnectWithoutauthorInput>;
 
   @Field(() => [PostUpsertWithWhereUniqueWithoutAuthorInput], {
-    nullable: true,
+    nullable: true
   })
   upsert?: Array<PostUpsertWithWhereUniqueWithoutAuthorInput>;
 
   @Field(() => [PostWhereUniqueInput], {
-    nullable: true,
+    nullable: true
   })
   connect?: Array<PostWhereUniqueInput>;
 
   @Field(() => [PostWhereUniqueInput], {
-    nullable: true,
+    nullable: true
   })
   set?: Array<PostWhereUniqueInput>;
 
   @Field(() => [PostWhereUniqueInput], {
-    nullable: true,
+    nullable: true
   })
   disconnect?: Array<PostWhereUniqueInput>;
 
   @Field(() => [PostWhereUniqueInput], {
-    nullable: true,
+    nullable: true
   })
   delete?: Array<PostWhereUniqueInput>;
 
   @Field(() => [PostUpdateWithWhereUniqueWithoutAuthorInput], {
-    nullable: true,
+    nullable: true
   })
   update?: Array<PostUpdateWithWhereUniqueWithoutAuthorInput>;
 
   @Field(() => [PostUpdateManyWithWhereWithoutAuthorInput], {
-    nullable: true,
+    nullable: true
   })
   updateMany?: Array<PostUpdateManyWithWhereWithoutAuthorInput>;
 
   @Field(() => [PostScalarWhereInput], {
-    nullable: true,
+    nullable: true
   })
   deleteMany?: Array<PostScalarWhereInput>;
 }

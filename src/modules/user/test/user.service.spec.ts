@@ -3,7 +3,7 @@ import {
   FindManyUserArgs,
   UserCreateInput,
   UserWhereInput,
-  UserWhereUniqueInput,
+  UserWhereUniqueInput
 } from '@common/@generated/user';
 import { Post } from '@modules/post/post.model';
 import { PrismaSelectService } from 'src/providers/prisma/prisma-select.service';
@@ -22,32 +22,32 @@ const oneUser = {
     id: 'some profileId',
     username: 'some-username',
     firstName: 'some first name',
-    lastName: 'some last name',
+    lastName: 'some last name'
   },
   posts: [
     {
-      id: 'some postId1',
+      id: 'some postId1'
     },
     {
-      id: 'some postId2',
-    },
-  ] as Post[],
+      id: 'some postId2'
+    }
+  ] as Post[]
 } as User;
 
 const arrayUsers = [oneUser, oneUser];
 
 const findManyArgs = {
-  where: { email: { contains: 'email' } },
+  where: { email: { contains: 'email' } }
 } as FindManyUserArgs;
 
 const userWhereUniqueInput = {
-  email: 'some email',
+  email: 'some email'
 } as UserWhereUniqueInput;
 
 const dataUser = {
   email: 'some email',
   username: 'some username',
-  password: 'some password',
+  password: 'some password'
 } as UserCreateInput;
 
 const batchPayload = { count: 1 } as BatchPayload;
@@ -68,14 +68,14 @@ describe('UserService', () => {
       update: jest.fn(),
       updateMany: jest.fn(),
       delete: jest.fn(),
-      deleteMany: jest.fn(),
+      deleteMany: jest.fn()
     },
-    $queryRaw: jest.fn(),
+    $queryRaw: jest.fn()
   });
 
   const mockPasswordService = () => ({
     validatePassword: jest.fn(),
-    hashPassword: jest.fn(),
+    hashPassword: jest.fn()
   });
 
   beforeAll(async () => {
@@ -84,19 +84,19 @@ describe('UserService', () => {
         UserService,
         {
           provide: PrismaService,
-          useFactory: mockPrismaService,
+          useFactory: mockPrismaService
         },
         {
           provide: PasswordService,
-          useFactory: mockPasswordService,
+          useFactory: mockPasswordService
         },
         {
           provide: PrismaSelectService,
           useValue: {
-            getValue: jest.fn().mockReturnValue({}),
-          },
-        },
-      ],
+            getValue: jest.fn().mockReturnValue({})
+          }
+        }
+      ]
     }).compile();
 
     userService = module.get<UserService>(UserService);
@@ -113,7 +113,7 @@ describe('UserService', () => {
     it('Should return an user', async () => {
       prismaService.user.findUnique.mockReturnValue(oneUser);
       const result = await userService.getUserByUniqueInput(
-        userWhereUniqueInput,
+        userWhereUniqueInput
       );
       expect(result).toEqual(oneUser);
     });
@@ -148,7 +148,7 @@ describe('UserService', () => {
       prismaService.user.findFirst.mockReturnValue(oneUser);
       const result = await userService.getFirstUser(findManyArgs);
       expect(prismaService.user.findFirst).toHaveBeenCalledWith({
-        ...findManyArgs,
+        ...findManyArgs
       });
       expect(result).toEqual(oneUser);
     });
@@ -159,7 +159,7 @@ describe('UserService', () => {
       prismaService.user.findMany.mockReturnValue(arrayUsers);
       const result = await userService.getManyUsers(findManyArgs);
       expect(prismaService.user.findMany).toHaveBeenCalledWith({
-        ...findManyArgs,
+        ...findManyArgs
       });
       expect(result).toEqual(arrayUsers);
     });
@@ -170,7 +170,7 @@ describe('UserService', () => {
       prismaService.user.count.mockReturnValue(1);
       const result = await userService.countManyUsers(findManyArgs);
       expect(prismaService.user.count).toHaveBeenCalledWith({
-        ...findManyArgs,
+        ...findManyArgs
       });
       expect(result).toEqual(1);
     });
@@ -198,11 +198,11 @@ describe('UserService', () => {
       prismaService.user.update.mockReturnValue(oneUser);
       const result = await userService.updateOneUser(
         userWhereUniqueInput,
-        dataUser,
+        dataUser
       );
       expect(prismaService.user.update).toHaveBeenCalledWith({
         data: dataUser,
-        where: userWhereUniqueInput,
+        where: userWhereUniqueInput
       });
       expect(result).toEqual(oneUser);
     });
@@ -213,7 +213,7 @@ describe('UserService', () => {
       prismaService.user.updateMany.mockReturnValue(batchPayload);
       const result = await userService.updateManyUsers(
         { email: { contains: 'email' } } as UserWhereInput,
-        { username: 'some thing' } as UpdateUserInput,
+        { username: 'some thing' } as UpdateUserInput
       );
       expect(result).toEqual(batchPayload);
     });
@@ -231,7 +231,7 @@ describe('UserService', () => {
     it('Should return a batch payload: {count: number}', async () => {
       prismaService.user.deleteMany.mockReturnValue(batchPayload);
       const result = await userService.deleteManyUsers({
-        email: { contains: 'email' },
+        email: { contains: 'email' }
       } as UserWhereInput);
       expect(result).toEqual(result);
     });
@@ -243,7 +243,7 @@ describe('UserService', () => {
       try {
         await userService.changePassword(oneUser.id, oneUser.password, {
           oldPassword: 'some old password',
-          newPassword: 'some new password',
+          newPassword: 'some new password'
         } as ChangePasswordInput);
       } catch (error) {
         expect(error).toBeInstanceOf(BadRequestException);
@@ -258,8 +258,8 @@ describe('UserService', () => {
         oneUser.password,
         {
           oldPassword: 'some old password',
-          newPassword: 'some new password',
-        } as ChangePasswordInput,
+          newPassword: 'some new password'
+        } as ChangePasswordInput
       );
       expect(result).toEqual(oneUser);
     });

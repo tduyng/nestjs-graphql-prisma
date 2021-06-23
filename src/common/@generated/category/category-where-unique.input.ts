@@ -3,12 +3,12 @@ import { Field, InputType } from '@nestjs/graphql';
 @InputType()
 export class CategoryWhereUniqueInput {
   @Field(() => String, {
-    nullable: true,
+    nullable: true
   })
   id?: string;
 
   @Field(() => String, {
-    nullable: true,
+    nullable: true
   })
   slug?: string;
 }

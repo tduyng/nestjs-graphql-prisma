@@ -12,30 +12,30 @@ const oneCategory = {
   slug: 'some-name',
   posts: [
     {
-      id: 'some postId1',
+      id: 'some postId1'
     },
     {
-      id: 'some postId2',
-    },
-  ] as Post[],
+      id: 'some postId2'
+    }
+  ] as Post[]
 } as Category;
 
 const arrayCategory = [
   {
-    id: 'some categoryId 1',
+    id: 'some categoryId 1'
   },
   {
-    id: 'some categoryId 2',
-  },
+    id: 'some categoryId 2'
+  }
 ] as Category[];
 
 const categoryInput = {
-  name: 'some name',
+  name: 'some name'
 } as CreateCategoryInput;
 
 const categoryWhereUniqueInput = {
   id: 'some categoryId',
-  slug: 'some-name',
+  slug: 'some-name'
 } as CategoryWhereUniqueInput;
 
 describe('CategoryService', () => {
@@ -49,8 +49,8 @@ describe('CategoryService', () => {
       update: jest.fn(),
       findUnique: jest.fn(),
       delete: jest.fn(),
-      upsert: jest.fn(),
-    },
+      upsert: jest.fn()
+    }
   });
 
   beforeAll(async () => {
@@ -60,15 +60,15 @@ describe('CategoryService', () => {
 
         {
           provide: PrismaService,
-          useFactory: mockPrismaService,
+          useFactory: mockPrismaService
         },
         {
           provide: PrismaSelectService,
           useValue: {
-            getValue: jest.fn().mockReturnValue({}),
-          },
-        },
-      ],
+            getValue: jest.fn().mockReturnValue({})
+          }
+        }
+      ]
     }).compile();
 
     categoryService = module.get<CategoryService>(CategoryService);
@@ -91,7 +91,7 @@ describe('CategoryService', () => {
     it('Should return an category', async () => {
       prismaService.category.findUnique.mockReturnValue(oneCategory);
       const result = await categoryService.getCategoryByUniqueInput(
-        categoryWhereUniqueInput,
+        categoryWhereUniqueInput
       );
       expect(result).toEqual(oneCategory);
     });
@@ -118,7 +118,7 @@ describe('CategoryService', () => {
       prismaService.category.upsert.mockReturnValue(oneCategory);
       const result = await categoryService.createCategories([
         categoryInput,
-        categoryInput,
+        categoryInput
       ]);
       expect(result).toEqual([oneCategory, oneCategory]);
     });
@@ -129,7 +129,7 @@ describe('CategoryService', () => {
       prismaService.category.update.mockReturnValue(oneCategory);
       const result = await categoryService.updateCategory(
         categoryWhereUniqueInput,
-        categoryInput,
+        categoryInput
       );
       expect(result).toEqual(oneCategory);
     });
@@ -139,7 +139,7 @@ describe('CategoryService', () => {
     it('Should return an category', async () => {
       prismaService.category.delete.mockReturnValue(oneCategory);
       const result = await categoryService.deleteCategory(
-        categoryWhereUniqueInput,
+        categoryWhereUniqueInput
       );
       expect(result).toEqual(oneCategory);
     });

@@ -9,7 +9,7 @@ import { ProfileService } from './profile.service';
     ProfileService,
     ProfileResolver,
     PrismaService,
-    PrismaSelectService,
-  ],
+    PrismaSelectService
+  ]
 })
 export class ProfileModule {}

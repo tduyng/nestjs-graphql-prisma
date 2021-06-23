@@ -6,62 +6,62 @@ import { UserWhereInput } from '../user/user-where.input';
 @InputType()
 export class ProfileWhereInput {
   @Field(() => [ProfileWhereInput], {
-    nullable: true,
+    nullable: true
   })
   AND?: Array<ProfileWhereInput>;
 
   @Field(() => [ProfileWhereInput], {
-    nullable: true,
+    nullable: true
   })
   OR?: Array<ProfileWhereInput>;
 
   @Field(() => [ProfileWhereInput], {
-    nullable: true,
+    nullable: true
   })
   NOT?: Array<ProfileWhereInput>;
 
   @Field(() => StringFilter, {
-    nullable: true,
+    nullable: true
   })
   id?: StringFilter;
 
   @Field(() => StringFilter, {
-    nullable: true,
+    nullable: true
   })
   username?: StringFilter;
 
   @Field(() => StringFilter, {
-    nullable: true,
+    nullable: true
   })
   firstName?: StringFilter;
 
   @Field(() => StringFilter, {
-    nullable: true,
+    nullable: true
   })
   lastName?: StringFilter;
 
   @Field(() => StringFilter, {
-    nullable: true,
+    nullable: true
   })
   bio?: StringFilter;
 
   @Field(() => DateTimeFilter, {
-    nullable: true,
+    nullable: true
   })
   createdAt?: DateTimeFilter;
 
   @Field(() => DateTimeFilter, {
-    nullable: true,
+    nullable: true
   })
   updatedAt?: DateTimeFilter;
 
   @Field(() => StringFilter, {
-    nullable: true,
+    nullable: true
   })
   userId?: StringFilter;
 
   @Field(() => UserWhereInput, {
-    nullable: true,
+    nullable: true
   })
   user?: UserWhereInput;
 }

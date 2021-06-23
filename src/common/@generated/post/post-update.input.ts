@@ -5,47 +5,47 @@ import { UserUpdateOneWithoutPostsInput } from '../user/user-update-one-without-
 @InputType()
 export class PostUpdateInput {
   @Field(() => String, {
-    nullable: true,
+    nullable: true
   })
   id?: string;
 
   @Field(() => String, {
-    nullable: true,
+    nullable: true
   })
   title?: string;
 
   @Field(() => String, {
-    nullable: true,
+    nullable: true
   })
   slug?: string;
 
   @Field(() => String, {
-    nullable: true,
+    nullable: true
   })
   content?: string;
 
   @Field(() => Boolean, {
-    nullable: true,
+    nullable: true
   })
   published?: boolean;
 
   @Field(() => Date, {
-    nullable: true,
+    nullable: true
   })
   createdAt?: Date | string;
 
   @Field(() => Date, {
-    nullable: true,
+    nullable: true
   })
   updatedAt?: Date | string;
 
   @Field(() => UserUpdateOneWithoutPostsInput, {
-    nullable: true,
+    nullable: true
   })
   author?: UserUpdateOneWithoutPostsInput;
 
   @Field(() => CategoryUpdateManyWithoutPostsInput, {
-    nullable: true,
+    nullable: true
   })
   categories?: CategoryUpdateManyWithoutPostsInput;
 }

@@ -20,14 +20,14 @@ import { JwtStrategy } from './strategies/jwt.strategy';
     ConfigModule.forRoot(),
     PassportModule.register({
       defaultStrategy: 'jwt',
-      session: true,
+      session: true
     }),
     JwtModule.register({
-      secret: process.env.JWT_PRIVATE_KEY,
+      secret: process.env.JWT_PRIVATE_KEY
     }),
     UserModule,
     PrismaModule,
-    RedisModule,
+    RedisModule
   ],
   providers: [
     PrismaService,
@@ -39,7 +39,7 @@ import { JwtStrategy } from './strategies/jwt.strategy';
     PasswordService,
     AuthResolver,
     RedisService,
-    EmailService,
-  ],
+    EmailService
+  ]
 })
 export class AuthModule {}

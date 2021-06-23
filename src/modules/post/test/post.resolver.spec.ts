@@ -8,14 +8,14 @@ import { PostWhereUniqueInput } from '@common/@generated/post';
 
 const oneUser = {
   id: 'some userId',
-  email: 'some email',
+  email: 'some email'
 } as User;
 
 const onePost = {
   id: 'some postId',
   title: 'some title',
   content: 'some content',
-  author: oneUser,
+  author: oneUser
 } as Post;
 
 const postInput = {
@@ -23,18 +23,18 @@ const postInput = {
   content: 'some content',
   categories: [
     {
-      name: 'Web development',
+      name: 'Web development'
     },
     {
-      name: 'Monorepo',
-    },
-  ],
+      name: 'Monorepo'
+    }
+  ]
 } as CreatePostInput;
 
 const arrayPost = [onePost, onePost];
 
 const postWhereUniqueInput = {
-  id: 'some postId',
+  id: 'some postId'
 } as PostWhereUniqueInput;
 
 describe('PostResolver', () => {
@@ -48,7 +48,7 @@ describe('PostResolver', () => {
     getAuthorOfPost: jest.fn(),
     createPost: jest.fn(),
     updatePost: jest.fn(),
-    deletePost: jest.fn(),
+    deletePost: jest.fn()
   });
 
   beforeAll(async () => {
@@ -57,9 +57,9 @@ describe('PostResolver', () => {
         PostResolver,
         {
           provide: PostService,
-          useFactory: mockPostService,
-        },
-      ],
+          useFactory: mockPostService
+        }
+      ]
     }).compile();
 
     postResolver = module.get<PostResolver>(PostResolver);

@@ -9,7 +9,7 @@ Table User {
   role Role [not null, default: 'USER']
   createdAt DateTime [default: `now()`, not null]
   updatedAt DateTime [not null]
-  posts Post
+  posts Post [not null]
   profile Profile
   currentHashedRefreshToken String
 }
@@ -36,7 +36,7 @@ Table Post {
   updatedAt DateTime [not null]
   authorId String
   author User
-  categories Category
+  categories Category [not null]
 }
 
 Table Category {
@@ -45,7 +45,7 @@ Table Category {
   slug String [unique, not null]
   createdAt DateTime [default: `now()`, not null]
   updatedAt DateTime [not null]
-  posts Post
+  posts Post [not null]
 }
 
 Table CategoryToPost {

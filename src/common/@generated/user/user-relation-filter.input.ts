@@ -4,12 +4,12 @@ import { UserWhereInput } from './user-where.input';
 @InputType()
 export class UserRelationFilter {
   @Field(() => UserWhereInput, {
-    nullable: true,
+    nullable: true
   })
   is?: UserWhereInput;
 
   @Field(() => UserWhereInput, {
-    nullable: true,
+    nullable: true
   })
   isNot?: UserWhereInput;
 }

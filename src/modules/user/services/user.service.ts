@@ -3,7 +3,7 @@ import {
   BadRequestException,
   HttpException,
   HttpStatus,
-  Injectable,
+  Injectable
 } from '@nestjs/common';
 import { ChangePasswordInput } from '../dto/change-password.input';
 import { PasswordService } from '../../auth/services/password.service';
@@ -15,7 +15,7 @@ import {
   FindFirstUserArgs,
   FindManyUserArgs,
   UserWhereInput,
-  UserWhereUniqueInput,
+  UserWhereUniqueInput
 } from '@common/@generated/user';
 import { CreateUserInput } from '../dto/create-user.input';
 import { BatchPayload } from '@common/@generated/prisma';
@@ -27,32 +27,32 @@ export class UserService {
   constructor(
     private prisma: PrismaService,
     private passwordService: PasswordService,
-    private prismaSelectService: PrismaSelectService,
+    private prismaSelectService: PrismaSelectService
   ) {}
 
   /* Queries */
   public async getUserByUniqueInput(
     where: UserWhereUniqueInput,
-    info?: GraphQLResolveInfo,
+    info?: GraphQLResolveInfo
   ): Promise<User> {
     const select = this.prismaSelectService.getValue(info);
 
     return await this.prisma.user.findUnique({
       ...select,
-      where,
+      where
     });
   }
 
   public async getUserRandom(): Promise<User> {
     const [result] = await this.prisma.$queryRaw<User[]>(
-      `SELECT * FROM "User" ORDER BY random() LIMIT 1`,
+      `SELECT * FROM "User" ORDER BY random() LIMIT 1`
     );
     return result;
   }
 
   public async getFirstUser(
     args: FindFirstUserArgs,
-    info?: GraphQLResolveInfo,
+    info?: GraphQLResolveInfo
   ): Promise<User> {
     const select = this.prismaSelectService.getValue(info);
     return await this.prisma.user.findFirst({ ...args, ...select });
@@ -60,7 +60,7 @@ export class UserService {
 
   public async getManyUsers(
     args: FindManyUserArgs,
-    info?: GraphQLResolveInfo,
+    info?: GraphQLResolveInfo
   ): Promise<User[]> {
     const select = this.prismaSelectService.getValue(info);
     return await this.prisma.user.findMany({ ...args, ...select });
@@ -75,8 +75,8 @@ export class UserService {
     const user: User = await this.prisma.user.findUnique({
       where: { id: userId },
       include: {
-        posts: true,
-      },
+        posts: true
+      }
     });
     return user.posts;
   }
@@ -84,8 +84,8 @@ export class UserService {
     const user: User = await this.prisma.user.findUnique({
       where: { id: userId },
       include: {
-        profile: true,
-      },
+        profile: true
+      }
     });
     return user.profile;
   }
@@ -94,13 +94,13 @@ export class UserService {
   public async createOneUser(data: CreateUserInput): Promise<User> {
     // Validation already checked with @Validate of class-validator
     const hashedPassword = await this.passwordService.hashPassword(
-      data.password,
+      data.password
     );
     return await this.prisma.user.create({
       data: {
         ...data,
-        password: hashedPassword,
-      },
+        password: hashedPassword
+      }
     });
   }
 
@@ -114,23 +114,23 @@ export class UserService {
   public async upsertOneUser(data: CreateUserInput): Promise<User> {
     // If create user
     const hashedPassword = await this.passwordService.hashPassword(
-      data.password,
+      data.password
     );
     return await this.prisma.user.upsert({
       where: { email: data.email },
       create: { ...data, password: hashedPassword },
-      update: {},
+      update: {}
     });
   }
 
   public async updateOneUser(
     where: UserWhereUniqueInput,
-    data: UpdateUserInput,
+    data: UpdateUserInput
   ): Promise<User> {
     try {
       return await this.prisma.user.update({
         data,
-        where,
+        where
       });
     } catch (error) {
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -144,12 +144,12 @@ export class UserService {
    */
   public async updateManyUsers(
     where: UserWhereInput,
-    data: UpdateUserInput,
+    data: UpdateUserInput
   ): Promise<BatchPayload> {
     try {
       return await this.prisma.user.updateMany({
         where,
-        data,
+        data
       });
     } catch (error) {
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -175,26 +175,26 @@ export class UserService {
   public async changePassword(
     userId: string,
     userPassword: string,
-    changePasswordInput: ChangePasswordInput,
+    changePasswordInput: ChangePasswordInput
   ) {
     try {
       const { newPassword, oldPassword } = changePasswordInput;
       const passwordValid = await this.passwordService.validatePassword(
         oldPassword,
-        userPassword,
+        userPassword
       );
 
       if (!passwordValid) {
         throw new BadRequestException('Invalid password');
       }
       const hashedPassword = await this.passwordService.hashPassword(
-        newPassword,
+        newPassword
       );
       return await this.prisma.user.update({
         where: { id: userId },
         data: {
-          password: hashedPassword,
-        },
+          password: hashedPassword
+        }
       });
     } catch (error) {
       if (error.status) {

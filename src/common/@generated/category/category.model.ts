@@ -4,32 +4,32 @@ import { Post } from '../post/post.model';
 @ObjectType()
 export class Category {
   @Field(() => ID, {
-    nullable: false,
+    nullable: false
   })
   id!: string;
 
   @Field(() => String, {
-    nullable: false,
+    nullable: false
   })
   name!: string;
 
   @Field(() => String, {
-    nullable: false,
+    nullable: false
   })
   slug!: string;
 
   @Field(() => Date, {
-    nullable: false,
+    nullable: false
   })
   createdAt!: Date | string;
 
   @Field(() => Date, {
-    nullable: false,
+    nullable: false
   })
   updatedAt!: Date | string;
 
   @Field(() => [Post], {
-    nullable: false,
+    nullable: false
   })
   posts!: Array<Post>;
 }

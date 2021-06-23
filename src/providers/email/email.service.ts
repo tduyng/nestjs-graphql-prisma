@@ -24,14 +24,14 @@ export class EmailService {
       to: toEmail,
       subject: '🥳🎉 Welcome to the Zeta Shop',
       context: {
-        siteUrl: this._env.clientUrl,
-      },
+        siteUrl: this._env.clientUrl
+      }
     }).then();
   }
 
   public async sendResetPassword(
     toEmail: string,
-    token: string,
+    token: string
   ): Promise<void> {
     const tokenUrl = `${this._env.clientUrl}/reset-password?token=${token}`;
     await this.send({
@@ -39,14 +39,14 @@ export class EmailService {
       to: toEmail,
       subject: '🔑 Request to recover your password',
       context: {
-        tokenUrl,
-      },
+        tokenUrl
+      }
     }).then();
   }
 
   public async sendEmailConfirmation(
     toEmail: string,
-    token: string,
+    token: string
   ): Promise<void> {
     const tokenUrl = `${this._env.clientUrl}/activate?token=${token}`;
     await this.send({
@@ -54,8 +54,8 @@ export class EmailService {
       to: toEmail,
       subject: 'Confirmation you email registration',
       context: {
-        tokenUrl,
-      },
+        tokenUrl
+      }
     }).then();
   }
 }

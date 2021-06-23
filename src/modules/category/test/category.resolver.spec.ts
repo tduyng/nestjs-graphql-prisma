@@ -12,30 +12,30 @@ const oneCategory = {
   slug: 'some-name',
   posts: [
     {
-      id: 'some postId1',
+      id: 'some postId1'
     },
     {
-      id: 'some postId2',
-    },
-  ] as Post[],
+      id: 'some postId2'
+    }
+  ] as Post[]
 } as Category;
 
 const arrayCategory = [
   {
-    id: 'some categoryId 1',
+    id: 'some categoryId 1'
   },
   {
-    id: 'some categoryId 2',
-  },
+    id: 'some categoryId 2'
+  }
 ] as Category[];
 
 const categoryInput = {
-  name: 'some name',
+  name: 'some name'
 } as CreateCategoryInput;
 
 const categoryWhereUniqueInput = {
   id: 'some categoryId',
-  slug: 'some-name',
+  slug: 'some-name'
 } as CategoryWhereUniqueInput;
 
 describe('CategoryResolver', () => {
@@ -49,7 +49,7 @@ describe('CategoryResolver', () => {
     createCategory: jest.fn(),
     updateCategory: jest.fn(),
     deleteCategory: jest.fn(),
-    createCategories: jest.fn(),
+    createCategories: jest.fn()
   });
 
   beforeAll(async () => {
@@ -58,9 +58,9 @@ describe('CategoryResolver', () => {
         CategoryResolver,
         {
           provide: CategoryService,
-          useFactory: mockCategoryService,
-        },
-      ],
+          useFactory: mockCategoryService
+        }
+      ]
     }).compile();
 
     categoryResolver = module.get<CategoryResolver>(CategoryResolver);
@@ -100,11 +100,11 @@ describe('CategoryResolver', () => {
     it('Should return an category', async () => {
       categoryService.createCategories.mockReturnValue([
         oneCategory,
-        oneCategory,
+        oneCategory
       ]);
       const result = await categoryResolver.createCategories([
         categoryInput,
-        categoryInput,
+        categoryInput
       ]);
       expect(result).toEqual([oneCategory, oneCategory]);
     });
@@ -115,7 +115,7 @@ describe('CategoryResolver', () => {
       categoryService.updateCategory.mockReturnValue(oneCategory);
       const result = await categoryResolver.updateCategory(
         oneCategory,
-        categoryInput,
+        categoryInput
       );
       expect(result).toEqual(oneCategory);
     });
@@ -125,7 +125,7 @@ describe('CategoryResolver', () => {
     it('Should return an category', async () => {
       categoryService.deleteCategory.mockReturnValue(oneCategory);
       const result = await categoryResolver.deleteCategory(
-        categoryWhereUniqueInput,
+        categoryWhereUniqueInput
       );
       expect(result).toEqual(oneCategory);
     });

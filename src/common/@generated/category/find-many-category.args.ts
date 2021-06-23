@@ -7,32 +7,32 @@ import { CategoryWhereInput } from './category-where.input';
 @ArgsType()
 export class FindManyCategoryArgs {
   @Field(() => CategoryWhereInput, {
-    nullable: true,
+    nullable: true
   })
   where?: CategoryWhereInput;
 
   @Field(() => [CategoryOrderByInput], {
-    nullable: true,
+    nullable: true
   })
   orderBy?: Array<CategoryOrderByInput>;
 
   @Field(() => CategoryWhereUniqueInput, {
-    nullable: true,
+    nullable: true
   })
   cursor?: CategoryWhereUniqueInput;
 
   @Field(() => Int, {
-    nullable: true,
+    nullable: true
   })
   take?: number;
 
   @Field(() => Int, {
-    nullable: true,
+    nullable: true
   })
   skip?: number;
 
   @Field(() => [CategoryScalarFieldEnum], {
-    nullable: true,
+    nullable: true
   })
   distinct?: Array<CategoryScalarFieldEnum>;
 }

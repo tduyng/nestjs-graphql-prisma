@@ -19,8 +19,8 @@ export const envConfig = (): EnvConfig => {
     cookieSecret: process.env.COOKIE_SECRET || `some-very-strong-secret`,
     email: {
       sendgridApiKey: process.env.SENDGRID_API_KEY,
-      emailSender: process.env.EMAIL_AUTH_USER || 'your-email@yopmail.com',
-    },
+      emailSender: process.env.EMAIL_AUTH_USER || 'your-email@yopmail.com'
+    }
   };
 };
 

@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common';
 import {
   ValidatorConstraint,
   ValidationArguments,
-  ValidatorConstraintInterface,
+  ValidatorConstraintInterface
 } from 'class-validator';
 import { UserService } from '../services/user.service';
 
@@ -17,7 +17,7 @@ export class UserExitsValidator implements ValidatorConstraintInterface {
    */
   public async validate(email: string, _args: ValidationArguments) {
     const where: UserWhereUniqueInput = {
-      email,
+      email
     };
     try {
       const check = await this.userService.getUserByUniqueInput(where);

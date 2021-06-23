@@ -6,48 +6,48 @@ import { Profile } from '../profile/profile.model';
 @ObjectType()
 export class User {
   @Field(() => ID, {
-    nullable: false,
+    nullable: false
   })
   id!: string;
 
   @Field(() => String, {
-    nullable: false,
+    nullable: false
   })
   email!: string;
 
   @Field(() => String, {
-    nullable: false,
+    nullable: false
   })
   password!: string;
 
   @Field(() => Role, {
     nullable: false,
-    defaultValue: 'USER',
+    defaultValue: 'USER'
   })
   role!: Role;
 
   @Field(() => Date, {
-    nullable: false,
+    nullable: false
   })
   createdAt!: Date | string;
 
   @Field(() => Date, {
-    nullable: false,
+    nullable: false
   })
   updatedAt!: Date | string;
 
   @Field(() => [Post], {
-    nullable: false,
+    nullable: false
   })
   posts!: Array<Post>;
 
   @Field(() => Profile, {
-    nullable: true,
+    nullable: true
   })
   profile?: Profile;
 
   @Field(() => String, {
-    nullable: true,
+    nullable: true
   })
   currentHashedRefreshToken?: string;
 }

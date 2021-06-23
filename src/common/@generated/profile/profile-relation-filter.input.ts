@@ -4,12 +4,12 @@ import { ProfileWhereInput } from './profile-where.input';
 @InputType()
 export class ProfileRelationFilter {
   @Field(() => ProfileWhereInput, {
-    nullable: true,
+    nullable: true
   })
   is?: ProfileWhereInput;
 
   @Field(() => ProfileWhereInput, {
-    nullable: true,
+    nullable: true
   })
   isNot?: ProfileWhereInput;
 }

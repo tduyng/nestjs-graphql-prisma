@@ -8,42 +8,42 @@ import { ProfileWhereInput } from './profile-where.input';
 @ArgsType()
 export class AggregateProfileArgs {
   @Field(() => ProfileWhereInput, {
-    nullable: true,
+    nullable: true
   })
   where?: ProfileWhereInput;
 
   @Field(() => [ProfileOrderByInput], {
-    nullable: true,
+    nullable: true
   })
   orderBy?: Array<ProfileOrderByInput>;
 
   @Field(() => ProfileWhereUniqueInput, {
-    nullable: true,
+    nullable: true
   })
   cursor?: ProfileWhereUniqueInput;
 
   @Field(() => Int, {
-    nullable: true,
+    nullable: true
   })
   take?: number;
 
   @Field(() => Int, {
-    nullable: true,
+    nullable: true
   })
   skip?: number;
 
   @Field(() => Boolean, {
-    nullable: true,
+    nullable: true
   })
   count?: true;
 
   @Field(() => ProfileMinAggregateInput, {
-    nullable: true,
+    nullable: true
   })
   min?: ProfileMinAggregateInput;
 
   @Field(() => ProfileMaxAggregateInput, {
-    nullable: true,
+    nullable: true
   })
   max?: ProfileMaxAggregateInput;
 }

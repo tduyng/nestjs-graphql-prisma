@@ -8,67 +8,67 @@ import { UserWhereInput } from '../user/user-where.input';
 @InputType()
 export class PostWhereInput {
   @Field(() => [PostWhereInput], {
-    nullable: true,
+    nullable: true
   })
   AND?: Array<PostWhereInput>;
 
   @Field(() => [PostWhereInput], {
-    nullable: true,
+    nullable: true
   })
   OR?: Array<PostWhereInput>;
 
   @Field(() => [PostWhereInput], {
-    nullable: true,
+    nullable: true
   })
   NOT?: Array<PostWhereInput>;
 
   @Field(() => StringFilter, {
-    nullable: true,
+    nullable: true
   })
   id?: StringFilter;
 
   @Field(() => StringFilter, {
-    nullable: true,
+    nullable: true
   })
   title?: StringFilter;
 
   @Field(() => StringFilter, {
-    nullable: true,
+    nullable: true
   })
   slug?: StringFilter;
 
   @Field(() => StringFilter, {
-    nullable: true,
+    nullable: true
   })
   content?: StringFilter;
 
   @Field(() => BoolFilter, {
-    nullable: true,
+    nullable: true
   })
   published?: BoolFilter;
 
   @Field(() => DateTimeFilter, {
-    nullable: true,
+    nullable: true
   })
   createdAt?: DateTimeFilter;
 
   @Field(() => DateTimeFilter, {
-    nullable: true,
+    nullable: true
   })
   updatedAt?: DateTimeFilter;
 
   @Field(() => StringFilter, {
-    nullable: true,
+    nullable: true
   })
   authorId?: StringFilter;
 
   @Field(() => UserWhereInput, {
-    nullable: true,
+    nullable: true
   })
   author?: UserWhereInput;
 
   @Field(() => CategoryListRelationFilter, {
-    nullable: true,
+    nullable: true
   })
   categories?: CategoryListRelationFilter;
 }

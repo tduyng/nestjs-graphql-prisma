@@ -6,17 +6,17 @@ import { UserMinAggregate } from './user-min-aggregate.output';
 @ObjectType()
 export class AggregateUser {
   @Field(() => UserCountAggregate, {
-    nullable: true,
+    nullable: true
   })
   count?: UserCountAggregate;
 
   @Field(() => UserMinAggregate, {
-    nullable: true,
+    nullable: true
   })
   min?: UserMinAggregate;
 
   @Field(() => UserMaxAggregate, {
-    nullable: true,
+    nullable: true
   })
   max?: UserMaxAggregate;
 }

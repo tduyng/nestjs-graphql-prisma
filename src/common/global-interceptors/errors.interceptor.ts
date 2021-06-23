@@ -3,7 +3,7 @@ import {
   NestInterceptor,
   ExecutionContext,
   BadGatewayException,
-  CallHandler,
+  CallHandler
 } from '@nestjs/common';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -14,7 +14,7 @@ export class ErrorsInterceptor implements NestInterceptor {
     return next
       .handle()
       .pipe(
-        catchError((err) => throwError(new BadGatewayException(err.message))),
+        catchError((err) => throwError(new BadGatewayException(err.message)))
       );
   }
 }

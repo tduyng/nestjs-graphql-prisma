@@ -10,23 +10,23 @@ import { EmailService } from './email.service';
     MailerModule.forRoot({
       transport: sendGridTransport({
         auth: {
-          api_key: envConfig().email.sendgridApiKey,
-        },
+          api_key: envConfig().email.sendgridApiKey
+        }
       }),
       defaults: {
-        from: `"No Reply" <noreply@nestjs.com>`,
+        from: `"No Reply" <noreply@nestjs.com>`
       },
       preview: envConfig().mode === 'development',
       template: {
         dir: process.cwd() + '/src/providers/email/templates',
         adapter: new HandlebarsAdapter(),
         options: {
-          strict: true,
-        },
-      },
-    }),
+          strict: true
+        }
+      }
+    })
   ],
   providers: [EmailService],
-  exports: [EmailService],
+  exports: [EmailService]
 })
 export class EmailModule {}

@@ -15,7 +15,7 @@ export class UpdateUserInput {
   password?: string;
 
   @Field(() => ProfileUpdateOneWithoutUserInput, {
-    nullable: true,
+    nullable: true
   })
   profile?: ProfileUpdateOneWithoutUserInput;
 

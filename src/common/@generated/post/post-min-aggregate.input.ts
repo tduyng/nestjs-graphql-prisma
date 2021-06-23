@@ -3,42 +3,42 @@ import { Field, InputType } from '@nestjs/graphql';
 @InputType()
 export class PostMinAggregateInput {
   @Field(() => Boolean, {
-    nullable: true,
+    nullable: true
   })
   id?: true;
 
   @Field(() => Boolean, {
-    nullable: true,
+    nullable: true
   })
   title?: true;
 
   @Field(() => Boolean, {
-    nullable: true,
+    nullable: true
   })
   slug?: true;
 
   @Field(() => Boolean, {
-    nullable: true,
+    nullable: true
   })
   content?: true;
 
   @Field(() => Boolean, {
-    nullable: true,
+    nullable: true
   })
   published?: true;
 
   @Field(() => Boolean, {
-    nullable: true,
+    nullable: true
   })
   createdAt?: true;
 
   @Field(() => Boolean, {
-    nullable: true,
+    nullable: true
   })
   updatedAt?: true;
 
   @Field(() => Boolean, {
-    nullable: true,
+    nullable: true
   })
   authorId?: true;
 }

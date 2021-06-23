@@ -6,7 +6,7 @@ import {
   UserCreateInput,
   UserUpdateInput,
   UserWhereInput,
-  UserWhereUniqueInput,
+  UserWhereUniqueInput
 } from '@common/@generated/user';
 import { Roles } from '../decorators';
 import { BatchPayload } from '@common/@generated/prisma';
@@ -25,7 +25,7 @@ export class AdminResolver {
   @Query(() => User)
   public async adminFindUniqueUser(
     @Args('where') where: UserWhereUniqueInput,
-    @Info() info?: GraphQLResolveInfo,
+    @Info() info?: GraphQLResolveInfo
   ) {
     return await this.userService.getUserByUniqueInput(where, info);
   }
@@ -33,7 +33,7 @@ export class AdminResolver {
   @Query(() => User)
   public async adminFindFirstUser(
     @Args() args: FindFirstUserArgs,
-    @Info() info?: GraphQLResolveInfo,
+    @Info() info?: GraphQLResolveInfo
   ) {
     return await this.userService.getFirstUser(args, info);
   }
@@ -41,7 +41,7 @@ export class AdminResolver {
   @Query(() => [User])
   public async adminFindManyUser(
     @Args() args: FindManyUserArgs,
-    @Info() info?: GraphQLResolveInfo,
+    @Info() info?: GraphQLResolveInfo
   ) {
     return await this.userService.getManyUsers(args, info);
   }
@@ -66,7 +66,7 @@ export class AdminResolver {
   @Mutation(() => User)
   public async adminUpdateOneUser(
     @Args('where') where: UserWhereUniqueInput,
-    @Args('data') newUserData: UserUpdateInput,
+    @Args('data') newUserData: UserUpdateInput
   ) {
     return await this.userService.updateOneUser(where, newUserData);
   }
@@ -74,7 +74,7 @@ export class AdminResolver {
   @Mutation(() => BatchPayload)
   public async adminUpdateManyUser(
     @Args('where') where: UserWhereInput,
-    @Args('data') data: UserUpdateInput,
+    @Args('data') data: UserUpdateInput
   ) {
     return await this.userService.updateManyUsers(where, data);
   }

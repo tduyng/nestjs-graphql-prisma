@@ -8,62 +8,62 @@ import { ProfileWhereInput } from '../profile/profile-where.input';
 @InputType()
 export class UserWhereInput {
   @Field(() => [UserWhereInput], {
-    nullable: true,
+    nullable: true
   })
   AND?: Array<UserWhereInput>;
 
   @Field(() => [UserWhereInput], {
-    nullable: true,
+    nullable: true
   })
   OR?: Array<UserWhereInput>;
 
   @Field(() => [UserWhereInput], {
-    nullable: true,
+    nullable: true
   })
   NOT?: Array<UserWhereInput>;
 
   @Field(() => StringFilter, {
-    nullable: true,
+    nullable: true
   })
   id?: StringFilter;
 
   @Field(() => StringFilter, {
-    nullable: true,
+    nullable: true
   })
   email?: StringFilter;
 
   @Field(() => StringFilter, {
-    nullable: true,
+    nullable: true
   })
   password?: StringFilter;
 
   @Field(() => EnumRoleFilter, {
-    nullable: true,
+    nullable: true
   })
   role?: EnumRoleFilter;
 
   @Field(() => DateTimeFilter, {
-    nullable: true,
+    nullable: true
   })
   createdAt?: DateTimeFilter;
 
   @Field(() => DateTimeFilter, {
-    nullable: true,
+    nullable: true
   })
   updatedAt?: DateTimeFilter;
 
   @Field(() => PostListRelationFilter, {
-    nullable: true,
+    nullable: true
   })
   posts?: PostListRelationFilter;
 
   @Field(() => ProfileWhereInput, {
-    nullable: true,
+    nullable: true
   })
   profile?: ProfileWhereInput;
 
   @Field(() => StringFilter, {
-    nullable: true,
+    nullable: true
   })
   currentHashedRefreshToken?: StringFilter;
 }

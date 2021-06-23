@@ -4,17 +4,17 @@ import { CategoryWhereInput } from './category-where.input';
 @InputType()
 export class CategoryListRelationFilter {
   @Field(() => CategoryWhereInput, {
-    nullable: true,
+    nullable: true
   })
   every?: CategoryWhereInput;
 
   @Field(() => CategoryWhereInput, {
-    nullable: true,
+    nullable: true
   })
   some?: CategoryWhereInput;
 
   @Field(() => CategoryWhereInput, {
-    nullable: true,
+    nullable: true
   })
   none?: CategoryWhereInput;
 }

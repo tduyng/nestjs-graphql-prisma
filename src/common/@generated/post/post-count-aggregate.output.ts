@@ -3,47 +3,47 @@ import { Field, Int, ObjectType } from '@nestjs/graphql';
 @ObjectType()
 export class PostCountAggregate {
   @Field(() => Int, {
-    nullable: true,
+    nullable: false
   })
-  id?: number;
+  id!: number;
 
   @Field(() => Int, {
-    nullable: true,
+    nullable: false
   })
-  title?: number;
+  title!: number;
 
   @Field(() => Int, {
-    nullable: true,
+    nullable: false
   })
-  slug?: number;
+  slug!: number;
 
   @Field(() => Int, {
-    nullable: true,
+    nullable: false
   })
-  content?: number;
+  content!: number;
 
   @Field(() => Int, {
-    nullable: true,
+    nullable: false
   })
-  published?: number;
+  published!: number;
 
   @Field(() => Int, {
-    nullable: true,
+    nullable: false
   })
-  createdAt?: number;
+  createdAt!: number;
 
   @Field(() => Int, {
-    nullable: true,
+    nullable: false
   })
-  updatedAt?: number;
+  updatedAt!: number;
 
   @Field(() => Int, {
-    nullable: true,
+    nullable: false
   })
-  authorId?: number;
+  authorId!: number;
 
   @Field(() => Int, {
-    nullable: false,
+    nullable: false
   })
   _all!: number;
 }

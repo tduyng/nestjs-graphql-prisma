@@ -21,14 +21,14 @@ import { EmailModule } from 'src/providers/email/email.module';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: '.env',
+      envFilePath: '.env'
     }),
     GraphQLModule.forRootAsync({
-      useFactory: graphqlModuleFactory,
+      useFactory: graphqlModuleFactory
     }),
     I18nModule.forRootAsync({
       useFactory: i18nModuleFactory,
-      parser: I18nJsonParser,
+      parser: I18nJsonParser
     }),
     PrismaModule,
     UserModule,
@@ -37,9 +37,9 @@ import { EmailModule } from 'src/providers/email/email.module';
     ProfileModule,
     PostModule,
     RedisModule,
-    EmailModule,
+    EmailModule
   ],
   providers: [AppResolver, AppService],
-  controllers: [AppController],
+  controllers: [AppController]
 })
 export class AppModule {}

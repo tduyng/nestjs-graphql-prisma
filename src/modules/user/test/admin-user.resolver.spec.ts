@@ -4,7 +4,7 @@ import {
   FindManyUserArgs,
   UserCreateInput,
   UserWhereInput,
-  UserWhereUniqueInput,
+  UserWhereUniqueInput
 } from '@common/@generated/user';
 import { Test, TestingModule } from '@nestjs/testing';
 import { AdminResolver } from '../resolvers/admin-user.resolver';
@@ -20,36 +20,36 @@ const oneUser = {
     id: 'some profileId',
     username: 'some-username',
     firstName: 'some first name',
-    lastName: 'some last name',
+    lastName: 'some last name'
   },
   posts: [
     {
-      id: 'some postId1',
+      id: 'some postId1'
     },
     {
-      id: 'some postId2',
-    },
-  ] as Post[],
+      id: 'some postId2'
+    }
+  ] as Post[]
 } as User;
 
 const arrayUsers = [oneUser, oneUser];
 
 const findManyArgs = {
-  where: { email: { contains: 'email' } },
+  where: { email: { contains: 'email' } }
 } as FindManyUserArgs;
 
 const userWhereUniqueInput = {
-  email: 'some email',
+  email: 'some email'
 } as UserWhereUniqueInput;
 
 const userWhereInput = {
-  email: { contains: 'email' },
+  email: { contains: 'email' }
 } as UserWhereInput;
 
 const dataUser = {
   email: 'some email',
   username: 'some username',
-  password: 'some password',
+  password: 'some password'
 } as UserCreateInput;
 
 const batchPayload = { count: 1 } as BatchPayload;
@@ -68,7 +68,7 @@ describe('adminResolver', () => {
     updateOneUser: jest.fn(),
     updateManyUsers: jest.fn(),
     deleteOneUser: jest.fn(),
-    deleteManyUsers: jest.fn(),
+    deleteManyUsers: jest.fn()
   });
 
   beforeAll(async () => {
@@ -77,9 +77,9 @@ describe('adminResolver', () => {
         AdminResolver,
         {
           provide: UserService,
-          useFactory: mockUserService,
-        },
-      ],
+          useFactory: mockUserService
+        }
+      ]
     }).compile();
 
     adminResolver = module.get<AdminResolver>(AdminResolver);
@@ -94,7 +94,7 @@ describe('adminResolver', () => {
     it('Should return an user', async () => {
       userService.getUserByUniqueInput.mockReturnValue(oneUser);
       const result = await adminResolver.adminFindUniqueUser(
-        userWhereUniqueInput,
+        userWhereUniqueInput
       );
       expect(result).toEqual(oneUser);
     });
@@ -144,7 +144,7 @@ describe('adminResolver', () => {
       userService.updateOneUser.mockReturnValue(oneUser);
       const result = await adminResolver.adminUpdateOneUser(
         userWhereUniqueInput,
-        dataUser,
+        dataUser
       );
       expect(result).toEqual(oneUser);
     });
@@ -155,7 +155,7 @@ describe('adminResolver', () => {
       userService.updateManyUsers.mockReturnValue(batchPayload);
       const result = await adminResolver.adminUpdateManyUser(
         userWhereInput,
-        dataUser,
+        dataUser
       );
       expect(result).toEqual(batchPayload);
     });
@@ -165,7 +165,7 @@ describe('adminResolver', () => {
     it('Should return a deleted user', async () => {
       userService.deleteOneUser.mockReturnValue(oneUser);
       const result = await adminResolver.adminDeleteOneUser(
-        userWhereUniqueInput,
+        userWhereUniqueInput
       );
       expect(result).toEqual(oneUser);
     });

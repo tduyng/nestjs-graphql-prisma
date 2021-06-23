@@ -9,7 +9,7 @@ import { CategoryService } from './category.service';
     CategoryService,
     CategoryResolver,
     PrismaService,
-    PrismaSelectService,
-  ],
+    PrismaSelectService
+  ]
 })
 export class CategoryModule {}

@@ -5,12 +5,12 @@ import { PostWhereUniqueInput } from './post-where-unique.input';
 @InputType()
 export class PostUpdateWithWhereUniqueWithoutAuthorInput {
   @Field(() => PostWhereUniqueInput, {
-    nullable: false,
+    nullable: false
   })
   where!: PostWhereUniqueInput;
 
   @Field(() => PostUpdateWithoutAuthorInput, {
-    nullable: false,
+    nullable: false
   })
   data!: PostUpdateWithoutAuthorInput;
 }

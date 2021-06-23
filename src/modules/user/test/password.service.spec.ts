@@ -10,7 +10,7 @@ describe('UserService', () => {
 
   beforeAll(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [PasswordService],
+      providers: [PasswordService]
     }).compile();
 
     passwordService = module.get<PasswordService>(PasswordService);
@@ -24,7 +24,7 @@ describe('UserService', () => {
     it('Should matched password', async () => {
       const result = await passwordService.validatePassword(
         plainPassword,
-        hashedPassword,
+        hashedPassword
       );
       expect(result).toBe(true);
     });

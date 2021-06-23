@@ -6,17 +6,17 @@ import { ProfileWhereUniqueInput } from '../profile/profile-where-unique.input';
 @InputType()
 export class ProfileCreateNestedOneWithoutUserInput {
   @Field(() => ProfileCreateWithoutUserInput, {
-    nullable: true,
+    nullable: true
   })
   create?: ProfileCreateWithoutUserInput;
 
   @Field(() => ProfileCreateOrConnectWithoutuserInput, {
-    nullable: true,
+    nullable: true
   })
   connectOrCreate?: ProfileCreateOrConnectWithoutuserInput;
 
   @Field(() => ProfileWhereUniqueInput, {
-    nullable: true,
+    nullable: true
   })
   connect?: ProfileWhereUniqueInput;
 }
